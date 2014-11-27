@@ -24,7 +24,7 @@ Make sure you have a fast internet connection, you will be downloading something
 - Run: vagrant up
 - Wait for the installation process
 
-###TADA
+###TA-DA!
 
 Now you can access your server at the adress:
 > http://localhost:8080
