@@ -1,0 +1,4 @@
+CREATE USER 'mouvinsa'@'localhost' IDENTIFIED BY 'h4305';
+GRANT ALL PRIVILEGES ON *.* TO 'mouvinsa'@'localhost' WITH GRANT OPTION;
+CREATE USER 'mouvinsa'@'%' IDENTIFIED BY 'h4305';
+GRANT ALL PRIVILEGES ON *.* TO 'mouvinsa'@'%' WITH GRANT OPTION;

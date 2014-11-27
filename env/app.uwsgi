@@ -1,0 +1,7 @@
+[uwsgi]
+vhost = true
+socket = /tmp/uwsgi.sock
+chdir = /app
+module = app
+callable = app
+py-autoreload=1
