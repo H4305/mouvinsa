@@ -20,7 +20,6 @@ Make sure you have a fast internet connection, you will be downloading something
 
 - Git clone this project.
 - Open a shell, go to the env directory
-- Run: vagrant init
 - Run: vagrant up
 - Wait for the installation process
 
