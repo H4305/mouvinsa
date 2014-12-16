@@ -1,0 +1,16 @@
+[uwsgi]
+vhost = true
+socket = /run/uwsgi/app/mouvinsa/mouvinsa.socket
+chdir = /srv/www/mouvinsa/app/
+master = true
+module = app
+callable = app
+processes = 4
+threads = 2
+cpu-affinity = 1
+harakiri = 60
+stats = /tmp/stats.socket
+max-requests = 2000
+limit-as = 512
+reload-on-as = 256
+reload-on-rss = 192
