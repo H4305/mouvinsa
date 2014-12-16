@@ -1,7 +1,7 @@
 
 /* This is only for test, you can remove anything from here */
 body            { font-family: sans-serif; background: #eee; }
-a, h1, h2       { color: #377ba8; }
+a, h1, h2       { color: #ee2922; }
 h1, h2          { font-family: 'Georgia', serif; margin: 0; }
 h1              { border-bottom: 2px solid #eee; }
 h2              { font-size: 1.2em; }
@@ -19,3 +19,19 @@ h2              { font-size: 1.2em; }
                   border: 1px solid #aacbe2; }
 .error          { background: #f0d6d6; padding: 0.5em; }
 /* end of test */
+
+
+body {
+    width: 100%;
+}
+
+header {
+    height: 60px;
+    width: 100%;
+    background: #ee2922;
+    color: #ffffff;
+}
+
+footer {
+
+}

@@ -25,7 +25,7 @@ def login():
 #
 @app.errorhandler(500)
 def page_not_found(e):
-    return "Hey, this is flask the following error has occured : <br/>" + e, 500
+    return render_template('404.html')
 
 if __name__ == '__main__':
     app.run(debug=True)

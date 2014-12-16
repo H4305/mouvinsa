@@ -1,17 +1,25 @@
-<!doctype html>
-<title>Mouv'INSA</title>
-<link rel=stylesheet type=text/css href="{{ url_for('static', filename='styles/style.css') }}">
-<div class=page>
-  <h1>Mouv'INSA</h1>
-  <div class=metanav>
-  {% if not session.logged_in %}
-    <a href="{{ url_for('login') }}">log in</a>
-  {% else %}
-    <a href="{{ url_for('logout') }}">log out</a>
-  {% endif %}
-  </div>
-  {% for message in get_flashed_messages() %}
-    <div class=flash>{{ message }}</div>
-  {% endfor %}
-  {% block body %}{% endblock %}
-</div>
+<!DOCTYPE HTML>
+<html>
+
+<head>
+        <title>{% block title %}{%  endblock %} - Mouv'INSA</title>
+        <meta charset="utf-8">
+        <meta name="description" content="165c. uniques">
+
+        <link rel=stylesheet type=text/css href="{{ url_for('static', filename='styles/style.css') }}">
+        <link rel=stylesheet type=text/css href="{{ url_for('static', filename='styles/flipclock.css') }}">
+
+        {% include 'scripts.html' %}
+</head>
+
+<body>
+    <div id="page">
+        <header>{% include 'header.html' %}</header>
+        <nav>{% include 'menu.html' %}</nav>
+        <div id="main" class="main">{% block main %}{% endblock %}</div>
+        <footer>{% include 'footer.html' %}</footer>
+    </div>
+
+
+</body>
+</html>
