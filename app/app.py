@@ -1,6 +1,9 @@
 from flask import Flask, render_template, request
 app = Flask(__name__)
 
+from werkzeug.debug import DebuggedApplication
+app.wsgi_app = DebuggedApplication(app.wsgi_app, True)
+
 
 @app.route('/')
 def hello_world():
