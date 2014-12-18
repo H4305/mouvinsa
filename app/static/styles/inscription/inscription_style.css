@@ -1,0 +1,133 @@
+html, body {
+	font-family: Helvetica, Arial, sans-serif;
+
+	/* Location of the image */
+    background-image: url("../../images/fitnessjog.jpg");  
+  	
+  	/* Background image is centered vertically and horizontally at all times */
+  	background-position: center center;
+  
+  	/* Background image doesn't tile */
+  	background-repeat: no-repeat;
+  
+  	/* Background image is fixed in the viewport so that it doesn't move when 
+     the content's height is greater than the image's height */
+  	background-attachment: fixed;
+  
+  	/* This is what makes the background image rescale based
+     on the container's size */
+  	background-size: cover;
+  
+  	/* Set a background color that will be displayed
+     while the background image is loading */
+  	background-color: #464646;
+
+  	margin:0;
+  	padding:0;
+  	height: 100%;
+  	width: 100%;
+}
+
+#headerMenu_DIV {
+    position: relative;
+    padding-top: 2px;
+    width: 100%;
+    height: 40px;
+    min-height: 20px;
+    max-height: 100px;
+    overflow: hidden;
+    background: #E42618;
+    -webkit-box-shadow: 0 8px 6px -6px black;
+	-moz-box-shadow: 0 8px 6px -6px black;
+	box-shadow: 0 8px 6px -6px black;
+}
+
+.trasparentContainer_DIV {
+	background: white;
+	opacity: 0.65;
+}
+
+#presentation_DIV {
+    position: relative;
+    margin-top: 10px;
+    margin-left: 25%;
+    margin-right: 25%;
+    padding-left: 4%;
+    padding-right: 4%;
+    height: 40%;
+    overflow: hidden;
+}
+
+#inscrivezVousHeader_DIV {
+    position: relative;
+    margin-top: 10px;
+    margin-left: 25%;
+    margin-right: 25%;
+    margin-bottom: 0;
+    height: 40px;
+    overflow: visible;
+    background: #E42618;
+	color: white;
+	text-indent: 20px;
+}
+
+#inscrivezVousHeader_SPAN {
+    position: relative;
+    top: 32%;
+    padding-left: 8%;
+  	-webkit-transform: translateY(-50%);
+  	-ms-transform: translateY(-50%);
+  	transform: translateY(-50%);
+}
+
+#triangle_DIV {
+	position: relative;
+	width: 0;
+	height: 0;
+	border-style: solid;
+	border-width: 10px 0 10px 17.3px;
+	border-color: transparent transparent transparent #ffffff;
+	-webkit-transform-origin: bottom right;
+	transform-origin: 50% 25%;
+
+	/* ANIMATION */
+	-webkit-transition: 0.5s all;
+	-firefox-transition: 0.5s all;
+	-o-transition: 0.5s all;
+	transition: 0.5s all;
+}
+
+.triangle_DIV_begin {
+	top : 10%;
+	margin-left: 4%;
+	-webkit-transform: translateY(-50%);
+  	-ms-transform: translateY(-50%);
+  	transform: translateY(-50%);
+}
+
+.triangle_DIV_rotated {
+	margin-left: 5%;
+	-webkit-transform: translateY(-50%);
+  	-ms-transform: translateY(-50%);
+  	transform: translateY(-50%);
+	-ms-transform: rotate(90deg); /* IE 9 */
+    -webkit-transform: rotate(90deg); /* Chrome, Safari, Opera */
+    transform: rotate(90deg);
+}
+
+#inscrivezVousContent_DIV {
+	position: relative;
+    margin-left: 25%;
+    margin-right: 25%;
+    padding-left: 4%;
+    padding-right: 4%;
+    height: 40%;
+    overflow: hidden;
+    display: none;
+}
+
+.formulaireClass_FORM {
+	color : black;
+
+
+}

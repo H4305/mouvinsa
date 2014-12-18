@@ -10,6 +10,9 @@ def hello_world():
     name = request.args.get('name', '')
     return render_template('index.html', name=name)
 
+@app.route('/inscription')
+def inscription():
+    return render_template('inscription/inscription.html')
 
 @app.route('/login/', methods=['GET', 'POST'] )
 def login():

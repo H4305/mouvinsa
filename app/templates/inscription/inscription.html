@@ -1,0 +1,60 @@
+{% extends "inscription/squelette.html" %}
+
+{% block header %}
+    {{ super() }}
+    <link href="{{ url_for('static', filename='styles/inscription/inscription_style.css') }}" rel="stylesheet" type="text/css" />
+{% endblock %}
+
+{% block titre %}MOUVINSA | Inscription{% endblock %}
+
+{% block corps %}
+
+    <script type=text/javascript src="{{
+  url_for('static', filename='scripts/inscription/inscriptionFunctions.js') }}"></script>
+   <script type=text/javascript src="{{
+  url_for('static', filename='scripts/jquery.transit.js') }}"></script>
+
+    <div id="headerMenu_DIV">
+        Menu
+    </div>
+
+    <div class="trasparentContainer_DIV" id="presentation_DIV">
+        <!-- <img src="{{ url_for('static', filename='images/inscription_fond.jpg') }}"> -->
+        <p>
+            Tantum autem cuique tribuendum, primum quantum ipse efficere possis, deinde etiam quantum ille quem diligas atque adiuves, sustinere. Non enim neque tu possis, quamvis excellas, omnes tuos ad honores amplissimos perducere, ut Scipio P. Rupilium potuit consulem efficere, fratrem eius L. non potuit. Quod si etiam possis quidvis deferre ad alterum, videndum est tamen, quid ille possit sustinere.
+        </p>
+
+    </div>
+
+    <div id="inscrivezVousHeader_DIV" onclick="showForm()">
+        <span id="inscrivezVousHeader_SPAN">Inscrivez-vous</span>
+        <div id="triangle_DIV" class="triangle_DIV_begin"></div>
+    </div>
+
+    <div class="trasparentContainer_DIV" id="inscrivezVousContent_DIV">
+        
+        <form class="formulaireClass_FORM" action="" method="post">
+            <div id="Email_DIV">
+                <span>Email</span>
+                <input type="text" name="Email" value="prenom.nom" />
+                <span>@insa-lyon.fr</span>
+            </div>
+            
+            <div id="Surname_DIV">
+                <span>Surnom</span>
+                <input type="text" name="Surnom" value="Jean" />
+            </div>
+
+            <div>
+                <span>Nom</span>
+                <input type="text" name="Nom" value="DUPONT" />
+            </div>
+            
+            <input type="submit" value="ENVOYER" />
+        </form>
+        
+    </div>
+
+
+
+{% endblock %}

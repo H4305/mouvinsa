@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    {% block header %}
+        <meta charset="utf-8" />
+        <title>{% block titre %}Titre par défaut{% endblock %}</title>
+    {% endblock %}
+    </head>
+
+    <body>
+        <script type=text/javascript src="{{
+  url_for('static', filename='scripts/jquery.js') }}"></script>
+        {% block corps %}{% endblock %}        
+        {% block footer %}{% endblock %}
+    </body>
+</html>
