@@ -5,7 +5,7 @@ html, body {
     background-image: url("../../images/fitnessjog.jpg");  
   	
   	/* Background image is centered vertically and horizontally at all times */
-  	background-position: center center;
+  	background-position: top left;
   
   	/* Background image doesn't tile */
   	background-repeat: no-repeat;
@@ -38,37 +38,37 @@ html, body {
     overflow: hidden;
     background: #E42618;
     -webkit-box-shadow: 0 8px 6px -6px black;
-	-moz-box-shadow: 0 8px 6px -6px black;
-	box-shadow: 0 8px 6px -6px black;
+	  -moz-box-shadow: 0 8px 6px -6px black;
+	  box-shadow: 0 8px 6px -6px black;
 }
 
 .trasparentContainer_DIV {
 	background: white;
-	opacity: 0.65;
+	opacity: 0.85;
 }
 
 #presentation_DIV {
     position: relative;
     margin-top: 10px;
-    margin-left: 25%;
-    margin-right: 25%;
+    margin-left: 20%;
+    margin-right: 20%;
     padding-left: 4%;
     padding-right: 4%;
     height: 40%;
     overflow: hidden;
-}
+  }
 
 #inscrivezVousHeader_DIV {
     position: relative;
     margin-top: 10px;
-    margin-left: 25%;
-    margin-right: 25%;
+    margin-left: 20%;
+    margin-right: 20%;
     margin-bottom: 0;
     height: 40px;
     overflow: visible;
     background: #E42618;
-	color: white;
-	text-indent: 20px;
+	  color: white;
+	  text-indent: 20px;
 }
 
 #inscrivezVousHeader_SPAN {
@@ -116,18 +116,97 @@ html, body {
 }
 
 #inscrivezVousContent_DIV {
-	position: relative;
-    margin-left: 25%;
-    margin-right: 25%;
-    padding-left: 4%;
-    padding-right: 4%;
-    height: 40%;
+	  position: relative;
+    margin-left: 20%;
+    margin-right: 20%;
+    /*height: 40%;*/
     overflow: hidden;
-    display: none;
+    /*display: none;  /!\ Il faut le decommenter*/
+}
+/*
+.inscriptionField_LABEL, .inscriptionField_INPUT {
+    display: inline-block;
+    margin-top: 2%;
+    margin-bottom: 2%;
 }
 
-.formulaireClass_FORM {
-	color : black;
-
-
+.inscriptionField_LABEL + .inscriptionField_INPUT {
+    width: 30%;
+    margin: 0 30% 0 4%;
 }
+
+.inscriptionField_INPUT + .inscriptionField_INPUT {
+    float: right;
+}*/
+
+.inscriptionField_LABEL {
+    position: relative;
+    width: 25%;
+    float: left;
+}
+
+.inscriptionField_INPUT {
+    position: relative;
+    border: 0;
+    outline: 0;
+    background: transparent;
+    border-bottom: 2px solid black;
+    width: 60%;
+    float: right;
+    bottom: 0;
+}
+
+.inscriptionField_INPUT:focus {
+    border-bottom: 2px solid #E42618;
+}
+
+.inscriptionValidate_BUTTON {
+    position: relative;
+    background: #E42618;
+    width: 15%;
+    height: 40px;
+    margin-bottom: 2%;
+    margin-left: 80%;
+    color: white;
+    font-size: 90%;
+    -webkit-box-shadow: 0 8px 6px -6px black;
+    -moz-box-shadow: 0 8px 6px -6px black;
+    box-shadow: 0 8px 6px -6px black;
+}
+
+.elementForm_DIV {
+    position: relative;
+    overflow: hidden;
+    width: 90%;
+    margin: 2% 0 0 4%;
+}
+
+.inscriptionField_SELECT {
+    position: relative;
+    float: right;
+    bottom: 0;
+    width: 60%;
+    /*border: 0;
+    outline: 0;
+    background: transparent;
+    border-bottom: 2px solid black;*/
+}
+
+.leftElements_DIV {
+    position: relative;
+    float:left;
+    width: 49%;
+    height: 90%;
+    margin-bottom: 1%;
+    margin-top: 2%;
+}
+
+.rightElements_DIV {
+    position: relative;
+    float:right;
+    width: 49%;
+    height: 90%;
+    margin-bottom: 1%;
+    margin-top: 2%;
+}
+

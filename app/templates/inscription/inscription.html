@@ -11,8 +11,10 @@
 
     <script type=text/javascript src="{{
   url_for('static', filename='scripts/inscription/inscriptionFunctions.js') }}"></script>
-   <script type=text/javascript src="{{
+    <script type=text/javascript src="{{
   url_for('static', filename='scripts/jquery.transit.js') }}"></script>
+    <script type=text/javascript src="{{
+  url_for('static', filename='scripts/blur.js') }}"></script>
 
     <div id="headerMenu_DIV">
         Menu
@@ -26,35 +28,97 @@
 
     </div>
 
-    <div id="inscrivezVousHeader_DIV" onclick="showForm()">
+    <div onload="blurDivs()" id="inscrivezVousHeader_DIV" onclick="showForm()">
         <span id="inscrivezVousHeader_SPAN">Inscrivez-vous</span>
         <div id="triangle_DIV" class="triangle_DIV_begin"></div>
     </div>
 
     <div class="trasparentContainer_DIV" id="inscrivezVousContent_DIV">
         
-        <form class="formulaireClass_FORM" action="" method="post">
-            <div id="Email_DIV">
-                <span>Email</span>
-                <input type="text" name="Email" value="prenom.nom" />
-                <span>@insa-lyon.fr</span>
-            </div>
-            
-            <div id="Surname_DIV">
-                <span>Surnom</span>
-                <input type="text" name="Surnom" value="Jean" />
-            </div>
+        {% macro render_field(field) %}
+            <label class="inscriptionField_LABEL">{{ field.label }}</label>
+            {{ field(class_="inscriptionField_INPUT") }}
+            {% if field.errors %}
+                <ul class=errors>
+                {% for error in field.errors %}
+                    <li>{{ error }}</li>
+                {% endfor %}
+                </ul>
+            {% endif %}
+        {% endmacro %}
 
-            <div>
-                <span>Nom</span>
-                <input type="text" name="Nom" value="DUPONT" />
-            </div>
-            
-            <input type="submit" value="ENVOYER" />
+        <form method=post action="/inscription">
+                <div class="leftElements_DIV">
+
+                    <div class="elementForm_DIV">
+                        {{ render_field(form.email) }}
+                    </div>
+
+                    <div class="elementForm_DIV">
+                        {{ render_field(form.surnom) }}
+                    </div>
+
+                    <div class="elementForm_DIV">
+                        {{ render_field(form.nom) }}
+                    </div>
+
+                    <div class="elementForm_DIV">
+                        {{ render_field(form.prenom) }}
+                    </div>
+
+                    <div class="elementForm_DIV">
+                        <label class="inscriptionField_LABEL">{{ form.categorie.label }}</label>
+                        <select class="inscriptionField_SELECT">
+                          {% for item in form.categorie.choices %}
+                            <option>{{ item }}</option>
+                          {% endfor %}
+                        </select>
+                    </div>
+                    
+                    <div class="elementForm_DIV">
+                        <label class="inscriptionField_LABEL">{{ form.annee.label }}</label>
+                        <select class="inscriptionField_SELECT">
+                          {% for item in form.annee.choices %}
+                            <option>{{ item }}</option>
+                          {% endfor %}
+                        </select>
+                    </div>
+                </div>
+
+                <div class="rightElements_DIV">
+                    <div class="elementForm_DIV">
+                        {{ render_field(form.password) }}
+                    </div>
+                    
+                    <div class="elementForm_DIV">
+                        {{ render_field(form.confirm) }}
+                    </div>
+
+                    <div class="elementForm_DIV">
+                        {{ render_field(form.dateNaissance) }}
+                    </div>
+
+                    <div class="elementForm_DIV">
+                        <label class="inscriptionField_LABEL">{{ form.sexe.label }}</label>
+                        <select class="inscriptionField_SELECT">
+                          {% for item in form.sexe.choices %}
+                            <option>{{ item }}</option>
+                          {% endfor %}
+                        </select>
+                    </div>
+                    
+                    <div class="elementForm_DIV">
+                        {{ render_field(form.poids) }}
+                    </div>
+
+                    <div class="elementForm_DIV">
+                        {{ render_field(form.hauteur) }}
+                    </div>
+                </div>
+
+          <input class="inscriptionValidate_BUTTON" type=submit value="ENVOYER">
         </form>
         
     </div>
-
-
 
 {% endblock %}

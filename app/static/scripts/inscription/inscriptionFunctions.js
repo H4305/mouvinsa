@@ -7,7 +7,6 @@ jQuery(document).ready(function($) {
         if ($formDIV.is(':visible')) {
             // Slide away
             $formDIV.animate({bottom: -($formDIV.outerHeight() + 2)}, function() {
-
                     $formDIV.hide();
                     //$triangleDIV.transition({ rotate: '0deg' }, 500, 'ease');
                     $triangleDIV.removeClass('triangle_DIV_rotated').addClass('triangle_DIV_begin');
@@ -25,4 +24,9 @@ jQuery(document).ready(function($) {
     }
 });
 
-
+jQuery(document).ready(function($) {
+    blurDivs = function() {
+        console.log('Marco')
+        $('.trasparentContainer_DIV').blurjs({ source: 'body' });  
+    }
+});
