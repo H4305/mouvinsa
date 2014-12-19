@@ -37,6 +37,8 @@ sudo cp /vagrant/app.redis /etc/redis/redis.conf
 # install lynx browser for testing
 sudo apt-get install lynx
 
+# install WTforms
+sudo pip install WTForms
 
 cat /vagrant/antho
 echo "That's all folks!"
