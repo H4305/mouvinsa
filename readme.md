@@ -47,12 +47,14 @@ If you have something working, that you can show, even if it is not finished and
 When everybody agreed on the changes we can push it into "final".
 At the end, we can push it in "prod"
 
+
 **When you are working and testing, use your OWN branch  !**
 
 ### A little reminder
 
 To create a branch : ```git checkout -b NomDeLaNouvelleBranch``` <br/>
 To switch to another branch : ```git checkout LaBranche```<br/>
+
 To merge a branch into another : 
 ```
 git checkout laBranchDansLaquelleOnVeutMerger
