@@ -22,17 +22,19 @@ sudo pip install sqlalchemy
 # configure uWSGI
 touch /tmp/uwsgi.sock
 sudo chown www-data /tmp/uwsgi.sock
-sudo cp /vagrant/app.uwsgi /etc/uwsgi/apps-available/app.ini
+#sudo cp /vagrant/app.uwsgi /etc/uwsgi/apps-available/app.ini
+sudo ln -s /vagrant/app.uwsgi /etc/uwsgi/apps-available/app.ini
 sudo ln -s /etc/uwsgi/apps-available/app.ini /etc/uwsgi/apps-enabled/app.ini
 
 # configure NginX
 sudo rm /etc/nginx/sites-enabled/default
 sudo rm /etc/nginx/sites-available/default
-sudo cp /vagrant/app.nginx /etc/nginx/sites-available/app
+sudo ln -s /vagrant/app.nginx /etc/nginx/sites-available/app
 sudo ln -s /etc/nginx/sites-available/app /etc/nginx/sites-enabled/app
 
 # configure Redis
-sudo cp /vagrant/app.redis /etc/redis/redis.conf
+#sudo cp /vagrant/app.redis /etc/redis/redis.conf
+sudo ln -s /vagrant/app.redis /etc/redis/redis.conf
 
 # install lynx browser for testing
 sudo apt-get install lynx

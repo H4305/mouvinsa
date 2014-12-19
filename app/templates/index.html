@@ -1,5 +1,6 @@
 {% extends "layout.html" %}
 {% block title %} Accueil {% endblock %}
 {% block main %}
+    <img class="logo-main" src="{{ url_for('static', filename='images/logo.svg') }}" alt="">
     <div class="your-clock"></div>
 {% endblock %}
