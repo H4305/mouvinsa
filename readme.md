@@ -41,4 +41,23 @@ If you need to install something new to the virtual machine don't do it directly
 Add the necessary commands to the `vagrant/provisioning.sh` file, destroy the VM and install it again.
 This way you can commit and share the exact same environment with everyone else.
 
+Pushing & Branch rules
+----------------------
+If you have something working, that you can show, even if it is not finished and every other changes from the others are well integrated with yours, you can push it into "master".
+When everybody agreed on the changes we can push it into "final".
+At the end, we can push it in "prod"
+
+**When you are working and testing, use your OWN branch  !**
+
+### A little reminder
+
+To create a branch : ```git checkout -b NomDeLaNouvelleBranch``` <br/>
+To switch to another branch : ```git checkout LaBranche```<br/>
+To merge a branch into another : 
+```
+git checkout laBranchDansLaquelleOnVeutMerger
+git merge laBrancheAMerger
+```
+
+
 ##Have fun :)
