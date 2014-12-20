@@ -17,7 +17,7 @@ mysql -u root -ph4305 < /vagrant/structure.sql
 # install flask
 sudo pip install flask
 # install sqlalchemy
-sudo pip install sqlalchemy
+sudo pip install Flask-SQLAlchemy
 
 # configure uWSGI
 touch /tmp/uwsgi.sock
@@ -40,7 +40,7 @@ sudo ln -s /vagrant/app.redis /etc/redis/redis.conf
 sudo apt-get install lynx
 
 # install WTforms
-sudo pip install WTForms
+sudo pip install Flask-WTF
 
 cat /vagrant/antho
 echo "That's all folks!"
