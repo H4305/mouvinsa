@@ -1,13 +1,23 @@
 from flask import Flask, render_template, request, flash, session, redirect, url_for
+from config import SQLALCHEMY_DATABASE_URI
+from inscription_controller import InscriptionForm
+
 app = Flask(__name__)
-app.secret_key = 'fqsfqsfqsfsqfqfdfdsdsfvsdvdfvdfvndfkzje,f"'
 
 from werkzeug.debug import DebuggedApplication
 app.wsgi_app = DebuggedApplication(app.wsgi_app, True)
 
-#sub_controller INSCRIPTION import
-from inscription_controller import InscriptionForm
+from flask.ext.sqlalchemy import SQLAlchemy
 
+app.secret_key = 'secret'
+app.config['SQLALCHEMY_DATABASE_URI'] = SQLALCHEMY_DATABASE_URI
+
+db = SQLAlchemy(app)
+
+
+
+
+""" Base Routing """
 @app.route('/')
 def hello_world():
     name = request.args.get('name', '')
@@ -15,11 +25,12 @@ def hello_world():
 
 @app.route('/inscription', methods=['GET', 'POST'])
 def inscription():
-	form = InscriptionForm(request.form)
-	if request.method == 'POST':
-		flash('Thanks for registering')
-		return redirect(url_for('login'))
-	return render_template('inscription/inscription.html', form=form)
+
+    form = InscriptionForm(request.form)
+    if request.method == 'POST':
+        flash('Thanks for registering')
+        return redirect(url_for('login'))
+    return render_template('inscription/inscription.html', form=form)
 
 @app.route('/login/', methods=['GET', 'POST'] )
 def login():
