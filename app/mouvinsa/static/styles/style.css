@@ -48,6 +48,13 @@ header {
   margin: 0px auto 50px;
 }
 
+.error {
+    border-radius: 2px;
+    background-color: rgba(244, 244, 244, 0.99);
+    box-shadow: #313333 5px 5px 5px;
+    color: #ee2922;
+}
+
 footer {
 
 }
