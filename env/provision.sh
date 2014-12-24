@@ -10,7 +10,7 @@ export DEBIAN_FRONTEND=noninteractive
 sudo -E apt-get -q -y install mysql-server
 mysqladmin -u root password h4305
 sudo sed -i 's/127.0.0.1/0.0.0.0/' /etc/mysql/my.cnf
-mysql -u root -ph4305 < /vagrant/structure.sql
+mysql -u root -ph4305 < /vagrant/user.sql
 mysql -u root -ph4305 < /vagrant/structure.sql
 
 
