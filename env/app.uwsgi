@@ -2,6 +2,6 @@
 vhost = true
 socket = /tmp/uwsgi.sock
 chdir = /app
-module = app
+module = mouvinsa.app
 callable = app
 py-autoreload=1

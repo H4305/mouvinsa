@@ -17,7 +17,9 @@ mysql -u root -ph4305 < /vagrant/structure.sql
 # install flask
 sudo pip install flask
 # install sqlalchemy
+sudo pip install mysql-python
 sudo pip install Flask-SQLAlchemy
+apt-get install python-mysqldb
 
 # configure uWSGI
 touch /tmp/uwsgi.sock
@@ -41,6 +43,8 @@ sudo apt-get install lynx
 
 # install WTforms
 sudo pip install Flask-WTF
+
+#setup the BDD
 
 cat /vagrant/antho
 echo "That's all folks!"
