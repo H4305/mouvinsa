@@ -55,6 +55,16 @@ header {
     color: #ee2922;
 }
 
-footer {
+#footer {
+  padding: 10px 0px;
+  text-align: center;
+  bottom: 0px;
+  color: #FFF;
+  position: absolute;
+  background-color: #222222;
+  width: 100%;
+}
 
+#footer > #logo-insa {
+  height:25px;
 }
