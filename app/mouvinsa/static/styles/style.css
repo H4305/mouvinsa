@@ -90,5 +90,53 @@ header {
     display: inline-block;
     border-left : 3px solid white;
     padding-left : 25px;
-        height: 35px;
+    height: 35px;
+}
+
+#signin {
+    background: white;
+    opacity: 0.85;
+    padding-bottom: 30px;
+    text-align: left;
+}
+
+#signin .title {
+    background: #ee2922;
+    top :0px;
+    color :white;
+    padding : 10px;
+    text-align: left;
+    padding-left: 25px;
+    margin-bottom: 30px;
+}
+
+#signin .label {
+    /*border : 1px solid black;*/
+    margin-left:20%;
+    display:block;
+    width: 120px;
+    float:left;
+}
+
+.button {
+    background: #E42618;
+    width: 15%;
+    height: 40px;
+    margin-top:25px;
+    margin-left: 60%;
+    color: white;
+    -webkit-box-shadow: 0 8px 6px -6px black;
+    -moz-box-shadow: 0 8px 6px -6px black;
+    box-shadow: 0 8px 6px -6px black;
+}
+
+#signin .input {
+    border: 0;
+    outline: 0;
+    border-bottom: 2px solid black;
+    width: 200px;
+}
+
+#signin .input:focus {
+    border-bottom: 2px solid #E42618;
 }

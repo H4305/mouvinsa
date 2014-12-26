@@ -22,7 +22,11 @@ def inscription():
 
 @app.route('/login/', methods=['GET', 'POST'] )
 def login():
-    return render_template('auth/signin.html')
+    if request.method == 'GET':
+        return render_template('./auth/signin.html')
+    else:
+        return render_template('auth/signin.html')
+
 #
 # @app.route('/team/<teamname>/')
 # def team_page(teamname) :
