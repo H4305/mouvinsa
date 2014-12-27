@@ -140,3 +140,7 @@ header {
 #signin .input:focus {
     border-bottom: 2px solid #E42618;
 }
+
+.center {
+    text-align: center
+}
