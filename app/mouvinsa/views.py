@@ -5,6 +5,7 @@ from controllers.inscription_controller import InscriptionForm
 from models import Student
 from models import Person
 from controllers.signin_controller import LoginForm
+from models import Employee
 
 
 @app.route('/')
@@ -16,9 +17,45 @@ def home():
 def inscription():
 
     form = InscriptionForm(request.form)
-    if request.method == 'POST':
-        flash('Thanks for registering')
-        return redirect(url_for('login'))
+    if request.method == 'POST' :#and form.validate():
+        flash('Merci pour votre inscription')
+
+        if form.categorie.data == 'Etudiant':
+            student = Student()
+            student.firstname = form.prenom.data
+            student.lastname = form.nom.data
+            student.nickname = form.surnomnom.data
+            student.password = form.password.data
+            student.email = form.email.data
+            student.sex = form.sexe.data
+            student.category = 'etudiant'
+            student.year = form.annee.data
+            student.birthdate = form.dateNaissance.data
+            student.weight = form.poids.data
+            student.height = form.hauteur.data
+            db.session.add(student)
+            db.session.commit()
+            return student.nickname
+        else:
+            employee = Employee()
+            employee.firstname = form.prenom.data
+            employee.lastname = form.nom.data
+            employee.nickname = form.surnom.data
+            employee.password = form.password.data
+            employee.birthdate = form.dateNaissance.data
+            employee.email = form.email.data
+            employee.sex = form.sexe.data
+            if form.categorie.data == 'Enseignant-Chercheur':
+                employee.category = 'enseignant'
+            else:
+                employee.category = 'iatos'
+
+            employee.weight = form.poids.data
+            employee.height = form.hauteur.data
+
+            db.session.add(employee)
+            db.session.commit()
+            return employee.nickname
     return render_template('inscription/inscription.html', form=form)
 
 @app.route('/confirmation', methods=['GET', 'POST'])
