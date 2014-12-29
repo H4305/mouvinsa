@@ -21,6 +21,27 @@ def inscription():
         return redirect(url_for('login'))
     return render_template('inscription/inscription.html', form=form)
 
+@app.route('/confirmation', methods=['GET', 'POST'])
+def confirmation():
+            token_param = request.args.get('token')
+            user_found = Person.query.filter_by(token = token_param).first()
+            confirm = request.args.get('msg')
+            form = ConfirmationForm(request.form)
+            if request.method == 'GET':
+                if user_found is not None:
+                    if user_found.etat == 'PREREGISTERED':
+                        if confirm == 'confirme':
+                            user_found.etat='REGISTERED'
+                            db.session.commit()
+                            return render_template('inscription/confirmation.html', user=user_found, msg='confirme', form=form)
+                        elif confirm == 'refuse':
+                            user_found.etat='DROPPED'
+                            db.session.commit()
+                            return render_template('inscription/confirmation.html', user=user_found, msg='refuse')
+                    #elif user_found.etat == 'REGISTERED':
+                        #return render_template('inscription/confirmation.html', user=user_found, msg='inscrit')
+            return redirect(url_for('home'))
+
 @app.route('/forgetpassword/', methods=['GET', 'POST'])
 def forgetpassword():
     if request.method == 'GET':
@@ -97,4 +118,24 @@ def list_users() :
     for student in Person.query.all():
         string += student.__repr__()
 
+    return string
+
+@app.route('/test/confirmation')
+def test_confirmation() :
+    person = Person.query.filter_by(username='test4').first()
+    if person is not None:
+        db.session.delete(person)
+        db.session.commit()
+    student2 = Student()
+    student2.username = 'test4'
+    student2.password = 'password'
+    student2.email = 'email4@email.com'
+    student2.category = 'etudiant'
+    student2.etat = 'preregistered'
+    student2.token = 'a0114'
+    db.session.add(student2)
+    db.session.commit()
+    string = ""
+    for student in Person.query.all():
+        string += student.__repr__()+student.token+student.etat
     return string
