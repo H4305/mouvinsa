@@ -1,16 +1,16 @@
 from sqlalchemy import Enum
 
-from mouvinsa.app import db
+from app import db
 
 
 class Person(db.Model):
     __tablename__ = 'person'
     id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(80), unique=True, nullable=False)
+    idGroup = db.Column(db.Integer, nullable=True)
     email = db.Column(db.String(120), unique=True, nullable=False)
     password = db.Column(db.String(120), nullable=False)
     nickname = db.Column(db.String(120), unique=True, nullable=False)
-    sex = db.Column(db.String(1), nullable=True)
+    sex = db.Column(db.String(50), nullable=False)
     firstname = db.Column(db.String(120), nullable=True)
     lastname = db.Column(db.String(120), nullable=True)
     birthdate = db.Column(db.DateTime, nullable=True)
@@ -23,7 +23,7 @@ class Person(db.Model):
         print "init person"
 
     def __repr__(self):
-        return self.username
+        return self.nickname
 
     __mapper_args__ = {
         'polymorphic_identity':'person',

@@ -1,7 +1,7 @@
 __author__ = 'vcaen'
 
-from mouvinsa.app import db
-from mouvinsa.models import User
+from app import db
+from models import User
 
 db.create_all()
 
