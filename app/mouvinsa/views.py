@@ -1,10 +1,10 @@
 from flask import render_template, request, flash, url_for, redirect
 
-from mouvinsa.app import app, db
-from mouvinsa.controllers.inscription_controller import InscriptionForm
+from app import app, db
+from controllers.inscription_controller import InscriptionForm
 from models import Student
-from mouvinsa.models import Person
-from mouvinsa.controllers.signin_controller import LoginForm
+from models import Person
+from controllers.signin_controller import LoginForm
 
 
 @app.route('/')
@@ -80,7 +80,6 @@ def page_not_found(e):
 @app.route('/test/inscription')
 def test_inscription() :
     student = Student()
-    student.username = 'test'
     student.password = 'password'
     student.email = 'email@email.com'
     student.nickname = 'test'
