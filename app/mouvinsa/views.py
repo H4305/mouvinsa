@@ -38,8 +38,8 @@ def confirmation():
                             user_found.etat='DROPPED'
                             db.session.commit()
                             return render_template('inscription/confirmation.html', user=user_found, msg='refuse')
-                    #elif user_found.etat == 'REGISTERED':
-                        #return render_template('inscription/confirmation.html', user=user_found, msg='inscrit')
+                    elif user_found.etat == 'REGISTERED':
+                        return render_template('inscription/confirmation.html', user=user_found, msg='inscrit')
             return redirect(url_for('home'))
 
 @app.route('/forgetpassword/', methods=['GET', 'POST'])
