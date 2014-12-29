@@ -17,6 +17,8 @@ class Person(db.Model):
     height = db.Column(db.Float, nullable=True)
     category = db.Column('category', Enum('etudiant', 'enseignant', 'iatos'), nullable=False)
     type = db.Column(db.String(50))
+    etat = db.Column('etat', Enum('PREREGISTERED','REGISTERED', 'DROPPED'), nullable=False)
+    token = db.Column(db.String(128), unique=True)
 
     def __init__(self):
         print "init person"
