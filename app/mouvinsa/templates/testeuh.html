@@ -1,0 +1,18 @@
+{% extends "inscription/squelette.html" %}
+{% block titre %}MOUVINSA | Inscription{% endblock %}
+
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <ul class=flashes>
+    {% for message in messages %}
+      <li>{{ message }}</li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
+
+{% block corps %}
+    Affichage des données
+        {{ form.username.data }}
+        {{ form.password.data }}
+{% endblock %}

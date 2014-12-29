@@ -4,6 +4,7 @@ from mouvinsa.app import app, db
 from mouvinsa.controllers.inscription_controller import InscriptionForm
 from models import Student
 from mouvinsa.models import Person
+from mouvinsa.controllers.signin_controller import LoginForm
 
 
 @app.route('/')
@@ -20,12 +21,44 @@ def inscription():
         return redirect(url_for('login'))
     return render_template('inscription/inscription.html', form=form)
 
-@app.route('/login/', methods=['GET', 'POST'] )
+@app.route('/forgetpassword/', methods=['GET', 'POST'])
+def forgetpassword():
+    if request.method == 'GET':
+        return render_template('auth/forgetpassword.html')
+    elif request.method == 'POST':
+        email = request.POST.get('email') # Peut être passé par une classe form ? mais pour un attribut ?
+        person = Person.query.filter_by(email=email).first()
+        if person is None:
+            problem = "The user doesn't exist"
+            page = "500.html"
+        else:
+            # Ici faudra envoyer le mail
+            print "test"
+        return render_template('auth/forgetpassword.html')
+
+@app.route('/login/', methods=['GET', 'POST'])
 def login():
     if request.method == 'GET':
-        return render_template('./auth/signin.html')
-    else:
         return render_template('auth/signin.html')
+    elif request.method == 'POST':
+        form = LoginForm(request.form)
+        if form.validate():
+            username = form.username.data
+            password = form.password.data
+            person = Person.query.filter_by(username=username).first()
+            if person is None:
+                problem = "The user doesn't exist"
+                page = "500.html"
+            else:
+                if person.password == password: #Surment un truc a faire car le mdp sera pas en clair
+                    problem = "You were successfully logged in"
+                    page = "testeuh.html"
+                    # Il faudra mettre vers Index
+                else:
+                    problem = "Connection refused"
+                    page = "500.html"
+            flash(problem)
+            return render_template(page, form=form)
 
 #
 # @app.route('/team/<teamname>/')
