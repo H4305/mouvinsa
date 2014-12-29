@@ -47,7 +47,7 @@ def forgetpassword():
     if request.method == 'GET':
         return render_template('auth/forgetpassword.html')
     elif request.method == 'POST':
-        email = request.POST.get('email') # Peut être passé par une classe form ? mais pour un attribut ?
+        email = request.POST.get('email') # Peut etre passe par une classe form ? mais pour un attribut ?
         person = Person.query.filter_by(email=email).first()
         if person is None:
             problem = "The user doesn't exist"
