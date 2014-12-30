@@ -1,25 +1,26 @@
-from wtforms import Form, BooleanField, TextField, PasswordField, SelectField, DateField, validators
+from wtforms import Form, BooleanField, TextField, FloatField, PasswordField, SelectField, DateField, validators
 
 class InscriptionForm(Form):
-	email = TextField(u'Email', [validators.Length(min=6, max=35)])
-	surnom = TextField(u'Surnom', [validators.Length(min=4, max=25)])
-	nom = TextField(u'Nom', [validators.Length(min=4, max=25)])
-	prenom = TextField(u'Prenom', [validators.Length(min=4, max=25)])
-	categorie = SelectField(u'Categorie ', choices=[('Etudiant', 'Etudiant'), ('Enseignant-Chercheur', 'Enseignant-Chercheur'), ('Personnel BIATOS', 'Personnel BIATOS')])
+	email = TextField(u'Email', [validators.Required(), validators.Length(min=6, max=35)])
+	surnom = TextField(u'Surnom', [validators.Required(), validators.Length(min=2, max=25)])
+	nom = TextField(u'Nom', [validators.Optional(), validators.Length(min=2, max=25)])
+	prenom = TextField(u'Prenom', [validators.Optional(), validators.Length(min=2, max=25)])
+	categorie = SelectField(u'Categorie ', [validators.Required()], choices=[('Etudiant', 'Etudiant'), ('Enseignant-Chercheur', 'Enseignant-Chercheur'), ('Personnel BIATOS', 'Personnel BIATOS')])
 	annee = SelectField(u'Annee ', choices=[('', ''), ('Premiere', 'Premiere'), ('Deuxieme', 'Deuxieme'), ('Troisieme', 'Troisieme'), ('Quatrieme', 'Quatrieme'), ('Cinquieme', 'Cinquieme')])
 	cycle = SelectField(u'Cycle ', choices=[('', ''), ('Premier', 'Premier'), ('Second', 'Second')])
-	branch = SelectField(u'Branch ', choices=[('', ''), ('Eurinsa','Eurinsa'), ('Amerinsa', 'Amerinsa'), ('Classique','Classique'), ('Asinsa','Asinsa'), ('Scan','Scan')])
+	filiere = SelectField(u'Filiere ', choices=[('', ''), ('Filiere Internationale','Filiere Internationale'), ('Filiere Clasique', 'Filiere Clasique'), ('PCE','PCE'), ('FAS','FAS'), ('SHN','SHN')])
+	departement = SelectField(u'Departement', choices=[('',''), ('BB', 'BB'), ('BIM', 'BIM'), ('GE', 'GE'), ('GI', 'GI'), ('GCU', 'GCU'), ('GEN', 'GEN'), ('GMC', 'GMC'), ('GMD', 'GMD'), ('GMPP', 'GMPP'), ('IF', 'IF'), ('SGM', 'SGM'), ('TC', 'TC')])
 	password = PasswordField(u'Mot de Passe', [
 		validators.Required(),
 		validators.EqualTo('confirm', message='Les mots de passe doivent correspondre')
 	])
-	confirm = PasswordField(u'Repeter le mot de passe')
-	dateNaissance = DateField(u'Date de Naissance', format='%d/%m/%Y')
+	confirm = PasswordField(u'Repeter le mot de passe', [validators.Required()])
+	dateNaissance = DateField(u'Date de Naissance', format='%d/%m/%Y',  validators=[validators.Optional()])
 	sexe = SelectField(u'Sexe ', choices=[('', ''), ('Masculin', 'Masculin'), ('Feminin', 'Feminin')])
-	poids = TextField(u'Poids')
-	hauteur = TextField(u'Hauteur')
-	position = TextField(u'Position')
-	affiliation = TextField(u'Affiliation')
+	poids = FloatField(u'Poids (kg)', [validators.Optional()])
+	hauteur = FloatField(u'Taille (cm)', [validators.Optional()])
+	position = TextField(u'Position', [validators.Optional(), validators.Length(min=3, max=100)])
+	affiliation = TextField(u'Affiliation', [validators.Optional(), validators.Length(min=3, max=100)])
 
 
 def createStudent(form, student):
@@ -31,6 +32,11 @@ def createStudent(form, student):
 	student.sex = form.sexe.data
 	student.category = 'etudiant'
 	student.year = form.annee.data
+	student.cycle = form.cycle.data
+	if form.cycle.data == 'Premier':
+		student.branch = form.filiere.data
+	else:
+		student.branch = form.departement.data
 	student.birthdate = form.dateNaissance.data
 	student.weight = form.poids.data
 	student.height = form.hauteur.data

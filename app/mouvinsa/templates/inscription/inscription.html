@@ -23,7 +23,11 @@
     <div class="trasparentContainer_DIV" id="presentation_DIV">
         <!-- <img src="{{ url_for('static', filename='images/inscription_fond.jpg') }}"> -->
         <p>
-            Tantum autem cuique tribuendum, primum quantum ipse efficere possis, deinde etiam quantum ille quem diligas atque adiuves, sustinere. Non enim neque tu possis, quamvis excellas, omnes tuos ad honores amplissimos perducere, ut Scipio P. Rupilium potuit consulem efficere, fratrem eius L. non potuit. Quod si etiam possis quidvis deferre ad alterum, videndum est tamen, quid ille possit sustinere.
+           INSA de Lyon et  le centre des sports organisent la mise en œuvre d’un projet gratuit, expérimental,  novateur  et dynamique intitulé MOUV’INSA. Ce projet s’inscrit dans le cadre d’un projet pédagogique transversal impliquant le département informatique, 7 élèves ingénieurs et le centre des sports.
+
+
+Pour participer à ce projet volontariste qui va regrouper 48  équipes de 5 participants, vous avez la possibilité de vous préinscrire en ligne à partir du lundi 5 janvier 2015 et jusqu’au vendredi 23 janvier 2015 minuit.  A L’issue de cette étape vous recevrez par mail une confirmation de votre préinscription.
+Par tirage au sort 48 équipes de 5 préinscrits seront ensuite constituées de façon aléatoire dans  la semaine du lundi 26 janvier au vendredi 30 janvier 2015 avec au sein de chaque équipe un mélange des différentes catégories de personnel. L’attribution d’un nom d’équipe commun aux 5 coéquipiers qui pourra être modifié par la suite.
         </p>
 
     </div>
@@ -48,14 +52,14 @@
         {% endmacro %}
 
         <form method=post action="/inscription">
+        <p><i>Complétez le formulaire de pré-inscription. Les champs marqués par </i><em>*</em>  <em> sont obligatoires.</em></p>
                 <div class="leftElements_DIV">
 
-                    <div class="elementForm_DIV">
-                        {{ render_field(form.email) }}
-                    </div>
+
+                    <div class="elementForm_DIV">{{ form.email.label }}<em> *  </em>: {{ form.email(placeholder="prenom.nom@insa-lyon.fr", pattern="[a-zA-Z0-9]*.[a-zA-Z0-9]*@insa-lyon.fr") }}</div>
 
                     <div class="elementForm_DIV">
-                        {{ render_field(form.surnom) }}
+                        <em>*</em>{{ render_field(form.surnom) }}
                     </div>
 
                     <div class="elementForm_DIV">
@@ -67,7 +71,7 @@
                     </div>
 
                     <div class="elementForm_DIV">
-                        <label class="inscriptionField_LABEL">{{ form.categorie.label }}</label>
+                        <label class="inscriptionField_LABEL"> <em>*</em>{{ form.categorie.label }}</label>
                         <label class = "inscriptionField_SELECT">{{ form.categorie }} </label>
                     </div>
 
@@ -87,9 +91,15 @@
                     </div>
 
                      <div class="elementForm_DIV">
-                        <label class="inscriptionField_LABEL">{{ form.branch.label }}</label>
-                        <label class="inscriptionField_SELECT"> {{ form.branch  }} </label>
+                        <label class="inscriptionField_LABEL">{{ form.filiere.label }}</label>
+                        <label class="inscriptionField_SELECT"> {{ form.filiere  }} </label>
                     </div>
+
+                     <div class="elementForm_DIV">
+                        <label class="inscriptionField_LABEL">{{ form.departement.label }}</label>
+                        <label class="inscriptionField_SELECT"> {{ form.departement  }} </label>
+                    </div>
+
                 </div>
 
                 <div class="rightElements_DIV">
@@ -124,6 +134,7 @@
 
           <input class="inscriptionValidate_BUTTON" type=submit value="ENVOYER">
         </form>
+
         
     </div>
 
