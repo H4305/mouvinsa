@@ -1,0 +1,62 @@
+#confirmationContent{
+    margin-top: 10%;
+    margin-bottom: 10%;
+    width: 60%;
+    margin-left: 20%;
+    overflow: hidden;
+    position: relative;
+}
+#tab_content_confirmation{
+    margin-bottom:10%;
+}
+.description_block{
+    position: relative;
+    margin: 5% 5% 5% 5%;
+    background: white;
+	opacity: 0.85;
+    text-align: justify;
+}
+.title_confirmation_block{
+    color: white;
+    background: #E42618;
+    line-height: 40px;
+    text-align: center;
+    font-weight: bold;
+}
+.next_button{
+    position: absolute;
+    cursor:pointer;
+    background: #E42618;
+    line-height: 40px;
+    right: 1%;
+    bottom: 2%;
+    color: white;
+    width: 15%;
+    text-align:center;
+    -webkit-box-shadow: 0 8px 6px -6px black;
+    -moz-box-shadow: 0 8px 6px -6px black;
+    box-shadow: 0 8px 6px -6px black;
+}
+#tab_title_confirmation li{
+    width:15%;
+    text-align:center;
+}
+#tab_title_confirmation li a{
+    cursor:pointer;
+    background: transparent;
+}
+#tab_title_confirmation li a:hover{
+
+}
+#tab_title_confirmation li.active{
+    background: #E42618;
+}
+#tab_title_confirmation li.active:hover{
+    background: #E42618;
+}
+#tab_title_confirmation li.active a{
+    cursor:default;
+    color:white;
+    font-weight:bold;
+    border:1px solid #E42618;
+}
