@@ -34,6 +34,10 @@ def inscription():
             return employee.sex
     return render_template('inscription/inscription.html', form=form)
 
+@app.route('/aboutus', methods=['GET'])
+def aboutus():
+    return render_template('apropos.html')
+
 @app.route('/confirmation', methods=['GET', 'POST'])
 def confirmation():
     token_param = request.args.get('token')
