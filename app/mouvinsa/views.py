@@ -2,10 +2,10 @@ from flask import render_template, request, flash, url_for, redirect
 
 from app import app, db
 from controllers.inscription_controller import InscriptionForm
-from models import Student
-from models import Person
+from controllers.confirmation_controller import ConfirmationForm
+from models import Student, Person, Employee
 from controllers.signin_controller import LoginForm
-from models import Employee
+from controllers.inscription_controller import createEmployee, createStudent
 
 
 @app.route('/')
@@ -22,62 +22,38 @@ def inscription():
 
         if form.categorie.data == 'Etudiant':
             student = Student()
-            student.firstname = form.prenom.data
-            student.lastname = form.nom.data
-            student.nickname = form.surnomnom.data
-            student.password = form.password.data
-            student.email = form.email.data
-            student.sex = form.sexe.data
-            student.category = 'etudiant'
-            student.year = form.annee.data
-            student.birthdate = form.dateNaissance.data
-            student.weight = form.poids.data
-            student.height = form.hauteur.data
+            createStudent(form, student)
             db.session.add(student)
             db.session.commit()
             return student.nickname
         else:
             employee = Employee()
-            employee.firstname = form.prenom.data
-            employee.lastname = form.nom.data
-            employee.nickname = form.surnom.data
-            employee.password = form.password.data
-            employee.birthdate = form.dateNaissance.data
-            employee.email = form.email.data
-            employee.sex = form.sexe.data
-            if form.categorie.data == 'Enseignant-Chercheur':
-                employee.category = 'enseignant'
-            else:
-                employee.category = 'iatos'
-
-            employee.weight = form.poids.data
-            employee.height = form.hauteur.data
-
+            createEmployee(form, employee)
             db.session.add(employee)
             db.session.commit()
-            return employee.nickname
+            return employee.sex
     return render_template('inscription/inscription.html', form=form)
 
 @app.route('/confirmation', methods=['GET', 'POST'])
 def confirmation():
-            token_param = request.args.get('token')
-            user_found = Person.query.filter_by(token = token_param).first()
-            confirm = request.args.get('msg')
-            form = ConfirmationForm(request.form)
-            if request.method == 'GET':
-                if user_found is not None:
-                    if user_found.etat == 'PREREGISTERED':
-                        if confirm == 'confirme':
-                            user_found.etat='REGISTERED'
-                            db.session.commit()
-                            return render_template('inscription/confirmation.html', user=user_found, msg='confirme', form=form)
-                        elif confirm == 'refuse':
-                            user_found.etat='DROPPED'
-                            db.session.commit()
-                            return render_template('inscription/confirmation.html', user=user_found, msg='refuse')
-                    elif user_found.etat == 'REGISTERED':
-                        return render_template('inscription/confirmation.html', user=user_found, msg='inscrit')
-            return redirect(url_for('home'))
+    token_param = request.args.get('token')
+    user_found = Person.query.filter_by(token = token_param).first()
+    confirm = request.args.get('msg')
+    form = ConfirmationForm(request.form)
+    if request.method == 'GET':
+        if user_found is not None:
+            if user_found.etat == 'PREREGISTERED':
+                if confirm == 'confirme':
+                    user_found.etat='REGISTERED'
+                    db.session.commit()
+                    return render_template('inscription/confirmation.html', user=user_found, msg='confirme', form=form)
+                elif confirm == 'refuse':
+                    user_found.etat='DROPPED'
+                    db.session.commit()
+                    return render_template('inscription/confirmation.html', user=user_found, msg='refuse')
+            elif user_found.etat == 'REGISTERED':
+                return render_template('inscription/confirmation.html', user=user_found, msg='inscrit')
+    return redirect(url_for('home'))
 
 @app.route('/forgetpassword/', methods=['GET', 'POST'])
 def forgetpassword():
