@@ -1,3 +1,6 @@
+#!/usr/bin/python
+#  -*- coding: utf-8 -*-
+
 from flask import render_template, request, flash, url_for, redirect
 
 from mouvinsa.app import app, db
@@ -76,25 +79,24 @@ def page_not_found(e):
 @app.errorhandler(500)
 def page_not_found(e):
     return render_template('500.html', error=e)
-
-@app.route('/test/inscription')
-def test_inscription() :
+@app.route('/test/inscription/')
+@app.route('/test/inscription/<user>')
+def test_inscription(user="TestUser"):
     student = Student()
-    student.username = 'test'
+    student.username = user
     student.password = 'password'
-    student.email = 'email@email.com'
-    student.nickname = 'test'
+    student.email = user + '@email.com'
+    student.nickname = user
     student.category = 'etudiant'
     db.session.add(student)
     db.session.commit()
 
-
-    return student.__repr__()
+    return "Insere : " + student.__repr__()
 
 @app.route('/test/listuser')
 def list_users() :
-    string = ""
+    string = "List user <br/>"
     for student in Person.query.all():
-        string += student.__repr__()
+        string += student.__repr__() + "<br/>"
 
     return string
