@@ -13,11 +13,12 @@ def home():
     name = request.args.get('name', '')
     return render_template('index.html', name=name)
 
+
 @app.route('/inscription', methods=['GET', 'POST'])
 def inscription():
 
     form = InscriptionForm(request.form)
-    if request.method == 'POST' :#and form.validate():
+    if request.method == 'POST' and form.validate():
         flash('Merci pour votre inscription')
 
         if form.categorie.data == 'Etudiant':
@@ -31,12 +32,9 @@ def inscription():
             createEmployee(form, employee)
             db.session.add(employee)
             db.session.commit()
-            return employee.sex
+            return employee.nickname
     return render_template('inscription/inscription.html', form=form)
 
-@app.route('/aboutus', methods=['GET'])
-def aboutus():
-    return render_template('apropos.html')
 
 @app.route('/confirmation', methods=['GET', 'POST'])
 def confirmation():
