@@ -1,9 +1,24 @@
-.navMenu_DIV {
-	position: absolute;
-	margin-top: -50px;
-	margin-left: 0;
-	border: solid black;
-	height: 50px;
-	width: 100px;
-	background-color: grey;
+.menuButton_DIV:focus {
+    /* clicking on label should toggle the menu */
+    pointer-events: none;
+}
+
+.menuButton_DIV:focus .onclick-menu-content {
+    /*  opacity is 1 in opened state (see below) */
+    opacity: 1;
+    visibility: visible;
+
+    /* don't let pointer-events affect descendant elements */
+    pointer-events: auto;
+}
+
+.onclick-menu-content {
+    position: absolute;
+    z-index: 1;
+
+    /* use opacity to fake immediate toggle */
+    opacity: 0;
+    visibility: hidden;
+    transition: visibility 0.5s;
+    background-color: red;
 }

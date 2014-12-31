@@ -20,9 +20,10 @@
     <div id="page">
         <header></header>
         <nav class="navigation_menu_NAV">
-            <div class="menuButton_DIV">
+            <div tabindex="0" class="menuButton_DIV" id="menuButton" onClick="clickMenu()">
                 <div class="box-shadow-menu">
                 </div>
+                {% block buttonMenu %}{% endblock %}
             </div>
             <div class="titrePage_DIV">
                 <span class="titre_SPAN">

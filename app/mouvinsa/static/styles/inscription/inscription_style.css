@@ -38,8 +38,7 @@ html, body {
 }
 
 #descriptionProjet_DIV {
-    padding-left: 4%;
-    padding-right: 4%;
+    position: relative;
     overflow: hidden;
   }
 
@@ -210,6 +209,8 @@ em {
 
 p{
     margin-left: 6%;
+    margin-right: 6%;
+    text-align: justify;
 }
 
 li{
