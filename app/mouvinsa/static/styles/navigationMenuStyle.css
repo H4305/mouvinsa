@@ -1,0 +1,9 @@
+.navMenu_DIV {
+	position: absolute;
+	margin-top: -50px;
+	margin-left: 0;
+	border: solid black;
+	height: 50px;
+	width: 100px;
+	background-color: grey;
+}

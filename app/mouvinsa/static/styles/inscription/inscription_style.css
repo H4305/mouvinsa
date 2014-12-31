@@ -24,25 +24,29 @@ html, body {
 
   	margin:0;
   	padding-top: 20px;
+    padding-bottom: 0;
   	height: 100%;
   	width: 100%;
 }
+
+.PageSection_DIV {
+    position: relative;
+    margin: 0;
+    height: 600px;
+    width: 100%;
+    background-color: grey;
+}
+
+#descriptionProjet_DIV {
+    padding-left: 4%;
+    padding-right: 4%;
+    overflow: hidden;
+  }
 
 .trasparentContainer_DIV {
 	background: white;
 	opacity: 0.85;
 }
-
-#presentation_DIV {
-    position: relative;
-    margin-top: 10px;
-    margin-left: 20%;
-    margin-right: 20%;
-    padding-left: 4%;
-    padding-right: 4%;
-    height: 40%;
-    overflow: hidden;
-  }
 
 #inscrivezVousHeader_DIV {
     position: relative;
