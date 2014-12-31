@@ -43,7 +43,6 @@ def confirmation():
             confirm = request.args.get('msg')
             form = ConfirmationForm(request.form)
             if request.method == "POST":
-                if form.image.data is None:
                     user_found.lastname = form.lastname.data
                     user_found.firstname = form.firstname.data
                     user_found.weight = form.weight.data
