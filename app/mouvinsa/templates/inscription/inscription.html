@@ -51,88 +51,121 @@ Par tirage au sort 48 équipes de 5 préinscrits seront ensuite constituées de 
             {% endif %}
         {% endmacro %}
 
+
         <form method=post action="/inscription">
-        <p><i>Complétez le formulaire de pré-inscription. Les champs marqués par </i><em>*</em>  <em> sont obligatoires.</em></p>
-                <div class="leftElements_DIV">
+            <br/>
+            <p><i>Complétez le formulaire de pré-inscription au projet MOUV'INSA. Les champs marqués par </i><em>*</em>  <i>sont obligatoires.</i> </p>
 
+            <fieldset>
 
-                    <div class="elementForm_DIV">{{ form.email.label }}<em> *  </em>: {{ form.email(placeholder="prenom.nom@insa-lyon.fr", pattern="[a-zA-Z0-9]*.[a-zA-Z0-9]*@insa-lyon.fr") }}</div>
+                <legend>Informations obligatoires à remplir <em> * </em></legend>
 
-                    <div class="elementForm_DIV">
-                        <em>*</em>{{ render_field(form.surnom) }}
-                    </div>
-
-                    <div class="elementForm_DIV">
-                        {{ render_field(form.nom) }}
-                    </div>
-
-                    <div class="elementForm_DIV">
-                        {{ render_field(form.prenom) }}
-                    </div>
-
-                    <div class="elementForm_DIV">
-                        <label class="inscriptionField_LABEL"> <em>*</em>{{ form.categorie.label }}</label>
-                        <label class = "inscriptionField_SELECT">{{ form.categorie }} </label>
-                    </div>
-
-                    <div class="elementForm_DIV">
-                        <label class="inscriptionField_LABEL">{{ form.sexe.label }}</label>
-                        <label class="inscriptionField_SELECT"> {{ form.sexe }} </label>
-                    </div>
-
-                    <div class="elementForm_DIV">
-                        <label class="inscriptionField_LABEL">{{ form.cycle.label }}</label>
-                        <label class="inscriptionField_SELECT"> {{ form.cycle  }} </label>
-                    </div>
-                    
-                    <div class="elementForm_DIV">
-                        <label class="inscriptionField_LABEL">{{ form.annee.label }}</label>
-                        <label class="inscriptionField_SELECT"> {{ form.annee  }} </label>
-                    </div>
-
-                     <div class="elementForm_DIV">
-                        <label class="inscriptionField_LABEL">{{ form.filiere.label }}</label>
-                        <label class="inscriptionField_SELECT"> {{ form.filiere  }} </label>
-                    </div>
-
-                     <div class="elementForm_DIV">
-                        <label class="inscriptionField_LABEL">{{ form.departement.label }}</label>
-                        <label class="inscriptionField_SELECT"> {{ form.departement  }} </label>
-                    </div>
-
+                <div class="elementForm_DIV">
+                    <label class="inscriptionField_LABEL"> {{ form.email.label }} <em> * </em>: </label>
+                    <label class =  "inscriptionField_SELECT">{{ form.email(placeholder="prenom.nom@insa-lyon.fr", pattern="[a-zA-Z0-9]*.[a-zA-Z0-9]*@insa-lyon.fr")}}</label>
                 </div>
 
-                <div class="rightElements_DIV">
-                    <div class="elementForm_DIV">
-                        {{ render_field(form.password) }}
-                    </div>
-                    
-                    <div class="elementForm_DIV">
-                        {{ render_field(form.confirm) }}
-                    </div>
-
-                    <div class="elementForm_DIV">
-                        {{ render_field(form.dateNaissance) }}
-                    </div>
-                    
-                    <div class="elementForm_DIV">
-                        {{ render_field(form.poids) }}
-                    </div>
-
-                    <div class="elementForm_DIV">
-                        {{ render_field(form.hauteur) }}
-                    </div>
-
-                    <div class="elementForm_DIV">
-                        {{ render_field(form.position) }}
-                    </div>
-
-                    <div class="elementForm_DIV">
-                        {{ render_field(form.affiliation) }}
-                    </div>
+                <div class="elementForm_DIV">
+                    <label class="inscriptionField_LABEL"> {{ form.confirmEmail.label }} <em> * </em>: </label>
+                    <label class =  "inscriptionField_SELECT">{{ form.confirmEmail(placeholder="prenom.nom@insa-lyon.fr", pattern="[a-zA-Z0-9]*.[a-zA-Z0-9]*@insa-lyon.fr")}}</label>
                 </div>
 
-          <input class="inscriptionValidate_BUTTON" type=submit value="ENVOYER">
+                <div class="elementForm_DIV">
+                    <label class="inscriptionField_LABEL"> {{ form.surnom.label }} <em> * </em>: </label>
+                    <label class =  "inscriptionField_SELECT">{{ form.surnom(placeholder="Zuzu")}}</label>
+                </div>
+
+
+                 <div class="elementForm_DIV">
+                    <label class="inscriptionField_LABEL"> {{ form.categorie.label }}<em> * </em>:</label>
+                    <label class = "inscriptionField_SELECT">{{ form.categorie }} </label>
+                </div>
+
+                <div class="elementForm_DIV">
+                    <label class="inscriptionField_LABEL"> {{ form.password.label }} <em> * </em>: </label>
+                    <label class =  "inscriptionField_SELECT">{{ form.password}}</label>
+                </div>
+
+                <div class="elementForm_DIV">
+                    <label class="inscriptionField_LABEL"> {{ form.confirm.label }} <em> * </em>: </label>
+                    <label class =  "inscriptionField_SELECT">{{ form.confirm}}</label>
+                </div>
+
+
+            </fieldset>
+
+
+
+            <fieldset>
+
+                 <legend>Informations optionnelles</legend>
+
+                <div class="elementForm_DIV">
+                    <label class="inscriptionField_LABEL"> {{ form.nom.label }} <em> * </em>: </label>
+                    <label class =  "inscriptionField_SELECT">{{ form.nom}}</label>
+                </div>
+
+                <div class="elementForm_DIV">
+                    <label class="inscriptionField_LABEL"> {{ form.prenom.label }} <em> * </em>: </label>
+                    <label class =  "inscriptionField_SELECT">{{ form.prenom}}</label>
+                </div>
+
+                <div class="elementForm_DIV">
+                    <label class="inscriptionField_LABEL"> {{ form.sexe.label }} <em> * </em>: </label>
+                    <label class =  "inscriptionField_SELECT">{{ form.sexe}}</label>
+                </div>
+
+                 <div class="elementForm_DIV">
+                    <label class="inscriptionField_LABEL"> {{ form.dateNaissance.label }} <em> * </em>: </label>
+                    <label class =  "inscriptionField_SELECT">{{ form.dateNaissance}}</label>
+                </div>
+
+                <div class="elementForm_DIV">
+                    <label class="inscriptionField_LABEL"> {{ form.poids.label }} <em> * </em>: </label>
+                    <label class =  "inscriptionField_SELECT">{{ form.poids}}</label>
+                </div>
+
+                <div class="elementForm_DIV">
+                    <label class="inscriptionField_LABEL"> {{ form.hauteur.label }} <em> * </em>: </label>
+                    <label class =  "inscriptionField_SELECT">{{ form.hauteur}}</label>
+                </div>
+
+                <div class="elementForm_DIV">
+                    <label class="inscriptionField_LABEL"> {{ form.cycle.label }} <em> * </em>: </label>
+                    <label class =  "inscriptionField_SELECT">{{ form.cycle}}</label>
+                </div>
+
+                <div class="elementForm_DIV">
+                    <label class="inscriptionField_LABEL"> {{ form.annee.label }} <em> * </em>: </label>
+                    <label class =  "inscriptionField_SELECT">{{ form.annee}}</label>
+                </div>
+
+                <div class="elementForm_DIV">
+                    <label class="inscriptionField_LABEL"> {{ form.filiere.label }} <em> * </em>: </label>
+                    <label class =  "inscriptionField_SELECT">{{ form.filiere}}</label>
+                </div>
+
+                 <div class="elementForm_DIV">
+                    <label class="inscriptionField_LABEL">{{ form.departement.label }}</label>
+                    <label class="inscriptionField_SELECT"> {{ form.departement  }} </label>
+                </div>
+
+
+                <div class="elementForm_DIV">
+                    <label class="inscriptionField_LABEL"> {{ form.position.label }} <em> * </em>: </label>
+                    <label class =  "inscriptionField_SELECT">{{ form.position}}</label>
+                </div>
+
+                <div class="elementForm_DIV">
+                    <label class="inscriptionField_LABEL"> {{ form.affiliation.label }} <em> * </em>: </label>
+                    <label class =  "inscriptionField_SELECT">{{ form.affiliation}}</label>
+                </div>
+
+
+            </fieldset>
+
+
+            <input class="inscriptionValidate_BUTTON" type=submit value="S'inscrire">
         </form>
 
         
