@@ -1,4 +1,5 @@
-__author__ = 'Anthony'
+#!/usr/bin/python
+#  -*- coding: utf-8 -*-
 from wtforms import Form,TextField, PasswordField, validators
 
 class LoginForm(Form):

@@ -1,3 +1,6 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+# coding: utf-8
 from sqlalchemy import Enum
 
 from mouvinsa.app import db
@@ -10,12 +13,12 @@ class Person(db.Model):
     email = db.Column(db.String(120), unique=True, nullable=False)
     password = db.Column(db.String(120), nullable=False)
     nickname = db.Column(db.String(120), unique=True, nullable=False)
-    sex = db.Column(db.String(1), nullable=True)
-    firstname = db.Column(db.String(120), nullable=True)
-    lastname = db.Column(db.String(120), nullable=True)
-    birthdate = db.Column(db.DateTime, nullable=True)
-    weight = db.Column(db.Float,nullable=True)
-    height = db.Column(db.Float, nullable=True)
+    sex = db.Column(db.String(1), nullable=False)
+    firstname = db.Column(db.String(120), nullable=False)
+    lastname = db.Column(db.String(120), nullable=False)
+    birthdate = db.Column(db.DateTime, nullable=False)
+    weight = db.Column(db.Float, nullable=False)
+    height = db.Column(db.Float, nullable=False)
     category = db.Column('category', Enum('etudiant', 'enseignant', 'iatos'), nullable=False)
     type = db.Column(db.String(50))
 
@@ -26,8 +29,8 @@ class Person(db.Model):
         return self.username
 
     __mapper_args__ = {
-        'polymorphic_identity':'person',
-        'polymorphic_on':type }
+        'polymorphic_identity': 'person',
+        'polymorphic_on': type}
 
 
 class Student(Person):
@@ -37,8 +40,8 @@ class Student(Person):
     cycle = db.Column(db.Integer)
     branch = db.Column(db.Integer)
 
-    __mapper_args__ =  {
-        'polymorphic_identity':'student',
+    __mapper_args__ = {
+        'polymorphic_identity': 'student',
     }
 
 
@@ -48,7 +51,17 @@ class Employee(Person):
     affiliation = db.Column(db.String(255))
     position = db.Column(db.String(255))
 
-    __mapper_args__ =  {
-        'polymorphic_identity':'employee',
+    __mapper_args__ = {
+        'polymorphic_identity': 'employee',
     }
+
+
+class Goal(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    difficulty = db.Column('difficulty', Enum('difficile', 'moyen', 'facile'), nullable=False)
+    label = db.Column(db.String(45), nullable=False)
+    distance = db.Column(db.Integer, nullable=False)
+    image = db.Column(db.String(45), nullable=False)
+
+
 
