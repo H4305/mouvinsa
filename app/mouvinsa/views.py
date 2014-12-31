@@ -2,6 +2,7 @@ from flask import render_template, request, flash, url_for, redirect
 
 from app import app, db
 from controllers.inscription_controller import InscriptionForm
+from controllers.confirmation_controller import ConfirmationForm, checkExtFile
 from models import Student
 from models import Person
 from controllers.signin_controller import LoginForm
@@ -49,7 +50,6 @@ def inscription():
                 employee.category = 'enseignant'
             else:
                 employee.category = 'iatos'
-
             employee.weight = form.poids.data
             employee.height = form.hauteur.data
 
@@ -64,20 +64,30 @@ def confirmation():
             user_found = Person.query.filter_by(token = token_param).first()
             confirm = request.args.get('msg')
             form = ConfirmationForm(request.form)
-            if request.method == 'GET':
+            if request.method == "POST":
+                if form.image.data is None:
+                    user_found.lastname = form.lastname.data
+                    user_found.firstname = form.firstname.data
+                    user_found.weight = form.weight.data
+                    user_found.height = form.height.data
+                    user_found.birthdate = form.birthdate.data
+                    db.session.commit()
+                    flash('Vous avez bien enregistré votre profil! Maintenant vous pouvez vous connecter avec votre surnom et votre mot de passe.')
+                    return redirect(url_for('login'))
+            else:
                 if user_found is not None:
                     if user_found.etat == 'PREREGISTERED':
-                        if confirm == 'confirme':
-                            user_found.etat='REGISTERED'
-                            db.session.commit()
-                            return render_template('inscription/confirmation.html', user=user_found, msg='confirme', form=form)
-                        elif confirm == 'refuse':
-                            user_found.etat='DROPPED'
-                            db.session.commit()
-                            return render_template('inscription/confirmation.html', user=user_found, msg='refuse')
-                    elif user_found.etat == 'REGISTERED':
-                        return render_template('inscription/confirmation.html', user=user_found, msg='inscrit')
-            return redirect(url_for('home'))
+                            if confirm == 'confirme':
+                                user_found.etat='REGISTERED'
+                                db.session.commit()
+                                return render_template('inscription/confirmation.html', user=user_found, msg='confirme', form=form)
+                            elif confirm == 'refuse':
+                                user_found.etat='DROPPED'
+                                db.session.commit()
+                                return render_template('inscription/confirmation.html', user=user_found, msg='refuse')
+                    #elif user_found.etat == 'REGISTERED':
+                        #return render_template('inscription/confirmation.html', user=user_found, msg='inscrit')
+                return redirect(url_for('home'))
 
 @app.route('/forgetpassword/', methods=['GET', 'POST'])
 def forgetpassword():
@@ -152,22 +162,23 @@ def test_inscription() :
 def list_users() :
     string = ""
     for student in Person.query.all():
-        string += student.__repr__()
-
+        string += student.__repr__()+unicode(student.lastname)+unicode(student.firstname)\
+                  +unicode(student.birthdate)+student.etat
     return string
 
 @app.route('/test/confirmation')
 def test_confirmation() :
-    person = Person.query.filter_by(username='test4').first()
+    person = Person.query.filter_by(nickname='test4').first()
     if person is not None:
         db.session.delete(person)
         db.session.commit()
     student2 = Student()
-    student2.username = 'test4'
+    student2.nickname = 'test4'
     student2.password = 'password'
     student2.email = 'email4@email.com'
     student2.category = 'etudiant'
     student2.etat = 'preregistered'
+    student2.sex = 'Masculin'
     student2.token = 'a0114'
     db.session.add(student2)
     db.session.commit()
