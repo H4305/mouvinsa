@@ -64,32 +64,54 @@ Par tirage au sort 48 équipes de 5 préinscrits seront ensuite constituées de 
                     <label class="inscriptionField_LABEL"> {{ form.email.label }} <em> * </em>: </label>
                     <label class =  "inscriptionField_SELECT">{{ form.email(placeholder="prenom.nom@insa-lyon.fr", pattern="[a-zA-Z0-9]*.[a-zA-Z0-9]*@insa-lyon.fr")}}</label>
                 </div>
+                {% if form.email.errors %}
+                <ul class="errors">{% for error in form.surnom.errors %}<li>{{ error }}</li>{% endfor %}</ul>
+                {% endif %}
 
                 <div class="elementForm_DIV">
                     <label class="inscriptionField_LABEL"> {{ form.confirmEmail.label }} <em> * </em>: </label>
                     <label class =  "inscriptionField_SELECT">{{ form.confirmEmail(placeholder="prenom.nom@insa-lyon.fr", pattern="[a-zA-Z0-9]*.[a-zA-Z0-9]*@insa-lyon.fr")}}</label>
                 </div>
 
+                {% if form.confirmEmail.errors %}
+                <ul class="errors">{% for error in form.confirmEmail.errors %}<li>{{ error }}</li>{% endfor %}</ul>
+                {% endif %}
+
                 <div class="elementForm_DIV">
                     <label class="inscriptionField_LABEL"> {{ form.surnom.label }} <em> * </em>: </label>
                     <label class =  "inscriptionField_SELECT">{{ form.surnom(placeholder="Zuzu")}}</label>
                 </div>
 
+                {% if form.surnom.errors %}
+                <ul class="errors">{% for error in form.surnom.errors %}<li> <i>{{ error }}</i></li>{% endfor %}</ul>
+                {% endif %}
 
                  <div class="elementForm_DIV">
                     <label class="inscriptionField_LABEL"> {{ form.categorie.label }}<em> * </em>:</label>
                     <label class = "inscriptionField_SELECT">{{ form.categorie }} </label>
                 </div>
 
+                {% if form.categorie.errors %}
+                <ul class="errors">{% for error in form.categorie.errors %}<li>{{ error }}</li>{% endfor %}</ul>
+                {% endif %}
+
                 <div class="elementForm_DIV">
                     <label class="inscriptionField_LABEL"> {{ form.password.label }} <em> * </em>: </label>
                     <label class =  "inscriptionField_SELECT">{{ form.password}}</label>
                 </div>
 
+                {% if form.password.errors %}
+                <ul class="errors">{% for error in form.password.errors %}<li>{{ error }}</li>{% endfor %}</ul>
+                {% endif %}
+
                 <div class="elementForm_DIV">
                     <label class="inscriptionField_LABEL"> {{ form.confirm.label }} <em> * </em>: </label>
                     <label class =  "inscriptionField_SELECT">{{ form.confirm}}</label>
                 </div>
+
+                {% if form.confirm.errors %}
+                <ul class="errors">{% for error in form.confirm.errors %}<li>{{ error }}</li>{% endfor %}</ul>
+                {% endif %}
 
 
             </fieldset>
@@ -101,65 +123,113 @@ Par tirage au sort 48 équipes de 5 préinscrits seront ensuite constituées de 
                  <legend>Informations optionnelles</legend>
 
                 <div class="elementForm_DIV">
-                    <label class="inscriptionField_LABEL"> {{ form.nom.label }} <em> * </em>: </label>
+                    <label class="inscriptionField_LABEL"> {{ form.nom.label }} : </label>
                     <label class =  "inscriptionField_SELECT">{{ form.nom}}</label>
                 </div>
 
+                {% if form.nom.errors %}
+                <ul class="errors">{% for error in form.nom.errors %}<li>{{ error }}</li>{% endfor %}</ul>
+                {% endif %}
+
                 <div class="elementForm_DIV">
-                    <label class="inscriptionField_LABEL"> {{ form.prenom.label }} <em> * </em>: </label>
+                    <label class="inscriptionField_LABEL"> {{ form.prenom.label }} : </label>
                     <label class =  "inscriptionField_SELECT">{{ form.prenom}}</label>
                 </div>
 
+                {% if form.prenom.errors %}
+                <ul class="errors">{% for error in form.prenom.errors %}<li>{{ error }}</li>{% endfor %}</ul>
+                {% endif %}
+
                 <div class="elementForm_DIV">
-                    <label class="inscriptionField_LABEL"> {{ form.sexe.label }} <em> * </em>: </label>
+                    <label class="inscriptionField_LABEL"> {{ form.sexe.label }} : </label>
                     <label class =  "inscriptionField_SELECT">{{ form.sexe}}</label>
                 </div>
 
+                {% if form.sexe.errors %}
+                <ul class="errors">{% for error in form.sexe.errors %}<li>{{ error }}</li>{% endfor %}</ul>
+                {% endif %}
+
                  <div class="elementForm_DIV">
-                    <label class="inscriptionField_LABEL"> {{ form.dateNaissance.label }} <em> * </em>: </label>
+                    <label class="inscriptionField_LABEL"> {{ form.dateNaissance.label }} : </label>
                     <label class =  "inscriptionField_SELECT">{{ form.dateNaissance}}</label>
                 </div>
 
+                {% if form.dateNaissance.errors %}
+                <ul class="errors">{% for error in form.dateNaissance.errors %}<li>{{ error }}</li>{% endfor %}</ul>
+                {% endif %}
+
                 <div class="elementForm_DIV">
-                    <label class="inscriptionField_LABEL"> {{ form.poids.label }} <em> * </em>: </label>
+                    <label class="inscriptionField_LABEL"> {{ form.poids.label }} : </label>
                     <label class =  "inscriptionField_SELECT">{{ form.poids}}</label>
                 </div>
 
+                {% if form.poids.errors %}
+                <ul class="errors">{% for error in form.poids.errors %}<li>{{ error }}</li>{% endfor %}</ul>
+                {% endif %}
+
                 <div class="elementForm_DIV">
-                    <label class="inscriptionField_LABEL"> {{ form.hauteur.label }} <em> * </em>: </label>
+                    <label class="inscriptionField_LABEL"> {{ form.hauteur.label }} : </label>
                     <label class =  "inscriptionField_SELECT">{{ form.hauteur}}</label>
                 </div>
 
+                {% if form.hauteur.errors %}
+                <ul class="errors">{% for error in form.hauteur.errors %}<li>{{ error }}</li>{% endfor %}</ul>
+                {% endif %}
+
                 <div class="elementForm_DIV">
-                    <label class="inscriptionField_LABEL"> {{ form.cycle.label }} <em> * </em>: </label>
+                    <label class="inscriptionField_LABEL"> {{ form.cycle.label }} : </label>
                     <label class =  "inscriptionField_SELECT">{{ form.cycle}}</label>
                 </div>
 
+                {% if form.cycle.errors %}
+                <ul class="errors">{% for error in form.cycle.errors %}<li>{{ error }}</li>{% endfor %}</ul>
+                {% endif %}
+
                 <div class="elementForm_DIV">
-                    <label class="inscriptionField_LABEL"> {{ form.annee.label }} <em> * </em>: </label>
+                    <label class="inscriptionField_LABEL"> {{ form.annee.label }} : </label>
                     <label class =  "inscriptionField_SELECT">{{ form.annee}}</label>
                 </div>
 
+                {% if form.annee.errors %}
+                <ul class="errors">{% for error in form.annee.errors %}<li>{{ error }}</li>{% endfor %}</ul>
+                {% endif %}
+
                 <div class="elementForm_DIV">
-                    <label class="inscriptionField_LABEL"> {{ form.filiere.label }} <em> * </em>: </label>
+                    <label class="inscriptionField_LABEL"> {{ form.filiere.label }} : </label>
                     <label class =  "inscriptionField_SELECT">{{ form.filiere}}</label>
                 </div>
+
+                {% if form.filiere.errors %}
+                <ul class="errors">{% for error in form.filiere.errors %}<li>{{ error }}</li>{% endfor %}</ul>
+                {% endif %}
 
                  <div class="elementForm_DIV">
                     <label class="inscriptionField_LABEL">{{ form.departement.label }}</label>
                     <label class="inscriptionField_SELECT"> {{ form.departement  }} </label>
                 </div>
 
+                {% if form.departement.errors %}
+                <ul class="errors">{% for error in form.departement.errors %}<li>{{ error }}</li>{% endfor %}</ul>
+                {% endif %}
+
 
                 <div class="elementForm_DIV">
-                    <label class="inscriptionField_LABEL"> {{ form.position.label }} <em> * </em>: </label>
+                    <label class="inscriptionField_LABEL"> {{ form.position.label }} : </label>
                     <label class =  "inscriptionField_SELECT">{{ form.position}}</label>
                 </div>
 
+                {% if form.position.errors %}
+                <ul class="errors">{% for error in form.position.errors %}<li>{{ error }}</li>{% endfor %}</ul>
+                {% endif %}
+
                 <div class="elementForm_DIV">
-                    <label class="inscriptionField_LABEL"> {{ form.affiliation.label }} <em> * </em>: </label>
+                    <label class="inscriptionField_LABEL"> {{ form.affiliation.label }} : </label>
                     <label class =  "inscriptionField_SELECT">{{ form.affiliation}}</label>
                 </div>
+
+                {% if form.affiliation.errors %}
+                <ul class="errors">{% for error in form.affiliation.errors %}<li>{{ error }}</li>{% endfor %}</ul>
+                {% endif %}
 
 
             </fieldset>
