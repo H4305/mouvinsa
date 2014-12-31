@@ -28,6 +28,11 @@ html, body {
   	width: 100%;
 }
 
+p{
+    margin-left: 6%;
+}
+
+
 #headerMenu_DIV {
     position: relative;
     padding-top: 2px;
@@ -123,26 +128,13 @@ html, body {
     overflow: hidden;
     /*display: none;  /!\ Il faut le decommenter*/
 }
-/*
-.inscriptionField_LABEL, .inscriptionField_INPUT {
-    display: inline-block;
-    margin-top: 2%;
-    margin-bottom: 2%;
-}
-
-.inscriptionField_LABEL + .inscriptionField_INPUT {
-    width: 30%;
-    margin: 0 30% 0 4%;
-}
-
-.inscriptionField_INPUT + .inscriptionField_INPUT {
-    float: right;
-}*/
 
 .inscriptionField_LABEL {
-    position: relative;
-    width: 25%;
-    float: left;
+
+    display: inline-block;
+    vertical-align: top;
+    margin: 1%;
+    width: 60%;
 }
 
 .inscriptionField_INPUT {
@@ -182,14 +174,11 @@ html, body {
 }
 
 .inscriptionField_SELECT {
+
     position: relative;
-    float: right;
-    bottom: 0;
-    width: 60%;
-    /*border: 0;
-    outline: 0;
-    background: transparent;
-    border-bottom: 2px solid black;*/
+    width: 40%;
+    vertical-align: top;
+    margin-right: 7%;
 }
 
 .leftElements_DIV {
@@ -208,5 +197,27 @@ html, body {
     height: 90%;
     margin-bottom: 1%;
     margin-top: 2%;
+}
+
+fieldset {
+    position: relative;
+    margin-bottom: 5%;
+    margin-top: 2%;
+    margin-left: 6%;
+    width: 85%;
+    height: 90%;
+}
+
+legend {
+  padding: 0px 3px;
+  font-weight: bold;
+    font-size: 17px;
+  font-variant: small-caps;
+}
+
+em {
+  font-weight: bold;
+  font-style: normal;
+  color: #f00;
 }
 

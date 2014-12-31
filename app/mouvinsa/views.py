@@ -19,22 +19,20 @@ def inscription():
 
     form = InscriptionForm(request.form)
     if request.method == 'POST' and form.validate():
-        flash('Merci pour votre inscription')
 
         if form.categorie.data == 'Etudiant':
             student = Student()
             createStudent(form, student)
             db.session.add(student)
             db.session.commit()
-            return student.nickname
+            return  "Merci pour votre inscription "+student.nickname + ", vous etes bien enregistre. Vous allez recevoir un e-mail avec votre surnom et votre mot de passe !"
         else:
             employee = Employee()
             createEmployee(form, employee)
             db.session.add(employee)
             db.session.commit()
-            return employee.nickname
+            return "Merci pour votre inscription "+employee.nickname + ", vous etes bien enregistre. Vous allez recevoir un e-mail avec votre surnom et votre mot de passe !"
     return render_template('inscription/inscription.html', form=form)
-
 
 @app.route('/confirmation', methods=['GET', 'POST'])
 def confirmation():
