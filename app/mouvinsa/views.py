@@ -50,7 +50,7 @@ def confirmation():
                     user_found.height = form.height.data
                     user_found.birthdate = form.birthdate.data
                     db.session.commit()
-                    flash('Vous avez bien enregistré votre profil! Maintenant vous pouvez vous connecter avec votre surnom et votre mot de passe.')
+                    flash('Vous avez bien enregistre votre profil! Maintenant vous pouvez vous connecter avec votre surnom et votre mot de passe.')
                     return redirect(url_for('login'))
             else:
                 if user_found is not None:
