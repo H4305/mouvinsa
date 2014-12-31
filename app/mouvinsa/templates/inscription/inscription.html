@@ -1,24 +1,11 @@
-{% extends "inscription/squelette.html" %}
-
+{% extends "layout.html" %}
+{% block title %} Inscription {% endblock %}
+{% block pageName %} Inscription {% endblock %}
 {% block header %}
     {{ super() }}
     <link href="{{ url_for('static', filename='styles/inscription/inscription_style.css') }}" rel="stylesheet" type="text/css" />
 {% endblock %}
-
-{% block titre %}MOUVINSA | Inscription{% endblock %}
-
-{% block corps %}
-
-    <script type=text/javascript src="{{
-  url_for('static', filename='scripts/inscription/inscriptionFunctions.js') }}"></script>
-    <script type=text/javascript src="{{
-  url_for('static', filename='scripts/jquery.transit.js') }}"></script>
-    <script type=text/javascript src="{{
-  url_for('static', filename='scripts/blur.js') }}"></script>
-
-    <div id="headerMenu_DIV">
-        Menu
-    </div>
+{% block main %}
 
     <div class="trasparentContainer_DIV" id="presentation_DIV">
         <!-- <img src="{{ url_for('static', filename='images/inscription_fond.jpg') }}"> -->
@@ -170,5 +157,4 @@ Par tirage au sort 48 équipes de 5 préinscrits seront ensuite constituées de 
 
         
     </div>
-
 {% endblock %}

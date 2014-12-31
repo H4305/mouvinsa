@@ -30,15 +30,7 @@ body {
     -moz-background-size: cover; /* pour Firefox */
     -o-background-size: cover; /* pour Opera */
     background-size: cover; /* version standardisÃ©e */
-}
-
-header {
-    height: 60px;
-    width: 96%;
-    background: #ee2922;
-    color: #ffffff;
-    line-height: 60px;
-    padding:0 2%;
+    padding-top: 70px;
 }
 
 .main {
