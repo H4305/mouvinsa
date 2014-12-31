@@ -2,11 +2,10 @@ from flask import render_template, request, flash, url_for, redirect
 
 from app import app, db
 from controllers.inscription_controller import InscriptionForm
-from controllers.confirmation_controller import ConfirmationForm, checkExtFile
-from models import Student
-from models import Person
+from controllers.confirmation_controller import ConfirmationForm
+from models import Student, Person, Employee
 from controllers.signin_controller import LoginForm
-from models import Employee
+from controllers.inscription_controller import createEmployee, createStudent
 
 
 @app.route('/')
@@ -14,49 +13,28 @@ def home():
     name = request.args.get('name', '')
     return render_template('index.html', name=name)
 
+
 @app.route('/inscription', methods=['GET', 'POST'])
 def inscription():
 
     form = InscriptionForm(request.form)
-    if request.method == 'POST' :#and form.validate():
-        flash('Merci pour votre inscription')
+    if request.method == 'POST': #and form.validate():
 
         if form.categorie.data == 'Etudiant':
             student = Student()
-            student.firstname = form.prenom.data
-            student.lastname = form.nom.data
-            student.nickname = form.surnomnom.data
-            student.password = form.password.data
-            student.email = form.email.data
-            student.sex = form.sexe.data
-            student.category = 'etudiant'
-            student.year = form.annee.data
-            student.birthdate = form.dateNaissance.data
-            student.weight = form.poids.data
-            student.height = form.hauteur.data
+            createStudent(form, student)
             db.session.add(student)
             db.session.commit()
-            return student.nickname
+            return  "Merci pour votre inscription "+student.nickname + ". Vous allez recevoir un e-mail de confirmation contenant votre surnom et votre mot de passe !"
         else:
             employee = Employee()
-            employee.firstname = form.prenom.data
-            employee.lastname = form.nom.data
-            employee.nickname = form.surnom.data
-            employee.password = form.password.data
-            employee.birthdate = form.dateNaissance.data
-            employee.email = form.email.data
-            employee.sex = form.sexe.data
-            if form.categorie.data == 'Enseignant-Chercheur':
-                employee.category = 'enseignant'
-            else:
-                employee.category = 'iatos'
-            employee.weight = form.poids.data
-            employee.height = form.hauteur.data
-
+            createEmployee(form, employee)
             db.session.add(employee)
             db.session.commit()
-            return employee.nickname
-    return render_template('inscription/inscription.html', form=form)
+
+        return "Merci pour votre inscription, "+employee.nickname+". Vous allez recevoir un e-mail de confirmation contenant votre surnom et votre mot de passe !"
+    else:
+        return render_template('inscription/inscription.html', form=form)
 
 @app.route('/confirmation', methods=['GET', 'POST'])
 def confirmation():

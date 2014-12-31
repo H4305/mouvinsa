@@ -23,40 +23,30 @@ html, body {
   	background-color: #464646;
 
   	margin:0;
-  	padding:0;
+  	padding-top: 20px;
+    padding-bottom: 0;
   	height: 100%;
   	width: 100%;
 }
 
-#headerMenu_DIV {
+.PageSection_DIV {
     position: relative;
-    padding-top: 2px;
+    margin: 0;
+    height: 600px;
     width: 100%;
-    height: 40px;
-    min-height: 20px;
-    max-height: 100px;
-    overflow: hidden;
-    background: #E42618;
-    -webkit-box-shadow: 0 8px 6px -6px black;
-	  -moz-box-shadow: 0 8px 6px -6px black;
-	  box-shadow: 0 8px 6px -6px black;
+    background-color: grey;
 }
+
+#descriptionProjet_DIV {
+    padding-left: 4%;
+    padding-right: 4%;
+    overflow: hidden;
+  }
 
 .trasparentContainer_DIV {
 	background: white;
 	opacity: 0.85;
 }
-
-#presentation_DIV {
-    position: relative;
-    margin-top: 10px;
-    margin-left: 20%;
-    margin-right: 20%;
-    padding-left: 4%;
-    padding-right: 4%;
-    height: 40%;
-    overflow: hidden;
-  }
 
 #inscrivezVousHeader_DIV {
     position: relative;
@@ -123,26 +113,14 @@ html, body {
     overflow: hidden;
     /*display: none;  /!\ Il faut le decommenter*/
 }
-/*
-.inscriptionField_LABEL, .inscriptionField_INPUT {
-    display: inline-block;
-    margin-top: 2%;
-    margin-bottom: 2%;
-}
 
-.inscriptionField_LABEL + .inscriptionField_INPUT {
-    width: 30%;
-    margin: 0 30% 0 4%;
-}
-
-.inscriptionField_INPUT + .inscriptionField_INPUT {
-    float: right;
-}*/
 
 .inscriptionField_LABEL {
-    position: relative;
-    width: 25%;
-    float: left;
+
+    display: inline-block;
+    vertical-align: top;
+    margin: 1%;
+    width: 60%;
 }
 
 .inscriptionField_INPUT {
@@ -181,15 +159,13 @@ html, body {
     margin: 2% 0 0 4%;
 }
 
+
 .inscriptionField_SELECT {
+
     position: relative;
-    float: right;
-    bottom: 0;
-    width: 60%;
-    /*border: 0;
-    outline: 0;
-    background: transparent;
-    border-bottom: 2px solid black;*/
+    width: 40%;
+    vertical-align: top;
+    margin-right: 7%;
 }
 
 .leftElements_DIV {
@@ -210,3 +186,35 @@ html, body {
     margin-top: 2%;
 }
 
+fieldset {
+    position: relative;
+    margin-bottom: 5%;
+    margin-top: 2%;
+    margin-left: 6%;
+    width: 85%;
+    height: 90%;
+}
+
+legend {
+  padding: 0px 3px;
+  font-weight: bold;
+    font-size: 17px;
+  font-variant: small-caps;
+}
+
+em {
+  font-weight: bold;
+  font-style: normal;
+  color: #f00;
+}
+
+p{
+    margin-left: 6%;
+}
+
+li{
+    margin-left: 7%;
+    font-weight: normal;
+    font-style: normal;
+    color: #f00;
+}
