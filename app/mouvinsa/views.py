@@ -18,21 +18,23 @@ def home():
 def inscription():
 
     form = InscriptionForm(request.form)
-    if request.method == 'POST' and form.validate():
+    if request.method == 'POST': #and form.validate():
 
         if form.categorie.data == 'Etudiant':
             student = Student()
             createStudent(form, student)
             db.session.add(student)
             db.session.commit()
-            return  "Merci pour votre inscription "+student.nickname + ", vous etes bien enregistre. Vous allez recevoir un e-mail avec votre surnom et votre mot de passe !"
+            return  "Merci pour votre inscription "+student.nickname + ". Vous allez recevoir un e-mail de confirmation contenant votre surnom et votre mot de passe !"
         else:
             employee = Employee()
             createEmployee(form, employee)
             db.session.add(employee)
             db.session.commit()
-            return "Merci pour votre inscription "+employee.nickname + ", vous etes bien enregistre. Vous allez recevoir un e-mail avec votre surnom et votre mot de passe !"
-    return render_template('inscription/inscription.html', form=form)
+
+        return "Merci pour votre inscription, "+employee.nickname+". Vous allez recevoir un e-mail de confirmation contenant votre surnom et votre mot de passe !"
+    else:
+        return render_template('inscription/inscription.html', form=form)
 
 @app.route('/confirmation', methods=['GET', 'POST'])
 def confirmation():
