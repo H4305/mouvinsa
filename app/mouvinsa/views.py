@@ -3,11 +3,12 @@
 
 from flask import render_template, request, flash, url_for, redirect
 
-from mouvinsa.app import app, db
-from mouvinsa.controllers.inscription_controller import InscriptionForm
-from models import Student
-from mouvinsa.models import Person
-from mouvinsa.controllers.signin_controller import LoginForm
+from app import app, db
+from controllers.inscription_controller import InscriptionForm
+from controllers.confirmation_controller import ConfirmationForm
+from models import Student, Person, Employee
+from controllers.signin_controller import LoginForm
+from controllers.inscription_controller import createEmployee, createStudent
 
 
 @app.route('/')
@@ -19,17 +20,54 @@ def home():
 def inscription():
 
     form = InscriptionForm(request.form)
-    if request.method == 'POST':
-        flash('Thanks for registering')
-        return redirect(url_for('login'))
+    if request.method == 'POST' :#and form.validate():
+        flash('Merci pour votre inscription')
+
+        if form.categorie.data == 'Etudiant':
+            student = Student()
+            createStudent(form, student)
+            db.session.add(student)
+            db.session.commit()
+            return student.nickname
+        else:
+            employee = Employee()
+            createEmployee(form, employee)
+            db.session.add(employee)
+            db.session.commit()
+            return employee.sex
     return render_template('inscription/inscription.html', form=form)
+
+@app.route('/aboutus', methods=['GET'])
+def aboutus():
+    return render_template('apropos.html')
+
+@app.route('/confirmation', methods=['GET', 'POST'])
+def confirmation():
+    token_param = request.args.get('token')
+    user_found = Person.query.filter_by(token = token_param).first()
+    confirm = request.args.get('msg')
+    form = ConfirmationForm(request.form)
+    if request.method == 'GET':
+        if user_found is not None:
+            if user_found.etat == 'PREREGISTERED':
+                if confirm == 'confirme':
+                    user_found.etat='REGISTERED'
+                    db.session.commit()
+                    return render_template('inscription/confirmation.html', user=user_found, msg='confirme', form=form)
+                elif confirm == 'refuse':
+                    user_found.etat='DROPPED'
+                    db.session.commit()
+                    return render_template('inscription/confirmation.html', user=user_found, msg='refuse')
+            elif user_found.etat == 'REGISTERED':
+                return render_template('inscription/confirmation.html', user=user_found, msg='inscrit')
+    return redirect(url_for('home'))
 
 @app.route('/forgetpassword/', methods=['GET', 'POST'])
 def forgetpassword():
     if request.method == 'GET':
         return render_template('auth/forgetpassword.html')
     elif request.method == 'POST':
-        email = request.POST.get('email') # Peut être passé par une classe form ? mais pour un attribut ?
+        email = request.POST.get('email') # Peut etre passe par une classe form ? mais pour un attribut ?
         person = Person.query.filter_by(email=email).first()
         if person is None:
             problem = "The user doesn't exist"
@@ -79,13 +117,14 @@ def page_not_found(e):
 @app.errorhandler(500)
 def page_not_found(e):
     return render_template('500.html', error=e)
-@app.route('/test/inscription/')
+
+@app.route('/test/inscription')
 @app.route('/test/inscription/<user>')
 def test_inscription(user="TestUser"):
     student = Student()
     student.username = user
     student.password = 'password'
-    student.email = user + '@email.com'
+    student.email = user +'@email.com'
     student.nickname = user
     student.category = 'etudiant'
     db.session.add(student)
@@ -99,4 +138,24 @@ def list_users() :
     for student in Person.query.all():
         string += student.__repr__() + "<br/>"
 
+    return string
+
+@app.route('/test/confirmation')
+def test_confirmation() :
+    person = Person.query.filter_by(username='test4').first()
+    if person is not None:
+        db.session.delete(person)
+        db.session.commit()
+    student2 = Student()
+    student2.username = 'test4'
+    student2.password = 'password'
+    student2.email = 'email4@email.com'
+    student2.category = 'etudiant'
+    student2.etat = 'preregistered'
+    student2.token = 'a0114'
+    db.session.add(student2)
+    db.session.commit()
+    string = ""
+    for student in Person.query.all():
+        string += student.__repr__()+student.token+student.etat
     return string
