@@ -58,10 +58,8 @@ body {
   text-align: center;
   bottom: 0px;
   color: #FFF;
-  position: fixed;
   background-color: #222222;
   width: 100%;
-  margin-top: 20px;
 }
 
 #footer .logo {
@@ -139,10 +137,9 @@ body {
 }
 
 #apropos {
-    background-color: rgba(34, 34, 34, 0.70);
+    background-image: url("../images/bg.jpg");
     text-align: center;
     color :white;
-    /*height: 700px;*/
 }
 
 #apropos .title {
@@ -191,6 +188,11 @@ body {
     width: 100px;
     box-shadow: 0px 0px 9px #000;
     margin-bottom: 5px;
+}
+
+#apropos .photo:hover {
+transform: rotate(5deg);
+-webkit-transform: rotate(5deg);
 }
 
 #apropos .person {
