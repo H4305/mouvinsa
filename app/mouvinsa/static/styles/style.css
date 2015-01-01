@@ -30,7 +30,9 @@ body {
     -moz-background-size: cover; /* pour Firefox */
     -o-background-size: cover; /* pour Opera */
     background-size: cover; /* version standardisÃ©e */
-    padding-top: 70px;
+    margin: 0;
+    padding: 0;
+    right: 0;
 }
 
 .main {
@@ -39,6 +41,13 @@ body {
     margin-right: auto;
     max-width:642px;
     width: 100%;
+}
+
+#page {
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    padding-top: 70px;
 }
 
 .logo-main {
@@ -54,7 +63,8 @@ body {
 }
 
 #footer {
-  padding: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
   text-align: center;
   bottom: 0px;
   color: #FFF;
