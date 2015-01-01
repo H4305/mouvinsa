@@ -103,6 +103,9 @@ body {
     margin:auto;
 }
 
+#signin #link {
+    margin-left: 20%;
+}
 #signin .title {
     background: #ee2922;
     top :0px;
