@@ -99,6 +99,8 @@ body {
     opacity: 0.85;
     padding-bottom: 30px;
     text-align: left;
+    width: 40%;
+    margin:auto;
 }
 
 #signin .title {
