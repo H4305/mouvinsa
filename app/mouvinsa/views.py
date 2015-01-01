@@ -16,51 +16,59 @@ def home():
     name = request.args.get('name', '')
     return render_template('index.html', name=name)
 
+
 @app.route('/inscription', methods=['GET', 'POST'])
 def inscription():
 
     form = InscriptionForm(request.form)
-    if request.method == 'POST' :#and form.validate():
-        flash('Merci pour votre inscription')
+    if request.method == 'POST': #and form.validate():
 
         if form.categorie.data == 'Etudiant':
             student = Student()
             createStudent(form, student)
             db.session.add(student)
             db.session.commit()
-            return student.nickname
+            return  "Merci pour votre inscription "+student.nickname + ". Vous allez recevoir un e-mail de confirmation contenant votre surnom et votre mot de passe !"
         else:
             employee = Employee()
             createEmployee(form, employee)
             db.session.add(employee)
             db.session.commit()
-            return employee.sex
-    return render_template('inscription/inscription.html', form=form)
 
-@app.route('/aboutus', methods=['GET'])
-def aboutus():
-    return render_template('apropos.html')
+        return "Merci pour votre inscription, "+employee.nickname+". Vous allez recevoir un e-mail de confirmation contenant votre surnom et votre mot de passe !"
+    else:
+        return render_template('inscription/inscription.html', form=form)
 
 @app.route('/confirmation', methods=['GET', 'POST'])
 def confirmation():
-    token_param = request.args.get('token')
-    user_found = Person.query.filter_by(token = token_param).first()
-    confirm = request.args.get('msg')
-    form = ConfirmationForm(request.form)
-    if request.method == 'GET':
-        if user_found is not None:
-            if user_found.etat == 'PREREGISTERED':
-                if confirm == 'confirme':
-                    user_found.etat='REGISTERED'
+            token_param = request.args.get('token')
+            user_found = Person.query.filter_by(token = token_param).first()
+            confirm = request.args.get('msg')
+            form = ConfirmationForm(request.form)
+            if request.method == "POST":
+                if form.image.data is None:
+                    user_found.lastname = form.lastname.data
+                    user_found.firstname = form.firstname.data
+                    user_found.weight = form.weight.data
+                    user_found.height = form.height.data
+                    user_found.birthdate = form.birthdate.data
                     db.session.commit()
-                    return render_template('inscription/confirmation.html', user=user_found, msg='confirme', form=form)
-                elif confirm == 'refuse':
-                    user_found.etat='DROPPED'
-                    db.session.commit()
-                    return render_template('inscription/confirmation.html', user=user_found, msg='refuse')
-            elif user_found.etat == 'REGISTERED':
-                return render_template('inscription/confirmation.html', user=user_found, msg='inscrit')
-    return redirect(url_for('home'))
+                    flash('Vous avez bien enregistre votre profil! Maintenant vous pouvez vous connecter avec votre surnom et votre mot de passe.')
+                    return redirect(url_for('login'))
+            else:
+                if user_found is not None:
+                    if user_found.etat == 'PREREGISTERED':
+                            if confirm == 'confirme':
+                                user_found.etat='REGISTERED'
+                                db.session.commit()
+                                return render_template('inscription/confirmation.html', user=user_found, msg='confirme', form=form)
+                            elif confirm == 'refuse':
+                                user_found.etat='DROPPED'
+                                db.session.commit()
+                                return render_template('inscription/confirmation.html', user=user_found, msg='refuse')
+                    #elif user_found.etat == 'REGISTERED':
+                        #return render_template('inscription/confirmation.html', user=user_found, msg='inscrit')
+                return redirect(url_for('home'))
 
 @app.route('/forgetpassword/', methods=['GET', 'POST'])
 def forgetpassword():
@@ -136,22 +144,23 @@ def test_inscription(user="TestUser"):
 def list_users() :
     string = "List user <br/>"
     for student in Person.query.all():
-        string += student.__repr__() + "<br/>"
-
+        string += student.__repr__()+unicode(student.lastname)+unicode(student.firstname)\
+                  +unicode(student.birthdate)+student.etat
     return string
 
 @app.route('/test/confirmation')
 def test_confirmation() :
-    person = Person.query.filter_by(username='test4').first()
+    person = Person.query.filter_by(nickname='test4').first()
     if person is not None:
         db.session.delete(person)
         db.session.commit()
     student2 = Student()
-    student2.username = 'test4'
+    student2.nickname = 'test4'
     student2.password = 'password'
     student2.email = 'email4@email.com'
     student2.category = 'etudiant'
     student2.etat = 'preregistered'
+    student2.sex = 'Masculin'
     student2.token = 'a0114'
     db.session.add(student2)
     db.session.commit()

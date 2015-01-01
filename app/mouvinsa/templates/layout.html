@@ -2,22 +2,42 @@
 <html>
 
 <head>
-        <title>{% block title %}{%  endblock %} - Mouv'INSA</title>
+        <title>Mouv'INSA | {% block title %}{%  endblock %}</title>
         <meta charset="utf-8">
         <meta name="description" content="165c. uniques">
 
+{% block header %}
     <link rel=stylesheet type=text/css href="{{ url_for('static', filename='styles/normalize.css') }}">
     <link rel=stylesheet type=text/css href="{{ url_for('static', filename='styles/style.css') }}">
     <link rel=stylesheet type=text/css href="{{ url_for('static', filename='styles/flipclock.css') }}">
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='styles/navigationBarStyle.css') }}">
+{% endblock %}
 
         {% include 'scripts.html' %}
 </head>
 
 <body>
     <div id="page">
-        <header>{% include 'header.html' %}</header>
-        <nav>{% include 'menu.html' %}</nav>
-        <div id="main" class="main">{% block main %}{% endblock %}</div>
+        <header></header>
+        <nav class="navigation_menu_NAV">
+            <div tabindex="0" class="menuButton_DIV" id="menuButton" onClick="clickMenu()">
+                <div class="box-shadow-menu">
+                </div>
+                {% block buttonMenu %}{% endblock %}
+            </div>
+            <div class="titrePage_DIV">
+                <span class="titre_SPAN">
+                    mouv'INSA | {% block pageName %}{% endblock %}
+                </span>
+            </div>
+            <div class="linksOtherPages_DIV">
+                <span class="titre_SPAN">
+                </span>
+            </div>
+        </nav>
+        {% include 'inscription/navigationMenu.html' %}
+        {% block main %}{% endblock %}
+        {% include 'apropos.html' %}
         <footer>{% include 'footer.html' %}</footer>
     </div>
 
