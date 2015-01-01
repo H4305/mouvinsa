@@ -99,8 +99,13 @@ body {
     opacity: 0.85;
     padding-bottom: 30px;
     text-align: left;
+    width: 40%;
+    margin:auto;
 }
 
+#signin #link {
+    margin-left: 20%;
+}
 #signin .title {
     background: #ee2922;
     top :0px;
