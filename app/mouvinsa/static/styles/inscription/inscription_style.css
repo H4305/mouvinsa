@@ -10,7 +10,8 @@ html, body {
     margin: 0;
     height: 600px;
     width: 100%;
-    background-color: grey;
+    margin-top: -30px;
+    border: solid;
 }
 
 #descriptionProjet_DIV {
