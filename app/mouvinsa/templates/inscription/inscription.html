@@ -19,14 +19,6 @@
             <li><a href="#aPropos" class="navigationBarReference">A propos de nous</a></li>
         </ul>
     {% endblock %}
-    
-    <a name="leJeu" class="paddingFromNavBar"></a>
-    <div id="descriptionProjetHeader_DIV">
-        <span id="descriptionProjetHeader_SPAN">Description du projet Mouv'INSA</span>
-    </div>
-    <div class="trasparentContainer_DIV" id="descriptionProjectDIV">
-
-    </div>
 
     <a name="inscription" class="paddingFromNavBar"></a>
     <div id="inscrivezVousHeader_DIV" onclick="showForm()">
@@ -35,6 +27,18 @@
     </div>
 
     <div class="trasparentContainer_DIV" id="inscrivezVousContent_DIV">
+        
+        {% macro render_field(field) %}
+            <label class="inscriptionField_LABEL">{{ field.label }}</label>
+            {{ field(class_="inscriptionField_INPUT") }}
+            {% if field.errors %}
+                <ul class=errors>
+                {% for error in field.errors %}
+                    <li>{{ error }}</li>
+                {% endfor %}
+                </ul>
+            {% endif %}
+        {% endmacro %}
 
 
         <form method=post action="/inscription">
@@ -50,7 +54,7 @@
                     <label class =  "inscriptionField_SELECT">{{ form.email(placeholder="prenom.nom@insa-lyon.fr", pattern="[a-zA-Z0-9]*.[a-zA-Z0-9]*@insa-lyon.fr")}}</label>
                 </div>
                 {% if form.email.errors %}
-                <ul class="errors">{% for error in form.email.errors %}<li>{{ error }}</li>{% endfor %}</ul>
+                <ul class="errors">{% for error in form.surnom.errors %}<li>{{ error }}</li>{% endfor %}</ul>
                 {% endif %}
 
                 <div class="elementForm_DIV">
@@ -75,6 +79,10 @@
                     <label class="inscriptionField_LABEL"> {{ form.categorie.label }}<em> * </em>:</label>
                     <label class = "inscriptionField_SELECT">{{ form.categorie }} </label>
                 </div>
+
+                {% if form.categorie.errors %}
+                <ul class="errors">{% for error in form.categorie.errors %}<li>{{ error }}</li>{% endfor %}</ul>
+                {% endif %}
 
                 <div class="elementForm_DIV">
                     <label class="inscriptionField_LABEL"> {{ form.password.label }} <em> * </em>: </label>
@@ -124,9 +132,13 @@
                     <label class =  "inscriptionField_SELECT">{{ form.sexe}}</label>
                 </div>
 
+                {% if form.sexe.errors %}
+                <ul class="errors">{% for error in form.sexe.errors %}<li>{{ error }}</li>{% endfor %}</ul>
+                {% endif %}
+
                  <div class="elementForm_DIV">
                     <label class="inscriptionField_LABEL"> {{ form.dateNaissance.label }} : </label>
-                    <label class =  "inscriptionField_SELECT">{{ form.dateNaissance(placeholder=" jj/mm/aaaa")}}</label>
+                    <label class =  "inscriptionField_SELECT">{{ form.dateNaissance}}</label>
                 </div>
 
                 {% if form.dateNaissance.errors %}
@@ -135,7 +147,7 @@
 
                 <div class="elementForm_DIV">
                     <label class="inscriptionField_LABEL"> {{ form.poids.label }} : </label>
-                    <label class =  "inscriptionField_SELECT">{{ form.poids(placeholder=" Ex: 55")}}</label>
+                    <label class =  "inscriptionField_SELECT">{{ form.poids}}</label>
                 </div>
 
                 {% if form.poids.errors %}
@@ -144,7 +156,7 @@
 
                 <div class="elementForm_DIV">
                     <label class="inscriptionField_LABEL"> {{ form.hauteur.label }} : </label>
-                    <label class =  "inscriptionField_SELECT">{{ form.hauteur(placeholder=" Ex: 170")}}</label>
+                    <label class =  "inscriptionField_SELECT">{{ form.hauteur}}</label>
                 </div>
 
                 {% if form.hauteur.errors %}
@@ -156,20 +168,37 @@
                     <label class =  "inscriptionField_SELECT">{{ form.cycle}}</label>
                 </div>
 
+                {% if form.cycle.errors %}
+                <ul class="errors">{% for error in form.cycle.errors %}<li>{{ error }}</li>{% endfor %}</ul>
+                {% endif %}
+
                 <div class="elementForm_DIV">
                     <label class="inscriptionField_LABEL"> {{ form.annee.label }} : </label>
                     <label class =  "inscriptionField_SELECT">{{ form.annee}}</label>
                 </div>
+
+                {% if form.annee.errors %}
+                <ul class="errors">{% for error in form.annee.errors %}<li>{{ error }}</li>{% endfor %}</ul>
+                {% endif %}
 
                 <div class="elementForm_DIV">
                     <label class="inscriptionField_LABEL"> {{ form.filiere.label }} : </label>
                     <label class =  "inscriptionField_SELECT">{{ form.filiere}}</label>
                 </div>
 
+                {% if form.filiere.errors %}
+                <ul class="errors">{% for error in form.filiere.errors %}<li>{{ error }}</li>{% endfor %}</ul>
+                {% endif %}
+
                  <div class="elementForm_DIV">
                     <label class="inscriptionField_LABEL">{{ form.departement.label }}</label>
                     <label class="inscriptionField_SELECT"> {{ form.departement  }} </label>
                 </div>
+
+                {% if form.departement.errors %}
+                <ul class="errors">{% for error in form.departement.errors %}<li>{{ error }}</li>{% endfor %}</ul>
+                {% endif %}
+
 
                 <div class="elementForm_DIV">
                     <label class="inscriptionField_LABEL"> {{ form.position.label }} : </label>
@@ -192,7 +221,7 @@
 
             </fieldset>
 
-            <input class="inscriptionValidate_BUTTON" type=submit value="ENVOYER">
+            <input class="inscriptionValidate_BUTTON" type=submit value="S'inscrire">
         </form>
     </div>
 

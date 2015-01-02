@@ -7,20 +7,17 @@ html, body {
 
 .PageSection_DIV {
     position: relative;
-    margin-top: -30px;
-    margin-left: 20%;
-    margin-right: 20%;
-    overflow: hidden;
+    margin: 0;
     height: 600px;
+    width: 100%;
+    margin-top: -30px;
 }
 
-#descriptionProjectDIV {
+#descriptionProjet_DIV {
     position: relative;
     overflow: hidden;
+    background-image: url("../../images/bg.jpg");
     border-bottom: solid 2px;
-    margin-left: 20%;
-    margin-right: 20%;
-    height: 600px;
   }
 
 .trasparentContainer_DIV {
@@ -41,33 +38,13 @@ html, body {
 	  text-indent: 20px;
 }
 
-#descriptionProjetHeader_DIV {
-    position: relative;
-    margin-top: 10px;
-    margin-left: 20%;
-    margin-right: 20%;
-    margin-bottom: 0;
-    height: 40px;
-    overflow: visible;
-    background: #E42618;
-    color: white;
-    text-indent: 5px;
-}
-
 #inscrivezVousHeader_SPAN {
     position: relative;
     top: 32%;
-    padding-top: 3%;
-    padding-left: 7%;
+    padding-left: 8%;
   	-webkit-transform: translateY(-50%);
   	-ms-transform: translateY(-50%);
   	transform: translateY(-50%);
-}
-
-#descriptionProjetHeader_SPAN{
-    position: relative;
-    top: 32%;
-    padding-left: 3%;
 }
 
 #triangle_DIV {
@@ -109,6 +86,7 @@ html, body {
 	  position: relative;
     margin-left: 20%;
     margin-right: 20%;
+    /*height: 40%;*/
     overflow: hidden;
     /*display: none;  /!\ Il faut le decommenter*/
 }
@@ -116,10 +94,10 @@ html, body {
 
 .inscriptionField_LABEL {
 
-	display: block;
-	width: 60%;
-	float: left;
-
+    display: inline-block;
+    vertical-align: top;
+    margin: 1%;
+    width: 60%;
 }
 
 .inscriptionField_INPUT {
@@ -167,6 +145,23 @@ html, body {
     margin-right: 7%;
 }
 
+.leftElements_DIV {
+    position: relative;
+    float:left;
+    width: 49%;
+    height: 90%;
+    margin-bottom: 1%;
+    margin-top: 2%;
+}
+
+.rightElements_DIV {
+    position: relative;
+    float:right;
+    width: 49%;
+    height: 90%;
+    margin-bottom: 1%;
+    margin-top: 2%;
+}
 
 fieldset {
     position: relative;
