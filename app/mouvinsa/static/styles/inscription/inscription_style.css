@@ -17,7 +17,6 @@ html, body {
 #descriptionProjectDIV {
      position: relative;
     overflow: hidden;
-    border-bottom: solid 2px;
     margin-left: 20%;
     margin-right: 20%;
     height: 650px;
