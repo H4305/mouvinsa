@@ -154,7 +154,7 @@ body {
 #apropos {
     background-image: url("../images/bg.jpg");
     text-align: center;
-    color: #000000;
+    color: #ffffff;
     border-top: solid 4px;
     border-bottom: solid 4px;
 }
@@ -188,7 +188,7 @@ body {
     height: auto;
     display: inline-block;
     /*border :1px solid white;*/
-    padding-bottom: 50px;
+    padding-bottom: 25px;
 }
 
 #apropos #right #infoJP { 
