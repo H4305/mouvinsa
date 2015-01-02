@@ -1,0 +1,48 @@
+.containerDescription {
+    background: white;
+    opacity: 0.9;
+    background: black;
+    opacity: 0.7;
+    border-radius: 10px;
+    text-align: justify;
+    width: 100%;
+    color:white;
+
+}
+.question {
+	font-weight: bold;
+	text-align: center;
+	font-size: 16px;
+	color:black;
+
+}
+.important {
+	font-weight: bold;
+	text-align:center;
+	font-style: italic;
+	font-size: 16px;
+	font-color:white;
+}
+.paragraph {
+	padding-top: 20px;
+	padding-bottom: 10px;
+	padding: 0 40px;
+	font-size: 14px;
+	color:white;
+}
+.cercle {
+	width:150px;
+	height:100px;
+	border-radius:50%;
+	font-size:50px;
+	color:#fff;
+	line-height:100px;
+	text-align:center;
+}
+
+#descriptionProjet_DIV {
+    position: relative;
+    overflow: hidden;
+    background-image: url("../../images/bg.jpg");
+    border-bottom: solid 2px;
+  }

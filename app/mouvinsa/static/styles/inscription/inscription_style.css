@@ -13,13 +13,6 @@ html, body {
     margin-top: -30px;
 }
 
-#descriptionProjet_DIV {
-    position: relative;
-    overflow: hidden;
-    background-image: url("../../images/bg.jpg");
-    border-bottom: solid 2px;
-  }
-
 .trasparentContainer_DIV {
 	background: white;
 	opacity: 0.85;

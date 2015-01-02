@@ -11,6 +11,7 @@
     <link rel=stylesheet type=text/css href="{{ url_for('static', filename='styles/style.css') }}">
     <link rel=stylesheet type=text/css href="{{ url_for('static', filename='styles/flipclock.css') }}">
     <link rel=stylesheet type=text/css href="{{ url_for('static', filename='styles/navigationBarStyle.css') }}">
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='styles/descriptionProjetStyle.css') }}">
     <link href="{{ url_for('static', filename='images/icon.ico') }}" rel="icon" type="image/x-icon" />
 {% endblock %}
 
@@ -37,6 +38,7 @@
             </div>
         </nav>
         {% include 'inscription/navigationMenu.html' %}
+        {% include 'descriptionProjet.html' %}
         {% block main %}{% endblock %}
         {% include 'apropos.html' %}
         <footer>{% include 'footer.html' %}</footer>
