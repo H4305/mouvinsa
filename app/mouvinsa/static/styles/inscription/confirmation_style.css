@@ -15,6 +15,7 @@
     background: white;
 	opacity: 0.85;
     text-align: justify;
+    min-height: 300px;
 }
 .title_confirmation_block{
     color: white;
@@ -36,6 +37,11 @@
     -webkit-box-shadow: 0 8px 6px -6px black;
     -moz-box-shadow: 0 8px 6px -6px black;
     box-shadow: 0 8px 6px -6px black;
+}
+
+a.next_button:hover{
+  text-decoration: none;
+  color:white
 }
 #tab_title_confirmation li{
     width:15%;

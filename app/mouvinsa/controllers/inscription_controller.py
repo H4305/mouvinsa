@@ -1,9 +1,9 @@
 from wtforms import Form, BooleanField, TextField, FloatField, PasswordField, SelectField, DateField, validators
 
 class InscriptionForm(Form):
-	email = TextField(u'Email', [validators.Required(message='Ce champs est obligatoire. Veuillez le remplir.'), validators.EqualTo('Confirmez votre email', message='Les 2 emails doivent correspondre'), validators.Length(min=6, max=35, message='La longeur doit etre comprise entre 6 et 35 caracteres.')])
+	email = TextField(u'Email', [validators.Required(message='Ce champs est obligatoire. Veuillez le remplir.'), validators.EqualTo('confirmEmail', message='Les 2 emails doivent correspondre')])
 
-	confirmEmail = TextField(u'Confirmez votre email', [validators.Required(message='Ce champs est obligatoire. Veuillez le remplir.'), validators.Length(min=6, max=35, message='La longeur doit etre comprise entre 6 et 35 caracteres.')])
+	confirmEmail = TextField(u'Confirmez votre email', [validators.Required(message='Ce champs est obligatoire. Veuillez le remplir.')])
 
 	surnom = TextField(u'Pseudonyme', [validators.Required(message='Ce champs est obligatoire. Veuillez le remplir.'), validators.Length(min=2, max=25, message='La longeur doit etre comprise entre 2 et 25 caracteres.')])
 
@@ -11,7 +11,7 @@ class InscriptionForm(Form):
 
 	prenom = TextField(u'Prenom', [validators.Optional(), validators.Length(min=2, max=25, message='La longeur doit etre comprise entre 2 et 25 caracteres.')])
 
-	categorie = SelectField(u'Categorie ', [validators.Required(message='Ce champs est obligatoire. Veuillez choisir un item dans la liste.')], choices=[('',''),('Etudiant', 'Etudiant'), ('Enseignant-Chercheur', 'Enseignant-Chercheur'), ('Personnel BIATOS', 'Personnel BIATOS')])
+	categorie = SelectField(u'Categorie ', [validators.Required(message='Ce champs est obligatoire. Veuillez choisir un item dans la liste.')], choices=[('Etudiant', 'Etudiant'), ('Enseignant-Chercheur', 'Enseignant-Chercheur'), ('Personnel BIATOS', 'Personnel BIATOS')])
 
 	annee = SelectField(u'Annee ', choices=[('', ''), ('Premiere', 'Premiere'), ('Deuxieme', 'Deuxieme'), ('Troisieme', 'Troisieme'), ('Quatrieme', 'Quatrieme'), ('Cinquieme', 'Cinquieme')])
 
@@ -77,7 +77,6 @@ def createEmployee(form, employee):
 		employee.category = 'enseignant'
 	else:
 		employee.category = 'iatos'
-
 	employee.weight = form.poids.data
 	employee.height = form.hauteur.data
 	employee.etat = "PREREGISTERED"
