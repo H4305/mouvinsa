@@ -94,10 +94,15 @@ html, body {
 
 .inscriptionField_LABEL {
 
-    display: inline-block;
+   /* display: inline-block;
     vertical-align: top;
     margin: 1%;
-    width: 60%;
+    width: 60%;*/
+
+	display: block;
+	width: 60%;
+	float: left;
+
 }
 
 .inscriptionField_INPUT {
