@@ -154,11 +154,13 @@ body {
 #apropos {
     background-image: url("../images/bg.jpg");
     text-align: center;
-    color :white;
+    color: #000000;
+    border-top: solid 4px;
+    border-bottom: solid 4px;
 }
 
 #apropos .title {
-    background: rgba(238, 41, 34, 0.70);
+    background: rgba(238, 41, 34, 1);
     color :white;
     padding : 10px;
     text-align: center;
