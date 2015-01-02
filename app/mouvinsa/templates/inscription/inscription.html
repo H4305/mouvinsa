@@ -21,8 +21,11 @@
     {% endblock %}
     
     <a name="leJeu" class="paddingFromNavBar"></a>
-    <div class="PageSection_DIV" id="descriptionProjet_DIV">
-        <h1>Description du projet</h1>
+    <div id="descriptionProjetHeader_DIV">
+        <span id="descriptionProjetHeader_SPAN">Description du projet Mouv'INSA</span>
+    </div>
+    <div class="trasparentContainer_DIV" id="descriptionProjectDIV">
+
     </div>
 
     <a name="inscription" class="paddingFromNavBar"></a>
@@ -32,18 +35,6 @@
     </div>
 
     <div class="trasparentContainer_DIV" id="inscrivezVousContent_DIV">
-        
-        {% macro render_field(field) %}
-            <label class="inscriptionField_LABEL">{{ field.label }}</label>
-            {{ field(class_="inscriptionField_INPUT") }}
-            {% if field.errors %}
-                <ul class=errors>
-                {% for error in field.errors %}
-                    <li>{{ error }}</li>
-                {% endfor %}
-                </ul>
-            {% endif %}
-        {% endmacro %}
 
 
         <form method=post action="/inscription">
@@ -135,7 +126,7 @@
 
                  <div class="elementForm_DIV">
                     <label class="inscriptionField_LABEL"> {{ form.dateNaissance.label }} : </label>
-                    <label class =  "inscriptionField_SELECT">{{ form.dateNaissance}}</label>
+                    <label class =  "inscriptionField_SELECT">{{ form.dateNaissance(placeholder=" jj/mm/aaaa")}}</label>
                 </div>
 
                 {% if form.dateNaissance.errors %}
@@ -144,7 +135,7 @@
 
                 <div class="elementForm_DIV">
                     <label class="inscriptionField_LABEL"> {{ form.poids.label }} : </label>
-                    <label class =  "inscriptionField_SELECT">{{ form.poids}}</label>
+                    <label class =  "inscriptionField_SELECT">{{ form.poids(placeholder=" Ex: 55")}}</label>
                 </div>
 
                 {% if form.poids.errors %}
@@ -153,7 +144,7 @@
 
                 <div class="elementForm_DIV">
                     <label class="inscriptionField_LABEL"> {{ form.hauteur.label }} : </label>
-                    <label class =  "inscriptionField_SELECT">{{ form.hauteur}}</label>
+                    <label class =  "inscriptionField_SELECT">{{ form.hauteur(placeholder=" Ex: 170")}}</label>
                 </div>
 
                 {% if form.hauteur.errors %}
