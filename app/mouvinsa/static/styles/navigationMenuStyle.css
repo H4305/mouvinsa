@@ -12,13 +12,55 @@
     pointer-events: auto;
 }
 
-.onclick-menu-content {
+  .onclick-menu-content {
     position: absolute;
-    z-index: 1;
-
-    /* use opacity to fake immediate toggle */
+    z-index: 0;
     opacity: 0;
+    transition: visibility 0.5s ease 0s;
+    background-color: 	rgba(238, 41, 34, 0.90);
     visibility: hidden;
-    transition: visibility 0.5s;
-    background-color: red;
+    top: 10px;
+    left: 0px;
+    padding-left: 9px;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    padding-right: 6px;
+    margin-top: 32px;
+    height: 65px;
+	width:160px;
+	-moz-border-radius: 25px 10px / 10px 25px;
+	border-radius: 25px 10px / 10px 25px;
+	box-shadow: 6px 8px 6px -6px #000;
+}
+
+li {
+	border-bottom: solid white 1px;
+    font-style: normal;
+    color: #F00;
+    font-weight: normal;
+    font-size: 60%;
+    margin-right: 0px;
+    margin-left: 0%;
+}
+
+.navigationBarReference {
+	font-style: normal;
+    color: white;
+    font-weight: normal;
+    font-size: 85%;
+    margin-right: 0px;
+    margin-left: 0%;
+}
+
+.navigationBarReference:link {
+	text-decoration:none; 
+}
+
+.buttonClicked {
+	background: #222222;
+	box-shadow: 0 -9px 0 0 #222222, 0 9px 0 0 #222222;
+}
+
+.paddingFromNavBar {
+	padding-top: 30px;
 }
