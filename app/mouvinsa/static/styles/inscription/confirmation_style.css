@@ -52,7 +52,13 @@ a.next_button:hover{
     background: transparent;
 }
 #tab_title_confirmation li a:hover{
-
+    border: 1px solid #E42618;
+    color: white;
+    font-weight:bold;
+    background: #E42618;
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    border-radius: 0px;
 }
 #tab_title_confirmation li.active{
     background: #E42618;
@@ -65,4 +71,8 @@ a.next_button:hover{
     color:white;
     font-weight:bold;
     border:1px solid #E42618;
+}
+.confirmationField_ERRORS{
+    width:50%;
+    margin-left: -7%;
 }

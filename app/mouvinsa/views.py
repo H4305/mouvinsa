@@ -134,7 +134,7 @@ def list_users() :
     string = "List user <br/>"
     for student in Person.query.all():
         string += student.__repr__()+': lastname-'+unicode(student.lastname)+', firstname-'+unicode(student.firstname)\
-                  +', birthdate-'+unicode(student.birthdate)+', etat-'+student.etat+', sex-'+student.sex
+                  +', birthdate-'+unicode(student.birthdate)+', etat-'+unicode(student.etat)+', sex-'+unicode(student.sex)
     return string
 
 @app.route('/test/confirmation')
@@ -158,5 +158,5 @@ def test_confirmation() :
     string = ""
     for student in Person.query.all():
         string += student.__repr__()+': lastname-'+unicode(student.lastname)+', firstname-'+unicode(student.firstname)\
-                  +', birthdate-'+unicode(student.birthdate)+', etat-'+student.etat+', token-'+student.token+', sex-'+student.sex
+                  +', birthdate-'+unicode(student.birthdate)+', etat-'+unicode(student.etat)+', token-'+unicode(student.token)+', sex-'+unicode(student.sex)
     return string

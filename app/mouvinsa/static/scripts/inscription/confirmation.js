@@ -8,8 +8,12 @@ $(document).ready(function(){
             $(this).tab('show');
     });
     $('.next_button').on('click',function(){
-    if ($('#tab_title_confirmation li.active').next('li') != $('#tab_title_confirmation li').last()){
+    if ($('#tab_title_confirmation li.active') != $('#tab_title_confirmation li').last()){
           $('#tab_title_confirmation li.active').next('li').children().first().tab('show');
     }
   });
 });
+
+function submitForm(id){
+    document.getElementById(id).submit();
+}
