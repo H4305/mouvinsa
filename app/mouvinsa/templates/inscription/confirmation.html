@@ -15,15 +15,18 @@
         {% macro render_field(field, placeholder) %}
             <div class="confirmationField_LABEL">{{ field.label }}</div>
             <div class="confirmationField_DATA">
-                {{ field(placeholder=placeholder) }}
-            </div>
-            {% if field.errors %}
+                {% if field.errors %}
+                {{ field(placeholder=placeholder, autofocus=true) }}
+                </div>
                 <ul class=confirmationField_ERRORS>
                 {% for error in field.errors %}
                     <li>{{ error }}</li>
                 {% endfor %}
                 </ul>
-            {% endif %}
+                {% else %}
+                {{ field(placeholder=placeholder) }}
+                </div>
+                {% endif %}
         {% endmacro %}
       <!-- Nav tabs -->
       <ul class="nav nav-tabs" role="tablist" id="tab_title_confirmation">
