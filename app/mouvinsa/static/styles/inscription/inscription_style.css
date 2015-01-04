@@ -107,7 +107,7 @@ html, body {
     margin-right: 20%;
     /*height: 40%;*/
     overflow: hidden;
-    /*display: none;  /!\ Il faut le decommenter*/
+    display: none; /* /!\ Il faut le decommenter*/
 }
 
 
