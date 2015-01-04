@@ -1,17 +1,17 @@
-.navigation_menu_NAV {
+#navigation_menu_NAV {
     position:           fixed;
     top:                0;
     left:               0;
     z-index:            9999;
     width:              100%;
     height:             40px;
-    background-color:   #ee2922;
     font-family: 'Open Sans Light',X-LocaleSpecific-Light,'Open Sans',X-LocaleSpecific,sans-serif;
 	font-weight: normal;
 	color: #fff;
 		-webkit-box-shadow: 0 8px 6px -6px black;
 	   -moz-box-shadow: 0 8px 6px -6px black;
 	        box-shadow: 0 8px 6px -6px black;
+	background-color:   #ee2922;
 }
 
 .menuButton_DIV {

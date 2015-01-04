@@ -21,7 +21,7 @@
 <body>
     <div id="page">
         <header></header>
-        <nav class="navigation_menu_NAV">
+        <nav id="navigation_menu_NAV">
             <div tabindex="0" class="menuButton_DIV" id="menuButton" onClick="clickMenu()">
                 <div class="box-shadow-menu">
                 </div>
@@ -37,7 +37,6 @@
                 </span>
             </div>
         </nav>
-        {% include 'inscription/navigationMenu.html' %}
         {% block main %}{% endblock %}
         {% include 'apropos.html' %}
         <footer>{% include 'footer.html' %}</footer>

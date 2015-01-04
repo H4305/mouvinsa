@@ -19,7 +19,6 @@ html, body {
     overflow: hidden;
     margin-left: 20%;
     margin-right: 20%;
-    height: 650px;
   }
 
 #descriptionProjetHeader_DIV {
@@ -61,7 +60,7 @@ html, body {
 
 #inscrivezVousHeader_SPAN {
     position: relative;
-    top: 32%;
+    top: 12px;
     padding-left: 8%;
   	-webkit-transform: translateY(-50%);
   	-ms-transform: translateY(-50%);
@@ -138,10 +137,9 @@ html, body {
 .inscriptionValidate_BUTTON {
     position: relative;
     background: #E42618;
-    width: 15%;
+    width: 100px;
     height: 40px;
-    margin-bottom: 2%;
-    margin-left: 80%;
+    margin-bottom: 4%;
     color: white;
     font-size: 90%;
     -webkit-box-shadow: 0 8px 6px -6px black;
@@ -199,4 +197,18 @@ li{
     font-weight: normal;
     font-style: normal;
     color: #f00;
+}
+
+#positionDIV {
+    display: none;
+
+}
+
+#affiliationDIV {
+    display: none;
+}
+
+#validateButton_DIV {
+    position: relative;
+    text-align : center;
 }

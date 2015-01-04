@@ -36,3 +36,50 @@ jQuery(document).ready(function($) {
         }
     }
 });
+
+jQuery(document).ready(function($) {
+    categorieChanged = function() {
+
+        console.log('categorieChanged');
+
+        var $selectedCategorie = $('#categorie').val();
+
+        if($selectedCategorie === 'Enseignant-Chercheur') {
+
+            console.log('ens-cherch');
+
+            $('#cycleDIV').hide();
+            $('#anneeDIV').hide();
+            $('#filiereDIV').hide();
+
+            $('#positionDIV').show();
+            $('#affiliationDIV').show();
+
+
+        }else if($selectedCategorie === 'Personnel BIATOS') {
+
+            console.log('pers biatos');
+
+            $('#cycleDIV').hide();
+            $('#anneeDIV').hide();
+            $('#filiereDIV').hide();
+            $('#departementDIV').hide();
+
+            $('#positionDIV').show();
+            $('#affiliationDIV').show();
+
+        }else if($selectedCategorie === 'Etudiant') {
+
+            console.log('etu');
+
+            $('#positionDIV').hide();
+            $('#affiliationDIV').hide();
+
+            $('#cycleDIV').show();
+            $('#anneeDIV').show();
+            $('#filiereDIV').show();
+            $('#departementDIV').show();
+        }
+    }
+
+});
