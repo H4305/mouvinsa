@@ -1,10 +1,42 @@
+@media screen and (min-width: 775px) {
+
+	#navigation_menu_NAV {
+		height : 40px;
+	}
+
+	#descriptionProjetHeader_DIV {
+		margin-top: 10px;
+	}
+}
+
+@media screen and (max-width: 774px) {
+
+	#navigation_menu_NAV {
+		height : 70px;
+	}
+
+	#descriptionProjetHeader_DIV {
+		margin-top: 20px;
+	}
+}
+
+@media screen and (max-width: 447px) {
+
+	#navigation_menu_NAV {
+		height : 95px;
+	}
+
+	#descriptionProjetHeader_DIV {
+		margin-top: 40px;
+	}
+}
+
 #navigation_menu_NAV {
     position:           fixed;
     top:                0;
     left:               0;
     z-index:            9999;
     width:              100%;
-    height:             40px;
     font-family: 'Open Sans Light',X-LocaleSpecific-Light,'Open Sans',X-LocaleSpecific,sans-serif;
 	font-weight: normal;
 	color: #fff;
