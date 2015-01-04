@@ -211,3 +211,11 @@ li{
     position: relative;
     text-align : center;
 }
+
+
+
+@media (max-width: 340px) {
+    #formInscription input {
+        width: 65%;
+    }
+}
