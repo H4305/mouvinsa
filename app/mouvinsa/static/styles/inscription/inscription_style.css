@@ -34,8 +34,7 @@ html, body {
 }
 
 .trasparentContainer_DIV {
-	background: white;
-	opacity: 0.85;
+	background-color: rgba(244, 244, 244, 0.85);
 }
 
 #inscrivezVousHeader_DIV {
@@ -213,7 +212,6 @@ li{
 }
 
 
-
 @media (max-width: 340px) {
     #formInscription input {
         width: 65%;
@@ -222,4 +220,8 @@ li{
 
 .errors{
     font-size: 19px;
+}
+
+.logo_DIV {
+    text-align: center;
 }
