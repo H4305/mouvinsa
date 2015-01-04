@@ -10,7 +10,6 @@ from models import Student, Person, Employee
 from controllers.signin_controller import LoginForm
 from controllers.inscription_controller import createEmployee, createStudent
 
-
 @app.route('/')
 def home():
     name = request.args.get('name', '')
@@ -21,18 +20,25 @@ def home():
 def inscription():
     form = InscriptionForm(request.form)
     if request.method == 'POST'and form.validate():
-        if form.categorie.data == 'Etudiant':
-            student = Student()
-            createStudent(form, student)
-            db.session.add(student)
-            db.session.commit()
-            return  "Merci pour votre inscription "+student.nickname + ". Vous allez recevoir un e-mail de confirmation contenant votre surnom et votre mot de passe !"
+        utilisateurEmail = Person.query.filter_by(email = form.email.data).first()
+        utilisateur_pseudo = Person.query.filter_by(nickname = form.surnom.data).first()
+        if utilisateurEmail is None and utilisateur_pseudo is None:
+            if form.categorie.data == 'Etudiant':
+                student = Student()
+                createStudent(form, student)
+                db.session.add(student)
+                db.session.commit()
+                return  "Merci pour votre inscription "+student.nickname + " !"
+            else:
+                employee = Employee()
+                createEmployee(form, employee)
+                db.session.add(employee)
+                db.session.commit()
+                return "Merci pour votre inscription, "+employee.nickname+" !"
+        elif utilisateurEmail is not None:
+            flash(u'L\'email que vous voulez utiliser existe déjà. ', 'errorEmail')
         else:
-            employee = Employee()
-            createEmployee(form, employee)
-            db.session.add(employee)
-            db.session.commit()
-            return "Merci pour votre inscription, "+employee.nickname+". Vous allez recevoir un e-mail de confirmation contenant votre surnom et votre mot de passe !"
+            flash(u'Le pseudonyme que vous voulez utiliser existe déjà. Veuillez choisir un autre. ', 'errorPseudo')
     return render_template('inscription/inscription.html', form=form)
 
 @app.route('/confirmation', methods=['GET', 'POST'])

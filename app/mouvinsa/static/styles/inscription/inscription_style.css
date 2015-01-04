@@ -22,6 +22,8 @@ html, body {
     height: 650px;
   }
 
+
+
 #descriptionProjetHeader_DIV {
     position: relative;
     margin-top: 10px;
@@ -199,4 +201,8 @@ li{
     font-weight: normal;
     font-style: normal;
     color: #f00;
+}
+
+.errors{
+    font-size: 19px;
 }

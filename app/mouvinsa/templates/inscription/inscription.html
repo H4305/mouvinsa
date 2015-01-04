@@ -49,26 +49,46 @@
                     <label class =  "inscriptionField_SELECT">{{ form.email(placeholder="prenom.nom@insa-lyon.fr", pattern="[a-zA-Z0-9]*.[a-zA-Z0-9]*@insa-lyon.fr")}}</label>
                 </div>
                 {% if form.email.errors %}
-                <ul class="errors">{% for error in form.email.errors %}<li>{{ error }}</li>{% endfor %}</ul>
+                <ul class="errors">{% for error in form.email.errors %}<li> <i>{{ error }}</i></li>{% endfor %}</ul>
                 {% endif %}
+
+                {% with messages = get_flashed_messages(category_filter=["errorEmail"]) %}
+                  {% if messages %}
+                    <ul class="errors">
+                    {% for message in messages %}
+                      <li><i>{{ message }}</i></li>
+                    {% endfor %}
+                    </ul>
+                  {% endif %}
+                {% endwith %}
 
                 <div class="elementForm_DIV">
                     <label class="inscriptionField_LABEL"> {{ form.confirmEmail.label }} <em> * </em>: </label>
-                    <label class =  "inscriptionField_SELECT">{{ form.confirmEmail(placeholder="prenom.nom@insa-lyon.fr", pattern="[a-zA-Z0-9]*.[a-zA-Z0-9]*@insa-lyon.fr")}}</label>
+                    <label class =  "inscriptionField_SELECT">{{ form.confirmEmail(placeholder=" prenom.nom@insa-lyon.fr", pattern="[a-zA-Z0-9]*.[a-zA-Z0-9]*@insa-lyon.fr")}}</label>
                 </div>
 
                 {% if form.confirmEmail.errors %}
-                <ul class="errors">{% for error in form.confirmEmail.errors %}<li>{{ error }}</li>{% endfor %}</ul>
+                <ul class="errors">{% for error in form.confirmEmail.errors %}<li><i>{{ error }}</i></li>{% endfor %}</ul>
                 {% endif %}
 
                 <div class="elementForm_DIV">
                     <label class="inscriptionField_LABEL"> {{ form.surnom.label }} <em> * </em>: </label>
-                    <label class =  "inscriptionField_SELECT">{{ form.surnom(placeholder="Zuzu")}}</label>
+                    <label class =  "inscriptionField_SELECT">{{ form.surnom(placeholder=" Ex: Zuzu")}}</label>
                 </div>
 
                 {% if form.surnom.errors %}
                 <ul class="errors">{% for error in form.surnom.errors %}<li> <i>{{ error }}</i></li>{% endfor %}</ul>
                 {% endif %}
+
+                {% with messages = get_flashed_messages(category_filter=["errorPseudo"]) %}
+                    {% if messages %}
+                        <ul class="errors">
+                            {%- for message in messages %}
+                                <li> <i>{{ message }}</i> </li>
+                            {% endfor -%}
+                        </ul>
+                    {% endif %}
+                {% endwith %}
 
                  <div class="elementForm_DIV">
                     <label class="inscriptionField_LABEL"> {{ form.categorie.label }}<em> * </em>:</label>
@@ -81,7 +101,7 @@
                 </div>
 
                 {% if form.password.errors %}
-                <ul class="errors">{% for error in form.password.errors %}<li>{{ error }}</li>{% endfor %}</ul>
+                <ul class="errors">{% for error in form.password.errors %}<li><i>{{ error }}</i></li>{% endfor %}</ul>
                 {% endif %}
 
                 <div class="elementForm_DIV">
@@ -90,7 +110,7 @@
                 </div>
 
                 {% if form.confirm.errors %}
-                <ul class="errors">{% for error in form.confirm.errors %}<li>{{ error }}</li>{% endfor %}</ul>
+                <ul class="errors">{% for error in form.confirm.errors %}<li><i>{{ error }}</i></li>{% endfor %}</ul>
                 {% endif %}
 
 
@@ -106,7 +126,7 @@
                 </div>
 
                 {% if form.nom.errors %}
-                <ul class="errors">{% for error in form.nom.errors %}<li>{{ error }}</li>{% endfor %}</ul>
+                <ul class="errors">{% for error in form.nom.errors %}<li><i>{{ error }}</i></li>{% endfor %}</ul>
                 {% endif %}
 
                 <div class="elementForm_DIV">
@@ -115,7 +135,7 @@
                 </div>
 
                 {% if form.prenom.errors %}
-                <ul class="errors">{% for error in form.prenom.errors %}<li>{{ error }}</li>{% endfor %}</ul>
+                <ul class="errors">{% for error in form.prenom.errors %}<li><i>{{ error }}</i></li>{% endfor %}</ul>
                 {% endif %}
 
                 <div class="elementForm_DIV">
@@ -129,7 +149,7 @@
                 </div>
 
                 {% if form.dateNaissance.errors %}
-                <ul class="errors">{% for error in form.dateNaissance.errors %}<li>{{ error }}</li>{% endfor %}</ul>
+                <ul class="errors">{% for error in form.dateNaissance.errors %}<li><i>{{ error }}</i></li>{% endfor %}</ul>
                 {% endif %}
 
                 <div class="elementForm_DIV">
@@ -138,7 +158,7 @@
                 </div>
 
                 {% if form.poids.errors %}
-                <ul class="errors">{% for error in form.poids.errors %}<li>{{ error }}</li>{% endfor %}</ul>
+                <ul class="errors">{% for error in form.poids.errors %}<li><i>{{ error }}</i></li>{% endfor %}</ul>
                 {% endif %}
 
                 <div class="elementForm_DIV">
@@ -147,7 +167,7 @@
                 </div>
 
                 {% if form.hauteur.errors %}
-                <ul class="errors">{% for error in form.hauteur.errors %}<li>{{ error }}</li>{% endfor %}</ul>
+                <ul class="errors">{% for error in form.hauteur.errors %}<li><i>{{ error }}</i></li>{% endfor %}</ul>
                 {% endif %}
 
                 <div class="elementForm_DIV">
@@ -172,11 +192,11 @@
 
                 <div class="elementForm_DIV">
                     <label class="inscriptionField_LABEL"> {{ form.position.label }} : </label>
-                    <label class =  "inscriptionField_SELECT">{{ form.position}}</label>
+                    <label class =  "inscriptionField_SELECT">{{ form.position(placeholder=" Ex: Directeur de Centre des Sports")}}</label>
                 </div>
 
                 {% if form.position.errors %}
-                <ul class="errors">{% for error in form.position.errors %}<li>{{ error }}</li>{% endfor %}</ul>
+                <ul class="errors">{% for error in form.position.errors %}<li><i>{{ error }}</i></li>{% endfor %}</ul>
                 {% endif %}
 
                 <div class="elementForm_DIV">
@@ -185,7 +205,7 @@
                 </div>
 
                 {% if form.affiliation.errors %}
-                <ul class="errors">{% for error in form.affiliation.errors %}<li>{{ error }}</li>{% endfor %}</ul>
+                <ul class="errors">{% for error in form.affiliation.errors %}<li><i>{{ error }}</i></li>{% endfor %}</ul>
                 {% endif %}
 
 

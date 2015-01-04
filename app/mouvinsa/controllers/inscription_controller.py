@@ -1,7 +1,7 @@
 from wtforms import Form, BooleanField, TextField, FloatField, PasswordField, SelectField, DateField, validators
 
 class InscriptionForm(Form):
-	email = TextField(u'Email', [validators.Required(message='Ce champs est obligatoire. Veuillez le remplir.'), validators.EqualTo('confirmEmail', message='Les 2 emails doivent correspondre')])
+	email = TextField(u'Email', [validators.Required(message='Ce champs est obligatoire. Veuillez le remplir.'), validators.EqualTo('confirmEmail', message='Les 2 emails doivent correspondre. Veuillez reessayer.')])
 
 	confirmEmail = TextField(u'Confirmez votre email', [validators.Required(message='Ce champs est obligatoire. Veuillez le remplir.')])
 
@@ -23,7 +23,7 @@ class InscriptionForm(Form):
 
 	password = PasswordField(u'Mot de Passe', [
 		validators.Required(message='Ce champs est obligatoire. Veuillez le remplir.'),
-		validators.EqualTo('confirm', message='Les 2 mots de passe doivent correspondre'),
+		validators.EqualTo('confirm', message='Les 2 mots de passe doivent correspondre.  Veuillez reessayer.'),
 		validators.Length(min=4, max=25, message='La longeur doit etre comprise entre 4 et 25 caracteres.')
 	])
 
