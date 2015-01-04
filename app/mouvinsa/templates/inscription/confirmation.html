@@ -1,36 +1,32 @@
-{% extends "inscription/squelette.html" %}
+{% extends "layout.html" %}
+
+{% block title %}Confirmation d'inscription{% endblock %}
+{% block pageName %}Confirmation d'inscription{% endblock %}
 
 {% block header %}
-    {{ super() }}
     <link rel=stylesheet type=text/css href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
-    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='styles/style.css') }}">
+    {{ super() }}
     <link href="{{ url_for('static', filename='styles/inscription/inscription_style.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ url_for('static', filename='styles/inscription/confirmation_style.css') }}" rel="stylesheet" type="text/css" />
 {% endblock %}
-
-{% block titre %}MOUVINSA | Confirmation{% endblock %}
-
-{% block corps %}
-    <script type=text/javascript src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
-    <script type=text/javascript src="{{url_for('static', filename='scripts/inscription/confirmation.js') }}"></script>
-    <div id="headerMenu_DIV">
-        Menu
-    </div>
-
+{% block main %}
     <div id="confirmationContent" class="trasparentContainer_DIV">
     {% if msg == 'confirme' %}
         {% macro render_field(field, placeholder) %}
             <div class="confirmationField_LABEL">{{ field.label }}</div>
             <div class="confirmationField_DATA">
-                {{ field(placeholder=placeholder) }}
-            </div>
-            {% if field.errors %}
+                {% if field.errors %}
+                {{ field(placeholder=placeholder, autofocus=true) }}
+                </div>
                 <ul class=confirmationField_ERRORS>
                 {% for error in field.errors %}
                     <li>{{ error }}</li>
                 {% endfor %}
                 </ul>
-            {% endif %}
+                {% else %}
+                {{ field(placeholder=placeholder) }}
+                </div>
+                {% endif %}
         {% endmacro %}
       <!-- Nav tabs -->
       <ul class="nav nav-tabs" role="tablist" id="tab_title_confirmation">
@@ -92,7 +88,7 @@
                    </div>
                 </form>
             </div>
-            <div class="next_button" onclick="document.getElementById('formProfil').submit();">Terminer</div>
+            <div class="next_button" onclick="submitForm('formProfil')">Terminer</div>
         </div>
         <!--<div role="tabpanel" class="tab-pane" id="photo_profil">
             <div class="title_confirmation_block">Ajouter une photo de votre profil</div>
@@ -112,5 +108,7 @@
             <a class="next_button" href="/">Accueil</a>
     {% endif %}
     </div>
+<script type=text/javascript src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+<script type=text/javascript src="{{url_for('static', filename='scripts/inscription/confirmation.js') }}"></script>
 {% endblock %}
 {% block footer %}{% include 'footer.html' %}{% endblock %}

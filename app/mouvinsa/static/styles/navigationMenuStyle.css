@@ -62,5 +62,8 @@ li {
 }
 
 .paddingFromNavBar {
-	padding-top: 30px;
+    display: block;
+    position: relative;
+    top: -37px;
+    visibility: hidden;
 }
