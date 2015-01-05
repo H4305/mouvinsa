@@ -61,7 +61,7 @@
 
                 <div class="elementForm_DIV">
                     <label class="inscriptionField_LABEL"> {{ form.email.label }} <em> *</em>: </label>
-                    <span class ="inscriptionField_SELECT">{{ form.email(placeholder="prenom.nom@insa-lyon.fr", pattern="[a-zA-Z0-9]*.[a-zA-Z0-9]*@insa-lyon.fr")}}</span>
+                    <span class ="inscriptionField_SELECT">{{ form.email(placeholder="prenom.nom@insa-lyon.fr", pattern="[a-zA-Z0-9-]*.[a-zA-Z0-9-]*@insa-lyon.fr")}}</span>
                 </div>
                 {% if form.email.errors %}
                 <ul class="errors">{% for error in form.email.errors %}<li> <i>{{ error }}</i></li>{% endfor %}</ul>
@@ -79,7 +79,7 @@
 
                 <div class="elementForm_DIV">
                     <label class="inscriptionField_LABEL"> {{ form.confirmEmail.label }} <em> *</em>: </label>
-                    <span class="inscriptionField_SELECT">{{ form.confirmEmail(placeholder="prenom.nom@insa-lyon.fr", pattern="[a-zA-Z0-9]*.[a-zA-Z0-9]*@insa-lyon.fr")}}</span>
+                    <span class="inscriptionField_SELECT">{{ form.confirmEmail(placeholder="prenom.nom@insa-lyon.fr", pattern="[a-zA-Z0-9-]*.[a-zA-Z0-9-]*@insa-lyon.fr")}}</span>
                 </div>
 
                 {% if form.confirmEmail.errors %}
