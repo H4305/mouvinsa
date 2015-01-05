@@ -136,21 +136,19 @@ html, body {
 }
 
 .validation_DIV {
-    position: relative;
-    top: -20px;
-    border: solid 1px black;
-    background-color: navajowhite;
+    /*position: relative;
+    top: -20px;*/
+    /*border: solid 1px black;*/
+    background-color: #fff;
     z-index: 1;
     margin-left: 20%;
     margin-right: 20%;
     margin-bottom: 0;
-    height: 30px;
     overflow: visible;
-    color: black;
-    text-indent: 5px;
+    color: #333;
     text-align: center;
-    border-radius: 25px;
-
+    border-radius: 5px;
+    padding:30px 0;
 }
 
 #inscriptionMessage_SPAN {
@@ -303,8 +301,14 @@ li{
 }
 
 #formInscription select {
+    border:none;
+    border-bottom: solid 2px black;
     background-color: transparent;
     outline-color: #E42618;
+}
+
+#formInscription select:focus {
+    border-bottom: solid 2px #E42618;
 }
 
 .errors{

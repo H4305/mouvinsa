@@ -26,15 +26,13 @@
     padding-bottom: 6px;
     padding-right: 6px;
     margin-top: 32px;
-    height: 65px;
-	width:160px;
-	-moz-border-radius: 25px 10px / 10px 25px;
-	border-radius: 25px 10px / 10px 25px;
+    width:160px;
+	border-radius: 10px;
 	box-shadow: 6px 8px 6px -6px #000;
 }
 
-li {
-	border-bottom: solid white 1px;
+.onclick-menu-content li {
+	border-bottom: solid rgba(255,255,255,0.3) 1px;
     font-style: normal;
     color: #F00;
     font-weight: normal;

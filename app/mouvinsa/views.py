@@ -139,10 +139,12 @@ def test_inscription(user="TestUser"):
 
 @app.route('/test/listuser')
 def list_users() :
-    string = "List user <br/>"
+    string = '<table>'
+    string += '<tr><th>id</th><th>lastname</th><th>firstname</th><th>birthdate</th><th>etat</th><th>sex</th></tr>'
     for student in Person.query.all():
-        string += student.__repr__()+': lastname-'+unicode(student.lastname)+', firstname-'+unicode(student.firstname)\
-                  +', birthdate-'+unicode(student.birthdate)+', etat-'+unicode(student.etat)+', sex-'+unicode(student.sex)
+        string += '<tr><td>'+student.__repr__()+'</td><td>'+unicode(student.lastname)+'</td><td>'+unicode(student.firstname)\
+                  +'</td><td>'+unicode(student.birthdate)+'</td><td>'+unicode(student.etat)+'</td><td>'+unicode(student.sex)
+    string += '</table>'
     return string
 
 @app.route('/test/confirmation')
@@ -163,8 +165,10 @@ def test_confirmation() :
     student2.token = 'a0114'
     db.session.add(student2)
     db.session.commit()
-    string = ""
+    string = '<table>'
+    string += '<tr><th>lastname</th><th>firstname</th><th>birthdate</th><th>etat</th><th>sex</th></tr>'
     for student in Person.query.all():
-        string += student.__repr__()+': lastname-'+unicode(student.lastname)+', firstname-'+unicode(student.firstname)\
-                  +', birthdate-'+unicode(student.birthdate)+', etat-'+unicode(student.etat)+', token-'+unicode(student.token)+', sex-'+unicode(student.sex)
+        string += '<tr><td>'+student.__repr__()+'</td><td>'+unicode(student.lastname)+'</td><td>'+unicode(student.firstname)\
+                  +'</td><td>'+unicode(student.birthdate)+'</td><td>'+unicode(student.etat)+'</td><td>'+unicode(student.sex)
+    string += '</table>'
     return string

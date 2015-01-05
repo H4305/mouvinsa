@@ -19,13 +19,13 @@ class InscriptionForm(Form):
 
 	prenom = TextField(u'Prenom', [validators.Optional(), validators.Length(min=2, max=25, message='La longeur doit etre comprise entre 2 et 25 caracteres.')])
 
-	categorie = SelectField(u'Categorie ', [validators.Required(message='Ce champs est obligatoire. Veuillez choisir un item dans la liste.')], choices=[('Etudiant', 'Etudiant'), ('Enseignant-Chercheur', 'Enseignant-Chercheur'), ('Personnel BIATOS', 'Personnel BIATOS')])
+	categorie = SelectField(u'Categorie', [validators.Required(message='Ce champs est obligatoire. Veuillez choisir un item dans la liste.')], choices=[('Etudiant', 'Etudiant'), ('Enseignant-Chercheur', 'Enseignant-Chercheur'), ('Personnel BIATOS', 'Personnel BIATOS')])
 
-	annee = SelectField(u'Annee ', choices=[('', ''), ('Premiere', 'Premiere'), ('Deuxieme', 'Deuxieme'), ('Troisieme', 'Troisieme'), ('Quatrieme', 'Quatrieme'), ('Cinquieme', 'Cinquieme')])
+	annee = SelectField(u'Annee', choices=[('', ''), ('Premiere', 'Premiere'), ('Deuxieme', 'Deuxieme'), ('Troisieme', 'Troisieme'), ('Quatrieme', 'Quatrieme'), ('Cinquieme', 'Cinquieme')])
 
-	cycle = SelectField(u'Cycle ', choices=[('', ''), ('Premier', 'Premier'), ('Second', 'Second')])
+	cycle = SelectField(u'Cycle', choices=[('', ''), ('Premier', 'Premier'), ('Second', 'Second')])
 
-	filiere = SelectField(u'Filiere ', choices=[('', ''), ('Filiere Internationale','Filiere Internationale'), ('Filiere Clasique', 'Filiere Clasique'), ('PCE','PCE'), ('FAS','FAS'), ('SHN','SHN')])
+	filiere = SelectField(u'Filiere', choices=[('', ''), ('Filiere Internationale','Filiere Internationale'), ('Filiere Clasique', 'Filiere Clasique'), ('PCE','PCE'), ('FAS','FAS'), ('SHN','SHN')])
 
 	departement = SelectField(u'Departement', choices=[('',''), ('BB', 'BB'), ('BIM', 'BIM'), ('GE', 'GE'), ('GI', 'GI'), ('GCU', 'GCU'), ('GEN', 'GEN'), ('GMC', 'GMC'), ('GMD', 'GMD'), ('GMPP', 'GMPP'), ('IF', 'IF'), ('SGM', 'SGM'), ('TC', 'TC')])
 
@@ -35,7 +35,7 @@ class InscriptionForm(Form):
 		validators.Length(min=4, max=25, message='La longeur doit etre comprise entre 4 et 25 caracteres.')
 	])
 
-	confirm = PasswordField(u'Confirmez votre mot de passe', [validators.Required(message='Ce champs est obligatoire. Veuillez le remplir.')])
+	confirm = PasswordField(u'Confirmez le mot de passe', [validators.Required(message='Ce champs est obligatoire. Veuillez le remplir.')])
 
 	dateNaissance = DateField(u'Ne(e) le', format='%d/%m/%Y',  validators=[validators.Optional()])
 
@@ -45,9 +45,9 @@ class InscriptionForm(Form):
 
 	hauteur = FloatField(u'Taille (cm)', [validators.Optional(), validators.NumberRange(min=90, max=250, message='La taille doit etre comprise entre 90 cm et 250 cm.')])
 
-	position = TextField(u'Position', [validators.Optional(), validators.Length(min=3, max=100,  message='La longeur doit etre comprise entre 3 et 100 caracteres.')])
+	position = TextField(u'Position', [validators.Optional(), validators.Length(min=2, max=100,  message='La longeur doit etre comprise entre 3 et 100 caracteres.')])
 
-	affiliation = TextField(u'Affiliation', [validators.Optional(), validators.Length(min=3, max=100,  message='La longeur doit etre comprise entre 3 et 100 caracteres.')])
+	affiliation = TextField(u'Affiliation', [validators.Optional(), validators.Length(min=2, max=100,  message='La longeur doit etre comprise entre 3 et 100 caracteres.')])
 
 
 def createStudent(form, student):
