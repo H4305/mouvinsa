@@ -14,18 +14,22 @@
 
     {% block buttonMenu %}
         <ul class="onclick-menu-content">
-            <li><a href="#leJeu" class="navigationBarReference">Le jeu</a></li>
-            <li><a href="#inscription" class="navigationBarReference">S'inscrire!</a></li>
+            <li><a href="#leProjet" class="navigationBarReference">Le projet</a></li>
+            <li><a href="#inscription" class="navigationBarReference">S'INSCRIRE!</a></li>
             <li><a href="#aPropos" class="navigationBarReference">A propos de nous</a></li>
         </ul>
     {% endblock %}
 
-    <div class="logo_DIV">
+    <!--<div class="logo_DIV">
         <img class="logo-main" src="{{ url_for('static', filename='images/logo.svg') }}" alt="">
-    </div>
+    </div>-->
 
-    <div id="descriptionProjetHeader_DIV">
-        <span id="descriptionProjetHeader_SPAN">Le projet Mouv'INSA</span>
+
+
+    <a name="leProjet" class="paddingFromNavBar"></a>
+    <div id="descriptionProjetHeader_DIV" onclick="showDescription()">
+        <span id="descriptionProjetHeader_SPAN">LE PROJET MOUV'INSA</span>
+        <div id="triangle_DIV" class="triangle_DIV_begin"></div>
     </div>
     <div class="trasparentContainer_DIV" id="descriptionProjectDIV">
         {% include 'descriptionProjet.html' %}
@@ -33,10 +37,19 @@
 
     <a name="inscription" class="paddingFromNavBar"></a>
     <div id="inscrivezVousHeader_DIV" onclick="showForm()">
-        <span id="inscrivezVousHeader_SPAN">Inscrivez-vous</span>
-        <div id="triangle_DIV" class="triangle_DIV_begin"></div>
+        <span id="inscrivezVousHeader_SPAN">INSCRIVEZ-VOUS!</span>
+        <div id="triangleForm_DIV" class="triangle_DIV_rotated"></div>
     </div>
 
+    {% with validation = get_flashed_messages(category_filter=["ok"]) %}
+      {% if validation %}
+        <div class="validation_DIV">
+        {% for message in validation %}
+          <span>{{ message }}</span>
+        {% endfor %}
+        </div>
+      {% endif %}
+    {% endwith %}
 
     <div class="trasparentContainer_DIV" id="inscrivezVousContent_DIV">
 
@@ -215,7 +228,7 @@
 
             </fieldset>
             <div id="validateButton_DIV">
-                <input class="inscriptionValidate_BUTTON" type=submit value="S'inscrire!">
+                <input id="inscriptionValidate_BUTTON" type=submit value="S'inscrire!">
             </div>
         </form>
     </div>

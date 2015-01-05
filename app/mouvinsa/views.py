@@ -28,13 +28,15 @@ def inscription():
                 createStudent(form, student)
                 db.session.add(student)
                 db.session.commit()
-                return  "Merci pour votre inscription "+student.nickname + " !"
+                flash(u'Merci pour votre inscription '+student.nickname, 'ok')
+                return  render_template('inscription/inscription.html. Vous serez contacté par mail à lors du tirage au sort!!!:)', form=form)
             else:
                 employee = Employee()
                 createEmployee(form, employee)
                 db.session.add(employee)
                 db.session.commit()
-                return "Merci pour votre inscription, "+employee.nickname+" !"
+                flash(u'Merci pour votre inscription '+employee.nickname+'. Vous serez contacté par mail à lors du tirage au sort!!:)', 'ok')
+                return  render_template('inscription/inscription.html', form=form)
         elif utilisateurEmail is not None:
             flash(u'L\'email que vous voulez utiliser existe déjà. ', 'errorEmail')
         else:

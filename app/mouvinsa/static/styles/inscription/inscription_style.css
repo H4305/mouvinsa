@@ -19,6 +19,7 @@ html, body {
     overflow: hidden;
     margin-left: 20%;
     margin-right: 20%;
+    display: none;
   }
 
 #descriptionProjetHeader_DIV {
@@ -31,6 +32,7 @@ html, body {
     background: #E42618;
     color: white;
     text-indent: 5px;
+    cursor:  pointer;
 }
 
 .trasparentContainer_DIV {
@@ -48,12 +50,17 @@ html, body {
     background: #E42618;
 	  color: white;
 	  text-indent: 20px;
+    cursor:  pointer;
 }
 
 #descriptionProjetHeader_SPAN{
     position: relative;
-    top: 32%;
-    padding-left: 3%;
+    top: 12px;
+    padding-left: 10%;
+  	-webkit-transform: translateY(-50%);
+  	-ms-transform: translateY(-50%);
+  	transform: translateY(-50%);
+    font-weight: bold;
 }
 
 #inscrivezVousHeader_SPAN {
@@ -63,8 +70,26 @@ html, body {
   	-webkit-transform: translateY(-50%);
   	-ms-transform: translateY(-50%);
   	transform: translateY(-50%);
+    font-weight: bold;
 }
 
+#triangleForm_DIV {
+    position: relative;
+	width: 0;
+	height: 0;
+	border-style: solid;
+	border-width: 10px 0 10px 17.3px;
+	border-color: transparent transparent transparent #ffffff;
+	-webkit-transform-origin: bottom right;
+	transform-origin: 50% 25%;
+    cursor:  pointer;
+
+	/* ANIMATION */
+	-webkit-transition: 0.5s all;
+	-firefox-transition: 0.5s all;
+	-o-transition: 0.5s all;
+	transition: 0.5s all;
+}
 #triangle_DIV {
 	position: relative;
 	width: 0;
@@ -74,6 +99,7 @@ html, body {
 	border-color: transparent transparent transparent #ffffff;
 	-webkit-transform-origin: bottom right;
 	transform-origin: 50% 25%;
+    cursor:  pointer;
 
 	/* ANIMATION */
 	-webkit-transition: 0.5s all;
@@ -106,14 +132,24 @@ html, body {
     margin-right: 20%;
     /*height: 40%;*/
     overflow: hidden;
-    display: none; /* /!\ Il faut le decommenter*/
+    /*display: none; /!\ Il faut le decommenter*/
 }
 
+.validation_DIV {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -50px;
+    margin-left: -50px;
+    width: 100px;
+    height: 100px;
+    border : solid 2px;
+}
 
 .inscriptionField_LABEL {
 
     display: block;
-	width: 60%;
+	width: 40%;
 	float: left;
 }
 
@@ -132,12 +168,13 @@ html, body {
     border-bottom: 2px solid #E42618;
 }
 
-.inscriptionValidate_BUTTON {
-    position: relative;
-    background: #E42618;
-    width: 100px;
-    height: 40px;
-    margin-bottom: 4%;
+input#inscriptionValidate_BUTTON {
+    position: relative !important;
+    background: #E42618 !important;
+    width: 100px !important;
+    height: 40px !important;
+    margin-bottom: 4% !important;
+    float: none !important;
     color: white;
     font-size: 90%;
     -webkit-box-shadow: 0 8px 6px -6px black;
@@ -212,10 +249,49 @@ li{
 }
 
 
-@media (max-width: 340px) {
+@media (max-width: 480px) {
     #formInscription input {
-        width: 65%;
+        width: 90%;
     }
+
+    #formInscription select {
+        width: 90%;
+        background-color: transparent;
+    }
+}
+
+@media (min-width: 471px) {
+    #formInscription input {
+        width: 45%;
+        float: right;
+    }
+
+    #formInscription select {
+        width: 45%;
+        float: right;
+    }
+}
+
+#formInscription input {
+    border-bottom: solid 2px black;
+    border-left: none;
+    border-right: none;
+    border-top: none;
+    background-color: transparent;
+    outline-color: #E42618;
+}
+
+#formInscription input:focus {
+    border-bottom: solid 2px #E42618;
+    border-left: none;
+    border-right: none;
+    border-top: none;
+    background-color: transparent;
+}
+
+#formInscription select {
+    background-color: transparent;
+    outline-color: #E42618;
 }
 
 .errors{
