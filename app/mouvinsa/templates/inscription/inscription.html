@@ -24,7 +24,20 @@
         <img class="logo-main" src="{{ url_for('static', filename='images/logo.svg') }}" alt="">
     </div>-->
 
+    {% with validation = get_flashed_messages(category_filter=["ok"]) %}
+      {% if validation %}
+        <div class="validation_DIV">
+        {% for message in validation %}
+          <span id="inscriptionMessage_SPAN">{{ message }}</span>
+        {% endfor %}
+        </div>
+      {% endif %}
+    {% endwith %}
+    <div class="validation_DIV">
 
+          <span id="inscriptionMessage_SPAN">marco</span>
+
+    </div>
 
     <a name="leProjet" class="paddingFromNavBar"></a>
     <div id="descriptionProjetHeader_DIV" onclick="showDescription()">
@@ -40,16 +53,6 @@
         <span id="inscrivezVousHeader_SPAN">INSCRIVEZ-VOUS!</span>
         <div id="triangleForm_DIV" class="triangle_DIV_rotated"></div>
     </div>
-
-    {% with validation = get_flashed_messages(category_filter=["ok"]) %}
-      {% if validation %}
-        <div class="validation_DIV">
-        {% for message in validation %}
-          <span>{{ message }}</span>
-        {% endfor %}
-        </div>
-      {% endif %}
-    {% endwith %}
 
     <div class="trasparentContainer_DIV" id="inscrivezVousContent_DIV">
 

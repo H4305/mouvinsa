@@ -136,14 +136,26 @@ html, body {
 }
 
 .validation_DIV {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    margin-top: -50px;
-    margin-left: -50px;
-    width: 100px;
-    height: 100px;
-    border : solid 2px;
+    position: relative;
+    top: -20px;
+    border: solid 2px saddlebrown;
+    background-color: navajowhite;
+    z-index: 1;
+    margin-left: 20%;
+    margin-right: 20%;
+    margin-bottom: 0;
+    height: 30px;
+    overflow: visible;
+    color: black;
+    text-indent: 5px;
+    text-align: center;
+    border-radius: 25px;
+
+}
+
+#inscriptionMessage_SPAN {
+    display: inline-block;
+    position: relative;
 }
 
 .inscriptionField_LABEL {
