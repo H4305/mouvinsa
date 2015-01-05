@@ -1,4 +1,12 @@
 from wtforms import Form, BooleanField, TextField, FloatField, PasswordField, SelectField, DateField, validators
+import uuid
+from hashlib import sha256
+
+
+def hash_password(password):
+    salt = uuid.uuid4().hex
+    return sha256(salt.encode() + password.encode()).hexdigest() + \
+        ':' + salt
 
 class InscriptionForm(Form):
 	email = TextField(u'Email', [validators.Required(message='Ce champs est obligatoire. Veuillez le remplir.'), validators.EqualTo('confirmEmail', message='Les 2 emails doivent correspondre. Veuillez reessayer.')])
@@ -46,7 +54,7 @@ def createStudent(form, student):
 	student.firstname = form.prenom.data
 	student.lastname = form.nom.data
 	student.nickname = form.surnom.data
-	student.password = form.password.data
+	student.password = hash_password(form.password.data)
 	student.email = form.email.data
 	if form.sexe.data == '':
 		student.sex = 'Inconnu'
@@ -69,7 +77,7 @@ def createEmployee(form, employee):
 	employee.firstname = form.prenom.data
 	employee.lastname = form.categorie.data
 	employee.nickname = form.surnom.data
-	employee.password = form.password.data
+	employee.password = hash_password(form.password.data)
 	employee.birthdate = form.dateNaissance.data
 	employee.email = form.email.data
 	employee.sex = form.sexe.data
