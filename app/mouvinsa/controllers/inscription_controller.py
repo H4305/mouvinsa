@@ -75,12 +75,15 @@ def createStudent(form, student):
 
 def createEmployee(form, employee):
 	employee.firstname = form.prenom.data
-	employee.lastname = form.categorie.data
+	employee.lastname = form.nom.data
 	employee.nickname = form.surnom.data
 	employee.password = hash_password(form.password.data)
-	employee.birthdate = form.dateNaissance.data
 	employee.email = form.email.data
-	employee.sex = form.sexe.data
+	if form.sexe.data == '':
+		employee.sex = 'Inconnu'
+	else:
+		employee.sex = form.sexe.data
+	employee.birthdate = form.dateNaissance.data
 	if form.categorie.data == 'Enseignant-Chercheur':
 		employee.category = 'enseignant'
 	else:
@@ -88,4 +91,6 @@ def createEmployee(form, employee):
 	employee.weight = form.poids.data
 	employee.height = form.hauteur.data
 	employee.etat = "PREREGISTERED"
+	employee.affiliation = form.affiliation.data
+	employee.position = form.position.data
 
