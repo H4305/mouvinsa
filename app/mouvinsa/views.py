@@ -10,12 +10,12 @@ from models import Student, Person, Employee
 from controllers.signin_controller import LoginForm
 from controllers.inscription_controller import createEmployee, createStudent
 
-@app.route('/')
-def home():
-    name = request.args.get('name', '')
-    return render_template('index.html', name=name)
+#@app.route('/')
+#def home():
+#    name = request.args.get('name', '')
+#    return render_template('index.html', name=name)
 
-
+@app.route('/', methods=['GET', 'POST'])
 @app.route('/inscription', methods=['GET', 'POST'])
 def inscription():
     form = InscriptionForm(request.form)
