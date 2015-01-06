@@ -1,57 +1,52 @@
 jQuery(document).ready(function($) {
-    showForm = function() {
+    $('#inscrivezVousHeader_DIV').on('click', function () {
 
         var $formDIV = $('#inscrivezVousContent_DIV');  
         var $triangleDIV = $('#triangleForm_DIV');
 
         if ($formDIV.is(':visible')) {
-            // Slide away
-            $formDIV.animate({bottom: -($formDIV.outerHeight() + 2)}, 'slow', function() {
-                    $formDIV.hide();
-                    //$triangleDIV.transition({ rotate: '0deg' }, 500, 'ease');
-                    $triangleDIV.removeClass('triangle_DIV_rotated').addClass('triangle_DIV_begin');
-                });
+            $formDIV.hide();
+            $triangleDIV.removeClass('triangle_DIV_rotated').addClass('triangle_DIV_begin');
+
         }
         else {
-            // Slide in
-            $formDIV.show().animate({top: 0}, 'slow');
+            $formDIV.show();
 
             $triangleDIV.removeClass('triangle_DIV_begin').addClass('triangle_DIV_rotated');
             
             //$triangleDIV.transition({ rotate: '90deg' }, 500, 'ease');
             
         }
-    }
+    });
 });
 
 jQuery(document).ready(function($) {
-    showDescription = function() {
+    $('#descriptionProjetHeader_DIV').on('click', function () {
 
         var $descriptionDIV = $('#descriptionProjectDIV');
         var $triangleDIV = $('#triangle_DIV');
 
         if ($descriptionDIV.is(':visible')) {
-            // Slide away
-            $descriptionDIV.animate({bottom: -($descriptionDIV.outerHeight() + 2)}, function() {
-                    $descriptionDIV.hide();
-                    //$triangleDIV.transition({ rotate: '0deg' }, 500, 'ease');
-                    $triangleDIV.removeClass('triangle_DIV_rotated').addClass('triangle_DIV_begin');
-                });
+
+            $descriptionDIV.hide();
+            //$triangleDIV.transition({ rotate: '0deg' }, 500, 'ease');
+            $triangleDIV.removeClass('triangle_DIV_rotated').addClass('triangle_DIV_begin');
         }
         else {
-            // Slide in
-            $descriptionDIV.show().animate({top: 0});
+
+            $descriptionDIV.show();
 
             $triangleDIV.removeClass('triangle_DIV_begin').addClass('triangle_DIV_rotated');
 
             //$triangleDIV.transition({ rotate: '90deg' }, 500, 'ease');
 
         }
-    }
+    });
 });
 
 jQuery(document).ready(function($) {
-    clickMenu = function() {
+
+    $('#menuButton').on('click', function () {
 
         var $navigationMenu = $('#onclick-menu-content');
 
@@ -60,11 +55,11 @@ jQuery(document).ready(function($) {
         }else{
             console.log('notVisible');
         }
-    }
+    });
 });
 
 jQuery(document).ready(function($) {
-    categorieChanged = function() {
+    $('#categorieDIV').on('change', function () {
 
         console.log('categorieChanged');
 
@@ -80,6 +75,7 @@ jQuery(document).ready(function($) {
 
             $('#positionDIV').show();
             $('#affiliationDIV').show();
+            $('#departementDIV').show();
 
 
         }else if($selectedCategorie === 'Personnel BIATOS') {
@@ -106,8 +102,7 @@ jQuery(document).ready(function($) {
             $('#filiereDIV').show();
             $('#departementDIV').show();
         }
-    }
-
+    });
 });
 
 jQuery(document).ready(function($) {
@@ -354,10 +349,13 @@ $(document).ready(function () {
 
             console.log('No Filiere Selected');
 
-            $('#filiereDIV').show();
+            if ($('#categorie').val() === 'Etudiant'){
 
-            addCycles();
-            addYears();
+                $('#filiereDIV').show();
+
+                addCycles();
+                addYears();
+            }
 
         }else{
 

@@ -98,7 +98,7 @@ def login():
             else:
                 if person.password == password: #Surment un truc a faire car le mdp sera pas en clair
                     problem = "You were successfully logged in"
-                    page = "testeuh.html"
+                    #page = "testeuh.html"
                     # Il faudra mettre vers Index
                 else:
                     problem = "Connection refused"

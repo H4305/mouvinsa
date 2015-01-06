@@ -35,7 +35,7 @@
     {% endwith %}
 
     <a name="leProjet" class="paddingFromNavBar"></a>
-    <div id="descriptionProjetHeader_DIV" onclick="showDescription()">
+    <div id="descriptionProjetHeader_DIV">
         <span id="descriptionProjetHeader_SPAN">LE PROJET MOUV'INSA</span>
         <div id="triangle_DIV" class="triangle_DIV_begin"></div>
     </div>
@@ -44,7 +44,7 @@
     </div>
 
     <a name="inscription" class="paddingFromNavBar"></a>
-    <div id="inscrivezVousHeader_DIV" onclick="showForm()">
+    <div id="inscrivezVousHeader_DIV">
         <span id="inscrivezVousHeader_SPAN">INSCRIVEZ-VOUS!</span>
         <div id="triangleForm_DIV" class="triangle_DIV_rotated"></div>
     </div>
@@ -105,9 +105,9 @@
                     {% endif %}
                 {% endwith %}
 
-                 <div class="elementForm_DIV">
+                 <div class="elementForm_DIV" id="categorieDIV">
                     <label class="inscriptionField_LABEL"> {{ form.categorie.label }}<em> *</em>:</label>
-                    <span class="inscriptionField_SELECT" onchange="categorieChanged()">{{ form.categorie }} </span>
+                    <span class="inscriptionField_SELECT">{{ form.categorie }} </span>
                 </div>
 
                 <div class="elementForm_DIV">
