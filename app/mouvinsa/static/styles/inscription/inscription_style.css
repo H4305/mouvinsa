@@ -15,7 +15,7 @@ html, body {
 }
 
 #descriptionProjectDIV {
-     position: relative;
+    position: relative;
     overflow: hidden;
     margin-left: 20%;
     margin-right: 20%;
@@ -290,6 +290,14 @@ li{
     border-top: none;
     background-color: transparent;
     outline-color: #E42618;
+}
+
+#formInscription #nom {
+    text-transform: capitalize;
+}
+
+#formInscription #prenom {
+    text-transform: capitalize;
 }
 
 #formInscription input:focus {

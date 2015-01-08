@@ -1,13 +1,25 @@
 from werkzeug.debug import DebuggedApplication
 from flask import Flask
 from flask.ext.sqlalchemy import SQLAlchemy
+from flask.ext.mail import Mail
 
 from mouvinsa.config import SQLALCHEMY_DATABASE_URI
-
 
 app = Flask(__name__)
 db = SQLAlchemy(app)
 
+app.config.update(dict(
+    DEBUG = True,
+    # email server
+    MAIL_SERVER = 'smtp.gmail.com',
+    MAIL_PORT = 465,
+    MAIL_USE_TLS = False,
+    MAIL_USE_SSL = True,
+    MAIL_USERNAME = 'mouvinsa.communication@gmail.com',
+    MAIL_PASSWORD = '.123mouvinsaadmin',
+))
+
+mail = Mail(app)
 
 @app.before_first_request
 def before_first_request():
