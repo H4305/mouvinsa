@@ -78,7 +78,7 @@ jQuery(document).ready(function($) {
             $('#departementDIV').show();
 
 
-        }else if($selectedCategorie === 'Personnel BIATOS') {
+        }else if($selectedCategorie === 'Personnel IATOS') {
 
             console.log('pers biatos');
 
