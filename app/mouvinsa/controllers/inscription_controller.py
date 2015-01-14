@@ -1,10 +1,10 @@
 #!/usr/bin/python
 #  -*- coding: utf-8 -*-
 # coding: utf-8
-
-from wtforms import Form, BooleanField, TextField, FloatField, PasswordField, SelectField, DateField, validators
+from wtforms import Form, TextField, FloatField, PasswordField, SelectField, DateField, validators
 import uuid
 from hashlib import sha256
+from mouvinsa.utils import passHash
 
 
 def hash_password(password):
@@ -12,18 +12,18 @@ def hash_password(password):
     return sha256(salt.encode() + password.encode()).hexdigest() + \
         ':' + salt
 
-messageObligatoire='Ce champs est obligatoire. Veuillez le remplir.'
-messageEmail='Les 2 emails doivent correspondre. Veuillez reessayer.'
-messageLongueur2_25='La longeur doit etre comprise entre 2 et 25 caracteres.'
-messagePassword='Les 2 mots de passe doivent correspondre.  Veuillez reessayer.'
-messageLongueur4_25='La longeur doit etre comprise entre 4 et 25 caracteres.'
-messagePoids='Le poids doit etre compris entre 20 kg et 300 kg'
-messageTaille='La taille doit etre comprise entre 90 cm et 250 cm.'
-messageLongueur3_100='La longeur doit etre comprise entre 3 et 100 caracteres.'
+messageObligatoire=u'Ce champs est obligatoire. Veuillez le remplir.'
+messageEmail=u'Les 2 emails doivent correspondre. Veuillez réessayer.'
+messageLongueur2_25=u'La longeur doit être comprise entre 2 et 25 caractères.'
+messagePassword=u'Les 2 mots de passe doivent correspondre.  Veuillez réessayer.'
+messageLongueur4_25=u'La longeur doit être comprise entre 4 et 25 caractères.'
+messagePoids=u'Le poids doit être compris entre 20 kg et 300 kg'
+messageTaille=u'La taille doit être comprise entre 90 cm et 250 cm.'
+messageLongueur3_100=u'La longeur doit être comprise entre 3 et 100 caracterès.'
 
 class InscriptionForm(Form):
 	email = TextField(u'Email', [validators.Required(message=messageObligatoire), validators.EqualTo('confirmEmail', message=messageLongueur2_25)])
-	confirmEmail = TextField(u'Confirmez votre email', [validators.Required(message=messageObligatoire)])
+	confirmEmail = TextField(u'Confirmez votre email', [validators.Required(message='Ce champs est obligatoire. Veuillez le remplir.')])
 	surnom = TextField(u'Pseudonyme', [validators.Required(message=messageObligatoire), validators.Length(min=2, max=25, message=messageLongueur2_25)])
 	nom = TextField(u'Nom', [validators.Optional(), validators.Length(min=2, max=25, message=messageLongueur2_25)])
 	prenom = TextField(u'Prénom', [validators.Optional(), validators.Length(min=2, max=25, message=messageLongueur2_25)])
@@ -45,12 +45,11 @@ class InscriptionForm(Form):
 	position = TextField(u'Position', [validators.Optional(), validators.Length(min=3, max=100,  message=messageLongueur3_100)])
 	affiliation = TextField(u'Affiliation', [validators.Optional(), validators.Length(min=3, max=100,  message=messageLongueur3_100)])
 
-
 def createStudent(form, student):
 	student.firstname = form.prenom.data
 	student.lastname = form.nom.data
 	student.nickname = form.surnom.data
-	student.password = hash_password(form.password.data)
+	student.password = passHash.hash_password(form.password.data)
 	student.email = form.email.data
 	if form.sexe.data == '':
 		student.sex = 'Inconnu'
@@ -73,7 +72,7 @@ def createEmployee(form, employee):
 	employee.firstname = form.prenom.data
 	employee.lastname = form.nom.data
 	employee.nickname = form.surnom.data
-	employee.password = hash_password(form.password.data)
+	employee.password = passHash.hash_password(form.password.data)
 	employee.email = form.email.data
 	if form.sexe.data == '':
 		employee.sex = 'Inconnu'
@@ -89,4 +88,3 @@ def createEmployee(form, employee):
 	employee.etat = "PREREGISTERED"
 	employee.affiliation = form.affiliation.data
 	employee.position = form.position.data
-

@@ -11,7 +11,7 @@ from emails import sendInscriptionMailAndAlert, inscription_notification, inscri
 from controllers.signin_controller import LoginForm
 from controllers.inscription_controller import createEmployee, createStudent
 
-#@app.route('/')
+#@app.route('/')(
 #def home():
 #    name = request.args.get('name', '')
 #    return render_template('index.html', name=name)
@@ -24,6 +24,8 @@ def inscription():
         utilisateurEmail = Person.query.filter_by(email = form.email.data).first()
         utilisateur_pseudo = Person.query.filter_by(nickname = form.surnom.data).first()
         if utilisateurEmail is None and utilisateur_pseudo is None:
+
+
             if form.categorie.data == 'Etudiant':
                 student = Student()
                 createStudent(form, student)
