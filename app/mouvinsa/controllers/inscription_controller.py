@@ -6,7 +6,6 @@ import uuid
 from hashlib import sha256
 from mouvinsa.utils import passHash
 
-
 def hash_password(password):
     salt = uuid.uuid4().hex
     return sha256(salt.encode() + password.encode()).hexdigest() + \
@@ -49,7 +48,7 @@ def createStudent(form, student):
 	student.firstname = form.prenom.data
 	student.lastname = form.nom.data
 	student.nickname = form.surnom.data
-	student.password = passHash.hash_password(form.password.data)
+	student.password = hash_password(form.password.data)
 	student.email = form.email.data
 	if form.sexe.data == '':
 		student.sex = 'Inconnu'
@@ -72,7 +71,7 @@ def createEmployee(form, employee):
 	employee.firstname = form.prenom.data
 	employee.lastname = form.nom.data
 	employee.nickname = form.surnom.data
-	employee.password = passHash.hash_password(form.password.data)
+	employee.password = hash_password(form.password.data)
 	employee.email = form.email.data
 	if form.sexe.data == '':
 		employee.sex = 'Inconnu'
