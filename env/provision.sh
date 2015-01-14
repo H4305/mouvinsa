@@ -20,6 +20,7 @@ sudo pip install flask
 sudo apt-get install libmysqlclient-dev python-mysqldb -y
 sudo pip install mysql-python
 sudo pip install Flask-SQLAlchemy
+sudo pip install Flask-Mail
 
 # configure uWSGI
 touch /tmp/uwsgi.sock
