@@ -7,7 +7,7 @@ from app import app, db
 from controllers.inscription_controller import InscriptionForm
 from controllers.confirmation_controller import ConfirmationForm, updateProfil
 from models import Student, Person, Employee
-from emails import inscription_notification
+from emails import sendInscriptionMailAndAlert, inscription_notification, inscription_alert
 from controllers.signin_controller import LoginForm
 from controllers.inscription_controller import createEmployee, createStudent
 
@@ -45,7 +45,9 @@ def inscription():
                 filiere = form.filiere.data
                 position = form.position.data
                 affiliation = form.affiliation.data
-                inscription_notification(surnom=surnom, email=email, categorie=categorie, nom=nom, prenom=prenom, sexe=sexe, dateNaissance=dateNaissance, poids=poids, taille=taille, cycle=cycle, annee=annee, departement=departement, filiere=filiere, position=position, affiliation=affiliation )
+                #inscription_notification(surnom=surnom, email=email, categorie=categorie, nom=nom, prenom=prenom, sexe=sexe, dateNaissance=dateNaissance, poids=poids, taille=taille, cycle=cycle, annee=annee, departement=departement, filiere=filiere, position=position, affiliation=affiliation )
+                #inscription_alert(inscrits="NOT DEFINED", surnom=surnom, email=email, categorie=categorie, nom=nom, prenom=prenom, sexe=sexe, dateNaissance=dateNaissance, poids=poids, taille=taille, cycle=cycle, annee=annee, departement=departement, filiere=filiere, position=position, affiliation=affiliation )
+                sendInscriptionMailAndAlert(inscrits="NOT DEFINED", surnom=surnom, email=email, categorie=categorie, nom=nom, prenom=prenom, sexe=sexe, dateNaissance=dateNaissance, poids=poids, taille=taille, cycle=cycle, annee=annee, departement=departement, filiere=filiere, position=position, affiliation=affiliation )
                 return  render_template('inscription/inscription.html', form=form)
             else:
                 employee = Employee()
@@ -66,7 +68,8 @@ def inscription():
                 filiere = form.filiere.data
                 position = form.position.data
                 affiliation = form.affiliation.data
-                inscription_notification(surnom=surnom, email=email, categorie=categorie, nom=nom, prenom=prenom, sexe=sexe, dateNaissance=dateNaissance, poids=poids, taille=taille, cycle='NONE', annee='NONE', departement=departement, filiere=filiere, position=position, affiliation=affiliation)
+                #inscription_notification(surnom=surnom, email=email, categorie=categorie, nom=nom, prenom=prenom, sexe=sexe, dateNaissance=dateNaissance, poids=poids, taille=taille, cycle='NONE', annee='NONE', departement=departement, filiere=filiere, position=position, affiliation=affiliation)
+                sendInscriptionMailAndAlert(inscrits="NOT DEFINED", surnom=surnom, email=email, categorie=categorie, nom=nom, prenom=prenom, sexe=sexe, dateNaissance=dateNaissance, poids=poids, taille=taille, cycle='NONE', annee='NONE', departement=departement, filiere=filiere, position=position, affiliation=affiliation )
                 return  render_template('inscription/inscription.html', form=form)
         elif utilisateurEmail is not None:
             flash(u'L\'email que vous voulez utiliser existe déjà. ', 'errorEmail')
@@ -221,6 +224,30 @@ def sendTo(surnom):
     filiere = "NONE"
     position = "NONE"
     affiliation = "NONE"
-    inscription_notification(surnom=surnom, email=email, categorie=categorie, nom=nom, prenom=prenom, sexe=sexe, dateNaissance=dateNaissance, poids=poids, taille=taille, cycle=cycle, annee=annee, departement=departement, filiere=filiere, position=position, affiliation=affiliation )
+    #inscription_notification(surnom=surnom, email=email, categorie=categorie, nom=nom, prenom=prenom, sexe=sexe, dateNaissance=dateNaissance, poids=poids, taille=taille, cycle=cycle, annee=annee, departement=departement, filiere=filiere, position=position, affiliation=affiliation )
     return 'Sending test is deactivated'
+    #render_template('testMail.html', email=email, surnom=surnom, categorie=categorie, nom=nom, prenom=prenom, sexe=sexe, dateNaissance=dateNaissance, poids=poids, taille=taille, cycle=cycle, annee=annee, departement=departement, filiere=filiere, position=position, affiliation=affiliation)
+
+@app.route('/sendMailAlert')
+def sendMailAlert() :
+    inscrits = "50"
+    email = 'marco.montalto@insa-lyon.fr'
+    surnom = "surnom"
+    # ...
+    categorie = "Etudiant"
+    nom = "Montalto"
+    prenom = "Marco"
+    sexe = "Masculin"
+    dateNaissance = "21/02/1993"
+    poids = "70"
+    taille = "170"
+    cycle = u"Deuxième"
+    annee = u"Quatrième"
+    departement = "IF"
+    filiere = "NONE"
+    position = "NONE"
+    affiliation = "NONE"
+    #inscription_alert(inscrits=inscrits, surnom=surnom, email=email, categorie=categorie, nom=nom, prenom=prenom, sexe=sexe, dateNaissance=dateNaissance, poids=poids, taille=taille, cycle=cycle, annee=annee, departement=departement, filiere=filiere, position=position, affiliation=affiliation )
+    #sendInscriptionMailAndAlert(inscrits="NOT DEFINED", surnom=surnom, email=email, categorie=categorie, nom=nom, prenom=prenom, sexe=sexe, dateNaissance=dateNaissance, poids=poids, taille=taille, cycle=cycle, annee=annee, departement=departement, filiere=filiere, position=position, affiliation=affiliation )
+    return 'Alert mail was sent'
     #render_template('testMail.html', email=email, surnom=surnom, categorie=categorie, nom=nom, prenom=prenom, sexe=sexe, dateNaissance=dateNaissance, poids=poids, taille=taille, cycle=cycle, annee=annee, departement=departement, filiere=filiere, position=position, affiliation=affiliation)

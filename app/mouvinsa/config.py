@@ -28,26 +28,5 @@ CSRF_SESSION_KEY = "secret"
 # Secret key for signing cookies
 SECRET_KEY = "secret"
 
-# email server
-#MAIL_SERVER = 'smtp.gmail.com'
-#MAIL_PORT = 465
-#MAIL_USE_TLS = False
-#MAIL_USE_SSL = True
-#MAIL_USERNAME = 'montaltomarco0@gmail.com'
-#MAIL_PASSWORD = ''
-
 # administrator list
-#ADMINS = ['montaltomarco0@gmail.com']
-
-
-
-# email server
-MAIL_SERVER = 'smtp.insa-lyon.fr'
-MAIL_PORT = 25
-MAIL_USE_TLS = False
-MAIL_USE_SSL = True
-MAIL_USERNAME = 'marco.montalto@insa-lyon.fr'
-MAIL_PASSWORD = ''
-
-# administrator list
-ADMIN = ['montaltomarco0@gmail.com']
+ADMIN = ['mouvinsa.communication@gmail.com']
