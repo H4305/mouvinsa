@@ -29,7 +29,7 @@ def inscription():
                 createStudent(form, student)
                 db.session.add(student)
                 db.session.commit()
-                flash(u'Merci pour votre inscription '+student.nickname+u'. Vous allez recevoir un mail de confirmation dans quelques instant!!!:)', 'ok')
+                flash(u'Merci pour votre inscription '+student.nickname+u'. Vous allez recevoir un mail de confirmation dans quelques instants!!!:)', 'ok')
                 surnom = form.surnom.data
                 email = form.email.data
                 categorie = 'Etudiant'
@@ -52,7 +52,7 @@ def inscription():
                 createEmployee(form, employee)
                 db.session.add(employee)
                 db.session.commit()
-                flash(u'Merci pour votre inscription '+employee.nickname+u'. Vous allez recevoir un mail de confirmation dans quelques instant!!!:)', 'ok')
+                flash(u'Merci pour votre inscription '+employee.nickname+u'. Vous allez recevoir un mail de confirmation dans quelques instants!!!:)', 'ok')
                 surnom = form.surnom.data
                 email = form.email.data
                 categorie = form.categorie.data
