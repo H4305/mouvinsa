@@ -21,18 +21,6 @@ from controllers.inscription_controller import createEmployee, createStudent
 def inscription():
     form = InscriptionForm(request.form)
     if request.method == 'POST'and form.validate():
-        nom = "NONE"
-        prenom = "NONE"
-        sexe = "NONE"
-        dateNaissance = "NONE"
-        poids = "NONE"
-        taille = "NONE"
-        cycle = u"NONE"
-        annee = u"NONE"
-        departement = "NONE"
-        filiere = "NONE"
-        position = "NONE"
-        affiliation = "NONE"
         utilisateurEmail = Person.query.filter_by(email = form.email.data).first()
         utilisateur_pseudo = Person.query.filter_by(nickname = form.surnom.data).first()
         if utilisateurEmail is None and utilisateur_pseudo is None:
@@ -78,7 +66,7 @@ def inscription():
                 filiere = form.filiere.data
                 position = form.position.data
                 affiliation = form.affiliation.data
-                inscription_notification(surnom=surnom, email=email, categorie=categorie, nom=nom, prenom=prenom, sexe=sexe, dateNaissance=dateNaissance, poids=poids, taille=taille, cycle=cycle, annee=annee, departement=departement, filiere=filiere, position=position, affiliation=affiliation )
+                inscription_notification(surnom=surnom, email=email, categorie=categorie, nom=nom, prenom=prenom, sexe=sexe, dateNaissance=dateNaissance, poids=poids, taille=taille, cycle='NONE', annee='NONE', departement=departement, filiere=filiere, position=position, affiliation=affiliation)
                 return  render_template('inscription/inscription.html', form=form)
         elif utilisateurEmail is not None:
             flash(u'L\'email que vous voulez utiliser existe déjà. ', 'errorEmail')
