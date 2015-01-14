@@ -1,7 +1,15 @@
 #!/usr/bin/python
 #  -*- coding: utf-8 -*-
 
-from models import Person
+from flask import render_template, request, flash, url_for, redirect
+
+from app import app, db
+from controllers.inscription_controller import InscriptionForm
+from controllers.confirmation_controller import ConfirmationForm, updateProfil
+from models import Student, Person, Employee
+from emails import inscription_notification
+from controllers.signin_controller import LoginForm
+from controllers.inscription_controller import createEmployee, createStudent
 
 #@app.route('/')(
 #def home():
