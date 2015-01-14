@@ -1,17 +1,9 @@
 #!/usr/bin/python
 #  -*- coding: utf-8 -*-
 
-from flask import render_template, request, flash, url_for, redirect
+from models import Person
 
-from app import app, db
-from controllers.inscription_controller import InscriptionForm
-from controllers.confirmation_controller import ConfirmationForm, updateProfil
-from models import Student, Person, Employee
-from emails import inscription_notification
-from controllers.signin_controller import LoginForm
-from controllers.inscription_controller import createEmployee, createStudent
-
-#@app.route('/')
+#@app.route('/')(
 #def home():
 #    name = request.args.get('name', '')
 #    return render_template('index.html', name=name)

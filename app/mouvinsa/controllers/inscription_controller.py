@@ -1,10 +1,7 @@
-#!/usr/bin/python
-#  -*- coding: utf-8 -*-
-# coding: utf-8
-
 from wtforms import Form, BooleanField, TextField, FloatField, PasswordField, SelectField, DateField, validators
 import uuid
 from hashlib import sha256
+from mouvinsa.utils import passHash
 
 
 def hash_password(password):
@@ -12,14 +9,8 @@ def hash_password(password):
     return sha256(salt.encode() + password.encode()).hexdigest() + \
         ':' + salt
 
-messageObligatoire='Ce champs est obligatoire. Veuillez le remplir.'
-messageEmail='Les 2 emails doivent correspondre. Veuillez reessayer.'
-messageLongueur2_25='La longeur doit etre comprise entre 2 et 25 caracteres.'
-messagePassword='Les 2 mots de passe doivent correspondre.  Veuillez reessayer.'
-messageLongueur4_25='La longeur doit etre comprise entre 4 et 25 caracteres.'
-messagePoids='Le poids doit etre compris entre 20 kg et 300 kg'
-messageTaille='La taille doit etre comprise entre 90 cm et 250 cm.'
-messageLongueur3_100='La longeur doit etre comprise entre 3 et 100 caracteres.'
+class InscriptionForm(Form):
+	email = TextField(u'Email', [validators.Required(message='Ce champs est obligatoire. Veuillez le remplir.'), validators.EqualTo('confirmEmail', message='Les 2 emails doivent correspondre. Veuillez reessayer.')])
 
 class InscriptionForm(Form):
 	email = TextField(u'Email', [validators.Required(message=messageObligatoire), validators.EqualTo('confirmEmail', message=messageLongueur2_25)])
@@ -33,24 +24,31 @@ class InscriptionForm(Form):
 	filiere = SelectField(u'Filière', choices=[('', ''), ('Internationale','Internationale'), ('Classique', 'Classique'), ('PCE','PCE'), ('FAS','FAS'), ('SHN','SHN')])
 	departement = SelectField(u'Département', choices=[('',''), ('BB', 'BB'), ('BIM', 'BIM'), ('GE', 'GE'), ('GI', 'GI'), ('GCU', 'GCU'), ('GEN', 'GEN'), ('GMC', 'GMC'), ('GMD', 'GMD'), ('GMPP', 'GMPP'), ('IF', 'IF'), ('SGM', 'SGM'), ('TC', 'TC')])
 	password = PasswordField(u'Mot de Passe', [
-		validators.Required(message=messageObligatoire),
-		validators.EqualTo('confirm', message=messagePassword),
-		validators.Length(min=4, max=25, message=messageLongueur4_25)
+		validators.Required(message='Ce champs est obligatoire. Veuillez le remplir.'),
+		validators.EqualTo('confirm', message='Les 2 mots de passe doivent correspondre.  Veuillez reessayer.'),
+		validators.Length(min=4, max=25, message='La longeur doit etre comprise entre 4 et 25 caracteres.')
 	])
-	confirm = PasswordField(u'Confirmez le mot de passe', [validators.Required(message=messageObligatoire)])
-	dateNaissance = DateField(u'Né(e) le', format='%d/%m/%Y',  validators=[validators.Optional()])
-	sexe = SelectField(u'Sexe ', choices=[('', ''), ('Masculin', 'Masculin'), (u'Féminin', 'Feminin')])
-	poids = FloatField(u'Poids (kg)', [validators.Optional(), validators.NumberRange(min=20, max=300, message=messagePoids)])
-	hauteur = FloatField(u'Taille (cm)', [validators.Optional(), validators.NumberRange(min=90, max=250, message=messageTaille)])
-	position = TextField(u'Position', [validators.Optional(), validators.Length(min=3, max=100,  message=messageLongueur3_100)])
-	affiliation = TextField(u'Affiliation', [validators.Optional(), validators.Length(min=3, max=100,  message=messageLongueur3_100)])
+
+	confirm = PasswordField(u'Confirmez le mot de passe', [validators.Required(message='Ce champs est obligatoire. Veuillez le remplir.')])
+
+	dateNaissance = DateField(u'Ne(e) le', format='%d/%m/%Y',  validators=[validators.Optional()])
+
+	sexe = SelectField(u'Sexe ', choices=[('', ''), ('Masculin', 'Masculin'), ('Feminin', 'Feminin')])
+
+	poids = FloatField(u'Poids (kg)', [validators.Optional(), validators.NumberRange(min=20, max=300, message='Le poids doit etre compris entre 20 kg et 300 kg')])
+
+	hauteur = FloatField(u'Taille (cm)', [validators.Optional(), validators.NumberRange(min=90, max=250, message='La taille doit etre comprise entre 90 cm et 250 cm.')])
+
+	position = TextField(u'Position', [validators.Optional(), validators.Length(min=2, max=100,  message='La longeur doit etre comprise entre 3 et 100 caracteres.')])
+
+	affiliation = TextField(u'Affiliation', [validators.Optional(), validators.Length(min=2, max=100,  message='La longeur doit etre comprise entre 3 et 100 caracteres.')])
 
 
 def createStudent(form, student):
 	student.firstname = form.prenom.data
 	student.lastname = form.nom.data
 	student.nickname = form.surnom.data
-	student.password = hash_password(form.password.data)
+	student.password = passHash.hash_password(form.password.data)
 	student.email = form.email.data
 	if form.sexe.data == '':
 		student.sex = 'Inconnu'
@@ -73,7 +71,7 @@ def createEmployee(form, employee):
 	employee.firstname = form.prenom.data
 	employee.lastname = form.nom.data
 	employee.nickname = form.surnom.data
-	employee.password = hash_password(form.password.data)
+	employee.password = passHash.hash_password(form.password.data)
 	employee.email = form.email.data
 	if form.sexe.data == '':
 		employee.sex = 'Inconnu'
@@ -89,4 +87,3 @@ def createEmployee(form, employee):
 	employee.etat = "PREREGISTERED"
 	employee.affiliation = form.affiliation.data
 	employee.position = form.position.data
-
