@@ -4,7 +4,7 @@
 from wtforms import Form, TextField, FloatField, PasswordField, SelectField, DateField, validators
 import uuid
 from hashlib import sha256
-from mouvinsa.utils import passHash
+#from mouvinsa.utils import passHash
 
 def hash_password(password):
     salt = uuid.uuid4().hex
