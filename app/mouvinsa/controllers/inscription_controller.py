@@ -10,14 +10,14 @@ def hash_password(password):
     return sha256(salt.encode() + password.encode()).hexdigest() + \
         ':' + salt
 
-messageObligatoire='Ce champs est obligatoire. Veuillez le remplir.'
-messageEmail='Les 2 emails doivent correspondre. Veuillez reessayer.'
-messageLongueur2_25='La longeur doit etre comprise entre 2 et 25 caracteres.'
-messagePassword='Les 2 mots de passe doivent correspondre.  Veuillez reessayer.'
-messageLongueur4_25='La longeur doit etre comprise entre 4 et 25 caracteres.'
-messagePoids='Le poids doit etre compris entre 20 kg et 300 kg'
-messageTaille='La taille doit etre comprise entre 90 cm et 250 cm.'
-messageLongueur3_100='La longeur doit etre comprise entre 3 et 100 caracteres.'
+messageObligatoire=u'Ce champs est obligatoire. Veuillez le remplir.'
+messageEmail=u'Les 2 emails doivent correspondre. Veuillez reessayer.'
+messageLongueur2_25=u'La longeur doit etre comprise entre 2 et 25 caracteres.'
+messagePassword=u'Les 2 mots de passe doivent correspondre.  Veuillez reessayer.'
+messageLongueur4_25=u'La longeur doit etre comprise entre 4 et 25 caracteres.'
+messagePoids=u'Le poids doit etre compris entre 20 kg et 300 kg'
+messageTaille=u'La taille doit etre comprise entre 90 cm et 250 cm.'
+messageLongueur3_100=u'La longeur doit etre comprise entre 3 et 100 caracteres.'
 
 class InscriptionForm(Form):
 	email = TextField(u'Email', [validators.Required(message=messageObligatoire), validators.EqualTo('confirmEmail', message=messageLongueur2_25)])
