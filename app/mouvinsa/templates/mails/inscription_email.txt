@@ -34,10 +34,11 @@ Affiliation : {{ affiliation }}
 
 {% endif %}
 
-Prochain rendez-vous la semaine du 26 Janvier pour le resultat du tirage au sort, dont vous serez notifé par mail!
-Si vous serez chanceux (et c'est ce que l'on espère ;)),
-    vous'aurez la possibilité de confirmer ton inscription sur notre plateforme, ce qui vous engage vis à vis de vos colleagues de l'équipe de parteciper activement,
-    pour arriver <b>le plus loin possible!!
+Prochain rendez-vous la semaine du 26 Janvier pour le résultat du tirage au sort, vous serez notifé par mail!
+    Si vous êtes chanceux (et c'est ce que l'on espère ;)),
+    vous aurez la possibilité de participer grâce aux resultats du tirage au sort. Cela vous engage vis à vis de vos collègues de l'équipe à participer activement,
+    pour arriver
+le plus loin possible!!
 
 A bientot et bonne chance!
 Cordialement, L'équipe Mouv'INSA
