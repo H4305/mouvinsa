@@ -38,7 +38,7 @@ class InscriptionForm(Form):
 	])
 	confirm = PasswordField(u'Confirmez le mot de passe', [validators.Required(message=messageObligatoire)])
 	dateNaissance = DateField(u'Né(e) le', format='%d/%m/%Y',  validators=[validators.Optional()])
-	sexe = SelectField(u'Sexe ', choices=[('', ''), ('Masculin', 'Masculin'), (u'Féminin', 'Feminin')])
+	sexe = SelectField(u'Sexe ', choices=[('', ''), ('Masculin', 'Masculin'), (u'Féminin', u'Feminin')])
 	poids = FloatField(u'Poids (kg)', [validators.Optional(), validators.NumberRange(min=20, max=300, message=messagePoids)])
 	hauteur = FloatField(u'Taille (cm)', [validators.Optional(), validators.NumberRange(min=90, max=250, message=messageTaille)])
 	position = TextField(u'Position', [validators.Optional(), validators.Length(min=3, max=100,  message=messageLongueur3_100)])
