@@ -1,4 +1,6 @@
-# -*- coding: utf8 -*-
+#!/usr/bin/python
+#  -*- coding: utf-8 -*-
+# coding: utf-8
 from wtforms import Form, TextField, FloatField, PasswordField, SelectField, DateField, validators
 import uuid
 from hashlib import sha256
