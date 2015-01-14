@@ -28,7 +28,7 @@ class InscriptionForm(Form):
 	nom = TextField(u'Nom', [validators.Optional(), validators.Length(min=2, max=25, message=messageLongueur2_25)])
 	prenom = TextField(u'Prénom', [validators.Optional(), validators.Length(min=2, max=25, message=messageLongueur2_25)])
 	categorie = SelectField(u'Catégorie', [validators.Required(message=messageObligatoire)], choices=[('Etudiant', 'Etudiant'), ('Enseignant-Chercheur', 'Enseignant-Chercheur'), ('Personnel IATOS', 'Personnel IATOS')])
-	annee = SelectField(u'Année', choices=[('', ''), (u'Première', u'Première'), (u'Deuxième', u'Deuxième'), (u'Troisième', u'Troisième'), (u'Quatrième', u'Quatrième'), (u'Cinquième', u'Cinquième')])
+	annee = SelectField(u'Année', choices=[('', ''), (u'Premiere', u'Premiere'), (u'Deuxieme', u'Deuxieme'), (u'Troisieme', u'Troisieme'), (u'Quatrieme', u'Quatrieme'), (u'Cinquieme', u'Cinquieme')])
 	cycle = SelectField(u'Cycle', choices=[('', ''), ('Premier', 'Premier'), ('Second', 'Second')])
 	filiere = SelectField(u'Filière', choices=[('', ''), ('Internationale','Internationale'), ('Classique', 'Classique'), ('PCE','PCE'), ('FAS','FAS'), ('SHN','SHN')])
 	departement = SelectField(u'Département', choices=[('',''), ('BB', 'BB'), ('BIM', 'BIM'), ('GE', 'GE'), ('GI', 'GI'), ('GCU', 'GCU'), ('GEN', 'GEN'), ('GMC', 'GMC'), ('GMD', 'GMD'), ('GMPP', 'GMPP'), ('IF', 'IF'), ('SGM', 'SGM'), ('TC', 'TC')])
