@@ -1,8 +1,8 @@
-from wtforms import Form, BooleanField, TextField, FloatField, PasswordField, SelectField, DateField, validators
+from wtforms import Form, TextField, FloatField, PasswordField, SelectField, DateField, validators
 import uuid
 from hashlib import sha256
 from mouvinsa.utils import passHash
-from mouvinsa.app import db
+
 
 def hash_password(password):
     salt = uuid.uuid4().hex
@@ -42,6 +42,7 @@ class InscriptionForm(Form):
 	position = TextField(u'Position', [validators.Optional(), validators.Length(min=3, max=100,  message=messageLongueur3_100)])
 	affiliation = TextField(u'Affiliation', [validators.Optional(), validators.Length(min=3, max=100,  message=messageLongueur3_100)])
 
+	confirm = PasswordField(u'Confirmez le mot de passe', [validators.Required(message='Ce champs est obligatoire. Veuillez le remplir.')])
 
 def createStudent(form, student):
 	student.firstname = form.prenom.data
@@ -70,7 +71,7 @@ def createEmployee(form, employee):
 	employee.firstname = form.prenom.data
 	employee.lastname = form.nom.data
 	employee.nickname = form.surnom.data
-	employee.password = hash_password(form.password.data)
+	employee.password = passHash.hash_password(form.password.data)
 	employee.email = form.email.data
 	if form.sexe.data == '':
 		employee.sex = 'Inconnu'

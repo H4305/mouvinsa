@@ -24,6 +24,8 @@ def inscription():
         utilisateurEmail = Person.query.filter_by(email = form.email.data).first()
         utilisateur_pseudo = Person.query.filter_by(nickname = form.surnom.data).first()
         if utilisateurEmail is None and utilisateur_pseudo is None:
+
+
             if form.categorie.data == 'Etudiant':
                 student = Student()
                 createStudent(form, student)
