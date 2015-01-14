@@ -6,39 +6,86 @@ from flask import render_template, request, flash, url_for, redirect
 
 from app import app, db
 from controllers.inscription_controller import InscriptionForm
-from controllers.confirmation_controller import ConfirmationForm
+from controllers.confirmation_controller import ConfirmationForm, updateProfil
 from models import Student, Person, Employee
+from emails import inscription_notification
 from controllers.signin_controller import LoginForm
 from controllers.inscription_controller import createEmployee, createStudent
 
+#@app.route('/')
+#def home():
+#    name = request.args.get('name', '')
+#    return render_template('index.html', name=name)
 
-@app.route('/')
-def home():
-    name = request.args.get('name', '')
-    return render_template('index.html', name=name)
-
-
+@app.route('/', methods=['GET', 'POST'])
 @app.route('/inscription', methods=['GET', 'POST'])
 def inscription():
-
     form = InscriptionForm(request.form)
-    if request.method == 'POST': #and form.validate():
-
-        if form.categorie.data == 'Etudiant':
-            student = Student()
-            createStudent(form, student)
-            db.session.add(student)
-            db.session.commit()
-            return  "Merci pour votre inscription "+student.nickname + ". Vous allez recevoir un e-mail de confirmation contenant votre surnom et votre mot de passe !"
+    if request.method == 'POST'and form.validate():
+        nom = "NONE"
+        prenom = "NONE"
+        sexe = "NONE"
+        dateNaissance = "NONE"
+        poids = "NONE"
+        taille = "NONE"
+        cycle = u"NONE"
+        annee = u"NONE"
+        departement = "NONE"
+        filiere = "NONE"
+        position = "NONE"
+        affiliation = "NONE"
+        utilisateurEmail = Person.query.filter_by(email = form.email.data).first()
+        utilisateur_pseudo = Person.query.filter_by(nickname = form.surnom.data).first()
+        if utilisateurEmail is None and utilisateur_pseudo is None:
+            if form.categorie.data == 'Etudiant':
+                student = Student()
+                createStudent(form, student)
+                db.session.add(student)
+                db.session.commit()
+                flash(u'Merci pour votre inscription '+student.nickname+u'. Vous allez recevoir un mail de confirmation dans quelques instant!!!:)', 'ok')
+                surnom = form.surnom.data
+                email = form.email.data
+                categorie = 'Etudiant'
+                nom = form.nom.data
+                prenom = form.prenom.data
+                sexe = form.sexe.data
+                dateNaissance = form.dateNaissance.data
+                poids = form.poids.data
+                taille = form.hauteur.data
+                cycle = form.cycle.data
+                annee = form.annee.data
+                departement = form.departement.data
+                filiere = form.filiere.data
+                position = form.position.data
+                affiliation = form.affiliation.data
+                inscription_notification(surnom=surnom, email=email, categorie=categorie, nom=nom, prenom=prenom, sexe=sexe, dateNaissance=dateNaissance, poids=poids, taille=taille, cycle=cycle, annee=annee, departement=departement, filiere=filiere, position=position, affiliation=affiliation )
+                return  render_template('inscription/inscription.html', form=form)
+            else:
+                employee = Employee()
+                createEmployee(form, employee)
+                db.session.add(employee)
+                db.session.commit()
+                flash(u'Merci pour votre inscription '+employee.nickname+u'. Vous allez recevoir un mail de confirmation dans quelques instant!!!:)', 'ok')
+                surnom = form.surnom.data
+                email = form.email.data
+                categorie = form.categorie.data
+                nom = form.nom.data
+                prenom = form.prenom.data
+                sexe = form.sexe.data
+                dateNaissance = form.dateNaissance.data
+                poids = form.poids.data
+                taille = form.hauteur.data
+                departement = form.departement.data
+                filiere = form.filiere.data
+                position = form.position.data
+                affiliation = form.affiliation.data
+                inscription_notification(surnom=surnom, email=email, categorie=categorie, nom=nom, prenom=prenom, sexe=sexe, dateNaissance=dateNaissance, poids=poids, taille=taille, cycle=cycle, annee=annee, departement=departement, filiere=filiere, position=position, affiliation=affiliation )
+                return  render_template('inscription/inscription.html', form=form)
+        elif utilisateurEmail is not None:
+            flash(u'L\'email que vous voulez utiliser existe déjà. ', 'errorEmail')
         else:
-            employee = Employee()
-            createEmployee(form, employee)
-            db.session.add(employee)
-            db.session.commit()
-
-        return "Merci pour votre inscription, "+employee.nickname+". Vous allez recevoir un e-mail de confirmation contenant votre surnom et votre mot de passe !"
-    else:
-        return render_template('inscription/inscription.html', form=form)
+            flash(u'Le pseudonyme que vous voulez utiliser existe déjà. Veuillez choisir un autre. ', 'errorPseudo')
+    return render_template('inscription/inscription.html', form=form)
 
 @app.route('/confirmation', methods=['GET', 'POST'])
 def confirmation():
@@ -47,28 +94,21 @@ def confirmation():
             confirm = request.args.get('msg')
             form = ConfirmationForm(request.form)
             if request.method == "POST":
-                if form.image.data is None:
-                    user_found.lastname = form.lastname.data
-                    user_found.firstname = form.firstname.data
-                    user_found.weight = form.weight.data
-                    user_found.height = form.height.data
-                    user_found.birthdate = form.birthdate.data
+                if form.validate():
+                    updateProfil(form, user_found)
                     db.session.commit()
-                    flash('Vous avez bien enregistre votre profil! Maintenant vous pouvez vous connecter avec votre surnom et votre mot de passe.')
                     return redirect(url_for('login'))
+                else:
+                    return render_template('inscription/confirmation.html', user=user_found, msg='confirme', form=form, form_active=1)
             else:
                 if user_found is not None:
                     if user_found.etat == 'PREREGISTERED':
-                            if confirm == 'confirme':
-                                user_found.etat='REGISTERED'
-                                db.session.commit()
-                                return render_template('inscription/confirmation.html', user=user_found, msg='confirme', form=form)
-                            elif confirm == 'refuse':
-                                user_found.etat='DROPPED'
-                                db.session.commit()
-                                return render_template('inscription/confirmation.html', user=user_found, msg='refuse')
-                    #elif user_found.etat == 'REGISTERED':
-                        #return render_template('inscription/confirmation.html', user=user_found, msg='inscrit')
+                        if confirm == 'confirme':
+                            return render_template('inscription/confirmation.html', user=user_found, msg='confirme', form=form)
+                        elif confirm == 'refuse':
+                            user_found.etat='DROPPED'
+                            db.session.commit()
+                            return render_template('inscription/confirmation.html', user=user_found, msg='refuse')
                 return redirect(url_for('home'))
 
 @app.route('/forgetpassword/', methods=['GET', 'POST'])
@@ -102,7 +142,7 @@ def login():
             else:
                 if person.password == password: #Surment un truc a faire car le mdp sera pas en clair
                     problem = "You were successfully logged in"
-                    page = "testeuh.html"
+                    #page = "testeuh.html"
                     # Il faudra mettre vers Index
                 else:
                     problem = "Connection refused"
@@ -137,31 +177,73 @@ def test_inscription(user="TestUser"):
     db.session.add(student)
     db.session.commit()
 
-    return "Insere : " + student.__repr__()
+# @app.route('/test/inscription')
+# @app.route('/test/inscription/<user>')
+# def test_inscription(user="TestUser"):
+#     student = Student()
+#     student.username = user
+#     student.password = 'password'
+#     student.email = user +'@email.com'
+#     student.nickname = user
+#     student.category = 'etudiant'
+#     db.session.add(student)
+#     db.session.commit()
+#
+#     return "Insere : " + student.__repr__()
 
 @app.route('/test/listuser')
 def list_users() :
-    string = "List user <br/>"
+    string = '<table>'
+    string += '<tr><th>id</th><th>lastname</th><th>firstname</th><th>birthdate</th><th>etat</th><th>sex</th></tr>'
     for student in Person.query.all():
-        string += student.__repr__() + "<br/>"
-
-@app.route('/test/confirmation')
-def test_confirmation() :
-    person = Person.query.filter_by(nickname='test4').first()
-    if person is not None:
-        db.session.delete(person)
-        db.session.commit()
-    student2 = Student()
-    student2.nickname = 'test4'
-    student2.password = 'password'
-    student2.email = 'email4@email.com'
-    student2.category = 'etudiant'
-    student2.etat = 'preregistered'
-    student2.sex = 'Masculin'
-    student2.token = 'a0114'
-    db.session.add(student2)
-    db.session.commit()
-    string = ""
-    for student in Person.query.all():
-        string += student.__repr__()+student.token+student.etat
+        string += '<tr><td>'+student.__repr__()+'</td><td>'+unicode(student.lastname)+'</td><td>'+unicode(student.firstname)\
+                  +'</td><td>'+unicode(student.birthdate)+'</td><td>'+unicode(student.etat)+'</td><td>'+unicode(student.sex)
+    string += '</table>'
     return string
+
+# @app.route('/test/confirmation')
+# def test_confirmation() :
+#     person = Person.query.filter_by(nickname='test4').first()
+#     if person is not None:
+#         db.session.delete(person)
+#         db.session.commit()
+#     student2 = Student()
+#     student2.nickname = 'test4'
+#     student2.firstname=''
+#     student2.lastname=''
+#     student2.password = 'password'
+#     student2.email = 'email4@email.com'
+#     student2.category = 'etudiant'
+#     student2.etat = 'preregistered'
+#     student2.sex = ''
+#     student2.token = 'a0114'
+#     db.session.add(student2)
+#     db.session.commit()
+#     string = '<table>'
+#     string += '<tr><th>lastname</th><th>firstname</th><th>birthdate</th><th>etat</th><th>sex</th></tr>'
+#     for student in Person.query.all():
+#         string += '<tr><td>'+student.__repr__()+'</td><td>'+unicode(student.lastname)+'</td><td>'+unicode(student.firstname)\
+#                   +'</td><td>'+unicode(student.birthdate)+'</td><td>'+unicode(student.etat)+'</td><td>'+unicode(student.sex)
+#     string += '</table>'
+#     return string
+
+@app.route('/sendMail/<surnom>')
+def sendTo(surnom):
+    email = 'marco.montalto@insa-lyon.fr'
+    # ...
+    categorie = "Etudiant"
+    nom = "Montalto"
+    prenom = "Marco"
+    sexe = "Masculin"
+    dateNaissance = "21/02/1993"
+    poids = "70"
+    taille = "170"
+    cycle = u"Deuxième"
+    annee = u"Quatrième"
+    departement = "IF"
+    filiere = "NONE"
+    position = "NONE"
+    affiliation = "NONE"
+    inscription_notification(surnom=surnom, email=email, categorie=categorie, nom=nom, prenom=prenom, sexe=sexe, dateNaissance=dateNaissance, poids=poids, taille=taille, cycle=cycle, annee=annee, departement=departement, filiere=filiere, position=position, affiliation=affiliation )
+    return 'Sending test is deactivated'
+    #render_template('testMail.html', email=email, surnom=surnom, categorie=categorie, nom=nom, prenom=prenom, sexe=sexe, dateNaissance=dateNaissance, poids=poids, taille=taille, cycle=cycle, annee=annee, departement=departement, filiere=filiere, position=position, affiliation=affiliation)

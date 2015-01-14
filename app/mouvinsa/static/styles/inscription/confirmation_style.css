@@ -6,15 +6,14 @@
     overflow: hidden;
     position: relative;
 }
-#tab_content_confirmation{
-    margin-bottom:10%;
-}
+
 .description_block{
     position: relative;
-    margin: 5% 5% 5% 5%;
+    margin: 5% 5% 25% 5%;
     background: white;
 	opacity: 0.85;
     text-align: justify;
+    min-height: 200px;
 }
 .title_confirmation_block{
     color: white;
@@ -31,14 +30,18 @@
     right: 1%;
     bottom: 2%;
     color: white;
-    width: 15%;
     text-align:center;
     -webkit-box-shadow: 0 8px 6px -6px black;
     -moz-box-shadow: 0 8px 6px -6px black;
     box-shadow: 0 8px 6px -6px black;
+    padding: 0% 1% 0% 1%
+}
+
+a.next_button:hover{
+  text-decoration: none;
+  color:white
 }
 #tab_title_confirmation li{
-    width:15%;
     text-align:center;
 }
 #tab_title_confirmation li a{
@@ -46,12 +49,15 @@
     background: transparent;
 }
 #tab_title_confirmation li a:hover{
-
-}
-#tab_title_confirmation li.active{
+    border: 1px solid #E42618;
+    color: white;
+    font-weight:bold;
     background: #E42618;
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    border-radius: 0px;
 }
-#tab_title_confirmation li.active:hover{
+#tab_title_confirmation li.active, #tab_title_confirmation li.active:hover{
     background: #E42618;
 }
 #tab_title_confirmation li.active a{
@@ -59,4 +65,29 @@
     color:white;
     font-weight:bold;
     border:1px solid #E42618;
+}
+.elementForm_DIV{
+    margin-bottom: 10%;
+}
+.confirmationField_ERRORS{
+    width:50%;
+    margin-left: -7%;
+}
+
+.leftElements_DIV {
+    position: relative;
+    float:left;
+    width: 49%;
+    height: 90%;
+    margin-bottom: 1%;
+    margin-top: 2%;
+}
+
+.rightElements_DIV {
+    position: relative;
+    float:right;
+    width: 49%;
+    height: 90%;
+    margin-bottom: 1%;
+    margin-top: 2%;
 }

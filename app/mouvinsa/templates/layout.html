@@ -11,6 +11,8 @@
     <link rel=stylesheet type=text/css href="{{ url_for('static', filename='styles/style.css') }}">
     <link rel=stylesheet type=text/css href="{{ url_for('static', filename='styles/flipclock.css') }}">
     <link rel=stylesheet type=text/css href="{{ url_for('static', filename='styles/navigationBarStyle.css') }}">
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='styles/descriptionProjetStyle.css') }}">
+    <link href="{{ url_for('static', filename='images/icon.ico') }}" rel="icon" type="image/x-icon" />
 {% endblock %}
 
         {% include 'scripts.html' %}
@@ -19,24 +21,22 @@
 <body>
     <div id="page">
         <header></header>
-        <nav class="navigation_menu_NAV">
-            <div tabindex="0" class="menuButton_DIV" id="menuButton" onClick="clickMenu()">
+        <nav id="navigation_menu_NAV">
+            <div tabindex="0" class="menuButton_DIV" id="menuButton">
                 <div class="box-shadow-menu">
                 </div>
                 {% block buttonMenu %}{% endblock %}
             </div>
             <div class="titrePage_DIV">
-                <span class="titre_SPAN">
-                    mouv'INSA | {% block pageName %}{% endblock %}
-                </span>
+                <img class="header-logo" src="../static/images/logo-white.svg" alt="logo mouvinsa" class="logo" />
             </div>
             <div class="linksOtherPages_DIV">
                 <span class="titre_SPAN">
                 </span>
             </div>
         </nav>
-        {% include 'inscription/navigationMenu.html' %}
         {% block main %}{% endblock %}
+        {% include 'apropos.html' %}
         <footer>{% include 'footer.html' %}</footer>
     </div>
 

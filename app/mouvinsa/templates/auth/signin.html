@@ -21,10 +21,11 @@
         <form action="{{ url_for('login') }}" method="post">
             <label class="label" for="username">Username</label>
             <input type="text" name="username" class="input">
+            <br/>
             <label class="label" for="password">Password</label>
             <input type="password" name="password" class="input">
             <input type="submit" value="Login" class="button">
         </form>
-        <a href="{{ url_for('forgetpassword') }}">Mot de passe oublié</a>
+        <a href="{{ url_for('forgetpassword') }}" id="link">Mot de passe oublié</a>
     </div>
 {% endblock %}

@@ -1,0 +1,45 @@
+(Vous'avez recu ce mail parce que vous vous etes inscrit sur la plateforme Mouv'INSA. Si cela n'est pas le cas, merci de nous le signaler en repondant tout simplement à cette adresse mail. Très cordialement, l'admin)
+Bonjour {{ surnom }}!
+L'équipe Mouv'INSA vous souhaite la bienvenue sur notre plateforme et vous remercie pour votre inscription!
+Voici le resumé de vos informations personnelles (vous pourrez les changer dans la suite!) :
+
+Adresse Mail : {{ email }}
+Surnom : {{ surnom }}
+Categorie : {{ categorie }}
+Nom : {{ nom }}
+Prenom : {{ prenom }}
+Sexe : {{ sexe }}
+Date de naissance : {{ dateNaissance }}
+Poids (KG) : {{ poids }}
+Taille (CM) : {{ taille }}
+
+{% if categorie=='Etudiant' %}
+Cycle : {{ cycle }}
+Annee : {{ annee }}
+Departement : {{ departement }}
+Filiere : {{ filiere }}
+
+{% endif %}
+
+{% if categorie=='Enseignant-Chercheur' %}
+Departement : {{ departement }}
+Position : {{ position }}
+Affiliation : {{ affiliation }}
+
+{% endif %}
+
+{% if categorie=='Personnel BIATOS' %}
+Position : {{ position }}
+Affiliation : {{ affiliation }}
+
+{% endif %}
+
+Prochain rendez-vous la semaine du 26 Janvier pour le resultat du tirage au sort, dont vous serez notifé par mail!
+Si vous serez chanceux (et c'est ce que l'on espère ;)),
+    vous'aurez la possibilité de confirmer ton inscription sur notre plateforme, ce qui vous engage vis à vis de vos colleagues de l'équipe de parteciper activement,
+    pour arriver <b>le plus loin possible!!
+
+A bientot et bonne chance!
+Cordialement, L'équipe Mouv'INSA
+
+Pour toute suggestion, ou signalation de bug, n'hesite pas à nous le signaler en répondant à ce mail. Merci beaucoup! L'admin.

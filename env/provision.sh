@@ -17,9 +17,10 @@ mysql -u root -ph4305 < /vagrant/structure.sql
 # install flask
 sudo pip install flask
 # install sqlalchemy
+sudo apt-get install libmysqlclient-dev python-mysqldb -y
 sudo pip install mysql-python
 sudo pip install Flask-SQLAlchemy
-apt-get install python-mysqldb
+sudo pip install Flask-Mail
 
 # configure uWSGI
 touch /tmp/uwsgi.sock
