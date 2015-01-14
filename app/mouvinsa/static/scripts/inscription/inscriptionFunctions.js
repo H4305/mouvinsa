@@ -25,8 +25,32 @@ jQuery(document).ready(function($) {
 });
 
 jQuery(document).ready(function($) {
-    blurDivs = function() {
-        console.log('Marco')
-        $('.trasparentContainer_DIV').blurjs({ source: 'body' });  
+    clickMenu = function() {
+
+
+        var $navigationMenu = $('#onclick-menu-content');
+
+        if($navigationMenu.is(':visible')) {
+            console.log('marco');
+        }else{
+            console.log('marco2');
+        }
+
+
+        var $buttonDIV = $('#menuButton');
+
+        // Color string var for other browser (Chrome 17.0.963.56 and Firefox 8.0 tested)
+        var colorToCompare = "rgb(255, 255, 255)";
+
+        // IE 7 output the hex value
+        if (navigator.appName == "Microsoft Internet Explorer"){
+            colorToCompare = "#ffffff";
+        }
+
+        if ($buttonDIV.style.backgroundColor == colorToCompare) {
+            alert("Yes");
+        } else {
+            alert("No");
+        }
     }
 });

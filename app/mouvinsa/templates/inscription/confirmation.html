@@ -1,0 +1,103 @@
+{% extends "inscription/squelette.html" %}
+
+{% block header %}
+    {{ super() }}
+    <link rel=stylesheet type=text/css href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='styles/style.css') }}">
+    <link href="{{ url_for('static', filename='styles/inscription/inscription_style.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ url_for('static', filename='styles/inscription/confirmation_style.css') }}" rel="stylesheet" type="text/css" />
+{% endblock %}
+
+{% block titre %}MOUVINSA | Confirmation{% endblock %}
+
+{% block corps %}
+    <script type=text/javascript src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+    <script type=text/javascript src="{{url_for('static', filename='scripts/inscription/confirmation.js') }}"></script>
+    <div id="headerMenu_DIV">
+        Menu
+    </div>
+
+    <div id="confirmationContent" class="trasparentContainer_DIV">
+    {% if msg == 'confirme' %}
+        {% macro render_field(field) %}
+            <label class="inscriptionField_LABEL">{{ field.label }}</label>
+            {{ field(class_="inscriptionField_INPUT") }}
+            {% if field.errors %}
+                <ul class=errors>
+                {% for error in field.errors %}
+                    <li>{{ error }}</li>
+                {% endfor %}
+                </ul>
+            {% endif %}
+        {% endmacro %}
+      <!-- Nav tabs -->
+      <ul class="nav nav-tabs" role="tablist" id="tab_title_confirmation">
+        <li class="active"><a href="#remerciement_inscription" aria-controls="remerciement_inscription" role="tab" data-toggle="tab">Confirmation</a></li>
+        <li><a href="#completer_profil" aria-controls="completer_profil" role="tab" data-toggle="tab">Profil</a></li>
+        <!--<li><a href="#photo_profil" aria-controls="photo_profil" role="tab" data-toggle="tab">Photo</a></li>-->
+      </ul>
+            <!-- Tab panes -->
+      <div class="tab-content" id="tab_content_confirmation">
+        <div class="tab-pane active" id="remerciement_inscription">
+            <div class="title_confirmation_block">Confirmation d'inscription</div>
+            <div class="description_block">Bonjour {{user.nickname}}!
+            <br>Vous avez confirmé votre inscription pour le projet MOUV'INSA</div>
+            <div class="next_button">Étape suivante</div>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="completer_profil">
+            <div class="title_confirmation_block">Compléter votre profil</div>
+            <div class="description_block">
+                <form method=post enctype=multipart/form-data id="formProfil">
+                    <div class="leftElements_DIV">
+                       {% if user['firstname'] == None %}
+                            <div class="elementForm_DIV">
+                            {{ render_field(form.firstname) }}
+                            </div>
+                       {% endif %}
+                       {% if user['lastname'] == None %}
+                            <div class="elementForm_DIV">
+                            {{ render_field(form.lastname) }}
+                            </div>
+                       {% endif %}
+                    </div>
+                    <div class="rightElements_DIV">
+                       {% if user['birthdate'] == None %}
+                            <div class="elementForm_DIV">
+                            {{ render_field(form.birthdate) }}
+                            </div>
+                       {% endif %}
+                       {% if user['weight'] == None %}
+                            <div class="elementForm_DIV">
+                            {{ render_field(form.weight) }}
+                            </div>
+                       {% endif %}
+                       {% if user['height'] == None %}
+                            <div class="elementForm_DIV">
+                            {{ render_field(form.height) }}
+                            </div>
+                       {% endif %}
+                   </div>
+                </form>
+            </div>
+            <div class="next_button" onclick="document.getElementById('formProfil').submit();">Terminer</div>
+        </div>
+        <!--<div role="tabpanel" class="tab-pane" id="photo_profil">
+            <div class="title_confirmation_block">Ajouter une photo de votre profil</div>
+            <div class="description_block">
+                <span id="photo_image"></span>
+                <form method=post enctype=multipart/form-data id="formImage">
+                <input type=file name=file>
+                </form>
+            </div>
+            <div class="next_button" onclick="document.getElementById('formImage').submit();">Terminer</div>
+        </div>
+      </div>-->
+    {% elif msg =='refuse' %}
+        <div class="title_confirmation_block">Refus d'inscription</div>
+            <div class="description_block">Bonjour {{user.nickname}}!
+            <br>Vous avez refusé votre inscription pour le projet MOUV'INSA. Nous vous remercions de votre attention.</div>
+            <a class="next_button" href="/">Accueil</a>
+    {% endif %}
+    </div>
+{% endblock %}
+{% block footer %}{% include 'footer.html' %}{% endblock %}

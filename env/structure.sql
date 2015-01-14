@@ -75,8 +75,10 @@ CREATE TABLE IF NOT EXISTS `mouvinsa`.`Person` (
   `category` ENUM('STUDENT','IATOS','EMPLOYEE') NULL,
   `image` VARCHAR(255) NULL,
   `etat` ENUM('PREREGISTERED','REGISTERED', 'DROPPED') NULL,
+  `token` VARCHAR(255) NOT NULL,
   UNIQUE INDEX `email_UNIQUE` (`email` ASC),
   UNIQUE INDEX `nickname_UNIQUE` (`nickname` ASC),
+  UNIQUE INDEX `token_UNIQUE` (`token` ASC),
   PRIMARY KEY (`idPerson`),
   INDEX `idGroup` (`idGroup` ASC),
   CONSTRAINT `personGroup`
