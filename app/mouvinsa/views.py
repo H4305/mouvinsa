@@ -22,12 +22,6 @@ from controllers.inscription_controller import createEmployee, createStudent
 def inscription():
     form = InscriptionForm(request.form)
     if request.method == 'POST'and form.validate():
-        nom = "NONE"
-        prenom = "NONE"
-        sexe = "NONE"
-        dateNaissance = "NONE"
-        poids = "NONE"
-        taille = "NONE"
         cycle = u"NONE"
         annee = u"NONE"
         departement = "NONE"
