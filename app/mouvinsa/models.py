@@ -21,6 +21,7 @@ class Person(db.Model):
     type = db.Column(db.String(50))
     etat = db.Column('etat', Enum('PREREGISTERED', 'REGISTERED', 'DROPPED'), nullable=False)
     token = db.Column(db.String(128), unique=True)
+    group_id = db.Column(db.Integer, db.ForeignKey('person.id'))
 
     def __init__(self):
         print "init person"
@@ -80,7 +81,7 @@ class Group(db.Model):
 class Steps(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     person_id = db.Column(db.Integer, db.ForeignKey('person.id'))
-    date = db.Column(db.SateTime)
+    date = db.Column(db.DateTime)
 
 
 
