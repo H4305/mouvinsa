@@ -12,17 +12,17 @@
 {% endwith %}
 
 {% block main %}
-    
+
     <div id="signin">
         <div class="title">
-            Login
+            Connexion
         </div>
         {% if error %}<p class=error><strong>Error:</strong> {{ error }}{% endif %}
         <form action="{{ url_for('login') }}" method="post">
-            <label class="label" for="username">Username</label>
+            <label class="label" for="username">Pseudo</label>
             <input type="text" name="username" class="input">
             <br/>
-            <label class="label" for="password">Password</label>
+            <label class="label" for="password">Mot de passe</label>
             <input type="password" name="password" class="input">
             <input type="submit" value="Login" class="button">
         </form>

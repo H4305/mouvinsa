@@ -36,9 +36,9 @@ class Person(db.Model):
 class Student(Person):
     __tablename__ = 'student'
     id = db.Column(db.Integer, db.ForeignKey('person.id'), primary_key=True)
-    year = db.Column(db.Integer)
-    cycle = db.Column(db.Integer)
-    branch = db.Column(db.Integer)
+    year = db.Column(db.String(120))
+    cycle = db.Column(db.String(120))
+    branch = db.Column(db.String(120))
 
     __mapper_args__ = {
         'polymorphic_identity': 'student',

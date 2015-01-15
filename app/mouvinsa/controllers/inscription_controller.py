@@ -1,54 +1,48 @@
-from wtforms import Form, BooleanField, TextField, FloatField, PasswordField, SelectField, DateField, validators
+#!/usr/bin/python
+#  -*- coding: utf-8 -*-
+# coding: utf-8
+from wtforms import Form, TextField, FloatField, PasswordField, SelectField, DateField, validators
 import uuid
 from hashlib import sha256
-
+#from mouvinsa.utils import passHash
 
 def hash_password(password):
     salt = uuid.uuid4().hex
     return sha256(salt.encode() + password.encode()).hexdigest() + \
         ':' + salt
 
+messageObligatoire=u'Ce champs est obligatoire. Veuillez le remplir.'
+messageEmail=u'Les 2 emails doivent correspondre. Veuillez réessayer.'
+messageLongueur2_25=u'La longeur doit être comprise entre 2 et 25 caractères.'
+messagePassword=u'Les 2 mots de passe doivent correspondre.  Veuillez réessayer.'
+messageLongueur4_25=u'La longeur doit être comprise entre 4 et 25 caractères.'
+messagePoids=u'Le poids doit être compris entre 20 kg et 300 kg'
+messageTaille=u'La taille doit être comprise entre 90 cm et 250 cm.'
+messageLongueur3_100=u'La longeur doit être comprise entre 3 et 100 caracterès.'
+
 class InscriptionForm(Form):
-	email = TextField(u'Email', [validators.Required(message='Ce champs est obligatoire. Veuillez le remplir.'), validators.EqualTo('confirmEmail', message='Les 2 emails doivent correspondre. Veuillez reessayer.')])
-
+	email = TextField(u'Email', [validators.Required(message=messageObligatoire), validators.EqualTo('confirmEmail', message=messageLongueur2_25)])
 	confirmEmail = TextField(u'Confirmez votre email', [validators.Required(message='Ce champs est obligatoire. Veuillez le remplir.')])
-
-	surnom = TextField(u'Pseudonyme', [validators.Required(message='Ce champs est obligatoire. Veuillez le remplir.'), validators.Length(min=2, max=25, message='La longeur doit etre comprise entre 2 et 25 caracteres.')])
-
-	nom = TextField(u'Nom', [validators.Optional(), validators.Length(min=2, max=25, message='La longeur doit etre comprise entre 2 et 25 caracteres.')])
-
-	prenom = TextField(u'Prenom', [validators.Optional(), validators.Length(min=2, max=25, message='La longeur doit etre comprise entre 2 et 25 caracteres.')])
-
-	categorie = SelectField(u'Categorie', [validators.Required(message='Ce champs est obligatoire. Veuillez choisir un item dans la liste.')], choices=[('Etudiant', 'Etudiant'), ('Enseignant-Chercheur', 'Enseignant-Chercheur'), ('Personnel BIATOS', 'Personnel BIATOS')])
-
-	annee = SelectField(u'Annee', choices=[('', ''), ('Premiere', 'Premiere'), ('Deuxieme', 'Deuxieme'), ('Troisieme', 'Troisieme'), ('Quatrieme', 'Quatrieme'), ('Cinquieme', 'Cinquieme')])
-
+	surnom = TextField(u'Pseudonyme', [validators.Required(message=messageObligatoire), validators.Length(min=2, max=25, message=messageLongueur2_25)])
+	nom = TextField(u'Nom', [validators.Optional(), validators.Length(min=2, max=25, message=messageLongueur2_25)])
+	prenom = TextField(u'Prénom', [validators.Optional(), validators.Length(min=2, max=25, message=messageLongueur2_25)])
+	categorie = SelectField(u'Catégorie', [validators.Required(message=messageObligatoire)], choices=[('Etudiant', 'Etudiant'), ('Enseignant-Chercheur', 'Enseignant-Chercheur'), ('Personnel IATOS', 'Personnel IATOS')])
+	annee = SelectField(u'Année', choices=[('', ''), (u'Premiere', u'Premiere'), (u'Deuxieme', u'Deuxieme'), (u'Troisieme', u'Troisieme'), (u'Quatrieme', u'Quatrieme'), (u'Cinquieme', u'Cinquieme')])
 	cycle = SelectField(u'Cycle', choices=[('', ''), ('Premier', 'Premier'), ('Second', 'Second')])
-
-	filiere = SelectField(u'Filiere', choices=[('', ''), ('Filiere Internationale','Filiere Internationale'), ('Filiere Clasique', 'Filiere Clasique'), ('PCE','PCE'), ('FAS','FAS'), ('SHN','SHN')])
-
-	departement = SelectField(u'Departement', choices=[('',''), ('BB', 'BB'), ('BIM', 'BIM'), ('GE', 'GE'), ('GI', 'GI'), ('GCU', 'GCU'), ('GEN', 'GEN'), ('GMC', 'GMC'), ('GMD', 'GMD'), ('GMPP', 'GMPP'), ('IF', 'IF'), ('SGM', 'SGM'), ('TC', 'TC')])
-
+	filiere = SelectField(u'Filière', choices=[('', ''), ('Internationale','Internationale'), ('Classique', 'Classique'), ('PCE','PCE'), ('FAS','FAS'), ('SHN','SHN')])
+	departement = SelectField(u'Département', choices=[('',''), ('BB', 'BB'), ('BIM', 'BIM'), ('GE', 'GE'), ('GI', 'GI'), ('GCU', 'GCU'), ('GEN', 'GEN'), ('GMC', 'GMC'), ('GMD', 'GMD'), ('GMPP', 'GMPP'), ('IF', 'IF'), ('SGM', 'SGM'), ('TC', 'TC')])
 	password = PasswordField(u'Mot de Passe', [
-		validators.Required(message='Ce champs est obligatoire. Veuillez le remplir.'),
-		validators.EqualTo('confirm', message='Les 2 mots de passe doivent correspondre.  Veuillez reessayer.'),
-		validators.Length(min=4, max=25, message='La longeur doit etre comprise entre 4 et 25 caracteres.')
+		validators.Required(message=messageObligatoire),
+		validators.EqualTo('confirm', message=messagePassword),
+		validators.Length(min=4, max=25, message=messageLongueur4_25)
 	])
-
-	confirm = PasswordField(u'Confirmez le mot de passe', [validators.Required(message='Ce champs est obligatoire. Veuillez le remplir.')])
-
-	dateNaissance = DateField(u'Ne(e) le', format='%d/%m/%Y',  validators=[validators.Optional()])
-
-	sexe = SelectField(u'Sexe ', choices=[('', ''), ('Masculin', 'Masculin'), ('Feminin', 'Feminin')])
-
-	poids = FloatField(u'Poids (kg)', [validators.Optional(), validators.NumberRange(min=20, max=300, message='Le poids doit etre compris entre 20 kg et 300 kg')])
-
-	hauteur = FloatField(u'Taille (cm)', [validators.Optional(), validators.NumberRange(min=90, max=250, message='La taille doit etre comprise entre 90 cm et 250 cm.')])
-
-	position = TextField(u'Position', [validators.Optional(), validators.Length(min=2, max=100,  message='La longeur doit etre comprise entre 3 et 100 caracteres.')])
-
-	affiliation = TextField(u'Affiliation', [validators.Optional(), validators.Length(min=2, max=100,  message='La longeur doit etre comprise entre 3 et 100 caracteres.')])
-
+	confirm = PasswordField(u'Confirmez le mot de passe', [validators.Required(message=messageObligatoire)])
+	dateNaissance = DateField(u'Né(e) le', format='%d/%m/%Y',  validators=[validators.Optional()])
+	sexe = SelectField(u'Sexe ', choices=[('', ''), ('Masculin', 'Masculin'), (u'Féminin', u'Feminin')])
+	poids = FloatField(u'Poids (kg)', [validators.Optional(), validators.NumberRange(min=20, max=300, message=messagePoids)])
+	hauteur = FloatField(u'Taille (cm)', [validators.Optional(), validators.NumberRange(min=90, max=250, message=messageTaille)])
+	position = TextField(u'Position', [validators.Optional(), validators.Length(min=3, max=100,  message=messageLongueur3_100)])
+	affiliation = TextField(u'Affiliation', [validators.Optional(), validators.Length(min=3, max=100,  message=messageLongueur3_100)])
 
 def createStudent(form, student):
 	student.firstname = form.prenom.data
@@ -93,4 +87,3 @@ def createEmployee(form, employee):
 	employee.etat = "PREREGISTERED"
 	employee.affiliation = form.affiliation.data
 	employee.position = form.position.data
-
