@@ -30,14 +30,18 @@
         {% endmacro %}
       <!-- Nav tabs -->
       <ul class="nav nav-tabs" role="tablist" id="tab_title_confirmation">
-        {% if form_active %}
+        {% if form_active==1 %}
         <li><a href="#remerciement_inscription" aria-controls="remerciement_inscription" role="tab" data-toggle="tab">Confirmation</a></li>
         <li class="active"><a href="#completer_profil" aria-controls="completer_profil" role="tab" data-toggle="tab">Profil</a></li>
-        <!--<li><a href="#photo_profil" aria-controls="photo_profil" role="tab" data-toggle="tab">Photo</a></li>-->
+        <li><a href="#photo_profil" aria-controls="photo_profil" role="tab" data-toggle="tab">Photo</a></li>
+        {% elif form_active==2 %}
+        <li><a href="#remerciement_inscription" aria-controls="remerciement_inscription" role="tab" data-toggle="tab">Confirmation</a></li>
+        <li><a href="#completer_profil" aria-controls="completer_profil" role="tab" data-toggle="tab">Profil</a></li>
+        <li class="active"><a href="#photo_profil" aria-controls="photo_profil" role="tab" data-toggle="tab">Photo</a></li>
         {% else %}
         <li class="active"><a href="#remerciement_inscription" aria-controls="remerciement_inscription" role="tab" data-toggle="tab">Confirmation</a></li>
         <li><a href="#completer_profil" aria-controls="completer_profil" role="tab" data-toggle="tab">Profil</a></li>
-        <!--<li><a href="#photo_profil" aria-controls="photo_profil" role="tab" data-toggle="tab">Photo</a></li>-->
+        <li><a href="#photo_profil" aria-controls="photo_profil" role="tab" data-toggle="tab">Photo</a></li>
         {% endif %}
       </ul>
             <!-- Tab panes -->
@@ -51,55 +55,88 @@
         <div role="tabpanel" class="tab-pane" id="completer_profil">
             <div class="title_confirmation_block">Compléter votre profil</div>
             <div class="description_block">
+                {% with messages = get_flashed_messages(category_filter=["infos_enregistrees"]) %}
+                    {% if messages %}
+                    <ul class=confirmationField_MESSAGE>
+                    {% for message in messages %}
+                        <li>{{ message }}</li>
+                    {% endfor %}
+                    </ul>
+                    {% endif %}
+                {% endwith %}
                 <form action="" method=post enctype=multipart/form-data id="formProfil">
-                    <div class="leftElements_DIV">
-                       {% if user['firstname'] == None or user['firstname'] == '' %}
+                    <fieldset class="leftElements_DIV">
                             <div class="elementForm_DIV">
-                            {{ render_field(form.firstname) }}
+                            {{ render_field(form1.firstname) }}
                             </div>
-                       {% endif %}
-                       {% if user['lastname'] == None or user['lastname'] == '' %}
                             <div class="elementForm_DIV">
-                            {{ render_field(form.lastname) }}
+                            {{ render_field(form1.lastname) }}
                             </div>
-                       {% endif %}
-                       {% if user['sex'] == None or user['sex'] == 'Inconnu' or user['sex'] == '' %}
                             <div class="elementForm_DIV">
-                            {{ render_field(form.sex) }}
+                            {{ render_field(form1.sex) }}
                             </div>
-                       {% endif %}
-                    </div>
-                    <div class="rightElements_DIV">
-                       {% if user['birthdate'] == None %}
+                    </fieldset>
+                    <fieldset class="rightElements_DIV">
                             <div class="elementForm_DIV">
-                            {{ render_field(form.birthdate,'jj/mm/aaaa') }}
+                            {{ render_field(form1.birthdate,'jj/mm/aaaa') }}
                             </div>
-                       {% endif %}
-                       {% if user['weight'] == None %}
                             <div class="elementForm_DIV">
-                            {{ render_field(form.weight) }}
+                            {{ render_field(form1.weight) }}
                             </div>
-                       {% endif %}
-                       {% if user['height'] == None %}
                             <div class="elementForm_DIV">
-                            {{ render_field(form.height) }}
+                            {{ render_field(form1.height) }}
                             </div>
-                       {% endif %}
-                   </div>
+                   </fieldset>
+                        <input type="hidden" name="hidden" value="Enregistrer">
                 </form>
             </div>
-            <div class="next_button" onclick="submitForm('formProfil')">Terminer</div>
+            <div class="prev_button">Étape précédente</div>
+            <div class="submit_button" id="btn_enregistrer" onclick="submitForm('formProfil');">Enregistrer</div>
+            <div class="next_button">Étape suivante</div>
         </div>
-        <!--<div role="tabpanel" class="tab-pane" id="photo_profil">
+        <div role="tabpanel" class="tab-pane" id="photo_profil">
             <div class="title_confirmation_block">Ajouter une photo de votre profil</div>
             <div class="description_block">
-                <span id="photo_image"></span>
                 <form method=post enctype=multipart/form-data id="formImage">
-                <input type=file name=file>
+                    <input id="image_upload" name="image_upload" type=file style="display:none;">
+                    <input type="hidden" name="hidden" value="Envoyer">
                 </form>
+                <div id="divPhotoUpload">
+                    <div id="divPhotoPreview">
+                        {% if user['image'] == None or user['image'] == '' %}
+                        <img src="static/images/icon.ico">
+                        {% else %}
+                        <img src="{{user['image']}}">
+                        {% endif %}
+                    </div>
+                    <div id="divPhotoDescription">
+                        <input type="button" id="btn_choisir" value="Choisissez votre photo" autofocus=true>
+                        <label id="imgFileName"></label>
+                        {% with errors = get_flashed_messages(category_filter=["errorFileUpload"]) %}
+                        {% if errors %}
+                        <ul class=photoField_ERRORS>
+                        {% for error in errors %}
+                            <li>{{ error }}</li>
+                        {% endfor %}
+                        </ul>
+                        {% endif %}
+                        {% endwith %}
+                        {% with messages = get_flashed_messages(category_filter=["image_uploaded"]) %}
+                        {% if messages %}
+                        <ul class=photoField_MESSAGE>
+                        {% for message in messages %}
+                            <li>{{ message }}</li>
+                        {% endfor %}
+                        </ul>
+                        {% endif %}
+                        {% endwith %}
+                    </div>
+                </div>
             </div>
-            <div class="next_button" onclick="document.getElementById('formImage').submit();">Terminer</div>
-        </div>-->
+            <div class="prev_button">Étape précédente</div>
+            <div class="submit_button" id="btn_envoyer" onclick="submitForm('formImage');">Envoyer</div>
+            <div class="next_button">Terminer</div>
+        </div>
       </div>
     {% elif msg =='refuse' %}
         <div class="title_confirmation_block">Refus d'inscription</div>
