@@ -6,7 +6,7 @@ from flask import render_template, request, flash, url_for, redirect
 
 from app import app, db
 from controllers.inscription_controller import InscriptionForm
-from controllers.confirmation_controller import ConfirmationForm, updateProfil
+from controllers.confirmation_controller import ConfirmationForm, updateProfil, uploadImage
 from models import Student, Person, Employee
 from emails import sendInscriptionMailAndAlert, inscription_notification, inscription_alert
 from controllers.signin_controller import LoginForm
@@ -86,24 +86,45 @@ def confirmation():
             token_param = request.args.get('token')
             user_found = Person.query.filter_by(token = token_param).first()
             confirm = request.args.get('msg')
-            form = ConfirmationForm(request.form)
+            form1 = ConfirmationForm(request.form)
             if request.method == "POST":
-                if form.validate():
-                    updateProfil(form, user_found)
-                    db.session.commit()
-                    return redirect(url_for('login'))
-                else:
-                    return render_template('inscription/confirmation.html', user=user_found, msg='confirme', form=form, form_active=1)
+                #Enregistrer profils
+                if request.form['hidden'] == 'Enregistrer':
+                    if form1.validate():
+                        updateProfil(form1, user_found)
+                        db.session.commit()
+                        flash(u'Votre profil est bien enregistré.', 'infos_enregistrees')
+                        return render_template('inscription/confirmation.html', user=user_found, msg='confirme', form1=form1, form_active=1)
+                    else:
+                        return render_template('inscription/confirmation.html', user=user_found, msg='confirme', form1=form1, form_active=1)
+                #Enregistrer image
+                elif request.form['hidden'] == 'Envoyer':
+                    img_file = request.files['image_upload']
+                    if img_file:
+                        if uploadImage(img_file, user_found):
+                            db.session.commit()
+                            flash(u'Vous avez bien enregistré votre photo de profil.', 'image_uploaded')
+                            return render_template('inscription/confirmation.html', user=user_found, msg='confirme', form1=form1, form_active=2)
+                        else:
+                            flash(u'La photo doit être en format: jpg, jpeg, png La taille doit être inférieure à 1 Mo.', 'errorFileUpload')
+                            return render_template('inscription/confirmation.html', user=user_found, msg='confirme', form1=form1, form_active=2)
+                    else:
+                        flash(u'Veuillez choisir une photo.', 'errorFileUpload')
+                        return render_template('inscription/confirmation.html', user=user_found, msg='confirme', form1=form1, form_active=2)
             else:
                 if user_found is not None:
                     if user_found.etat == 'PREREGISTERED':
                         if confirm == 'confirme':
-                            return render_template('inscription/confirmation.html', user=user_found, msg='confirme', form=form)
+                            user_found.etat='REGISTERED'
+                            db.session.commit()
+                            return render_template('inscription/confirmation.html', user=user_found, msg='confirme', form1=form1)
                         elif confirm == 'refuse':
                             user_found.etat='DROPPED'
                             db.session.commit()
                             return render_template('inscription/confirmation.html', user=user_found, msg='refuse')
-                return redirect(url_for('home'))
+                    elif user_found.etat == 'REGISTERED':
+                        redirect(url_for('login'))
+            return render_template('index.html')
 
 @app.route('/forgetpassword/', methods=['GET', 'POST'])
 def forgetpassword():
@@ -175,15 +196,15 @@ def page_not_found(e):
 #
 #     return "Insere : " + student.__repr__()
 
-@app.route('/test/listuser')
-def list_users() :
-    string = '<table>'
-    string += '<tr><th>id</th><th>lastname</th><th>firstname</th><th>birthdate</th><th>etat</th><th>sex</th></tr>'
-    for student in Person.query.all():
-        string += '<tr><td>'+student.__repr__()+'</td><td>'+unicode(student.lastname)+'</td><td>'+unicode(student.firstname)\
-                  +'</td><td>'+unicode(student.birthdate)+'</td><td>'+unicode(student.etat)+'</td><td>'+unicode(student.sex)
-    string += '</table>'
-    return string
+# @app.route('/test/listuser')
+# def list_users() :
+#     string = '<table>'
+#     string += '<tr><th>id</th><th>lastname</th><th>image</th><th>firstname</th><th>birthdate</th><th>etat</th><th>sex</th></tr>'
+#     for student in Person.query.all():
+#         string += '<tr><td>'+student.__repr__()+'</td><td>'+unicode(student.lastname)+'</td><td>'+unicode(student.image)+'</td><td>'+unicode(student.firstname)\
+#                   +'</td><td>'+unicode(student.birthdate)+'</td><td>'+unicode(student.etat)+'</td><td>'+unicode(student.sex)
+#     string += '</table>'
+#     return string
 
 # @app.route('/test/confirmation')
 # def test_confirmation() :
@@ -204,9 +225,9 @@ def list_users() :
 #     db.session.add(student2)
 #     db.session.commit()
 #     string = '<table>'
-#     string += '<tr><th>lastname</th><th>firstname</th><th>birthdate</th><th>etat</th><th>sex</th></tr>'
+#     string += '<tr><th>lastname</th><th>image</th><th>firstname</th><th>birthdate</th><th>etat</th><th>sex</th></tr>'
 #     for student in Person.query.all():
-#         string += '<tr><td>'+student.__repr__()+'</td><td>'+unicode(student.lastname)+'</td><td>'+unicode(student.firstname)\
+#         string += '<tr><td>'+student.__repr__()+'</td><td>'+unicode(student.lastname)+'</td><td>'+unicode(student.image)+'</td><td>'+unicode(student.firstname)\
 #                   +'</td><td>'+unicode(student.birthdate)+'</td><td>'+unicode(student.etat)+'</td><td>'+unicode(student.sex)
 #     string += '</table>'
 #     return string

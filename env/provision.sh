@@ -52,5 +52,8 @@ sudo apt-get install lynx
 # install WTforms
 sudo pip install Flask-WTF
 
+#install Werkzeug
+sudo pip install Werkzeug
+
 #setup the BDD
 echo "That's all folks!"
