@@ -94,7 +94,7 @@ class City(db.Model):
 
 
 class Group(db.Model):
-    __tablname__ = 'group'
+    __tablename__ = 'group'
     id = db.Column(db.Integer, primary_key=True)
     label = db.Column(db.String(127), nullable=False)
     slogan = db.Column(db.String(255), nullable=True)
