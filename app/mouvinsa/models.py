@@ -1,18 +1,19 @@
 from sqlalchemy import Enum
-from sqlalchemy.orm import backref
-
-from mouvinsa.app import db
+from flask.ext.sqlalchemy import SQLAlchemy
+from mouvinsa.app import app
+db = SQLAlchemy(app)
 
 
 # Defining Tables for n-n relationship
 badges_person = db.Table('badges_person',
                          db.Column('person_id', db.Integer, db.ForeignKey('person.id')),
-                         db.Column('badge_id', db.Integer, db.ForeignKey('badges.id'))
+                         db.Column('badge_id', db.Integer, db.ForeignKey('badge.id'))
 )
 city_goal = db.Table('city_goal',
                      db.Column('city_id', db.Integer, db.ForeignKey('city.id')),
                      db.Column('goal_id', db.Integer, db.ForeignKey('goal.id'))
 )
+
 
 # Defining models
 class Person(db.Model):
