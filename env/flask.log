@@ -1,0 +1,744 @@
+10.0.2.2 - - [17/Jan/2015 21:03:20] "GET / HTTP/1.1" 200 -
+10.0.2.2 - - [17/Jan/2015 21:03:21] "GET /static/styles/normalize.css HTTP/1.1" 200 -
+10.0.2.2 - - [17/Jan/2015 21:03:21] "GET /static/styles/style.css HTTP/1.1" 200 -
+10.0.2.2 - - [17/Jan/2015 21:03:21] "GET /static/styles/flipclock.css HTTP/1.1" 200 -
+10.0.2.2 - - [17/Jan/2015 21:03:21] "GET /static/styles/navigationBarStyle.css HTTP/1.1" 200 -
+10.0.2.2 - - [17/Jan/2015 21:03:21] "GET /static/styles/descriptionProjetStyle.css HTTP/1.1" 200 -
+10.0.2.2 - - [17/Jan/2015 21:03:22] "GET /static/styles/inscription/inscription_style.css HTTP/1.1" 200 -
+10.0.2.2 - - [17/Jan/2015 21:03:22] "GET /static/styles/navigationMenuStyle.css HTTP/1.1" 200 -
+10.0.2.2 - - [17/Jan/2015 21:03:22] "GET /static/scripts/flipclock.js HTTP/1.1" 200 -
+10.0.2.2 - - [17/Jan/2015 21:03:22] "GET /static/scripts/subscribtionCountDown.js HTTP/1.1" 200 -
+10.0.2.2 - - [17/Jan/2015 21:03:22] "GET /static/scripts/inscription/inscriptionFunctions.js HTTP/1.1" 200 -
+10.0.2.2 - - [17/Jan/2015 21:03:22] "GET /static/scripts/jquery.transit.js HTTP/1.1" 200 -
+10.0.2.2 - - [17/Jan/2015 21:03:22] "GET /static/images/logo-white.svg HTTP/1.1" 200 -
+10.0.2.2 - - [17/Jan/2015 21:03:22] "GET /static/images/logo.svg HTTP/1.1" 200 -
+10.0.2.2 - - [17/Jan/2015 21:03:22] "GET /static/images/personnes/jean-paul.jpg HTTP/1.1" 200 -
+10.0.2.2 - - [17/Jan/2015 21:03:23] "GET /static/images/personnes/marco.jpg HTTP/1.1" 200 -
+10.0.2.2 - - [17/Jan/2015 21:03:23] "GET /static/images/personnes/anthony.jpg HTTP/1.1" 200 -
+10.0.2.2 - - [17/Jan/2015 21:03:23] "GET /static/images/personnes/ludmila.jpg HTTP/1.1" 200 -
+10.0.2.2 - - [17/Jan/2015 21:03:23] "GET /static/images/personnes/bernardo.jpg HTTP/1.1" 200 -
+10.0.2.2 - - [17/Jan/2015 21:03:23] "GET /static/images/personnes/maria.jpg HTTP/1.1" 200 -
+10.0.2.2 - - [17/Jan/2015 21:03:23] "GET /static/images/fitnessjog.jpg HTTP/1.1" 200 -
+10.0.2.2 - - [17/Jan/2015 21:03:24] "GET /static/images/personnes/hoang-son.jpg HTTP/1.1" 200 -
+10.0.2.2 - - [17/Jan/2015 21:03:24] "GET /static/images/personnes/vadim.jpg HTTP/1.1" 200 -
+10.0.2.2 - - [17/Jan/2015 21:03:24] "GET /static/images/logo-insa.png HTTP/1.1" 200 -
+10.0.2.2 - - [17/Jan/2015 21:03:24] "GET /static/images/bg.jpg HTTP/1.1" 200 -
+10.0.2.2 - - [17/Jan/2015 21:03:24] "GET /static/images/icon.ico HTTP/1.1" 200 -
+ * Running on http://0.0.0.0:8080/
+ * Restarting with reloader
+--------------------------------------------------------------------------------
+ERROR in app [/app/mouvinsa/app.py:32]:
+Foreign key associated with column 'badges_person.badge_id' could not find table 'badges' with which to generate a foreign key to target column 'id'
+--------------------------------------------------------------------------------
+10.0.2.2 - - [19/Jan/2015 07:48:39] "GET / HTTP/1.1" 200 -
+10.0.2.2 - - [19/Jan/2015 07:48:40] "GET /static/styles/normalize.css HTTP/1.1" 200 -
+10.0.2.2 - - [19/Jan/2015 07:48:40] "GET /static/styles/style.css HTTP/1.1" 200 -
+10.0.2.2 - - [19/Jan/2015 07:48:40] "GET /static/styles/flipclock.css HTTP/1.1" 200 -
+10.0.2.2 - - [19/Jan/2015 07:48:40] "GET /static/styles/navigationBarStyle.css HTTP/1.1" 200 -
+10.0.2.2 - - [19/Jan/2015 07:48:40] "GET /static/styles/descriptionProjetStyle.css HTTP/1.1" 200 -
+10.0.2.2 - - [19/Jan/2015 07:48:40] "GET /static/styles/inscription/inscription_style.css HTTP/1.1" 200 -
+10.0.2.2 - - [19/Jan/2015 07:48:40] "GET /static/styles/navigationMenuStyle.css HTTP/1.1" 200 -
+10.0.2.2 - - [19/Jan/2015 07:48:40] "GET /static/scripts/jquery.js HTTP/1.1" 200 -
+10.0.2.2 - - [19/Jan/2015 07:48:41] "GET /static/scripts/flipclock.js HTTP/1.1" 200 -
+10.0.2.2 - - [19/Jan/2015 07:48:41] "GET /static/scripts/subscribtionCountDown.js HTTP/1.1" 200 -
+10.0.2.2 - - [19/Jan/2015 07:48:41] "GET /static/scripts/inscription/inscriptionFunctions.js HTTP/1.1" 200 -
+10.0.2.2 - - [19/Jan/2015 07:48:41] "GET /static/scripts/jquery.transit.js HTTP/1.1" 200 -
+10.0.2.2 - - [19/Jan/2015 07:48:41] "GET /static/images/logo-white.svg HTTP/1.1" 200 -
+10.0.2.2 - - [19/Jan/2015 07:48:41] "GET /static/images/logo.svg HTTP/1.1" 200 -
+10.0.2.2 - - [19/Jan/2015 07:48:41] "GET /static/images/personnes/jean-paul.jpg HTTP/1.1" 200 -
+10.0.2.2 - - [19/Jan/2015 07:48:41] "GET /static/images/personnes/marco.jpg HTTP/1.1" 200 -
+10.0.2.2 - - [19/Jan/2015 07:48:41] "GET /static/images/personnes/anthony.jpg HTTP/1.1" 200 -
+10.0.2.2 - - [19/Jan/2015 07:48:41] "GET /static/images/personnes/ludmila.jpg HTTP/1.1" 200 -
+10.0.2.2 - - [19/Jan/2015 07:48:41] "GET /static/images/personnes/bernardo.jpg HTTP/1.1" 200 -
+10.0.2.2 - - [19/Jan/2015 07:48:42] "GET /static/images/personnes/maria.jpg HTTP/1.1" 200 -
+10.0.2.2 - - [19/Jan/2015 07:48:42] "GET /static/images/fitnessjog.jpg HTTP/1.1" 200 -
+10.0.2.2 - - [19/Jan/2015 07:48:42] "GET /static/images/personnes/hoang-son.jpg HTTP/1.1" 200 -
+10.0.2.2 - - [19/Jan/2015 07:48:42] "GET /static/images/personnes/vadim.jpg HTTP/1.1" 200 -
+10.0.2.2 - - [19/Jan/2015 07:48:42] "GET /static/images/logo-insa.png HTTP/1.1" 200 -
+10.0.2.2 - - [19/Jan/2015 07:48:42] "GET /static/images/bg.jpg HTTP/1.1" 200 -
+10.0.2.2 - - [19/Jan/2015 07:49:12] "GET / HTTP/1.1" 200 -
+10.0.2.2 - - [19/Jan/2015 07:49:13] "GET /static/styles/normalize.css HTTP/1.1" 304 -
+10.0.2.2 - - [19/Jan/2015 07:49:13] "GET /static/styles/style.css HTTP/1.1" 304 -
+10.0.2.2 - - [19/Jan/2015 07:49:13] "GET /static/styles/flipclock.css HTTP/1.1" 304 -
+10.0.2.2 - - [19/Jan/2015 07:49:13] "GET /static/styles/navigationBarStyle.css HTTP/1.1" 304 -
+10.0.2.2 - - [19/Jan/2015 07:49:13] "GET /static/styles/descriptionProjetStyle.css HTTP/1.1" 304 -
+10.0.2.2 - - [19/Jan/2015 07:49:13] "GET /static/styles/inscription/inscription_style.css HTTP/1.1" 304 -
+10.0.2.2 - - [19/Jan/2015 07:49:13] "GET /static/styles/navigationMenuStyle.css HTTP/1.1" 304 -
+10.0.2.2 - - [19/Jan/2015 07:49:13] "GET /static/scripts/jquery.js HTTP/1.1" 304 -
+10.0.2.2 - - [19/Jan/2015 07:49:13] "GET /static/scripts/flipclock.js HTTP/1.1" 304 -
+10.0.2.2 - - [19/Jan/2015 07:49:13] "GET /static/scripts/subscribtionCountDown.js HTTP/1.1" 304 -
+10.0.2.2 - - [19/Jan/2015 07:49:13] "GET /static/scripts/inscription/inscriptionFunctions.js HTTP/1.1" 304 -
+10.0.2.2 - - [19/Jan/2015 07:49:13] "GET /static/scripts/jquery.transit.js HTTP/1.1" 304 -
+10.0.2.2 - - [19/Jan/2015 07:49:13] "GET /static/images/logo-white.svg HTTP/1.1" 304 -
+10.0.2.2 - - [19/Jan/2015 07:49:13] "GET /static/images/logo.svg HTTP/1.1" 304 -
+10.0.2.2 - - [19/Jan/2015 07:49:13] "GET /static/images/personnes/jean-paul.jpg HTTP/1.1" 304 -
+10.0.2.2 - - [19/Jan/2015 07:49:13] "GET /static/images/personnes/marco.jpg HTTP/1.1" 200 -
+10.0.2.2 - - [19/Jan/2015 07:49:13] "GET /static/images/personnes/anthony.jpg HTTP/1.1" 304 -
+10.0.2.2 - - [19/Jan/2015 07:49:13] "GET /static/images/personnes/ludmila.jpg HTTP/1.1" 304 -
+10.0.2.2 - - [19/Jan/2015 07:49:13] "GET /static/images/personnes/bernardo.jpg HTTP/1.1" 304 -
+10.0.2.2 - - [19/Jan/2015 07:49:13] "GET /static/images/personnes/maria.jpg HTTP/1.1" 304 -
+10.0.2.2 - - [19/Jan/2015 07:49:13] "GET /static/images/personnes/hoang-son.jpg HTTP/1.1" 304 -
+10.0.2.2 - - [19/Jan/2015 07:49:13] "GET /static/images/personnes/vadim.jpg HTTP/1.1" 304 -
+10.0.2.2 - - [19/Jan/2015 07:49:13] "GET /static/images/logo-insa.png HTTP/1.1" 304 -
+10.0.2.2 - - [19/Jan/2015 07:49:13] "GET /static/images/icon.ico HTTP/1.1" 200 -
+10.0.2.2 - - [19/Jan/2015 07:53:03] "GET /login HTTP/1.1" 301 -
+10.0.2.2 - - [19/Jan/2015 07:53:03] "GET /login/ HTTP/1.1" 200 -
+10.0.2.2 - - [19/Jan/2015 07:53:04] "GET /static/images/personnes/marco.jpg HTTP/1.1" 200 -
+ * Detected change in '/app/mouvinsa/controllers/inscription_controller.py', reloading
+ * Restarting with reloader
+--------------------------------------------------------------------------------
+ERROR in app [/app/mouvinsa/app.py:32]:
+Foreign key associated with column 'badges_person.badge_id' could not find table 'badges' with which to generate a foreign key to target column 'id'
+--------------------------------------------------------------------------------
+10.0.2.2 - - [19/Jan/2015 07:54:33] "GET /login/ HTTP/1.1" 200 -
+10.0.2.2 - - [19/Jan/2015 07:54:34] "GET /static/styles/normalize.css HTTP/1.1" 304 -
+10.0.2.2 - - [19/Jan/2015 07:54:34] "GET /static/styles/style.css HTTP/1.1" 304 -
+10.0.2.2 - - [19/Jan/2015 07:54:34] "GET /static/styles/flipclock.css HTTP/1.1" 304 -
+10.0.2.2 - - [19/Jan/2015 07:54:34] "GET /static/styles/navigationBarStyle.css HTTP/1.1" 304 -
+10.0.2.2 - - [19/Jan/2015 07:54:34] "GET /static/styles/descriptionProjetStyle.css HTTP/1.1" 304 -
+10.0.2.2 - - [19/Jan/2015 07:54:34] "GET /static/scripts/jquery.js HTTP/1.1" 304 -
+10.0.2.2 - - [19/Jan/2015 07:54:34] "GET /static/scripts/flipclock.js HTTP/1.1" 304 -
+10.0.2.2 - - [19/Jan/2015 07:54:34] "GET /static/scripts/subscribtionCountDown.js HTTP/1.1" 304 -
+10.0.2.2 - - [19/Jan/2015 07:54:34] "GET /static/scripts/inscription/inscriptionFunctions.js HTTP/1.1" 304 -
+10.0.2.2 - - [19/Jan/2015 07:54:34] "GET /static/scripts/jquery.transit.js HTTP/1.1" 304 -
+10.0.2.2 - - [19/Jan/2015 07:54:34] "GET /static/images/logo-white.svg HTTP/1.1" 304 -
+10.0.2.2 - - [19/Jan/2015 07:54:34] "GET /static/images/logo.svg HTTP/1.1" 304 -
+10.0.2.2 - - [19/Jan/2015 07:54:34] "GET /static/images/personnes/jean-paul.jpg HTTP/1.1" 304 -
+10.0.2.2 - - [19/Jan/2015 07:54:34] "GET /static/images/personnes/marco.jpg HTTP/1.1" 200 -
+10.0.2.2 - - [19/Jan/2015 07:54:34] "GET /static/images/personnes/anthony.jpg HTTP/1.1" 304 -
+10.0.2.2 - - [19/Jan/2015 07:54:34] "GET /static/images/personnes/ludmila.jpg HTTP/1.1" 304 -
+10.0.2.2 - - [19/Jan/2015 07:54:34] "GET /static/images/personnes/bernardo.jpg HTTP/1.1" 304 -
+10.0.2.2 - - [19/Jan/2015 07:54:34] "GET /static/images/personnes/vadim.jpg HTTP/1.1" 304 -
+10.0.2.2 - - [19/Jan/2015 07:54:34] "GET /static/images/personnes/hoang-son.jpg HTTP/1.1" 304 -
+10.0.2.2 - - [19/Jan/2015 07:54:34] "GET /static/images/logo-insa.png HTTP/1.1" 304 -
+10.0.2.2 - - [19/Jan/2015 07:54:34] "GET /static/images/personnes/maria.jpg HTTP/1.1" 304 -
+10.0.2.2 - - [19/Jan/2015 07:54:41] "GET / HTTP/1.1" 200 -
+10.0.2.2 - - [19/Jan/2015 07:54:41] "GET /static/images/personnes/marco.jpg HTTP/1.1" 200 -
+ * Detected change in '/app/mouvinsa/controllers/inscription_controller.py', reloading
+Unhandled exception in thread started by 
+sys.excepthook is missing
+lost sys.stderr
+ * Restarting with reloader
+ * Detected change in '/app/mouvinsa/controllers/inscription_controller.py', reloading
+ * Restarting with reloader
+ * Detected change in '/app/mouvinsa/controllers/inscription_controller.py', reloading
+ * Restarting with reloader
+ * Detected change in '/app/mouvinsa/controllers/inscription_controller.py', reloading
+Unhandled exception in thread started by 
+sys.excepthook is missing
+lost sys.stderr
+ * Restarting with reloader
+--------------------------------------------------------------------------------
+ERROR in app [/app/mouvinsa/app.py:32]:
+Foreign key associated with column 'badges_person.badge_id' could not find table 'badges' with which to generate a foreign key to target column 'id'
+--------------------------------------------------------------------------------
+10.0.2.2 - - [19/Jan/2015 07:58:03] "GET / HTTP/1.1" 200 -
+10.0.2.2 - - [19/Jan/2015 07:58:04] "GET /static/styles/normalize.css HTTP/1.1" 304 -
+10.0.2.2 - - [19/Jan/2015 07:58:04] "GET /static/styles/style.css HTTP/1.1" 304 -
+10.0.2.2 - - [19/Jan/2015 07:58:04] "GET /static/styles/flipclock.css HTTP/1.1" 304 -
+10.0.2.2 - - [19/Jan/2015 07:58:04] "GET /static/styles/navigationBarStyle.css HTTP/1.1" 304 -
+10.0.2.2 - - [19/Jan/2015 07:58:04] "GET /static/styles/descriptionProjetStyle.css HTTP/1.1" 304 -
+10.0.2.2 - - [19/Jan/2015 07:58:04] "GET /static/styles/inscription/inscription_style.css HTTP/1.1" 304 -
+10.0.2.2 - - [19/Jan/2015 07:58:04] "GET /static/styles/navigationMenuStyle.css HTTP/1.1" 304 -
+10.0.2.2 - - [19/Jan/2015 07:58:04] "GET /static/scripts/jquery.js HTTP/1.1" 304 -
+10.0.2.2 - - [19/Jan/2015 07:58:04] "GET /static/scripts/flipclock.js HTTP/1.1" 304 -
+10.0.2.2 - - [19/Jan/2015 07:58:04] "GET /static/scripts/subscribtionCountDown.js HTTP/1.1" 304 -
+10.0.2.2 - - [19/Jan/2015 07:58:04] "GET /static/scripts/inscription/inscriptionFunctions.js HTTP/1.1" 304 -
+10.0.2.2 - - [19/Jan/2015 07:58:04] "GET /static/scripts/jquery.transit.js HTTP/1.1" 304 -
+10.0.2.2 - - [19/Jan/2015 07:58:04] "GET /static/images/logo-white.svg HTTP/1.1" 304 -
+10.0.2.2 - - [19/Jan/2015 07:58:04] "GET /static/images/logo.svg HTTP/1.1" 304 -
+10.0.2.2 - - [19/Jan/2015 07:58:04] "GET /static/images/personnes/jean-paul.jpg HTTP/1.1" 304 -
+10.0.2.2 - - [19/Jan/2015 07:58:04] "GET /static/images/personnes/marco.jpg HTTP/1.1" 200 -
+10.0.2.2 - - [19/Jan/2015 07:58:04] "GET /static/images/personnes/anthony.jpg HTTP/1.1" 304 -
+10.0.2.2 - - [19/Jan/2015 07:58:05] "GET /static/images/personnes/ludmila.jpg HTTP/1.1" 304 -
+10.0.2.2 - - [19/Jan/2015 07:58:05] "GET /static/images/personnes/bernardo.jpg HTTP/1.1" 304 -
+10.0.2.2 - - [19/Jan/2015 07:58:05] "GET /static/images/personnes/maria.jpg HTTP/1.1" 304 -
+10.0.2.2 - - [19/Jan/2015 07:58:05] "GET /static/images/personnes/hoang-son.jpg HTTP/1.1" 304 -
+10.0.2.2 - - [19/Jan/2015 07:58:05] "GET /static/images/personnes/vadim.jpg HTTP/1.1" 304 -
+10.0.2.2 - - [19/Jan/2015 07:58:05] "GET /static/images/logo-insa.png HTTP/1.1" 304 -
+10.0.2.2 - - [19/Jan/2015 07:59:11] "POST /inscription HTTP/1.1" 200 -
+10.0.2.2 - - [19/Jan/2015 07:59:12] "GET /static/images/personnes/marco.jpg HTTP/1.1" 200 -
+10.0.2.2 - - [19/Jan/2015 07:59:31] "POST /inscription HTTP/1.1" 500 -
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 1820, in wsgi_app
+    response = self.make_response(self.handle_exception(e))
+  File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 1403, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 1817, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 1477, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 1381, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 1461, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/app/mouvinsa/views.py", line 26, in inscription
+    utilisateurEmail = Person.query.filter_by(email = form.email.data).first()
+  File "/usr/local/lib/python2.7/dist-packages/flask_sqlalchemy/__init__.py", line 452, in __get__
+    mapper = orm.class_mapper(type)
+  File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/orm/base.py", line 412, in class_mapper
+    mapper = _inspect_mapped_class(class_, configure=configure)
+  File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/orm/base.py", line 391, in _inspect_mapped_class
+    mapper._configure_all()
+  File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/orm/mapper.py", line 1156, in _configure_all
+    configure_mappers()
+  File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/orm/mapper.py", line 2589, in configure_mappers
+    mapper._post_configure_properties()
+  File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/orm/mapper.py", line 1694, in _post_configure_properties
+    prop.init()
+  File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/orm/interfaces.py", line 144, in init
+    self.do_init()
+  File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/orm/relationships.py", line 1550, in do_init
+    self._setup_join_conditions()
+  File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/orm/relationships.py", line 1624, in _setup_join_conditions
+    can_be_synced_fn=self._columns_are_mapped
+  File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/orm/relationships.py", line 1892, in __init__
+    self._determine_joins()
+  File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/orm/relationships.py", line 1987, in _determine_joins
+    "expressions." % (self.prop, self.secondary))
+NoForeignKeysError: Could not determine join condition between parent/child tables on relationship Person.badges - there are no foreign keys linking these tables via secondary table 'badges_person'.  Ensure that referencing columns are associated with a ForeignKey or ForeignKeyConstraint, or specify 'primaryjoin' and 'secondaryjoin' expressions.
+10.0.2.2 - - [19/Jan/2015 07:59:31] "GET /inscription?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+10.0.2.2 - - [19/Jan/2015 07:59:31] "GET /inscription?__debugger__=yes&cmd=resource&f=jquery.js HTTP/1.1" 200 -
+10.0.2.2 - - [19/Jan/2015 07:59:31] "GET /inscription?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+10.0.2.2 - - [19/Jan/2015 07:59:31] "GET /inscription?__debugger__=yes&cmd=resource&f=ubuntu.ttf HTTP/1.1" 200 -
+10.0.2.2 - - [19/Jan/2015 07:59:32] "GET /inscription?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+10.0.2.2 - - [19/Jan/2015 07:59:32] "GET /inscription?__debugger__=yes&cmd=resource&f=source.png HTTP/1.1" 200 -
+10.0.2.2 - - [19/Jan/2015 07:59:32] "GET /inscription?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+ * Detected change in '/app/mouvinsa/controllers/inscription_controller.py', reloading
+ * Restarting with reloader
+Traceback (most recent call last):
+  File "/app/runserver.py", line 2, in <module>
+    from mouvinsa.app import app
+  File "/app/mouvinsa/__init__.py", line 2, in <module>
+    import views
+  File "/app/mouvinsa/views.py", line 8, in <module>
+    from controllers.inscription_controller import InscriptionForm
+  File "/app/mouvinsa/controllers/inscription_controller.py", line 5, in <module>
+    from PassHash import hash_password
+ImportError: No module named PassHash
+Traceback (most recent call last):
+  File "/app/runserver.py", line 2, in <module>
+    from mouvinsa.app import app
+  File "/app/mouvinsa/__init__.py", line 2, in <module>
+    import views
+  File "/app/mouvinsa/views.py", line 8, in <module>
+    from controllers.inscription_controller import InscriptionForm
+  File "/app/mouvinsa/controllers/inscription_controller.py", line 5, in <module>
+    from PassHash import hash_password
+ImportError: No module named PassHash
+Traceback (most recent call last):
+  File "/app/runserver.py", line 2, in <module>
+    from mouvinsa.app import app
+  File "/app/mouvinsa/__init__.py", line 2, in <module>
+    import views
+  File "/app/mouvinsa/views.py", line 8, in <module>
+    from controllers.inscription_controller import InscriptionForm
+  File "/app/mouvinsa/controllers/inscription_controller.py", line 5, in <module>
+    from PassHash import hash_password
+ImportError: No module named PassHash
+Traceback (most recent call last):
+  File "/app/runserver.py", line 2, in <module>
+    from mouvinsa.app import app
+  File "/app/mouvinsa/__init__.py", line 2, in <module>
+    import views
+  File "/app/mouvinsa/views.py", line 8, in <module>
+    from controllers.inscription_controller import InscriptionForm
+  File "/app/mouvinsa/controllers/inscription_controller.py", line 5, in <module>
+    from PassHash import hash_password
+ImportError: No module named PassHash
+Traceback (most recent call last):
+  File "/app/runserver.py", line 2, in <module>
+    from mouvinsa.app import app
+  File "/app/mouvinsa/__init__.py", line 2, in <module>
+    import views
+  File "/app/mouvinsa/views.py", line 8, in <module>
+    from controllers.inscription_controller import InscriptionForm
+  File "/app/mouvinsa/controllers/inscription_controller.py", line 5, in <module>
+    from PassHash import hash_password
+ImportError: No module named PassHash
+Traceback (most recent call last):
+  File "/app/runserver.py", line 2, in <module>
+    from mouvinsa.app import app
+  File "/app/mouvinsa/__init__.py", line 2, in <module>
+    import views
+  File "/app/mouvinsa/views.py", line 8, in <module>
+    from controllers.inscription_controller import InscriptionForm
+  File "/app/mouvinsa/controllers/inscription_controller.py", line 5, in <module>
+    from PassHash import hash_password
+ImportError: No module named PassHash
+Traceback (most recent call last):
+  File "/app/runserver.py", line 2, in <module>
+    from mouvinsa.app import app
+  File "/app/mouvinsa/__init__.py", line 2, in <module>
+    import views
+  File "/app/mouvinsa/views.py", line 8, in <module>
+    from controllers.inscription_controller import InscriptionForm
+  File "/app/mouvinsa/controllers/inscription_controller.py", line 5, in <module>
+    from PassHash import hash_password
+ImportError: No module named PassHash
+Traceback (most recent call last):
+  File "/app/runserver.py", line 2, in <module>
+    from mouvinsa.app import app
+  File "/app/mouvinsa/__init__.py", line 2, in <module>
+    import views
+  File "/app/mouvinsa/views.py", line 8, in <module>
+    from controllers.inscription_controller import InscriptionForm
+  File "/app/mouvinsa/controllers/inscription_controller.py", line 5, in <module>
+    from PassHash import hash_password
+ImportError: No module named PassHash
+Traceback (most recent call last):
+  File "/app/runserver.py", line 2, in <module>
+    from mouvinsa.app import app
+  File "/app/mouvinsa/__init__.py", line 2, in <module>
+    import views
+  File "/app/mouvinsa/views.py", line 8, in <module>
+    from controllers.inscription_controller import InscriptionForm
+  File "/app/mouvinsa/controllers/inscription_controller.py", line 5, in <module>
+    from PassHash import hash_password
+ImportError: No module named PassHash
+Traceback (most recent call last):
+  File "/app/runserver.py", line 2, in <module>
+    from mouvinsa.app import app
+  File "/app/mouvinsa/__init__.py", line 2, in <module>
+    import views
+  File "/app/mouvinsa/views.py", line 8, in <module>
+    from controllers.inscription_controller import InscriptionForm
+  File "/app/mouvinsa/controllers/inscription_controller.py", line 5, in <module>
+    from PassHash import hash_password
+ImportError: No module named PassHash
+Traceback (most recent call last):
+  File "/app/runserver.py", line 2, in <module>
+    from mouvinsa.app import app
+  File "/app/mouvinsa/__init__.py", line 2, in <module>
+    import views
+  File "/app/mouvinsa/views.py", line 8, in <module>
+    from controllers.inscription_controller import InscriptionForm
+  File "/app/mouvinsa/controllers/inscription_controller.py", line 5, in <module>
+    from PassHash import hash_password
+ImportError: No module named PassHash
+Traceback (most recent call last):
+  File "/app/runserver.py", line 2, in <module>
+    from mouvinsa.app import app
+  File "/app/mouvinsa/__init__.py", line 2, in <module>
+    import views
+  File "/app/mouvinsa/views.py", line 8, in <module>
+    from controllers.inscription_controller import InscriptionForm
+  File "/app/mouvinsa/controllers/inscription_controller.py", line 5, in <module>
+    from PassHash import hash_password
+ImportError: No module named PassHash
+Traceback (most recent call last):
+  File "/app/runserver.py", line 2, in <module>
+    from mouvinsa.app import app
+  File "/app/mouvinsa/__init__.py", line 2, in <module>
+    import views
+  File "/app/mouvinsa/views.py", line 8, in <module>
+    from controllers.inscription_controller import InscriptionForm
+  File "/app/mouvinsa/controllers/inscription_controller.py", line 5, in <module>
+    from PassHash import hash_password
+ImportError: No module named PassHash
+Traceback (most recent call last):
+  File "/app/runserver.py", line 2, in <module>
+    from mouvinsa.app import app
+  File "/app/mouvinsa/__init__.py", line 2, in <module>
+    import views
+  File "/app/mouvinsa/views.py", line 8, in <module>
+    from controllers.inscription_controller import InscriptionForm
+  File "/app/mouvinsa/controllers/inscription_controller.py", line 5, in <module>
+    from PassHash import hash_password
+ImportError: No module named PassHash
+Traceback (most recent call last):
+  File "/app/runserver.py", line 2, in <module>
+    from mouvinsa.app import app
+  File "/app/mouvinsa/__init__.py", line 2, in <module>
+    import views
+  File "/app/mouvinsa/views.py", line 8, in <module>
+    from controllers.inscription_controller import InscriptionForm
+  File "/app/mouvinsa/controllers/inscription_controller.py", line 5, in <module>
+    from PassHash import hash_password
+ImportError: No module named PassHash
+Traceback (most recent call last):
+  File "/app/runserver.py", line 2, in <module>
+    from mouvinsa.app import app
+  File "/app/mouvinsa/__init__.py", line 2, in <module>
+    import views
+  File "/app/mouvinsa/views.py", line 8, in <module>
+    from controllers.inscription_controller import InscriptionForm
+  File "/app/mouvinsa/controllers/inscription_controller.py", line 5, in <module>
+    from PassHash import hash_password
+ImportError: No module named PassHash
+Traceback (most recent call last):
+  File "/app/runserver.py", line 2, in <module>
+    from mouvinsa.app import app
+  File "/app/mouvinsa/__init__.py", line 2, in <module>
+    import views
+  File "/app/mouvinsa/views.py", line 8, in <module>
+    from controllers.inscription_controller import InscriptionForm
+  File "/app/mouvinsa/controllers/inscription_controller.py", line 5, in <module>
+    from PassHash import hash_password
+ImportError: No module named PassHash
+Traceback (most recent call last):
+  File "/app/runserver.py", line 2, in <module>
+    from mouvinsa.app import app
+  File "/app/mouvinsa/__init__.py", line 2, in <module>
+    import views
+  File "/app/mouvinsa/views.py", line 8, in <module>
+    from controllers.inscription_controller import InscriptionForm
+  File "/app/mouvinsa/controllers/inscription_controller.py", line 5, in <module>
+    from PassHash import hash_password
+ImportError: No module named PassHash
+Traceback (most recent call last):
+  File "/app/runserver.py", line 2, in <module>
+    from mouvinsa.app import app
+  File "/app/mouvinsa/__init__.py", line 2, in <module>
+    import views
+  File "/app/mouvinsa/views.py", line 8, in <module>
+    from controllers.inscription_controller import InscriptionForm
+  File "/app/mouvinsa/controllers/inscription_controller.py", line 5, in <module>
+    from PassHash import hash_password
+ImportError: No module named PassHash
+Traceback (most recent call last):
+  File "/app/runserver.py", line 2, in <module>
+    from mouvinsa.app import app
+  File "/app/mouvinsa/__init__.py", line 2, in <module>
+    import views
+  File "/app/mouvinsa/views.py", line 8, in <module>
+    from controllers.inscription_controller import InscriptionForm
+  File "/app/mouvinsa/controllers/inscription_controller.py", line 5, in <module>
+    from PassHash import hash_password
+ImportError: No module named PassHash
+Traceback (most recent call last):
+  File "/app/runserver.py", line 2, in <module>
+    from mouvinsa.app import app
+  File "/app/mouvinsa/__init__.py", line 2, in <module>
+    import views
+  File "/app/mouvinsa/views.py", line 8, in <module>
+    from controllers.inscription_controller import InscriptionForm
+  File "/app/mouvinsa/controllers/inscription_controller.py", line 5, in <module>
+    from utils.passHash import hash_password
+ImportError: No module named utils.passHash
+Traceback (most recent call last):
+  File "/app/runserver.py", line 2, in <module>
+    from mouvinsa.app import app
+  File "/app/mouvinsa/__init__.py", line 2, in <module>
+    import views
+  File "/app/mouvinsa/views.py", line 8, in <module>
+    from controllers.inscription_controller import InscriptionForm
+  File "/app/mouvinsa/controllers/inscription_controller.py", line 5, in <module>
+    from utils.passHash import hash_password
+ImportError: No module named utils.passHash
+Traceback (most recent call last):
+  File "/app/runserver.py", line 2, in <module>
+    from mouvinsa.app import app
+  File "/app/mouvinsa/__init__.py", line 2, in <module>
+    import views
+  File "/app/mouvinsa/views.py", line 8, in <module>
+    from controllers.inscription_controller import InscriptionForm
+  File "/app/mouvinsa/controllers/inscription_controller.py", line 5, in <module>
+    from utils.passHash import hash_password
+ImportError: No module named utils.passHash
+Traceback (most recent call last):
+  File "/app/runserver.py", line 2, in <module>
+    from mouvinsa.app import app
+  File "/app/mouvinsa/__init__.py", line 2, in <module>
+    import views
+  File "/app/mouvinsa/views.py", line 8, in <module>
+    from controllers.inscription_controller import InscriptionForm
+  File "/app/mouvinsa/controllers/inscription_controller.py", line 5, in <module>
+    from utils.passHash import hash_password
+ImportError: No module named utils.passHash
+Traceback (most recent call last):
+  File "/app/runserver.py", line 2, in <module>
+    from mouvinsa.app import app
+  File "/app/mouvinsa/__init__.py", line 2, in <module>
+    import views
+  File "/app/mouvinsa/views.py", line 8, in <module>
+    from controllers.inscription_controller import InscriptionForm
+  File "/app/mouvinsa/controllers/inscription_controller.py", line 5, in <module>
+    from utils.passHash import hash_password
+ImportError: No module named utils.passHash
+Traceback (most recent call last):
+  File "/app/runserver.py", line 2, in <module>
+    from mouvinsa.app import app
+  File "/app/mouvinsa/__init__.py", line 2, in <module>
+    import views
+  File "/app/mouvinsa/views.py", line 8, in <module>
+    from controllers.inscription_controller import InscriptionForm
+  File "/app/mouvinsa/controllers/inscription_controller.py", line 5, in <module>
+    from utils.passHash import hash_password
+ImportError: No module named utils.passHash
+Traceback (most recent call last):
+  File "/app/runserver.py", line 2, in <module>
+    from mouvinsa.app import app
+  File "/app/mouvinsa/__init__.py", line 2, in <module>
+    import views
+  File "/app/mouvinsa/views.py", line 8, in <module>
+    from controllers.inscription_controller import InscriptionForm
+  File "/app/mouvinsa/controllers/inscription_controller.py", line 5, in <module>
+    from utils.passHash import hash_password
+ImportError: No module named utils.passHash
+Traceback (most recent call last):
+  File "/app/runserver.py", line 2, in <module>
+    from mouvinsa.app import app
+  File "/app/mouvinsa/__init__.py", line 2, in <module>
+    import views
+  File "/app/mouvinsa/views.py", line 8, in <module>
+    from controllers.inscription_controller import InscriptionForm
+  File "/app/mouvinsa/controllers/inscription_controller.py", line 5, in <module>
+    from utils.passHash import hash_password
+ImportError: No module named utils.passHash
+Traceback (most recent call last):
+  File "/app/runserver.py", line 2, in <module>
+    from mouvinsa.app import app
+  File "/app/mouvinsa/__init__.py", line 2, in <module>
+    import views
+  File "/app/mouvinsa/views.py", line 8, in <module>
+    from controllers.inscription_controller import InscriptionForm
+  File "/app/mouvinsa/controllers/inscription_controller.py", line 5, in <module>
+    from utils.passHash import hash_password
+ImportError: No module named utils.passHash
+Traceback (most recent call last):
+  File "/app/runserver.py", line 2, in <module>
+    from mouvinsa.app import app
+  File "/app/mouvinsa/__init__.py", line 2, in <module>
+    import views
+  File "/app/mouvinsa/views.py", line 8, in <module>
+    from controllers.inscription_controller import InscriptionForm
+  File "/app/mouvinsa/controllers/inscription_controller.py", line 5, in <module>
+    from utils.passHash import hash_password
+ImportError: No module named utils.passHash
+Traceback (most recent call last):
+  File "/app/runserver.py", line 2, in <module>
+    from mouvinsa.app import app
+  File "/app/mouvinsa/__init__.py", line 2, in <module>
+    import views
+  File "/app/mouvinsa/views.py", line 8, in <module>
+    from controllers.inscription_controller import InscriptionForm
+  File "/app/mouvinsa/controllers/inscription_controller.py", line 5, in <module>
+    from utils.passHash import hash_password
+ImportError: No module named utils.passHash
+Traceback (most recent call last):
+  File "/app/runserver.py", line 2, in <module>
+    from mouvinsa.app import app
+  File "/app/mouvinsa/__init__.py", line 2, in <module>
+    import views
+  File "/app/mouvinsa/views.py", line 8, in <module>
+    from controllers.inscription_controller import InscriptionForm
+  File "/app/mouvinsa/controllers/inscription_controller.py", line 5, in <module>
+    from utils.passHash import hash_password
+ImportError: No module named utils.passHash
+Traceback (most recent call last):
+  File "/app/runserver.py", line 2, in <module>
+    from mouvinsa.app import app
+  File "/app/mouvinsa/__init__.py", line 2, in <module>
+    import views
+  File "/app/mouvinsa/views.py", line 8, in <module>
+    from controllers.inscription_controller import InscriptionForm
+  File "/app/mouvinsa/controllers/inscription_controller.py", line 5, in <module>
+    from utils.passHash import hash_password
+ImportError: No module named utils.passHash
+Traceback (most recent call last):
+  File "/app/runserver.py", line 2, in <module>
+    from mouvinsa.app import app
+  File "/app/mouvinsa/__init__.py", line 2, in <module>
+    import views
+  File "/app/mouvinsa/views.py", line 8, in <module>
+    from controllers.inscription_controller import InscriptionForm
+  File "/app/mouvinsa/controllers/inscription_controller.py", line 5, in <module>
+    from utils.passHash import hash_password
+ImportError: No module named utils.passHash
+Traceback (most recent call last):
+  File "/app/runserver.py", line 2, in <module>
+    from mouvinsa.app import app
+  File "/app/mouvinsa/__init__.py", line 2, in <module>
+    import views
+  File "/app/mouvinsa/views.py", line 8, in <module>
+    from controllers.inscription_controller import InscriptionForm
+  File "/app/mouvinsa/controllers/inscription_controller.py", line 5, in <module>
+    from utils.passHash import hash_password
+ImportError: No module named utils.passHash
+Traceback (most recent call last):
+  File "/app/runserver.py", line 2, in <module>
+    from mouvinsa.app import app
+  File "/app/mouvinsa/__init__.py", line 2, in <module>
+    import views
+  File "/app/mouvinsa/views.py", line 8, in <module>
+    from controllers.inscription_controller import InscriptionForm
+  File "/app/mouvinsa/controllers/inscription_controller.py", line 5, in <module>
+    from utils.passHash import hash_password
+ImportError: No module named utils.passHash
+Traceback (most recent call last):
+  File "/app/runserver.py", line 2, in <module>
+    from mouvinsa.app import app
+  File "/app/mouvinsa/__init__.py", line 2, in <module>
+    import views
+  File "/app/mouvinsa/views.py", line 8, in <module>
+    from controllers.inscription_controller import InscriptionForm
+  File "/app/mouvinsa/controllers/inscription_controller.py", line 5, in <module>
+    from utils.passHash import hash_password
+ImportError: No module named utils.passHash
+Traceback (most recent call last):
+  File "/app/runserver.py", line 2, in <module>
+    from mouvinsa.app import app
+  File "/app/mouvinsa/__init__.py", line 2, in <module>
+    import views
+  File "/app/mouvinsa/views.py", line 8, in <module>
+    from controllers.inscription_controller import InscriptionForm
+  File "/app/mouvinsa/controllers/inscription_controller.py", line 5, in <module>
+    from utils.passHash import hash_password
+ImportError: No module named utils.passHash
+Traceback (most recent call last):
+  File "/app/runserver.py", line 2, in <module>
+    from mouvinsa.app import app
+  File "/app/mouvinsa/__init__.py", line 2, in <module>
+    import views
+  File "/app/mouvinsa/views.py", line 8, in <module>
+    from controllers.inscription_controller import InscriptionForm
+  File "/app/mouvinsa/controllers/inscription_controller.py", line 5, in <module>
+    from utils.passHash import hash_password
+ImportError: No module named utils.passHash
+Traceback (most recent call last):
+  File "/app/runserver.py", line 2, in <module>
+    from mouvinsa.app import app
+  File "/app/mouvinsa/__init__.py", line 2, in <module>
+    import views
+  File "/app/mouvinsa/views.py", line 8, in <module>
+    from controllers.inscription_controller import InscriptionForm
+  File "/app/mouvinsa/controllers/inscription_controller.py", line 5, in <module>
+    from PassHash import hash_password
+ImportError: No module named utils.passHash
+Traceback (most recent call last):
+  File "/app/runserver.py", line 2, in <module>
+    from mouvinsa.app import app
+  File "/app/mouvinsa/__init__.py", line 2, in <module>
+    import views
+  File "/app/mouvinsa/views.py", line 8, in <module>
+    from controllers.inscription_controller import InscriptionForm
+  File "/app/mouvinsa/controllers/inscription_controller.py", line 5, in <module>
+    from PassHash import hash_password
+ImportError: No module named PassHash
+Traceback (most recent call last):
+  File "/app/runserver.py", line 2, in <module>
+    from mouvinsa.app import app
+  File "/app/mouvinsa/__init__.py", line 2, in <module>
+    import views
+  File "/app/mouvinsa/views.py", line 8, in <module>
+    from controllers.inscription_controller import InscriptionForm
+  File "/app/mouvinsa/controllers/inscription_controller.py", line 5, in <module>
+    from PassHash import hash_password
+ImportError: No module named PassHash
+Traceback (most recent call last):
+  File "/app/runserver.py", line 2, in <module>
+    from mouvinsa.app import app
+  File "/app/mouvinsa/__init__.py", line 2, in <module>
+    import views
+  File "/app/mouvinsa/views.py", line 8, in <module>
+    from controllers.inscription_controller import InscriptionForm
+  File "/app/mouvinsa/controllers/inscription_controller.py", line 5, in <module>
+    from PassHash import hash_password
+ImportError: No module named PassHash
+Traceback (most recent call last):
+  File "/app/runserver.py", line 2, in <module>
+    from mouvinsa.app import app
+  File "/app/mouvinsa/__init__.py", line 2, in <module>
+    import views
+  File "/app/mouvinsa/views.py", line 8, in <module>
+    from controllers.inscription_controller import InscriptionForm
+  File "/app/mouvinsa/controllers/inscription_controller.py", line 5, in <module>
+    from PassHash import hash_password
+ImportError: No module named PassHash
+Traceback (most recent call last):
+  File "/app/runserver.py", line 2, in <module>
+    from mouvinsa.app import app
+  File "/app/mouvinsa/__init__.py", line 2, in <module>
+    import views
+  File "/app/mouvinsa/views.py", line 8, in <module>
+    from controllers.inscription_controller import InscriptionForm
+  File "/app/mouvinsa/controllers/inscription_controller.py", line 5, in <module>
+    from PassHash import hash_password
+ImportError: No module named PassHash
+Traceback (most recent call last):
+  File "/app/runserver.py", line 2, in <module>
+    from mouvinsa.app import app
+  File "/app/mouvinsa/__init__.py", line 2, in <module>
+    import views
+  File "/app/mouvinsa/views.py", line 8, in <module>
+    from controllers.inscription_controller import InscriptionForm
+  File "/app/mouvinsa/controllers/inscription_controller.py", line 5, in <module>
+    from PassHash import hash_password
+ImportError: No module named PassHash
+Traceback (most recent call last):
+  File "/app/runserver.py", line 2, in <module>
+    from mouvinsa.app import app
+  File "/app/mouvinsa/__init__.py", line 2, in <module>
+    import views
+  File "/app/mouvinsa/views.py", line 8, in <module>
+    from controllers.inscription_controller import InscriptionForm
+  File "/app/mouvinsa/controllers/inscription_controller.py", line 5, in <module>
+    from PassHash import hash_password
+ImportError: No module named PassHash
+Traceback (most recent call last):
+  File "/app/runserver.py", line 2, in <module>
+    from mouvinsa.app import app
+  File "/app/mouvinsa/__init__.py", line 2, in <module>
+    import views
+  File "/app/mouvinsa/views.py", line 8, in <module>
+    from controllers.inscription_controller import InscriptionForm
+  File "/app/mouvinsa/controllers/inscription_controller.py", line 5, in <module>
+    from PassHash import hash_password
+ImportError: No module named PassHash
+Traceback (most recent call last):
+  File "/app/runserver.py", line 2, in <module>
+    from mouvinsa.app import app
+  File "/app/mouvinsa/__init__.py", line 2, in <module>
+    import views
+  File "/app/mouvinsa/views.py", line 8, in <module>
+    from controllers.inscription_controller import InscriptionForm
+  File "/app/mouvinsa/controllers/inscription_controller.py", line 5, in <module>
+    from PassHash import hash_password
+ImportError: No module named PassHash
+Traceback (most recent call last):
+  File "/app/runserver.py", line 2, in <module>
+    from mouvinsa.app import app
+  File "/app/mouvinsa/__init__.py", line 2, in <module>
+    import views
+  File "/app/mouvinsa/views.py", line 8, in <module>
+    from controllers.inscription_controller import InscriptionForm
+  File "/app/mouvinsa/controllers/inscription_controller.py", line 5, in <module>
+    from PassHash import PassHash
+ImportError: No module named PassHash
+ * Running on http://0.0.0.0:8080/
+ * Restarting with reloader
+--------------------------------------------------------------------------------
+ERROR in app [/app/mouvinsa/app.py:32]:
+Foreign key associated with column 'badges_person.badge_id' could not find table 'badges' with which to generate a foreign key to target column 'id'
+--------------------------------------------------------------------------------
+10.0.2.2 - - [19/Jan/2015 08:04:44] "GET /inscription HTTP/1.1" 200 -
+10.0.2.2 - - [19/Jan/2015 08:04:44] "GET /static/styles/normalize.css HTTP/1.1" 304 -
+10.0.2.2 - - [19/Jan/2015 08:04:44] "GET /static/styles/style.css HTTP/1.1" 304 -
+10.0.2.2 - - [19/Jan/2015 08:04:44] "GET /static/styles/flipclock.css HTTP/1.1" 304 -
+10.0.2.2 - - [19/Jan/2015 08:04:44] "GET /static/styles/navigationBarStyle.css HTTP/1.1" 304 -
+10.0.2.2 - - [19/Jan/2015 08:04:44] "GET /static/styles/descriptionProjetStyle.css HTTP/1.1" 304 -
+10.0.2.2 - - [19/Jan/2015 08:04:44] "GET /static/styles/inscription/inscription_style.css HTTP/1.1" 304 -
+10.0.2.2 - - [19/Jan/2015 08:04:44] "GET /static/styles/navigationMenuStyle.css HTTP/1.1" 304 -
+10.0.2.2 - - [19/Jan/2015 08:04:44] "GET /static/scripts/jquery.js HTTP/1.1" 304 -
+10.0.2.2 - - [19/Jan/2015 08:04:44] "GET /static/scripts/flipclock.js HTTP/1.1" 304 -
+10.0.2.2 - - [19/Jan/2015 08:04:44] "GET /static/scripts/subscribtionCountDown.js HTTP/1.1" 304 -
+10.0.2.2 - - [19/Jan/2015 08:04:44] "GET /static/scripts/inscription/inscriptionFunctions.js HTTP/1.1" 304 -
+10.0.2.2 - - [19/Jan/2015 08:04:44] "GET /static/scripts/jquery.transit.js HTTP/1.1" 304 -
+10.0.2.2 - - [19/Jan/2015 08:04:44] "GET /static/images/logo-white.svg HTTP/1.1" 304 -
+10.0.2.2 - - [19/Jan/2015 08:04:44] "GET /static/images/logo.svg HTTP/1.1" 304 -
+10.0.2.2 - - [19/Jan/2015 08:04:44] "GET /static/images/personnes/jean-paul.jpg HTTP/1.1" 304 -
+10.0.2.2 - - [19/Jan/2015 08:04:45] "GET /static/images/personnes/marco.jpg HTTP/1.1" 200 -
+10.0.2.2 - - [19/Jan/2015 08:04:45] "GET /static/images/personnes/anthony.jpg HTTP/1.1" 304 -
+10.0.2.2 - - [19/Jan/2015 08:04:45] "GET /static/images/personnes/ludmila.jpg HTTP/1.1" 304 -
+10.0.2.2 - - [19/Jan/2015 08:04:45] "GET /static/images/personnes/bernardo.jpg HTTP/1.1" 304 -
+10.0.2.2 - - [19/Jan/2015 08:04:45] "GET /static/images/personnes/maria.jpg HTTP/1.1" 304 -
+10.0.2.2 - - [19/Jan/2015 08:04:45] "GET /static/images/personnes/hoang-son.jpg HTTP/1.1" 304 -
+10.0.2.2 - - [19/Jan/2015 08:04:45] "GET /static/images/personnes/vadim.jpg HTTP/1.1" 304 -
+10.0.2.2 - - [19/Jan/2015 08:04:45] "GET /static/images/logo-insa.png HTTP/1.1" 304 -
+ * Detected change in '/app/mouvinsa/controllers/inscription_controller.py', reloading
+ * Restarting with reloader
+ * Detected change in '/app/mouvinsa/controllers/inscription_controller.py', reloading
+ * Restarting with reloader
