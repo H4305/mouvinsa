@@ -1,6 +1,7 @@
 *.psd
 *.pyc
 .vagrant
+*.log
 
 # Packages #
 ############

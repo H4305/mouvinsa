@@ -1,6 +1,7 @@
-__author__ = 'vcaen'
+#!/usr/bin/python
+#  -*- coding: utf-8 -*-
 
-from app import db
+from mouvinsa.app import db
 
 db.create_all()
 

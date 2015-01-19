@@ -1,3 +1,6 @@
+#!/usr/bin/python
+#  -*- coding: utf-8 -*-
+
 from werkzeug.debug import DebuggedApplication
 from flask import Flask
 from flask.ext.sqlalchemy import SQLAlchemy
