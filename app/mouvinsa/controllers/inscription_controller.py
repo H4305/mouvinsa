@@ -2,7 +2,7 @@
 #  -*- coding: utf-8 -*-
 # coding: utf-8
 from wtforms import Form, TextField, FloatField, PasswordField, SelectField, DateField, validators
-from mouvinsa.outils.passhash import hash_password
+from mouvinsa.utils.passhash import hash_password
 
 messageObligatoire=u'Ce champs est obligatoire. Veuillez le remplir.'
 messageEmail=u'Les 2 emails doivent correspondre. Veuillez réessayer.'
