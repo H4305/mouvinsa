@@ -128,11 +128,17 @@ input[type="button"]{
     width:75%;
     margin-left: -25%;
 }
+
+
 .confirmationField_MESSAGE li{
     text-align: center;
     width: 100%;
     list-style-type:none;
     margin:auto;
+}
+
+.photoField_ERRORS li{
+    text-align: center;
 }
 
 .photoField_MESSAGE li{

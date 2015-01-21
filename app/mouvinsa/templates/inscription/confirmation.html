@@ -67,24 +67,24 @@
                 <form action="" method=post enctype=multipart/form-data id="formProfil">
                     <fieldset class="leftElements_DIV">
                             <div class="elementForm_DIV">
-                            {{ render_field(form1.firstname) }}
+                            {{ render_field(form.firstname) }}
                             </div>
                             <div class="elementForm_DIV">
-                            {{ render_field(form1.lastname) }}
+                            {{ render_field(form.lastname) }}
                             </div>
                             <div class="elementForm_DIV">
-                            {{ render_field(form1.sex) }}
+                            {{ render_field(form.sex) }}
                             </div>
                     </fieldset>
                     <fieldset class="rightElements_DIV">
                             <div class="elementForm_DIV">
-                            {{ render_field(form1.birthdate,'jj/mm/aaaa') }}
+                            {{ render_field(form.birthdate,'jj/mm/aaaa') }}
                             </div>
                             <div class="elementForm_DIV">
-                            {{ render_field(form1.weight) }}
+                            {{ render_field(form.weight) }}
                             </div>
                             <div class="elementForm_DIV">
-                            {{ render_field(form1.height) }}
+                            {{ render_field(form.height) }}
                             </div>
                    </fieldset>
                         <input type="hidden" name="hidden" value="Enregistrer">
@@ -112,15 +112,15 @@
                     <div id="divPhotoDescription">
                         <input type="button" id="btn_choisir" value="Choisissez votre photo" autofocus=true>
                         <label id="imgFileName"></label>
+                        <ul class=photoField_ERRORS>
                         {% with errors = get_flashed_messages(category_filter=["errorFileUpload"]) %}
                         {% if errors %}
-                        <ul class=photoField_ERRORS>
                         {% for error in errors %}
                             <li>{{ error }}</li>
                         {% endfor %}
-                        </ul>
                         {% endif %}
                         {% endwith %}
+                        </ul>
                         {% with messages = get_flashed_messages(category_filter=["image_uploaded"]) %}
                         {% if messages %}
                         <ul class=photoField_MESSAGE>
@@ -134,7 +134,7 @@
                 </div>
             </div>
             <div class="prev_button">Étape précédente</div>
-            <div class="submit_button" id="btn_envoyer" onclick="submitForm('formImage');">Envoyer</div>
+            <div class="submit_button" id="btn_envoyer" onclick="submitImageForm('formImage');">Envoyer</div>
             <div class="next_button">Terminer</div>
         </div>
       </div>
