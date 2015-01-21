@@ -7,9 +7,7 @@ from flask import render_template, request, flash, url_for, redirect
 from app import app
 from controllers.inscription_controller import InscriptionForm
 from controllers.confirmation_controller import ConfirmationForm, updateProfil, uploadImage
-from models import Student, Person, Employee
-from emails import sendInscriptionMailAndAlert
-from mouvinsa.models import db, Student, Person, Employee
+from models import db, Student, Person, Employee
 from emails import sendInscriptionMailAndAlert, inscription_notification, inscription_alert
 from controllers.signin_controller import LoginForm
 from controllers.inscription_controller import createEmployee, createStudent
@@ -89,38 +87,31 @@ def confirmation():
             token_param = request.args.get('token')
             user_found = Person.query.filter_by(token = token_param).first()
             confirm = request.args.get('msg')
-            form1 = ConfirmationForm(request.form)
+            form = ConfirmationForm(request.form)
             if request.method == "POST":
                 #Enregistrer profils
                 if request.form['hidden'] == 'Enregistrer':
-                    if form1.validate():
-                        updateProfil(form1, user_found)
+                    if form.validate():
+                        updateProfil(form, user_found)
                         db.session.commit()
                         flash(u'Votre profil est bien enregistré.', 'infos_enregistrees')
-                        return render_template('inscription/confirmation.html', user=user_found, msg='confirme', form1=form1, form_active=1)
+                        return render_template('inscription/confirmation.html', user=user_found, msg='confirme', form=form, form_active=1)
                     else:
-                        return render_template('inscription/confirmation.html', user=user_found, msg='confirme', form1=form1, form_active=1)
+                        return render_template('inscription/confirmation.html', user=user_found, msg='confirme', form=form, form_active=1)
                 #Enregistrer image
                 elif request.form['hidden'] == 'Envoyer':
                     img_file = request.files['image_upload']
-                    if img_file:
-                        if uploadImage(img_file, user_found):
-                            db.session.commit()
-                            flash(u'Vous avez bien enregistré votre photo de profil.', 'image_uploaded')
-                            return render_template('inscription/confirmation.html', user=user_found, msg='confirme', form1=form1, form_active=2)
-                        else:
-                            flash(u'La photo doit être en format: jpg, jpeg, png La taille doit être inférieure à 1 Mo.', 'errorFileUpload')
-                            return render_template('inscription/confirmation.html', user=user_found, msg='confirme', form1=form1, form_active=2)
-                    else:
-                        flash(u'Veuillez choisir une photo.', 'errorFileUpload')
-                        return render_template('inscription/confirmation.html', user=user_found, msg='confirme', form1=form1, form_active=2)
+                    uploadImage(img_file, user_found)
+                    db.session.commit()
+                    flash(u'Vous avez bien enregistré votre photo de profil.', 'image_uploaded')
+                    return render_template('inscription/confirmation.html', user=user_found, msg='confirme', form=form, form_active=2)
             else:
                 if user_found is not None:
                     if user_found.etat == 'PREREGISTERED':
                         if confirm == 'confirme':
                             user_found.etat='REGISTERED'
                             db.session.commit()
-                            return render_template('inscription/confirmation.html', user=user_found, msg='confirme', form1=form1)
+                            return render_template('inscription/confirmation.html', user=user_found, msg='confirme', form=form)
                         elif confirm == 'refuse':
                             user_found.etat='DROPPED'
                             db.session.commit()
@@ -186,19 +177,19 @@ def page_not_found(e):
 def page_not_found(e):
     return render_template('500.html', error=e)
 
-# @app.route('/test/inscription')
-# @app.route('/test/inscription/<user>')
-# def test_inscription(user="TestUser"):
-#     student = Student()
-#     student.username = user
-#     student.password = 'password'
-#     student.email = user +'@email.com'
-#     student.nickname = user
-#     student.category = 'etudiant'
-#     db.session.add(student)
-#     db.session.commit()
-#
-#     return "Insere : " + student.__repr__()
+@app.route('/test/inscription')
+@app.route('/test/inscription/<user>')
+def test_inscription(user="TestUser"):
+    student = Student()
+    student.username = user
+    student.password = 'password'
+    student.email = user +'@email.com'
+    student.nickname = user
+    student.category = 'etudiant'
+    db.session.add(student)
+    db.session.commit()
+
+    return "Insere : " + student.__repr__()
 
 @app.route('/test/listuser')
 def list_users() :

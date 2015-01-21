@@ -24,9 +24,9 @@ $(document).ready(function(){
     });
     $('#image_upload').on('change',function() {
             previewPhoto(this);
-            var filepath = $('#image_upload').val();
+            var filepath = $(this)[0].files[0].name;
             var filename = filepath.substring(filepath.lastIndexOf('\\') + 1);
-            $('.photoField_ERRORS').remove();
+            $('.photoField_ERRORS').empty();
             $('#imgFileName').html(filename);
     });
     setTimeout(function(){
@@ -46,5 +46,27 @@ function previewPhoto(input){
             $('#divPhotoPreview img').attr('src', e.target.result);
         };
         reader.readAsDataURL(input.files[0]);
+    }
+}
+
+function submitImageForm(id){
+    if ($('#image_upload')[0].files && $('#image_upload')[0].files[0]){
+        var image_file = $('#image_upload')[0].files[0],
+        image_size = image_file.size,
+        image_name = image_file.name,
+        image_ext = image_name.substring(image_name.lastIndexOf('.') + 1),
+        list_allowed_ext = ["jpg","jpeg","png"];
+        if(image_size > 1 * 1024 * 1024) {
+            $('.photoField_ERRORS').html('<li>La taille de l\'image doit être inférieure à 1 Mo.</li>');
+        }
+        else if ($.inArray(image_ext,list_allowed_ext)== -1) {
+            $('.photoField_ERRORS').html('<li>La photo doit être en format: jpg, jpeg, png.</li>');
+        }
+        else {
+            submitForm(id);
+        }
+    }
+    else{
+        $('.photoField_ERRORS').html('<li>Veuillez choisir votre photo.</li>');
     }
 }
