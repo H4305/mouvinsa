@@ -151,21 +151,22 @@ def login():
     elif request.method == 'POST':
         form = LoginForm(request.form)
         if form.validate():
-            username = form.username.data
+            nickname = form.username.data
             password = form.password.data
-            person = Person.query.filter_by(username=username).first()
+            person = Person.query.filter_by(nickname=nickname).first()
             if person is None:
                 problem = "The user doesn't exist"
-                page = "500.html"
+                flash(u'L\'utilisateur n\'existe pas.', 'errorEmail')
+                page = "auth/signin.html"
             else:
-                if person.password == password: #Surment un truc a faire car le mdp sera pas en clair
+                if check_password(person.password, password): #Surment un truc a faire car le mdp sera pas en clair
                     problem = "You were successfully logged in"
-                    #page = "testeuh.html"
-                    # Il faudra mettre vers Index
+                    flash(u'Connexion ok', 'erreurMotDePasse')
+                    page = "apropos.html"
                 else:
                     problem = "Connection refused"
-                    page = "500.html"
-            flash(problem)
+                    flash(u'Connexion refusé', 'erreurIdentifiants')
+                    page = "auth/signin.html"
             return render_template(page, form=form)
 
 #
@@ -199,15 +200,15 @@ def page_not_found(e):
 #
 #     return "Insere : " + student.__repr__()
 
-# @app.route('/test/listuser')
-# def list_users() :
-#     string = '<table>'
-#     string += '<tr><th>id</th><th>lastname</th><th>image</th><th>firstname</th><th>birthdate</th><th>etat</th><th>sex</th></tr>'
-#     for student in Person.query.all():
-#         string += '<tr><td>'+student.__repr__()+'</td><td>'+unicode(student.lastname)+'</td><td>'+unicode(student.image)+'</td><td>'+unicode(student.firstname)\
-#                   +'</td><td>'+unicode(student.birthdate)+'</td><td>'+unicode(student.etat)+'</td><td>'+unicode(student.sex)
-#     string += '</table>'
-#     return string
+@app.route('/test/listuser')
+def list_users() :
+    string = '<table>'
+    string += '<tr><th>id</th><th>lastname</th><th>image</th><th>firstname</th><th>birthdate</th><th>etat</th><th>sex</th></tr>'
+    for student in Person.query.all():
+        string += '<tr><td>'+student.__repr__()+'</td><td>'+unicode(student.lastname)+'</td><td>'+unicode(student.image)+'</td><td>'+unicode(student.firstname)\
+                  +'</td><td>'+unicode(student.birthdate)+'</td><td>'+unicode(student.etat)+'</td><td>'+unicode(student.sex)
+    string += '</table>'
+    return string
 
 # @app.route('/test/confirmation')
 # def test_confirmation() :
