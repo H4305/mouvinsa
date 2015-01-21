@@ -1,17 +1,19 @@
 
 {% extends "layout.html" %}
 
-{% with messages = get_flashed_messages() %}
-  {% if messages %}
-    <ul class=flashes>
-    {% for message in messages %}
-      <li>{{ message }}</li>
-    {% endfor %}
-    </ul>
-  {% endif %}
-{% endwith %}
+
 
 {% block main %}
+
+        {% with validation = get_flashed_messages(category_filter=["ok"]) %}
+      {% if validation %}
+        <div class="validation_DIV">
+        {% for message in validation %}
+          <span id="inscriptionMessage_SPAN">{{ message }}</span>
+        {% endfor %}
+        </div>
+      {% endif %}
+    {% endwith %}
 
     <div id="signin">
         <div class="title">
