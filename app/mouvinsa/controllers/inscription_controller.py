@@ -38,6 +38,7 @@ CHOIX_DEPARTEMENT = [('', ''),
 CHOIX_CYCLE = [('', ''),
                ('Premier', 'Premier'),
                ('Second', 'Second')]
+
 CHOIX_FILIERE = [('', ''),
                  ('Internationale', 'Internationale'),
                  ('Classique', 'Classique'),
