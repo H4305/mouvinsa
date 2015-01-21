@@ -7,11 +7,14 @@ from flask import render_template, request, flash, url_for, redirect
 from app import app
 from controllers.inscription_controller import InscriptionForm
 from controllers.confirmation_controller import ConfirmationForm, updateProfil, uploadImage
+from models import Student, Person, Employee
+from emails import sendInscriptionMailAndAlert
 from mouvinsa.models import db, Student, Person, Employee
 from emails import sendInscriptionMailAndAlert, inscription_notification, inscription_alert
 from controllers.signin_controller import LoginForm
 from controllers.inscription_controller import createEmployee, createStudent
-
+from sqlalchemy import func
+from mouvinsa.utils.passHash import check_password
 
 #@app.route('/')(
 #def home():
