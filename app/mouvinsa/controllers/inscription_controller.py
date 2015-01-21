@@ -2,16 +2,7 @@
 #  -*- coding: utf-8 -*-
 # coding: utf-8
 from wtforms import Form, TextField, FloatField, PasswordField, SelectField, DateField, validators
-from mouvinsa.utils import PassHash
-
-# import uuid
-# from hashlib import sha256
-# from mouvinsa.utils import passHash
-
-# def hash_password(password):
-#     salt = uuid.uuid4().hex
-#     return sha256(salt.encode() + password.encode()).hexdigest() + \
-#         ':' + salt
+from mouvinsa.outils.passhash import hash_password
 
 messageObligatoire=u'Ce champs est obligatoire. Veuillez le remplir.'
 messageEmail=u'Les 2 emails doivent correspondre. Veuillez réessayer.'
@@ -50,7 +41,7 @@ def createStudent(form, student):
 	student.firstname = form.prenom.data
 	student.lastname = form.nom.data
 	student.nickname = form.surnom.data
-	student.password = PassHash.hash_password(form.password.data)
+	student.password = hash_password(form.password.data)
 	student.email = form.email.data
 	if form.sexe.data == '':
 		student.sex = 'Inconnu'
@@ -73,7 +64,7 @@ def createEmployee(form, employee):
 	employee.firstname = form.prenom.data
 	employee.lastname = form.nom.data
 	employee.nickname = form.surnom.data
-	employee.password = PassHash.hash_password(form.password.data)
+	employee.password = hash_password(form.password.data)
 	employee.email = form.email.data
 	if form.sexe.data == '':
 		employee.sex = 'Inconnu'
