@@ -56,13 +56,13 @@ CHOIX_ANNEE = [
 ]
 
 messageObligatoire = u'Ce champs est obligatoire. Veuillez le remplir.'
-messageEmail = u'Les 2 emails doivent correspondre. Veuillez réessayer.'
-messageLongueur2_25 = u'La longeur doit être comprise entre 2 et 25 caractères.'
+messageEmail = u'Les deux emails doivent correspondre. Veuillez réessayer.'
+messageLongueur2_25 = u'La longueur doit être comprise entre 2 et 25 caractères.'
 messagePassword = u'Les 2 mots de passe doivent correspondre.  Veuillez réessayer.'
-messageLongueur4_25 = u'La longeur doit être comprise entre 4 et 25 caractères.'
+messageLongueur4_25 = u'La longueur doit être comprise entre 4 et 25 caractères.'
 messagePoids = u'Le poids doit être compris entre 20 kg et 300 kg'
 messageTaille = u'La taille doit être comprise entre 90 cm et 250 cm.'
-messageLongueur3_100 = u'La longeur doit être comprise entre 3 et 100 caracterès.'
+messageLongueur3_100 = u'La longueur doit être comprise entre 3 et 100 caractères.'
 MESSAGE_CHAMPS_OBLIGATOIRE = 'Ce champs est obligatoire. Veuillez le remplir.'
 
 
