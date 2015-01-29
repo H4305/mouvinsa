@@ -1,16 +1,18 @@
 #!/usr/bin/python
 #  -*- coding: utf-8 -*-
+# coding: utf-8
 
 from flask import render_template, request, flash, url_for, redirect
 
-from app import app, db
+from app import app
 from controllers.inscription_controller import InscriptionForm
-from controllers.confirmation_controller import ConfirmationForm, updateProfil
-from models import Student, Person, Employee
+from controllers.confirmation_controller import ConfirmationForm, updateProfil, uploadImage
+from models import db, Student, Person, Employee
 from emails import sendInscriptionMailAndAlert, inscription_notification, inscription_alert
 from controllers.signin_controller import LoginForm
 from controllers.inscription_controller import createEmployee, createStudent
 from sqlalchemy import func
+from mouvinsa.utils.passHash import check_password
 
 #@app.route('/')(
 #def home():
@@ -87,22 +89,36 @@ def confirmation():
             confirm = request.args.get('msg')
             form = ConfirmationForm(request.form)
             if request.method == "POST":
-                if form.validate():
-                    updateProfil(form, user_found)
+                #Enregistrer profils
+                if request.form['hidden'] == 'Enregistrer':
+                    if form.validate():
+                        updateProfil(form, user_found)
+                        db.session.commit()
+                        flash(u'Votre profil est bien enregistré.', 'infos_enregistrees')
+                        return render_template('inscription/confirmation.html', user=user_found, msg='confirme', form=form, form_active=1)
+                    else:
+                        return render_template('inscription/confirmation.html', user=user_found, msg='confirme', form=form, form_active=1)
+                #Enregistrer image
+                elif request.form['hidden'] == 'Envoyer':
+                    img_file = request.files['image_upload']
+                    uploadImage(img_file, user_found)
                     db.session.commit()
-                    return redirect(url_for('login'))
-                else:
-                    return render_template('inscription/confirmation.html', user=user_found, msg='confirme', form=form, form_active=1)
+                    flash(u'Vous avez bien enregistré votre photo de profil.', 'image_uploaded')
+                    return render_template('inscription/confirmation.html', user=user_found, msg='confirme', form=form, form_active=2)
             else:
                 if user_found is not None:
                     if user_found.etat == 'PREREGISTERED':
                         if confirm == 'confirme':
+                            user_found.etat='REGISTERED'
+                            db.session.commit()
                             return render_template('inscription/confirmation.html', user=user_found, msg='confirme', form=form)
                         elif confirm == 'refuse':
                             user_found.etat='DROPPED'
                             db.session.commit()
                             return render_template('inscription/confirmation.html', user=user_found, msg='refuse')
-                return redirect(url_for('home'))
+                    elif user_found.etat == 'REGISTERED':
+                        redirect(url_for('login'))
+            return render_template('index.html')
 
 @app.route('/forgetpassword/', methods=['GET', 'POST'])
 def forgetpassword():
@@ -126,21 +142,22 @@ def login():
     elif request.method == 'POST':
         form = LoginForm(request.form)
         if form.validate():
-            username = form.username.data
+            nickname = form.username.data
             password = form.password.data
-            person = Person.query.filter_by(username=username).first()
+            person = Person.query.filter_by(nickname=nickname).first()
             if person is None:
                 problem = "The user doesn't exist"
-                page = "500.html"
+                flash(u'L\'utilisateur n\'existe pas.', 'errorEmail')
+                page = "auth/signin.html"
             else:
-                if person.password == password: #Surment un truc a faire car le mdp sera pas en clair
+                if check_password(person.password, password): #Surment un truc a faire car le mdp sera pas en clair
                     problem = "You were successfully logged in"
-                    #page = "testeuh.html"
-                    # Il faudra mettre vers Index
+                    flash(u'Connexion ok', 'erreurMotDePasse')
+                    page = "apropos.html"
                 else:
                     problem = "Connection refused"
-                    page = "500.html"
-            flash(problem)
+                    flash(u'Connexion refusé', 'erreurIdentifiants')
+                    page = "auth/signin.html"
             return render_template(page, form=form)
 
 #
@@ -160,26 +177,26 @@ def page_not_found(e):
 def page_not_found(e):
     return render_template('500.html', error=e)
 
-# @app.route('/test/inscription')
-# @app.route('/test/inscription/<user>')
-# def test_inscription(user="TestUser"):
-#     student = Student()
-#     student.username = user
-#     student.password = 'password'
-#     student.email = user +'@email.com'
-#     student.nickname = user
-#     student.category = 'etudiant'
-#     db.session.add(student)
-#     db.session.commit()
-#
-#     return "Insere : " + student.__repr__()
+@app.route('/test/inscription')
+@app.route('/test/inscription/<user>')
+def test_inscription(user="TestUser"):
+    student = Student()
+    student.username = user
+    student.password = 'password'
+    student.email = user +'@email.com'
+    student.nickname = user
+    student.category = 'etudiant'
+    db.session.add(student)
+    db.session.commit()
+
+    return "Insere : " + student.__repr__()
 
 @app.route('/test/listuser')
 def list_users() :
     string = '<table>'
-    string += '<tr><th>id</th><th>lastname</th><th>firstname</th><th>birthdate</th><th>etat</th><th>sex</th></tr>'
+    string += '<tr><th>id</th><th>lastname</th><th>image</th><th>firstname</th><th>birthdate</th><th>etat</th><th>sex</th></tr>'
     for student in Person.query.all():
-        string += '<tr><td>'+student.__repr__()+'</td><td>'+unicode(student.lastname)+'</td><td>'+unicode(student.firstname)\
+        string += '<tr><td>'+student.__repr__()+'</td><td>'+unicode(student.lastname)+'</td><td>'+unicode(student.image)+'</td><td>'+unicode(student.firstname)\
                   +'</td><td>'+unicode(student.birthdate)+'</td><td>'+unicode(student.etat)+'</td><td>'+unicode(student.sex)
     string += '</table>'
     return string
@@ -203,9 +220,9 @@ def list_users() :
 #     db.session.add(student2)
 #     db.session.commit()
 #     string = '<table>'
-#     string += '<tr><th>lastname</th><th>firstname</th><th>birthdate</th><th>etat</th><th>sex</th></tr>'
+#     string += '<tr><th>lastname</th><th>image</th><th>firstname</th><th>birthdate</th><th>etat</th><th>sex</th></tr>'
 #     for student in Person.query.all():
-#         string += '<tr><td>'+student.__repr__()+'</td><td>'+unicode(student.lastname)+'</td><td>'+unicode(student.firstname)\
+#         string += '<tr><td>'+student.__repr__()+'</td><td>'+unicode(student.lastname)+'</td><td>'+unicode(student.image)+'</td><td>'+unicode(student.firstname)\
 #                   +'</td><td>'+unicode(student.birthdate)+'</td><td>'+unicode(student.etat)+'</td><td>'+unicode(student.sex)
 #     string += '</table>'
 #     return string

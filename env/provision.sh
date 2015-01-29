@@ -27,6 +27,7 @@ echo 'export PYTHONPATH=/app/mouvinsa/' >> ~/.bashrc
 
 sudo easy_install supervisor
 sudo cp /vagrant/conf/supervisord.sh /etc/init.d/supervisord
+sudo sed -i 's/\r//g' /etc/init.d/supervisord
 sudo chmod +x /etc/init.d/supervisord
 sudo update-rc.d supervisord defaults
 
@@ -51,6 +52,9 @@ sudo apt-get install lynx
 
 # install WTforms
 sudo pip install Flask-WTF
+
+#install Werkzeug
+sudo pip install Werkzeug
 
 #setup the BDD
 echo "That's all folks!"

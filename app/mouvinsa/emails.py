@@ -11,6 +11,8 @@ from threading import Thread
 from flask import current_app
 from decorators import async
 
+from models import Person
+
 @async
 def send_async_email(app, msg):
     with app.app_context():
@@ -23,6 +25,14 @@ def send_email(subject, sender, recipients, text_body, html_body):
      mail.send(msg)
 #     thr = Thread(target=send_async_email, args=[current_app, msg])
 #     thr.start()
+
+
+#def motDePasseOublie ():
+# charger lobjet Person de la BDD
+# Set le mdp avec un mdp genere aleatoire
+# envoyer ce nouveau mot de passe par mail
+# envoyer le mail
+
 
 
 def inscription_notification(surnom, email, categorie, nom, prenom, sexe, dateNaissance, poids, taille, cycle, annee, departement, filiere, position, affiliation ):

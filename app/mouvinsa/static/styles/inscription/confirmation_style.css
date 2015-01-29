@@ -1,3 +1,25 @@
+#formProfil input[type='text'], #formProfil select {
+    border-bottom: 2px solid black;
+    border-left: none;
+    border-right: none;
+    border-top: none;
+    background-color: transparent;
+    outline-color: #E42618;
+    width:70%;
+}
+
+input[type="submit"] {
+    border-bottom: solid 2px black;
+    border-left: none;
+    border-right: none;
+    border-top: none;
+    outline: none;
+}
+
+input[type="button"]{
+    border:none;
+    outline:none;
+}
 #confirmationContent{
     margin-top: 10%;
     margin-bottom: 10%;
@@ -10,10 +32,7 @@
 .description_block{
     position: relative;
     margin: 5% 5% 25% 5%;
-    background: white;
-	opacity: 0.85;
     text-align: justify;
-    min-height: 200px;
 }
 .title_confirmation_block{
     color: white;
@@ -22,22 +41,54 @@
     text-align: center;
     font-weight: bold;
 }
-.next_button{
+.next_button, .submit_button, .prev_button{
     position: absolute;
     cursor:pointer;
     background: #E42618;
     line-height: 40px;
-    right: 1%;
-    bottom: 2%;
     color: white;
     text-align:center;
     -webkit-box-shadow: 0 8px 6px -6px black;
     -moz-box-shadow: 0 8px 6px -6px black;
     box-shadow: 0 8px 6px -6px black;
-    padding: 0% 1% 0% 1%
+    padding: 0% 1% 0% 1%;
+    border-bottom: solid 2px black;
 }
-
-a.next_button:hover{
+.prev_button{
+    left: 5%;
+    bottom: 5%;
+}
+.next_button{
+    right: 5%;
+    bottom: 5%;
+}
+#btn_enregistrer, #btn_envoyer{
+    left: 45%;
+    bottom: 5%;
+}
+#btn_deposer{
+    margin-top: 2%;
+}
+#btn_choisir{
+    border:none;
+    cursor:pointer;
+    background: #E42618;
+    color: white;
+    line-height: 30px;
+    text-align:center;
+    -webkit-border-radius: 30px;
+    -moz-border-radius: 30px;
+    border-radius: 30px;
+    padding: 0% 1% 0% 1%;
+}
+#imgFileName{
+    text-align: center;
+}
+#divPhotoDescription{
+    position: absolute;
+    margin-left:40%;
+}
+.next_button:hover, .submit_button:hover, .prev_button:hover{
   text-decoration: none;
   color:white
 }
@@ -70,24 +121,56 @@ a.next_button:hover{
     margin-bottom: 10%;
 }
 .confirmationField_ERRORS{
-    width:50%;
-    margin-left: -7%;
+    width:75%;
+    margin-left: -13%;
+}
+.photoField_ERRORS, .photoField_MESSAGE{
+    width:75%;
+    margin-left: -25%;
+}
+
+
+.confirmationField_MESSAGE li{
+    text-align: center;
+    width: 100%;
+    list-style-type:none;
+    margin:auto;
+}
+
+.photoField_ERRORS li{
+    text-align: center;
+}
+
+.photoField_MESSAGE li{
+    list-style-type:square;
 }
 
 .leftElements_DIV {
+    border:none;
     position: relative;
     float:left;
-    width: 49%;
+    width: 40%;
     height: 90%;
-    margin-bottom: 1%;
+    margin-bottom: 10%;
     margin-top: 2%;
 }
 
 .rightElements_DIV {
+    border: none;
     position: relative;
     float:right;
-    width: 49%;
+    width: 40%;
     height: 90%;
-    margin-bottom: 1%;
+    margin-bottom: 10%;
     margin-top: 2%;
+}
+
+#divPhotoPreview img {
+    width:30%;
+    border:2px solid gray;
+    margin-left:35%;
+}
+
+#divPhotoPreview img:hover{
+    cursor: pointer;
 }
