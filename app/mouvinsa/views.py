@@ -14,12 +14,12 @@ from controllers.inscription_controller import createEmployee, createStudent
 from sqlalchemy import func
 from mouvinsa.utils.passHash import check_password
 
-#@app.route('/')(
-#def home():
-#    name = request.args.get('name', '')
-#    return render_template('index.html', name=name)
+@app.route('/')
+def home():
+    name = request.args.get('name', '')
+    return render_template('index.html', name=name)
 
-@app.route('/', methods=['GET', 'POST'])
+#@app.route('/', methods=['GET', 'POST'])
 @app.route('/inscription', methods=['GET', 'POST'])
 def inscription():
     form = InscriptionForm(request.form)
