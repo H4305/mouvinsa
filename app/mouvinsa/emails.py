@@ -1,3 +1,7 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+# coding: utf-8
+
 __author__ = 'marcomontalto'
 
 #SYNC
@@ -56,3 +60,12 @@ def inscription_alert(inscrits, surnom, email, categorie, nom, prenom, sexe, dat
 def sendInscriptionMailAndAlert(inscrits, surnom, email, categorie, nom, prenom, sexe, dateNaissance, poids, taille, cycle, annee, departement, filiere, position, affiliation):
     inscription_notification(surnom=surnom, email=email, categorie=categorie, nom=nom, prenom=prenom, sexe=sexe, dateNaissance=dateNaissance, poids=poids, taille=taille, cycle=cycle, annee=annee, departement=departement, filiere=filiere, position=position, affiliation=affiliation )
     inscription_alert(inscrits=inscrits, surnom=surnom, email=email, categorie=categorie, nom=nom, prenom=prenom, sexe=sexe, dateNaissance=dateNaissance, poids=poids, taille=taille, cycle=cycle, annee=annee, departement=departement, filiere=filiere, position=position, affiliation=affiliation )
+
+def sendRappelRendezVous(surnom,email):
+    send_email(u'[Mouv\'INSA] - %s viens retirer ton podomètre le mardi 3 février!' %surnom,
+               ADMIN[0],
+               [email],
+               render_template("/mails/rappel_retirer_podometre.txt",
+                               surnom = surnom),
+               render_template("/mails/rappel_retirer_podometre.html",
+                               surnom = surnom))

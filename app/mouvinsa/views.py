@@ -8,7 +8,7 @@ from app import app
 from controllers.inscription_controller import InscriptionForm
 from controllers.confirmation_controller import ConfirmationForm, updateProfil, uploadImage
 from models import db, Student, Person, Employee
-from emails import sendInscriptionMailAndAlert, inscription_notification, inscription_alert
+from emails import sendInscriptionMailAndAlert, inscription_notification, inscription_alert, sendRappelRendezVous
 from controllers.signin_controller import LoginForm
 from controllers.inscription_controller import createEmployee, createStudent
 from sqlalchemy import func
@@ -271,3 +271,16 @@ def sendMailAlert() :
     sendInscriptionMailAndAlert(inscrits=Person.query.count(), surnom=surnom, email=email, categorie=categorie, nom=nom, prenom=prenom, sexe=sexe, dateNaissance=dateNaissance, poids=poids, taille=taille, cycle=cycle, annee=annee, departement=departement, filiere=filiere, position=position, affiliation=affiliation )
     return 'Alert mail was sent'
     #render_template('testMail.html', email=email, surnom=surnom, categorie=categorie, nom=nom, prenom=prenom, sexe=sexe, dateNaissance=dateNaissance, poids=poids, taille=taille, cycle=cycle, annee=annee, departement=departement, filiere=filiere, position=position, affiliation=affiliation)
+
+@app.route('/sendMailRappelMardi')
+def sendMailRetirePodometre():
+    message = "";
+    index = 0;
+    for person in Person.query.all():
+        index = index + 1;
+        if index<206:
+            surnom = person.nickname
+            #email = person.email
+            #message += surnom + " " + email + "<br>";
+            # DO NOT UNCOMMENT IT sendRappelRendezVous(surnom=surnom, email=email)
+    return message
