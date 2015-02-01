@@ -1,6 +1,13 @@
 __author__ = 'Liuda'
 from mouvinsa.models import db, Student, Person, Employee
 
+nomsGroupes = [ u"Jumperzap", u"Highjumps", u"Batsqueak", u"Athletebrring", u"Sportouch", u"Catcherparp", u"Frisbeeplonk",
+                u"Skateroar", u"Tiecheep", u"Tennisbuzz", u"Volleytweet", u"Gearmeow", u"Outslouch", u"Hockeytwang",
+                u"Rowingthump", u"Uniformfizz", u"Walkgrowl", u"Hardballping", u"Freethrowrip", u"Golfingsmash", u"Championouch",
+                u"Hockeyhoot", u"Lutzboink", u"Fitnesstweet", u"Bowlingbelch", u"Runningshush", u"Surferfizz", u"Batbeep",
+                u"Biathlonboom", u"Battingbuzz", u"Cyclingcuckoo", u"Dartdingdong", u"Divedrip", u"Fitnessfizzle", u"Footballfizz",
+                u"Boxingboom", u"Movementbuzz", u"Waterskiwoof", u"Canoeingcheep", u"Crazy Legs", u"Catchmurmer"]
+
 def tirageGroups():
     index = 0
     etudiants = Person.query.filter_by(category='etudiant').all()
