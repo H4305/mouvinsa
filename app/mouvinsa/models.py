@@ -33,7 +33,7 @@ class Person(db.Model):
     etat = db.Column('etat', Enum('PREREGISTERED', 'REGISTERED', 'DROPPED'), nullable=False)
     #token = db.Column(db.String(128), unique=True)
     #image = db.Column(db.String(120), nullable=True)
-    #group_id = db.Column(db.Integer, db.ForeignKey('group.id'))
+    group_id = db.Column(db.Integer, db.ForeignKey('group.id'))
     #steps = db.relationship('Steps', backref='person', lazy='dynamic')
     #fitnessInfo = db.relationship('FitnessInfo', backref='person', lazy='dynamic')
     #badges = db.relationship('Badge',

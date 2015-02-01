@@ -11,6 +11,7 @@ from models import db, Student, Person, Employee
 from emails import sendInscriptionMailAndAlert, inscription_notification, inscription_alert, sendRappelRendezVous
 from controllers.signin_controller import LoginForm
 from controllers.inscription_controller import createEmployee, createStudent
+from controllers.tirageGroups_controller import tirageGroups
 from sqlalchemy import func
 from mouvinsa.utils.passHash import check_password
 
@@ -284,3 +285,68 @@ def sendMailRetirePodometre():
             #message += surnom + " " + email + "<br>";
             # DO NOT UNCOMMENT IT sendRappelRendezVous(surnom=surnom, email=email)
     return message
+
+@app.route('/countCategories')
+def countCategories():
+    message = "students : "
+    students = Person.query.filter_by(category = 'etudiant').count()
+    message += str(students) + "<br>"
+
+    message += "students WOMAN : "
+    stwoman = Person.query.filter_by(sex = 'Feinin').filter_by(category = 'etudiant').count();
+    message += str(stwoman) + "<br>"
+
+    message += "students MAN : "
+    sthomme = Person.query.filter_by(sex = 'Masculin').filter_by(category = 'etudiant').count();
+    message += str(sthomme) + "<br><br>"
+
+
+    message += "iatos : "
+    iatos = Person.query.filter_by(category = 'iatos').count()
+    message += str(iatos) + "<br>"
+
+    message += "iatos WOMAN : "
+    iawoman = Person.query.filter_by(sex = 'Feminin').filter_by(category = 'iatos').count();
+    message += str(iawoman) + "<br>"
+
+    message += "iatos MAN : "
+    iahomme = Person.query.filter_by(sex = 'Masculin').filter_by(category = 'iatos').count();
+    message += str(iahomme) + "<br><br>"
+
+
+    message += "teachers : "
+    teachers = Person.query.filter_by(category = 'enseignant').count()
+    message += str(teachers) + "<br>"
+
+    message += "teachers WOMAN : "
+    thwoman = Person.query.filter_by(sex = 'Feminin').filter_by(category = 'enseignant').count();
+    message += str(thwoman) + "<br>"
+
+    message += "teachers MAN : "
+    thhomme = Person.query.filter_by(sex = 'Masculin').filter_by(category = 'enseignant').count();
+    message += str(thhomme) + "<br><br>"
+
+    message += "sex inconnu : "
+    sxinconnu = Person.query.filter_by(sex = 'Inconnu').count();
+    message += str(sxinconnu) + "<br><br>"
+    return message
+
+
+@app.route('/groupes')
+def attributionGroupes():
+    tirageGroups()
+    i = 1;
+    message =""
+    while (i<42):
+        message += "<b>"+"Groupe " +str(i)+ ": "+ "</b><br>"
+        groupe = Person.query.filter_by(group_id = i).all()
+        message += "<table> "
+        for person in groupe:
+            message += "<tr><td><i>"+person.email +"  "+"</i></td><td>"+ person.category+"  "+"</td><td>"+ person.sex + "</td></tr>"
+        message += "<table><br><br> "
+        i=i+1
+
+    return message
+
+
+
