@@ -11,7 +11,7 @@ from models import db, Student, Person, Employee
 from emails import sendInscriptionMailAndAlert, inscription_notification, inscription_alert, sendRappelRendezVous
 from controllers.signin_controller import LoginForm
 from controllers.inscription_controller import createEmployee, createStudent
-from controllers.tirageGroups_controller import tirageGroups
+from controllers.tirageGroups_controller import tirageGroups, nomsGroupes
 from sqlalchemy import func
 from mouvinsa.controllers.tirageGroups_controller import nomsGroupes
 from mouvinsa.utils.passHash import check_password
@@ -343,7 +343,7 @@ def attributionGroupes():
         groupe = Person.query.filter_by(group_id = i).all()
         message += "<table> "
         for person in groupe:
-            message += "<tr><td><i>"+person.email +"  "+"</i></td><td>"+ person.category+"  "+"</td><td>"+ person.sex + "</td></tr>"
+            message += "<tr><td><i>"+person.email +"  "+"</i></td><td>"+ person.category+"  "+"</td></tr>"
         message += "<table><br><br> "
         i=i+1
 
