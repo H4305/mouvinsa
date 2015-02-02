@@ -14,6 +14,11 @@ city_goal = db.Table('city_goal',
                      db.Column('goal_id', db.Integer, db.ForeignKey('goal.id'))
 )
 
+person_steps = db.Table('person_steps',
+                     db.Column('person_id', db.Integer, db.ForeignKey('person.id')),
+                     db.Column('step_id', db.Integer, db.ForeignKey('steps.id'))
+)
+
 
 # Defining models
 class Person(db.Model):
@@ -31,14 +36,16 @@ class Person(db.Model):
     category = db.Column('category', Enum('etudiant', 'enseignant', 'iatos'), nullable=False)
     type = db.Column(db.String(50))
     etat = db.Column('etat', Enum('PREREGISTERED', 'REGISTERED', 'DROPPED'), nullable=False)
-    #token = db.Column(db.String(128), unique=True)
-    #image = db.Column(db.String(120), nullable=True)
+    token = db.Column(db.String(128), unique=True)
+    image = db.Column(db.String(120), nullable=True)
     group_id = db.Column(db.Integer, db.ForeignKey('group.id'))
-    #steps = db.relationship('Steps', backref='person', lazy='dynamic')
-    #fitnessInfo = db.relationship('FitnessInfo', backref='person', lazy='dynamic')
-    #badges = db.relationship('Badge',
-                             #secondary=badges_person,
-                             #backref=db.backref('person', lazy='dynamic'))
+    steps = db.relationship('Steps',
+                            secondary=person_steps,
+                            backref=db.backref('person', lazy='dynamic'))
+    fitnessInfo = db.relationship('FitnessInfo', backref='person', lazy='dynamic')
+    badges = db.relationship('Badge',
+                             secondary=badges_person,
+                             backref=db.backref('person', lazy='dynamic'))
 
     def __init__(self):
         print "init person"
@@ -101,7 +108,7 @@ class Group(db.Model):
     stepSum = db.Column(db.Integer, default=0)
     image = db.Column(db.String(255), nullable=True)
     goal_id = db.Column(db.Integer, db.ForeignKey('goal.id'))
-    #persons = db.relationship('Person', backref='group', lazy='dynamic')
+    persons = db.relationship('Person', backref='group', lazy='dynamic')
 
 
 class Steps(db.Model):

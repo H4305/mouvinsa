@@ -13,6 +13,7 @@ from controllers.signin_controller import LoginForm
 from controllers.inscription_controller import createEmployee, createStudent
 from controllers.tirageGroups_controller import tirageGroups
 from sqlalchemy import func
+from mouvinsa.controllers.tirageGroups_controller import nomsGroupes
 from mouvinsa.utils.passHash import check_password
 
 @app.route('/')
@@ -338,7 +339,7 @@ def attributionGroupes():
     i = 1;
     message =""
     while (i<42):
-        message += "<b>"+"Groupe " +str(i)+ ": "+ "</b><br>"
+        message += "<b>"+"Groupe " +str(i)+ ": "+ nomsGroupes[i-1] + "</b><br>"
         groupe = Person.query.filter_by(group_id = i).all()
         message += "<table> "
         for person in groupe:

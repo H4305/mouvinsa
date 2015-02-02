@@ -45,9 +45,30 @@ UNLOCK TABLES;
 -- Table structure for table `person`
 --
 
-
+DROP TABLE IF EXISTS `person`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `person` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `email` varchar(120) NOT NULL,
+  `password` varchar(120) NOT NULL,
+  `nickname` varchar(120) NOT NULL,
+  `sex` varchar(50) NOT NULL,
+  `firstname` varchar(120) DEFAULT NULL,
+  `lastname` varchar(120) DEFAULT NULL,
+  `birthdate` datetime DEFAULT NULL,
+  `weight` float DEFAULT NULL,
+  `height` float DEFAULT NULL,
+  `category` enum('etudiant','enseignant','iatos') NOT NULL,
+  `type` varchar(50) DEFAULT NULL,
+  `etat` enum('PREREGISTERED','REGISTERED','DROPPED') NOT NULL,
+  `token` varchar(128) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `email` (`email`),
+  UNIQUE KEY `nickname` (`nickname`),
+  UNIQUE KEY `token` (`token`)
+) ENGINE=InnoDB AUTO_INCREMENT=220 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `person`

@@ -1,6 +1,5 @@
 __author__ = 'Liuda'
-from mouvinsa.models import db, Student, Person, Employee
-
+from mouvinsa.models import db, Student, Person, Employee, Group
 nomsGroupes = [ u"Jumperzap", u"Highjumps", u"Batsqueak", u"Athletebrring", u"Sportouch", u"Catcherparp", u"Frisbeeplonk",
                 u"Skateroar", u"Tiecheep", u"Tennisbuzz", u"Volleytweet", u"Gearmeow", u"Outslouch", u"Hockeytwang",
                 u"Rowingthump", u"Uniformfizz", u"Walkgrowl", u"Hardballping", u"Freethrowrip", u"Golfingsmash", u"Championouch",
@@ -8,7 +7,16 @@ nomsGroupes = [ u"Jumperzap", u"Highjumps", u"Batsqueak", u"Athletebrring", u"Sp
                 u"Biathlonboom", u"Battingbuzz", u"Cyclingcuckoo", u"Dartdingdong", u"Divedrip", u"Fitnessfizzle", u"Footballfizz",
                 u"Boxingboom", u"Movementbuzz", u"Waterskiwoof", u"Canoeingcheep", u"Crazy Legs", u"Catchmurmer"]
 
+def create_groups():
+    for name in nomsGroupes:
+        group = Group()
+        group.label = name
+        db.session.add(group)
+
+    db.session.commit()
+
 def tirageGroups():
+
     index = 0
     etudiants = Person.query.filter_by(category='etudiant').all()
     enseignants = Person.query.filter_by(category='enseignant').all()
