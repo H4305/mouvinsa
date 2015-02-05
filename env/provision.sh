@@ -24,6 +24,7 @@ sudo pip install Flask-Mail
 
 export PYTHONPATH=/app/mouvinsa/
 echo 'export PYTHONPATH=/app/mouvinsa/' >> ~/.bashrc
+python -c "import sys; sys.path.append(‘/app’); from mouvinsa import models; from models import db; db.create_all()"
 
 sudo easy_install supervisor
 sudo cp /vagrant/conf/supervisord.sh /etc/init.d/supervisord
