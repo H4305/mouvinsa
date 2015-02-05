@@ -144,24 +144,31 @@ def login():
     elif request.method == 'POST':
         form = LoginForm(request.form)
         if form.validate():
-            nickname = form.username.data
+            email = form.email.data
+
+            if email.count('@') != 0:
+                flash(u'L\'email entré est incorrect', 'error_login')
+                return render_template('auth/signin.html')
+            else :
+                email+= "@insa-lyon.fr"
+
             password = form.password.data
-            person = Person.query.filter_by(nickname=nickname).first()
+            person = Person.query.filter_by(email=email).first()
             if person is None:
-                problem = "The user doesn't exist"
-                flash(u'L\'utilisateur n\'existe pas.', 'errorEmail')
+                problem = u'L\'utilisateur n\'existe pas.'
                 page = "auth/signin.html"
             else:
-                if check_password(person.password, password): #Surment un truc a faire car le mdp sera pas en clair
-                    problem = "You were successfully logged in"
-                    flash(u'Connexion ok', 'erreurMotDePasse')
+                if check_password(person.password, password):
+                    problem = u'Connexion ok'
                     page = "apropos.html"
                 else:
-                    problem = "Connection refused"
-                    flash(u'Connexion refusé', 'erreurIdentifiants')
+                    problem = u'Connexion refusé'
                     page = "auth/signin.html"
-            return render_template(page, form=form)
 
+            flash(problem, 'error_login')
+            return render_template(page, form=form)
+        else:
+            return render_template('auth/signin.html')
 #
 # @app.route('/team/<teamname>/')
 # def team_page(teamname) :

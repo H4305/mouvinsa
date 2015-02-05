@@ -25,8 +25,8 @@
         </div>
         {% if error %}<p class=error><strong>Error:</strong> {{ error }}{% endif %}
         <form action="{{ url_for('login') }}" method="post">
-            <label class="label" for="username">Pseudo</label>
-            <input type="text" name="username" class="input">
+            <label class="label" for="email">Email</label>
+            <input type="text" name="email" class="input">@insa-lyon.fr
             <br/>
             <label class="label" for="password">Mot de passe</label>
             <input type="password" name="password" class="input">
