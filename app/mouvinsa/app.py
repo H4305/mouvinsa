@@ -27,4 +27,3 @@ if app.debug:
     app.wsgi_app = DebuggedApplication(app.wsgi_app, True)
 
 app.secret_key = 'ty6739hjDyaidjdjdd6tef908c'
-
