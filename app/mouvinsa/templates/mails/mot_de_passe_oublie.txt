@@ -1,0 +1,8 @@
+(Vous avez reçu ce mail parce que vous vous êtes inscrit sur la plateforme Mouv'INSA. Si cela n'est pas le cas, merci de nous le signaler en répondant tout simplement à cette adresse mail. Très cordialement, l'admin)
+
+Bonjour {{ surnom }}
+Nous avons le plaisir de vous confirmer votre demande de changement de mot de passe sur notre plateforme.
+Votre mot de passe temporaire est : {{ nouveau_mot_de_passe }}
+Nous vous prions de le modifier dans les plus brefs délais, afin d'avoir une sécurité optimale.
+Cordialement, L'équipe Mouv'INSA
+Pour toute suggestion, ou signalisation de bug, n'hesitez pas à nous contacter en répondant à ce mail. Merci beaucoup!<br>L'admin.

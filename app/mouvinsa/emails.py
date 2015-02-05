@@ -31,11 +31,13 @@ def send_email(subject, sender, recipients, text_body, html_body):
 #     thr.start()
 
 
-#def motDePasseOublie ():
-# charger lobjet Person de la BDD
-# Set le mdp avec un mdp genere aleatoire
-# envoyer ce nouveau mot de passe par mail
-# envoyer le mail
+def mail_mot_de_passe_oublie(surnom, email, nouveau_mot_de_passe):
+    send_email(u'[Mouv\'INSA] - %s demande de changement de mot de passe' %surnom,
+               ADMIN[0], [email],
+               render_template("/mails/mot_de_passe_oublie.txt",
+                               surnom=surnom, nouveau_mot_de_passe=nouveau_mot_de_passe),
+               render_template("/mails/mot_de_passe_oublie.html",
+                               surnom=surnom, nouveau_mot_de_passe=nouveau_mot_de_passe))
 
 
 
@@ -44,28 +46,28 @@ def inscription_notification(surnom, email, categorie, nom, prenom, sexe, dateNa
                ADMIN[0],
                [email],
                render_template("/mails/inscription_email.txt",
-                               surnom=surnom, email=email, categorie=categorie, nom=nom, prenom=prenom, sexe=sexe, dateNaissance=dateNaissance, poids=poids, taille=taille, cycle=cycle, annee=annee, departement=departement, filiere=filiere, position=position, affiliation=affiliation ),
+                               surnom=surnom, email=email, categorie=categorie, nom=nom, prenom=prenom, sexe=sexe, dateNaissance=dateNaissance, poids=poids, taille=taille, cycle=cycle, annee=annee, departement=departement, filiere=filiere, position=position, affiliation=affiliation),
                render_template("/mails/inscription_email.html",
-                               surnom=surnom, email=email, categorie=categorie, nom=nom, prenom=prenom, sexe=sexe, dateNaissance=dateNaissance, poids=poids, taille=taille, cycle=cycle, annee=annee, departement=departement, filiere=filiere, position=position, affiliation=affiliation ))
+                               surnom=surnom, email=email, categorie=categorie, nom=nom, prenom=prenom, sexe=sexe, dateNaissance=dateNaissance, poids=poids, taille=taille, cycle=cycle, annee=annee, departement=departement, filiere=filiere, position=position, affiliation=affiliation))
 
 def inscription_alert(inscrits, surnom, email, categorie, nom, prenom, sexe, dateNaissance, poids, taille, cycle, annee, departement, filiere, position, affiliation ):
     send_email("[Mouv\'INSA] - NOUVEAU INSCRIT!!!!!! %s!" % categorie,
                ADMIN[0],
                [ADMIN[0]],
                render_template("/mails/inscription_alert.txt", inscrits=inscrits,
-                               surnom=surnom, email=email, categorie=categorie, nom=nom, prenom=prenom, sexe=sexe, dateNaissance=dateNaissance, poids=poids, taille=taille, cycle=cycle, annee=annee, departement=departement, filiere=filiere, position=position, affiliation=affiliation ),
+                               surnom=surnom, email=email, categorie=categorie, nom=nom, prenom=prenom, sexe=sexe, dateNaissance=dateNaissance, poids=poids, taille=taille, cycle=cycle, annee=annee, departement=departement, filiere=filiere, position=position, affiliation=affiliation),
                render_template("/mails/inscription_alert.html", inscrits=inscrits,
-                               surnom=surnom, email=email, categorie=categorie, nom=nom, prenom=prenom, sexe=sexe, dateNaissance=dateNaissance, poids=poids, taille=taille, cycle=cycle, annee=annee, departement=departement, filiere=filiere, position=position, affiliation=affiliation ))
+                               surnom=surnom, email=email, categorie=categorie, nom=nom, prenom=prenom, sexe=sexe, dateNaissance=dateNaissance, poids=poids, taille=taille, cycle=cycle, annee=annee, departement=departement, filiere=filiere, position=position, affiliation=affiliation))
 
 def sendInscriptionMailAndAlert(inscrits, surnom, email, categorie, nom, prenom, sexe, dateNaissance, poids, taille, cycle, annee, departement, filiere, position, affiliation):
-    inscription_notification(surnom=surnom, email=email, categorie=categorie, nom=nom, prenom=prenom, sexe=sexe, dateNaissance=dateNaissance, poids=poids, taille=taille, cycle=cycle, annee=annee, departement=departement, filiere=filiere, position=position, affiliation=affiliation )
-    inscription_alert(inscrits=inscrits, surnom=surnom, email=email, categorie=categorie, nom=nom, prenom=prenom, sexe=sexe, dateNaissance=dateNaissance, poids=poids, taille=taille, cycle=cycle, annee=annee, departement=departement, filiere=filiere, position=position, affiliation=affiliation )
+    inscription_notification(surnom=surnom, email=email, categorie=categorie, nom=nom, prenom=prenom, sexe=sexe, dateNaissance=dateNaissance, poids=poids, taille=taille, cycle=cycle, annee=annee, departement=departement, filiere=filiere, position=position, affiliation=affiliation)
+    inscription_alert(inscrits=inscrits, surnom=surnom, email=email, categorie=categorie, nom=nom, prenom=prenom, sexe=sexe, dateNaissance=dateNaissance, poids=poids, taille=taille, cycle=cycle, annee=annee, departement=departement, filiere=filiere, position=position, affiliation=affiliation)
 
 def sendRappelRendezVous(surnom,email):
     send_email(u'[Mouv\'INSA] - %s viens retirer ton podomètre le mardi 3 février!' %surnom,
                ADMIN[0],
                [email],
                render_template("/mails/rappel_retirer_podometre.txt",
-                               surnom = surnom),
+                               surnom=surnom),
                render_template("/mails/rappel_retirer_podometre.html",
-                               surnom = surnom))
+                               surnom=surnom))

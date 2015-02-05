@@ -8,13 +8,14 @@ from app import app
 from controllers.inscription_controller import InscriptionForm
 from controllers.confirmation_controller import ConfirmationForm, updateProfil, uploadImage
 from models import db, Student, Person, Employee
-from emails import sendInscriptionMailAndAlert, inscription_notification, inscription_alert, sendRappelRendezVous
+from emails import sendInscriptionMailAndAlert, inscription_notification, inscription_alert, sendRappelRendezVous, mail_mot_de_passe_oublie
 from controllers.signin_controller import LoginForm, MdpForm
 from controllers.inscription_controller import createEmployee, createStudent
 from controllers.tirageGroups_controller import tirageGroups, nomsGroupes
 from sqlalchemy import func
 from mouvinsa.controllers.tirageGroups_controller import nomsGroupes
-from mouvinsa.utils.passHash import check_password
+from mouvinsa.utils.passHash import check_password, hash_password
+from mouvinsa.utils.mdp import generate_mdp
 
 @app.route('/')
 def home():
@@ -130,14 +131,24 @@ def forgetpassword():
         form = MdpForm(request.form)
         if form.validate():
             email = form.email.data
+            email += "@insa-lyon.fr"
             person = Person.query.filter_by(email=email).first()
             if person is None:
-                problem = "The user doesn't exist"
-                page = "500.html"
+                problem = u'L\'utilisateur ' + email + u' n\'existe pas'
+                flash(problem, u'error_forgetpassword')
             else:
-                # Ici faudra envoyer le mail
+                mdp = generate_mdp()
+                problem = u'La demande de reinitialisation vous a été envoyée ' + mdp
+                person.password=hash_password(mdp)
+                db.session.commit()
+                mail_mot_de_passe_oublie(person.nickname, person.email, mdp)
+
+                flash(problem, u'ok_forgetpassword')
             return render_template('auth/forgetpassword.html')
         else:
+            mdp = generate_mdp(10)
+            problem = u'Mot de passe LOL ' + mdp
+            flash(problem, u'error_forgetpassword')
             return render_template('auth/forgetpassword.html')
 
 @app.route('/antho')
@@ -163,7 +174,7 @@ def login():
             password = form.password.data
             person = Person.query.filter_by(email=email).first()
             if person is None:
-                problem = u'L\'utilisateur n\'existe pas.'
+                problem = u'L\'utilisateur ' + email + u'n\'existe pas.'
                 flash(problem, 'error_login')
                 page = "auth/signin.html"
             else:
@@ -178,6 +189,8 @@ def login():
             return render_template(page, form=form)
 
         else:
+            problem = u'Connexion dfksqfbbdhkfskhqsdfhkhklsfhklsdfhklok'
+            flash(problem, 'error_login')
             return render_template('auth/signin.html')
 #
 # @app.route('/team/<teamname>/')
@@ -196,15 +209,20 @@ def page_not_found(e):
 def page_not_found(e):
     return render_template('500.html', error=e)
 
-@app.route('/test/inscription')
+
 @app.route('/test/inscription/<user>')
 def test_inscription(user="TestUser"):
+    for studenten in Person.query.all():
+        db.session.delete(studenten)
+        db.session.commit()
     student = Student()
     student.username = user
-    student.password = 'password'
-    student.email = user + '@email.com'
+    student.password = hash_password('azerty')
+    student.email = user + '@insa-lyon.fr'
     student.nickname = user
     student.category = 'etudiant'
+    student.etat = 'preregistered'
+    student.sex = ''
     db.session.add(student)
     db.session.commit()
 
@@ -365,6 +383,3 @@ def attributionGroupes():
         i=i+1
 
     return message
-
-
-

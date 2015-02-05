@@ -9,14 +9,14 @@ app = Flask(__name__)
 app.config.setdefault('SQLALCHEMY_DATABASE_URI', SQLALCHEMY_DATABASE_URI)
 app.config['SQLALCHEMY_DATABASE_URI'] = SQLALCHEMY_DATABASE_URI
 app.config.update(dict(
-    DEBUG = True,
+    DEBUG=True,
     # email server
-    MAIL_SERVER = 'smtp.gmail.com',
-    MAIL_PORT = 465,
-    MAIL_USE_TLS = False,
-    MAIL_USE_SSL = True,
-    MAIL_USERNAME = 'mouvinsa.communication@gmail.com',
-    MAIL_PASSWORD = '.123mouvinsaadmin',
+    MAIL_SERVER='smtp.gmail.com',
+    MAIL_PORT=465,
+    MAIL_USE_TLS=False,
+    MAIL_USE_SSL=True,
+    MAIL_USERNAME='mouvinsa.communication@gmail.com',
+    MAIL_PASSWORD='**********',
 ))
 mail = Mail(app)
 app.wsgi_app = DebuggedApplication(app.wsgi_app, True)
