@@ -135,7 +135,8 @@ def forgetpassword():
                 problem = "The user doesn't exist"
                 page = "500.html"
             else:
-                # Ici faudra envoyer le mail
+                #Ici faudra envoyer le mail
+                problem = "NOPROBLEM"
             return render_template('auth/forgetpassword.html')
         else:
             return render_template('auth/forgetpassword.html')
