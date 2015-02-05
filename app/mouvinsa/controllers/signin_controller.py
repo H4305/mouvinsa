@@ -3,5 +3,10 @@
 from wtforms import Form,TextField, PasswordField, validators
 
 class LoginForm(Form):
-    username = TextField('Username', [validators.Length(min=4, max=25)])
+    email = TextField('Email', [validators.Length(min=4, max=25)])
     password = PasswordField('Password', [validators.Required()])
+
+
+
+class MdpForm(Form):
+    email = TextField('Email', [validators.Length(min=4, max=25)])
