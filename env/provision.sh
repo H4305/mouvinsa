@@ -21,10 +21,12 @@ sudo apt-get install libmysqlclient-dev python-mysqldb -y
 sudo pip install mysql-python
 sudo pip install Flask-SQLAlchemy
 sudo pip install Flask-Mail
+sudo pip install Flask-WTF
 
 export PYTHONPATH=/app/mouvinsa/
 echo 'export PYTHONPATH=/app/mouvinsa/' >> ~/.bashrc
 
+python -c "import sys; sys.path.append('/app'); from mouvinsa import models; from mouvinsa.models import db; db.create_all()"
 sudo easy_install supervisor
 sudo cp /vagrant/conf/supervisord.sh /etc/init.d/supervisord
 sudo sed -i 's/\r//g' /etc/init.d/supervisord
