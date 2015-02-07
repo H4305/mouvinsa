@@ -11,9 +11,8 @@ from models import db, Student, Person, Employee
 from emails import sendInscriptionMailAndAlert, inscription_notification, inscription_alert, sendRappelRendezVous
 from controllers.signin_controller import LoginForm, MdpForm
 from controllers.inscription_controller import createEmployee, createStudent
-from controllers.tirageGroups_controller import tirageGroups, nomsGroupes
+from controllers.tirageGroups_controller import tirageGroups
 from sqlalchemy import func
-from mouvinsa.controllers.tirageGroups_controller import nomsGroupes
 from mouvinsa.utils.passHash import check_password
 
 @app.route('/')
@@ -181,14 +180,13 @@ def login():
         else:
             return render_template('auth/signin.html')
 
-@app.route('/resultats/personnel', method=['GET', 'POST'])
+@app.route('/resultats/personnel', methods=['GET', 'POST'])
 def personnel():
     # TO-DO: ANTHONY DOIT FAIRE UNE FONCTION POUR BIEN VÉRIFIER SI L'UTILISATEUR EST CONNECTÉ
-    if request.method == 'GET':
-        return render_template('')
-    elif request.method == 'POST':
-        return render_template('')
-        
+    #if request.method == 'GET':
+
+    #elif request.method == 'POST':
+    return render_template('person/main.html')
 
 #
 # @app.route('/team/<teamname>/')
