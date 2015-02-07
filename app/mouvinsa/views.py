@@ -11,9 +11,9 @@ from models import db, Student, Person, Employee
 from emails import sendInscriptionMailAndAlert, inscription_notification, inscription_alert, sendRappelRendezVous, mail_mot_de_passe_oublie
 from controllers.signin_controller import LoginForm, MdpForm
 from controllers.inscription_controller import createEmployee, createStudent
-from controllers.tirageGroups_controller import tirageGroups, nomsGroupes
+from controllers.tirageGroups_controller import tirageGroups#, nomsGroupes
 from sqlalchemy import func
-from mouvinsa.controllers.tirageGroups_controller import nomsGroupes
+#from mouvinsa.controllers.tirageGroups_controller import nomsGroupes
 from mouvinsa.utils.passHash import check_password, hash_password
 from mouvinsa.utils.mdp import generate_mdp
 from mouvinsa.user.UserManager import loginmouv
@@ -165,7 +165,7 @@ def login():
         if checkSession() is False:
             return render_template('auth/signin.html')
         else:
-            return render_template("apropos.html")
+            return render_template("person/main.html")
 
     elif request.method == 'POST':
         form = LoginForm(request.form)
@@ -193,7 +193,7 @@ def login():
                 saveInSession(email, objeet.nickname, objeet.group_id)
                 problem = u'Connexion ok'
                 flash(problem, 'error_login')
-                page = "apropos.html"
+                page = "person/main.html"
 
             return render_template(page, form=form)
 
@@ -202,7 +202,7 @@ def login():
             flash(problem, 'error_login')
             return render_template('auth/signin.html')
 
-@app.route('/resultats/personnel', method=['GET', 'POST'])
+@app.route('/resultats/personnel', methods=['GET', 'POST'])
 def personnel():
     # TO-DO: ANTHONY DOIT FAIRE UNE FONCTION POUR BIEN VÉRIFIER SI L'UTILISATEUR EST CONNECTÉ
     if request.method == 'GET':
