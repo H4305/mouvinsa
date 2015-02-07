@@ -169,6 +169,16 @@ def login():
             return render_template(page, form=form)
         else:
             return render_template('auth/signin.html')
+
+@app.route('/resultats/personnel', method=['GET', 'POST'])
+def personnel():
+    # TO-DO: ANTHONY DOIT FAIRE UNE FONCTION POUR BIEN VÉRIFIER SI L'UTILISATEUR EST CONNECTÉ
+    if request.method == 'GET':
+        return render_template('')
+    elif request.method == 'POST':
+        return render_template('')
+        
+
 #
 # @app.route('/team/<teamname>/')
 # def team_page(teamname) :
