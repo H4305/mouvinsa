@@ -16,6 +16,8 @@ from sqlalchemy import func
 from mouvinsa.controllers.tirageGroups_controller import nomsGroupes
 from mouvinsa.utils.passHash import check_password, hash_password
 from mouvinsa.utils.mdp import generate_mdp
+from mouvinsa.user.UserManager import loginmouv
+from mouvinsa.user.SessionManager import saveInSession, checkSession
 
 @app.route('/')
 def home():
@@ -160,7 +162,11 @@ def antho():
 @app.route('/login/', methods=['GET', 'POST'])
 def login():
     if request.method == 'GET':
-        return render_template('auth/signin.html')
+        if checkSession() is False:
+            return render_template('auth/signin.html')
+        else:
+            return render_template("apropos.html")
+
     elif request.method == 'POST':
         form = LoginForm(request.form)
         if form.validate():
@@ -172,24 +178,27 @@ def login():
             email += "@insa-lyon.fr"
 
             password = form.password.data
-            person = Person.query.filter_by(email=email).first()
-            if person is None:
-                problem = u'L\'utilisateur ' + email + u'n\'existe pas.'
-                flash(problem, 'error_login')
-                page = "auth/signin.html"
-            else:
-                if check_password(person.password, password):
-                    problem = u'Connexion ok'
+            objeet, error = loginmouv(email, password)
+
+            if objeet is None:
+                if error == 1:
+                    problem = u'L\'utilisateur ' + email + u'n\'existe pas.'
                     flash(problem, 'error_login')
-                    page = "apropos.html"
-                else:
+                    page = "auth/signin.html"
+                elif error == 2:
                     problem = u'Connexion refusé'
                     flash(problem, 'error_login')
                     page = "auth/signin.html"
+            else:
+                saveInSession(email, objeet.nickname, objeet.group_id)
+                problem = u'Connexion ok'
+                flash(problem, 'error_login')
+                page = "apropos.html"
+
             return render_template(page, form=form)
 
         else:
-            problem = u'Connexion dfksqfbbdhkfskhqsdfhkhklsfhklsdfhklok'
+            problem = u'Connexion refusé'
             flash(problem, 'error_login')
             return render_template('auth/signin.html')
 #
@@ -281,9 +290,9 @@ def sendTo(surnom):
     filiere = "NONE"
     position = "NONE"
     affiliation = "NONE"
-    #inscription_notification(surnom=surnom, email=email, categorie=categorie, nom=nom, prenom=prenom, sexe=sexe, dateNaissance=dateNaissance, poids=poids, taille=taille, cycle=cycle, annee=annee, departement=departement, filiere=filiere, position=position, affiliation=affiliation )
+    inscription_notification(surnom=surnom, email=email, categorie=categorie, nom=nom, prenom=prenom, sexe=sexe, dateNaissance=dateNaissance, poids=poids, taille=taille, cycle=cycle, annee=annee, departement=departement, filiere=filiere, position=position, affiliation=affiliation )
     return 'Sending test is deactivated'
-    #render_template('testMail.html', email=email, surnom=surnom, categorie=categorie, nom=nom, prenom=prenom, sexe=sexe, dateNaissance=dateNaissance, poids=poids, taille=taille, cycle=cycle, annee=annee, departement=departement, filiere=filiere, position=position, affiliation=affiliation)
+    render_template('testMail.html', email=email, surnom=surnom, categorie=categorie, nom=nom, prenom=prenom, sexe=sexe, dateNaissance=dateNaissance, poids=poids, taille=taille, cycle=cycle, annee=annee, departement=departement, filiere=filiere, position=position, affiliation=affiliation)
 
 @app.route('/sendMailAlert')
 def sendMailAlert() :
