@@ -9,7 +9,7 @@ from controllers.inscription_controller import InscriptionForm
 from controllers.confirmation_controller import ConfirmationForm, updateProfil, uploadImage
 from models import db, Student, Person, Employee
 from emails import sendInscriptionMailAndAlert, inscription_notification, inscription_alert, sendRappelRendezVous
-from controllers.signin_controller import LoginForm
+from controllers.signin_controller import LoginForm, MdpForm
 from controllers.inscription_controller import createEmployee, createStudent
 from controllers.tirageGroups_controller import tirageGroups, nomsGroupes
 from sqlalchemy import func
@@ -127,15 +127,25 @@ def forgetpassword():
     if request.method == 'GET':
         return render_template('auth/forgetpassword.html')
     elif request.method == 'POST':
-        email = request.POST.get('email') # Peut etre passe par une classe form ? mais pour un attribut ?
-        person = Person.query.filter_by(email=email).first()
-        if person is None:
-            problem = "The user doesn't exist"
-            page = "500.html"
+        form = MdpForm(request.form)
+        if form.validate():
+            email = form.email.data
+            person = Person.query.filter_by(email=email).first()
+            if person is None:
+                problem = "The user doesn't exist"
+                page = "500.html"
+            else:
+                #Ici faudra envoyer le mail
+                problem = "NOPROBLEM"
+            return render_template('auth/forgetpassword.html')
         else:
-            # Ici faudra envoyer le mail
-            print "test"
-        return render_template('auth/forgetpassword.html')
+            return render_template('auth/forgetpassword.html')
+
+@app.route('/antho')
+def antho():
+    person = Person.query.filter_by(nickname="aaaa").first()
+    str = unicode(person.lastname)+' '+unicode(person.firstname)+' '+unicode(person.email)
+    return str
 
 @app.route('/login/', methods=['GET', 'POST'])
 def login():
@@ -149,24 +159,25 @@ def login():
             if email.count('@') != 0:
                 flash(u'L\'email entré est incorrect', 'error_login')
                 return render_template('auth/signin.html')
-            else :
-                email+= "@insa-lyon.fr"
+            email += "@insa-lyon.fr"
 
             password = form.password.data
             person = Person.query.filter_by(email=email).first()
             if person is None:
                 problem = u'L\'utilisateur n\'existe pas.'
+                flash(problem, 'error_login')
                 page = "auth/signin.html"
             else:
                 if check_password(person.password, password):
                     problem = u'Connexion ok'
+                    flash(problem, 'error_login')
                     page = "apropos.html"
                 else:
                     problem = u'Connexion refusé'
+                    flash(problem, 'error_login')
                     page = "auth/signin.html"
-
-            flash(problem, 'error_login')
             return render_template(page, form=form)
+
         else:
             return render_template('auth/signin.html')
 
@@ -202,7 +213,7 @@ def test_inscription(user="TestUser"):
     student = Student()
     student.username = user
     student.password = 'password'
-    student.email = user +'@email.com'
+    student.email = user + '@email.com'
     student.nickname = user
     student.category = 'etudiant'
     db.session.add(student)
@@ -263,7 +274,7 @@ def sendTo(surnom):
     filiere = "NONE"
     position = "NONE"
     affiliation = "NONE"
-    #inscription_notification(surnom=surnom, email=email, categorie=categorie, nom=nom, prenom=prenom, sexe=sexe, dateNaissance=dateNaissance, poids=poids, taille=taille, cycle=cycle, annee=annee, departement=departement, filiere=filiere, position=position, affiliation=affiliation )
+    inscription_notification(surnom=surnom, email=email, categorie=categorie, nom=nom, prenom=prenom, sexe=sexe, dateNaissance=dateNaissance, poids=poids, taille=taille, cycle=cycle, annee=annee, departement=departement, filiere=filiere, position=position, affiliation=affiliation )
     return 'Sending test is deactivated'
     #render_template('testMail.html', email=email, surnom=surnom, categorie=categorie, nom=nom, prenom=prenom, sexe=sexe, dateNaissance=dateNaissance, poids=poids, taille=taille, cycle=cycle, annee=annee, departement=departement, filiere=filiere, position=position, affiliation=affiliation)
 

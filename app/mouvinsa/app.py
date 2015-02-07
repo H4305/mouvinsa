@@ -16,7 +16,7 @@ app.config.update(dict(
     MAIL_USE_TLS = False,
     MAIL_USE_SSL = True,
     MAIL_USERNAME = 'mouvinsa.communication@gmail.com',
-    MAIL_PASSWORD = '.123mouvinsaadmin',
+    MAIL_PASSWORD = '',
 ))
 mail = Mail(app)
 app.wsgi_app = DebuggedApplication(app.wsgi_app, True)
