@@ -1,10 +1,10 @@
 __author__ = 'afaraut'
 
 from mouvinsa.utils.passHash import check_password
-from mouvinsa.models import Person
+from mouvinsa.user.BDDManager import loadPersonByMail
 
 def loginmouv(email, password):
-    person = Person.query.filter_by(email=email).first()
+    person = loadPersonByMail(email)
     if person is None:
         return None, 1
     else:

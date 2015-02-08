@@ -15,7 +15,7 @@ from controllers.tirageGroups_controller import tirageGroups
 from sqlalchemy import func
 from mouvinsa.utils.passHash import check_password, hash_password
 from mouvinsa.user.UserManager import loginmouv
-from mouvinsa.user.SessionManager import saveInSession, checkSession
+from mouvinsa.user.SessionManager import saveInSession, checkSession, clearSession
 from mouvinsa.utils.mdp import generate_mdp
 
 @app.route('/')
@@ -135,7 +135,7 @@ def forgetpassword():
             email += "@insa-lyon.fr"
             person = Person.query.filter_by(email=email).first()
             if person is None:
-                problem = u'L\'utilisateur ' + email + u' n\'existe pas'
+                problem = u'L\'utilisateur %s n\'existe pas', email
                 flash(problem, u'error_forgetpassword')
             else:
                 mdp = generate_mdp()
@@ -158,13 +158,21 @@ def antho():
     str = unicode(person.lastname)+' '+unicode(person.firstname)+' '+unicode(person.email)
     return str
 
+
+@app.route('/logout/', methods=['GET'])
+def logout():
+    if request.method == 'GET':
+        if checkSession() is True:
+            clearSession()
+        return redirect(url_for('home'))
+
 @app.route('/login/', methods=['GET', 'POST'])
 def login():
     if request.method == 'GET':
         if checkSession() is False:
             return render_template('auth/signin.html')
         else:
-            return render_template("person/main.html")
+            return render_template("lolilol.html")
 
     elif request.method == 'POST':
         form = LoginForm(request.form)
@@ -189,10 +197,10 @@ def login():
                     flash(problem, 'error_login')
                     page = "auth/signin.html"
             else:
-                saveInSession(email, objeet.nickname, objeet.group_id)
+                saveInSession(objeet.id)
                 problem = u'Connexion ok'
                 flash(problem, 'error_login')
-                page = "person/main.html"
+                page = "lolilol.html"
 
             return render_template(page, form=form)
 
