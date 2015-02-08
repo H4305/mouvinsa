@@ -1,14 +1,19 @@
 __author__ = 'afaraut'
 
 from flask import session
+from mouvinsa.user.BDDManager import loadPersonById
 
-def saveInSession(email, nickname, idgroup):
-    session['email'] = email
-    session['nickname'] = nickname
-    session['idGroup'] = idgroup
+def saveInSession(id):
+    session['id'] = id
 
 def checkSession():
-    if 'email' not in session and 'nickname' not in session and 'idGroup' not in session:
+    if 'id' not in session:
         return False
     else:
         return True
+
+def clearSession():
+    session.clear()
+
+def getPersonFromSession():
+    return loadPersonById(session['id'])
