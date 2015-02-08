@@ -114,10 +114,10 @@ class City(db.Model):
     #caption = db.Column(db.String(255))
     level_id = db.Column(db.Integer, db.ForeignKey('level.id'))
 
-    groups = db.relationship('Group', backref='cities', lazy='dynamic')
+"""    groups = db.relationship('Group', backref='cities', lazy='dynamic')
     __mapper_args__ = {
         'polymorphic_identity': 'city',
-    }
+    }"""
 
 
 """class Goal(db.Model):

@@ -14,6 +14,9 @@ from controllers.inscription_controller import createEmployee, createStudent
 from controllers.tirageGroups_controller import tirageGroups
 from sqlalchemy import func
 from mouvinsa.utils.passHash import check_password
+from mouvinsa.user.UserManager import loginmouv
+from mouvinsa.user.SessionManager import saveInSession, checkSession
+from mouvinsa.utils.mdp import generate_mdp
 
 @app.route('/')
 def home():
