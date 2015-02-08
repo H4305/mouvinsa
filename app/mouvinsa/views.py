@@ -15,7 +15,7 @@ from controllers.tirageGroups_controller import tirageGroups
 from sqlalchemy import func
 from mouvinsa.utils.passHash import check_password, hash_password
 from mouvinsa.user.UserManager import loginmouv
-from mouvinsa.user.SessionManager import saveInSession, checkSession, clearSession
+from mouvinsa.user.SessionManager import saveInSession, checkSession, clearSession, getPersonFromSession
 from mouvinsa.utils.mdp import generate_mdp
 
 @app.route('/')
@@ -211,11 +211,12 @@ def login():
 
 @app.route('/resultats/personnel', methods=['GET', 'POST'])
 def personnel():
+    person = getPersonFromSession()
     # TO-DO: ANTHONY DOIT FAIRE UNE FONCTION POUR BIEN VÉRIFIER SI L'UTILISATEUR EST CONNECTÉ
     #if request.method == 'GET':
 
     #elif request.method == 'POST':
-    return render_template('person/main.html')
+    return render_template('person/main.html', person=person)
 
 #
 # @app.route('/team/<teamname>/')

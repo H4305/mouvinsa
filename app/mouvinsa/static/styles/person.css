@@ -2,3 +2,78 @@
   Person pages styles
 ================================ */
 
+.person-header {
+  display: block;
+  width:100%;
+  position:relative;
+  background: url('../images/person/header1.jpg') left top;
+  height:166px;
+  padding:30px 0;
+  background-size: cover;
+}
+/*
+.person-header::before {
+  content: "";
+  background: url('../images/person/header1.jpg') center center;
+  background-size: cover;
+  opacity: 1;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  z-index: -1;   
+}
+
+.person-header::after {
+  content: "";
+  background: #000;
+  opacity: 0.6;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  z-index: -1;   
+}
+
+.person-header > .container {
+  background: url('../images/person/header1.jpg') left top;
+  height:166px;
+  padding:30px 0;
+  
+}
+*/
+.person-avatar-wrapper {
+  margin-left:30px;
+  display: block;
+  position: relative;
+  float: left;
+}
+
+.person-avatar {
+  border-radius: 100%;
+  border: 6px solid #fff;
+  box-shadow: 0px 3px 2px rgba(0,0,0,0.2);
+}
+
+.person-name-wrapper {
+  margin-left: 200px;
+  padding-top:40px;
+}
+
+.person-group {
+  font-family: bebas_neue_bold, Helvetica, Arial;
+  font-weight: bold;
+  font-size:40px;
+  color:#ffb300;
+}
+
+h1.person-name {
+  font-family: bebas_neue_bold, Helvetica, Arial;
+  font-weight: bold;
+  font-size:60px;
+  color:#fff;
+  border:none;
+  margin-top:-10px;
+}
