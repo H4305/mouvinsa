@@ -1,6 +1,7 @@
 from sqlalchemy import Enum
 from flask.ext.sqlalchemy import SQLAlchemy
 from mouvinsa.app import app
+
 db = SQLAlchemy(app)
 
 
@@ -16,18 +17,18 @@ badges_person = db.Table('badges_person',
 )"""
 
 person_steps = db.Table('person_steps',
-                     db.Column('person_id', db.Integer, db.ForeignKey('person.id')),
-                     db.Column('step_id', db.Integer, db.ForeignKey('steps.id'))
+                        db.Column('person_id', db.Integer, db.ForeignKey('person.id')),
+                        db.Column('step_id', db.Integer, db.ForeignKey('steps.id'))
 )
 
 group_goals = db.Table('group_goals',
-                      db.Column('group_id', db.Integer, db.ForeignKey('group.id')),
-                      db.Column('city_tres_facile_id', db.Integer, db.ForeignKey('city.id')),
-                      db.Column('city_facile_id', db.Integer, db.ForeignKey('city.id')),
-                      db.Column('city_moyen_id', db.Integer, db.ForeignKey('city.id')),
-                      db.Column('city_difficile_id', db.Integer, db.ForeignKey('city.id')),
-                      db.Column('city_tres_difficile_id', db.Integer, db.ForeignKey('city.id')),
-                      db.Column('city_champion_id', db.Integer, db.ForeignKey('city.id'))
+                       db.Column('group_id', db.Integer, db.ForeignKey('group.id')),
+                       db.Column('city_tres_facile_id', db.Integer, db.ForeignKey('city.id')),
+                       db.Column('city_facile_id', db.Integer, db.ForeignKey('city.id')),
+                       db.Column('city_moyen_id', db.Integer, db.ForeignKey('city.id')),
+                       db.Column('city_difficile_id', db.Integer, db.ForeignKey('city.id')),
+                       db.Column('city_tres_difficile_id', db.Integer, db.ForeignKey('city.id')),
+                       db.Column('city_champion_id', db.Integer, db.ForeignKey('city.id'))
 )
 
 # Defining models
@@ -77,6 +78,7 @@ class Student(Person):
         'polymorphic_identity': 'student',
     }
 
+
 class Employee(Person):
     __tablename__ = 'employee'
     id = db.Column(db.Integer, db.ForeignKey('person.id'), primary_key=True)
@@ -86,6 +88,7 @@ class Employee(Person):
     __mapper_args__ = {
         'polymorphic_identity': 'employee',
     }
+
 
 class Level(db.Model):
     __tablename__ = 'level'
@@ -109,15 +112,15 @@ class City(db.Model):
     image_atteinte2 = db.Column(db.String(120), nullable=True)
     image_atteinte3 = db.Column(db.String(120), nullable=True)
     image_but = db.Column(db.String(120), nullable=True)
-    #lattitude = db.Column(db.Float, nullable=False)
+    # lattitude = db.Column(db.Float, nullable=False)
     #longitude = db.Column(db.Float, nullable=False)
     #caption = db.Column(db.String(255))
     level_id = db.Column(db.Integer, db.ForeignKey('level.id'))
 
-"""    groups = db.relationship('Group', backref='cities', lazy='dynamic')
+    #groups = db.relationship('Group', backref='cities', lazy='dynamic')
     __mapper_args__ = {
         'polymorphic_identity': 'city',
-    }"""
+    }
 
 
 """class Goal(db.Model):
@@ -145,6 +148,9 @@ class Group(db.Model):
     }
 
     persons = db.relationship('Person', backref='group', lazy='dynamic')
+
+    city_arrived = db.relationship(City, foreign_keys=city_arrived_id, backref='cities_arrived')
+    city_destination = db.relationship(City, foreign_keys=city_destination_id, backref='cities_destination')
 
 
 class Steps(db.Model):
