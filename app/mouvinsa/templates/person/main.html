@@ -2,8 +2,10 @@
 {% block title %} Accueil {% endblock %}
 {% block pageName %} Accueil {% endblock %}
 {% block main %}
-  {% include "person/main/header.html" %}
-  {% include "person/main/activity.html" %}
-  {% include "person/main/distance_bar.html" %}
-  {% include "person/main/graph.html" %}
+    {% include "person/main/header.html" %}
+  <div class="container activity-main">
+    {% include "person/main/activity.html" %}
+    {% include "person/main/distance_bar.html" %}
+    {% include "person/main/graph.html" %}
+  </div>
 {% endblock %}

@@ -2,6 +2,8 @@
   Person pages styles
 ================================ */
 
+/* HEADER */
+
 .person-header {
   display: block;
   width:100%;
@@ -11,39 +13,7 @@
   padding:30px 0;
   background-size: cover;
 }
-/*
-.person-header::before {
-  content: "";
-  background: url('../images/person/header1.jpg') center center;
-  background-size: cover;
-  opacity: 1;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  position: absolute;
-  z-index: -1;   
-}
 
-.person-header::after {
-  content: "";
-  background: #000;
-  opacity: 0.6;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  position: absolute;
-  z-index: -1;   
-}
-
-.person-header > .container {
-  background: url('../images/person/header1.jpg') left top;
-  height:166px;
-  padding:30px 0;
-  
-}
-*/
 .person-avatar-wrapper {
   margin-left:30px;
   display: block;
@@ -76,4 +46,60 @@ h1.person-name {
   color:#fff;
   border:none;
   margin-top:-10px;
+}
+
+/* Activity Box */
+
+.activity-main {
+  margin-top: -30px;
+  position: relative;
+}
+
+.activity-box {
+  width: 100%;
+  background: #fff;
+  box-shadow: 0px 1px 3px rgba(0,0,0,0.3);
+}
+
+.activity-input-box {
+  padding:20px;
+}
+
+.activity-input-box h2{
+  font-family: bebas_neue_light, Helvetica, Arial;
+  font-weight: lighter;
+  font-size:30px;
+  color:#686868;
+}
+
+.activity-input-box h2 > strong{
+  font-family: bebas_neue_regular, Helvetica, Arial;
+  font-weight: normal;
+}
+
+.activity-filter-btn {
+  width:18px;
+  height:10px;
+  border:none;
+  background: url('../images/person/arrow-down.png');
+  vertical-align: middle;
+}
+
+.input-types {
+  list-style: none;
+  padding:0;
+  color:#F44336;
+  font-size: 20px;
+}
+
+.activity-input {
+  border:none;
+  border-bottom: 3px solid #F44336;
+  width:130px;
+  color:#555;
+  margin:0 4px 0 15px;
+}
+
+.input-types img {
+  vertical-align: middle;
 }
