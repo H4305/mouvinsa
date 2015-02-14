@@ -1,8 +1,8 @@
 <form action="/resultats/personnel" method="post">
-    <button name="personID" value="id" type="submit">{{ person.nickname }}</button>
+    <button name="personID" value="{{ person.id }}" type="submit">{{ person.nickname }}</button>
 </form>
 <form action="/resultats/equipe" method="get">
-    <button name="idEquipe" value="id" type="submit">MON EQUIPE</button>
+    <button name="idEquipe" value="{{ person.group_id }}" type="submit">MON EQUIPE</button>
 </form>
 <form action="/reglages" method="post">
     <button>REGLAGES</button>

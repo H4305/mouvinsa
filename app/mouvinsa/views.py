@@ -201,7 +201,9 @@ def login():
                 saveInSession(objeet.id)
                 problem = u'Connexion ok'
                 flash(problem, 'error_login')
-                page = "lolilol.html"
+                page = "accueil/index.html"
+                person = getPersonFromSession()
+                return render_template(page, form=form, person=person)
 
             return render_template(page, form=form)
 
