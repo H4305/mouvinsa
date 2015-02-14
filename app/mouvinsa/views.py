@@ -238,6 +238,12 @@ def page_not_found(e):
 def page_not_found(e):
     return render_template('500.html', error=e)
 
+@app.route('/reglages')
+def reglages():
+    person = getPersonFromSession()
+
+    return render_template('reglages/main.html', person=person)
+
 
 @app.route('/test/inscription/<user>')
 def test_inscription(user="TestUser"):
