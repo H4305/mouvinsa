@@ -4,8 +4,10 @@ from functools import wraps
 from flask import session, request, redirect, url_for
 from mouvinsa.user.BDDManager import loadPersonById
 
+
 def saveInSession(id):
     session['id'] = id
+
 
 def checkSession():
     if 'id' not in session:
@@ -13,11 +15,17 @@ def checkSession():
     else:
         return True
 
+
 def clearSession():
     session.clear()
 
+
 def getPersonFromSession():
-    return loadPersonById(session['id'])
+    if(checkSession()):
+        return loadPersonById(session['id'])
+    else:
+        return "none"
+
 
 def login_required(f):
     @wraps(f)

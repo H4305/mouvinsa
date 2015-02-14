@@ -1,6 +1,12 @@
 {% extends "layout.html" %}
-{% block title %} Accueil {% endblock %}
-{% block pageName %} Accueil {% endblock %}
+{% block title %} Ma Page {% endblock %}
+{% block pageName %} Ma Page {% endblock %}
+{% block positionPage %}
+    mouv’insa - ma page
+{% endblock %}
+{% block linksOtherPages %}
+    {% include "person/main/navBar.html" %}
+{% endblock %}
 {% block main %}
     {% include "person/main/header.html" %}
   <div class="container activity-main">

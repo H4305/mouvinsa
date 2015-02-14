@@ -1,3 +1,7 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+# coding: utf-8
+
 __author__ = 'marcomontalto'
 
 from mouvinsa.models import db, Level, Group, City
@@ -9,7 +13,7 @@ nomsGroupes = [ u"Jumperzap", u"Highjumps", u"Batsqueak", u"Athletebrring", u"Sp
                 u"Biathlonboom", u"Battingbuzz", u"Cyclingcuckoo", u"Dartdingdong", u"Divedrip", u"Fitnessfizzle", u"Footballfizz",
                 u"Boxingboom", u"Movementbuzz", u"Waterskiwoof", u"Canoeingcheep", u"Crazy Legs", u"Catchmurmer"]
 
-levels = [ u"Très facile", u"Facile", u"Moyen", u"Difficile", u"Très difficile", u"Champion"]
+levels = [u'Très facile', u'Facile', u'Moyen', u'Difficile', u'Très difficile', u'Champion']
 distances = []
 
 cities_tr_facile = []

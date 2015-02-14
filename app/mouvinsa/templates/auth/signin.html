@@ -1,37 +1,43 @@
-
 {% extends "layout.html" %}
 
+{% block positionPage %}
+    mouv’insa - Login
+{% endblock %}
+{% block linksOtherPages %}
+    {% include "auth/main/navBar.html" %}
+{% endblock %}
 {% block header %}
     {{ super() }}
     <link href="{{ url_for('static', filename='styles/inscription/inscription_style.css') }}" rel="stylesheet" type="text/css" />
-    <link href="{{ url_for('static', filename='styles/navigationMenuStyle.css') }}" rel="stylesheet" type="text/css" />
 {% endblock %}
 
 {% block main %}
+    <div id="backgroundSignin">
+        {% with validation = get_flashed_messages() %}
+          {% if validation %}
+            <div class="validation_DIV">
+            {% for message in validation %}
+              <span id="inscriptionMessage_SPAN">{{ message }}</span>
+            {% endfor %}
+            </div>
+          {% endif %}
+        {% endwith %}
 
-    {% with validation = get_flashed_messages() %}
-      {% if validation %}
-        <div class="validation_DIV">
-        {% for message in validation %}
-          <span id="inscriptionMessage_SPAN">{{ message }}</span>
-        {% endfor %}
+        <div id="signin">
+            <div class="title">
+                Connexion
+            </div>
+            {% if error %}<p class="error"><strong>Error:</strong> {{ error }}{% endif %}
+            <form action="{{ url_for('login') }}" method="post">
+                <label class="label" for="email">Email</label>
+                <input type="text" name="email" class="input">@insa-lyon.fr
+                <br/>
+                <label class="label" for="password">Mot de passe</label>
+                <input type="password" name="password" class="input">
+                <input type="submit" value="Login" class="button">
+            </form>
+            <a href="{{ url_for('forgetpassword') }}" id="link">Mot de passe oublié</a>
         </div>
-      {% endif %}
-    {% endwith %}
-
-    <div id="signin">
-        <div class="title">
-            Connexion
-        </div>
-        {% if error %}<p class=error><strong>Error:</strong> {{ error }}{% endif %}
-        <form action="{{ url_for('login') }}" method="post">
-            <label class="label" for="email">Email</label>
-            <input type="text" name="email" class="input">@insa-lyon.fr
-            <br/>
-            <label class="label" for="password">Mot de passe</label>
-            <input type="password" name="password" class="input">
-            <input type="submit" value="Login" class="button">
-        </form>
-        <a href="{{ url_for('forgetpassword') }}" id="link">Mot de passe oublié</a>
     </div>
+    {% include 'apropos.html' %}
 {% endblock %}

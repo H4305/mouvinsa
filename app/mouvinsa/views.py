@@ -7,22 +7,27 @@ from flask import render_template, request, flash, url_for, redirect
 from app import app
 from controllers.inscription_controller import InscriptionForm
 from controllers.confirmation_controller import ConfirmationForm, updateProfil, uploadImage
-from models import db, Student, Person, Employee
-from emails import sendInscriptionMailAndAlert, inscription_notification, inscription_alert, sendRappelRendezVous, mail_mot_de_passe_oublie
 from controllers.signin_controller import LoginForm, MdpForm
 from controllers.inscription_controller import createEmployee, createStudent
 from controllers.tirageGroups_controller import tirageGroups
+from controllers.init_elements_bdd_controller import nomsGroupes
+from models import db, Student, Person, Employee
+from emails import sendInscriptionMailAndAlert, inscription_notification, inscription_alert, sendRappelRendezVous, mail_mot_de_passe_oublie
 from sqlalchemy import func
 from mouvinsa.utils.passHash import check_password, hash_password
 from mouvinsa.user.UserManager import loginmouv
 from mouvinsa.user.SessionManager import saveInSession, checkSession, clearSession, getPersonFromSession, login_required
 from mouvinsa.utils.mdp import generate_mdp
 
+<<<<<<< HEAD
 
 @app.route('/')
+=======
+@app.route('/', methods=['GET', 'POST'])
+>>>>>>> 69211fd5d48f3d937c1365ae4d73e457094c297f
 def home():
-    name = request.args.get('name', '')
-    return render_template('index.html', name=name)
+    person = getPersonFromSession()
+    return render_template('/accueil/index.html', person=person)
 
 
 #@app.route('/', methods=['GET', 'POST'])
@@ -124,7 +129,7 @@ def confirmation():
                             return render_template('inscription/confirmation.html', user=user_found, msg='refuse')
                     elif user_found.etat == 'REGISTERED':
                         redirect(url_for('login'))
-            return render_template('index.html')
+            return render_template('/accueil/index.html')
 
 
 @app.route('/forgetpassword/', methods=['GET', 'POST'])
@@ -205,8 +210,14 @@ def login():
                 saveInSession(objeet.id)
                 problem = u'Connexion ok'
                 flash(problem, 'error_login')
+<<<<<<< HEAD
                 page = "lolilol.html"
                 return redirect(url_for('personnel'))
+=======
+                page = "accueil/index.html"
+                person = getPersonFromSession()
+                return render_template(page, form=form, person=person)
+>>>>>>> 69211fd5d48f3d937c1365ae4d73e457094c297f
 
             return render_template(page, form=form)
 
