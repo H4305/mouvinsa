@@ -16,13 +16,19 @@ from emails import sendInscriptionMailAndAlert, inscription_notification, inscri
 from sqlalchemy import func
 from mouvinsa.utils.passHash import check_password, hash_password
 from mouvinsa.user.UserManager import loginmouv
-from mouvinsa.user.SessionManager import saveInSession, checkSession, clearSession, getPersonFromSession
+from mouvinsa.user.SessionManager import saveInSession, checkSession, clearSession, getPersonFromSession, login_required
 from mouvinsa.utils.mdp import generate_mdp
 
+<<<<<<< HEAD
+
+@app.route('/')
+=======
 @app.route('/', methods=['GET', 'POST'])
+>>>>>>> 69211fd5d48f3d937c1365ae4d73e457094c297f
 def home():
     person = getPersonFromSession()
     return render_template('/accueil/index.html', person=person)
+
 
 #@app.route('/', methods=['GET', 'POST'])
 @app.route('/inscription', methods=['GET', 'POST'])
@@ -32,7 +38,6 @@ def inscription():
         utilisateurEmail = Person.query.filter_by(email = form.email.data).first()
         utilisateur_pseudo = Person.query.filter_by(nickname = form.surnom.data).first()
         if utilisateurEmail is None and utilisateur_pseudo is None:
-
 
             if form.categorie.data == 'Etudiant':
                 student = Student()
@@ -87,6 +92,7 @@ def inscription():
             flash(u'Le pseudonyme que vous voulez utiliser existe déjà. Veuillez choisir un autre. ', 'errorPseudo')
     return render_template('inscription/inscription.html', form=form)
 
+
 @app.route('/confirmation', methods=['GET', 'POST'])
 def confirmation():
             token_param = request.args.get('token')
@@ -125,6 +131,7 @@ def confirmation():
                         redirect(url_for('login'))
             return render_template('/accueil/index.html')
 
+
 @app.route('/forgetpassword/', methods=['GET', 'POST'])
 def forgetpassword():
     if request.method == 'GET':
@@ -153,6 +160,7 @@ def forgetpassword():
             flash(problem, u'error_forgetpassword')
             return render_template('auth/forgetpassword.html')
 
+
 @app.route('/antho')
 def antho():
     person = Person.query.filter_by(nickname="aaaa").first()
@@ -166,6 +174,7 @@ def logout():
         if checkSession() is True:
             clearSession()
         return redirect(url_for('home'))
+
 
 @app.route('/login/', methods=['GET', 'POST'])
 def login():
@@ -201,9 +210,14 @@ def login():
                 saveInSession(objeet.id)
                 problem = u'Connexion ok'
                 flash(problem, 'error_login')
+<<<<<<< HEAD
+                page = "lolilol.html"
+                return redirect(url_for('personnel'))
+=======
                 page = "accueil/index.html"
                 person = getPersonFromSession()
                 return render_template(page, form=form, person=person)
+>>>>>>> 69211fd5d48f3d937c1365ae4d73e457094c297f
 
             return render_template(page, form=form)
 
@@ -212,14 +226,17 @@ def login():
             flash(problem, 'error_login')
             return render_template('auth/signin.html')
 
+
 @app.route('/resultats/personnel', methods=['GET', 'POST'])
+@login_required
 def personnel():
     person = getPersonFromSession()
     # TO-DO: ANTHONY DOIT FAIRE UNE FONCTION POUR BIEN VÉRIFIER SI L'UTILISATEUR EST CONNECTÉ
-    #if request.method == 'GET':
+    # if request.method == 'GET':
 
-    #elif request.method == 'POST':
+    # elif request.method == 'POST':
     return render_template('person/main.html', person=person)
+
 
 #
 # @app.route('/team/<teamname>/')
@@ -233,6 +250,7 @@ def personnel():
 @app.errorhandler(404)
 def page_not_found(e):
     return render_template('404.html', error=e)
+
 
 @app.errorhandler(500)
 def page_not_found(e):
@@ -262,6 +280,7 @@ def test_inscription(user="TestUser"):
     db.session.commit()
 
     return "Insere : " + student.__repr__()
+
 
 @app.route('/test/listuser')
 def list_users() :
@@ -299,6 +318,7 @@ def list_users() :
 #     string += '</table>'
 #     return string
 
+
 @app.route('/sendMail/<surnom>')
 def sendTo(surnom):
     email = 'marco.montalto@insa-lyon.fr'
@@ -319,6 +339,7 @@ def sendTo(surnom):
     inscription_notification(surnom=surnom, email=email, categorie=categorie, nom=nom, prenom=prenom, sexe=sexe, dateNaissance=dateNaissance, poids=poids, taille=taille, cycle=cycle, annee=annee, departement=departement, filiere=filiere, position=position, affiliation=affiliation )
     return 'Sending test is deactivated'
     render_template('testMail.html', email=email, surnom=surnom, categorie=categorie, nom=nom, prenom=prenom, sexe=sexe, dateNaissance=dateNaissance, poids=poids, taille=taille, cycle=cycle, annee=annee, departement=departement, filiere=filiere, position=position, affiliation=affiliation)
+
 
 @app.route('/sendMailAlert')
 def sendMailAlert() :
@@ -344,6 +365,7 @@ def sendMailAlert() :
     return 'Alert mail was sent'
     #render_template('testMail.html', email=email, surnom=surnom, categorie=categorie, nom=nom, prenom=prenom, sexe=sexe, dateNaissance=dateNaissance, poids=poids, taille=taille, cycle=cycle, annee=annee, departement=departement, filiere=filiere, position=position, affiliation=affiliation)
 
+
 @app.route('/sendMailRappelMardi')
 def sendMailRetirePodometre():
     message = "";
@@ -356,6 +378,7 @@ def sendMailRetirePodometre():
             #message += surnom + " " + email + "<br>";
             # DO NOT UNCOMMENT IT sendRappelRendezVous(surnom=surnom, email=email)
     return message
+
 
 @app.route('/countCategories')
 def countCategories():

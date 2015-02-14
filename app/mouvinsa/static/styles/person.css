@@ -57,15 +57,26 @@ h1.person-name {
 
 .activity-box {
   width: 100%;
-  background: #fff;
   box-shadow: 0px 1px 3px rgba(0,0,0,0.3);
+  background: #ffb300;
+  height:315px;
+  position: relative;
 }
+
+/* Activity Input */
 
 .activity-input-box {
-  padding:20px;
+  padding:30px;
+  background: #fff;
+  width:290px;
+  display: block;
+  position: relative;
+  float: left;
+  height: 255px;
+  margin-bottom: 30px;
 }
 
-.activity-input-box h2{
+.activity-input-box h2, .activity-data h2, .distance-bar-box h2{
   font-family: bebas_neue_light, Helvetica, Arial;
   font-weight: lighter;
   font-size:30px;
@@ -83,6 +94,7 @@ h1.person-name {
   border:none;
   background: url('../images/person/arrow-down.png');
   vertical-align: middle;
+  outline:none;
 }
 
 .input-types {
@@ -90,16 +102,145 @@ h1.person-name {
   padding:0;
   color:#F44336;
   font-size: 20px;
+  text-align: center;
 }
 
 .activity-input {
   border:none;
   border-bottom: 3px solid #F44336;
-  width:130px;
+  width:120px;
   color:#555;
   margin:0 4px 0 15px;
+  outline:none;
+  padding:3 5px;
 }
 
 .input-types img {
   vertical-align: middle;
 }
+
+.submit-activity {
+  font-family: bebas_neue_light, Helvetica, Arial;
+  display: block;
+  position: absolute;
+  height:90px;
+  width: 90px;
+  top:50%;
+  margin-top:-45px;
+  left:305px;
+  border-radius: 50%;
+  border:none;
+  background: #F44336;
+  color:#fff;
+  font-size: 150px;
+  line-height: 90px;
+}
+
+.submit-activity:hover {
+  background: #FD4C3F;
+}
+
+/* Calendrier */
+
+.activity-data {
+  margin-left:350px;
+  padding:30px;
+}
+
+.activity-data h2 {
+  font-family: bebas_neue_regular, Helvetica, Arial;
+  text-align: center;
+  color:#555;
+}
+/*
+.calendrier tr {
+  padding:5px;
+}
+
+.calendrier td {
+  width: 30px;
+  height: 30px;
+  background: #66BB6A;
+  border-radius: 50%;
+}
+*/
+
+.calendrier-wrapper {
+  width: 360px;
+  margin:0 30px;
+}
+
+.calendrier {
+  display:inline-block;
+  padding:0;
+}
+
+.calendrier li{
+  display: block;
+  width: 28px;
+  height: 28px;
+  background: #66BB6A;
+  border-radius: 50%;
+  margin:3px 0 3px 3px;
+}
+
+.activity-details {
+  display: block;
+  position: absolute;
+  bottom:0;
+  right:0;
+  width:155px;
+  padding:15px;
+  font-family: bebas_neue_regular, Helvetica, Arial;
+  font-size: 24px;
+  color:#444;
+}
+
+.activity-details ul {
+  list-style: none;
+  padding:0;
+  text-align: center;
+  margin:0 0 5px 0;
+}
+
+.activity-details ul li {
+  margin-top:26px;
+}
+
+.activity-details ul li strong {
+  font-family: bebas_neue_bold, Helvetica, Arial;
+}
+
+.distance-bar-box {
+  padding:30px 0;
+  background: #fff;
+  width: 100%;
+  box-shadow: 0px 1px 3px rgba(0,0,0,0.3);
+  display: block;
+  position: relative;
+  height: 155px;
+  margin-top:30px;
+}
+
+.distance-bar-box h2 {
+  text-align: right;
+  font-family: bebas_neue_regular, Helvetica, Arial;
+}
+
+.distance-bar {
+  width:100%;
+  height:20px;
+  background:#333;
+}
+
+/*
+BKG ffb300
+VERT FONCE 1b5e20
+VERT CLAIR 66bb6a
+2e7d32
+
+686868
+
+
+
+*/
