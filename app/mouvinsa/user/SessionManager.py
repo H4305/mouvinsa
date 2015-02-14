@@ -1,6 +1,7 @@
 __author__ = 'afaraut'
 
-from flask import session
+from functools import wraps
+from flask import session, request, redirect, url_for
 from mouvinsa.user.BDDManager import loadPersonById
 
 def saveInSession(id):
@@ -17,3 +18,11 @@ def clearSession():
 
 def getPersonFromSession():
     return loadPersonById(session['id'])
+
+def login_required(f):
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        if 'id' not in session:
+            return redirect(url_for('login', next=request.url))
+        return f(*args, **kwargs)
+    return decorated_function
