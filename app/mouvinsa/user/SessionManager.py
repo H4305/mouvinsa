@@ -16,4 +16,7 @@ def clearSession():
     session.clear()
 
 def getPersonFromSession():
-    return loadPersonById(session['id'])
+    if(checkSession()):
+        return loadPersonById(session['id'])
+    else:
+        return "none"

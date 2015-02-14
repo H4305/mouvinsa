@@ -29,11 +29,13 @@
                 {% block buttonMenu %}{% endblock %}
             </div>
             <div class="titrePage_DIV">
-                <img class="header-logo" src="../static/images/logo-white.svg" alt="logo mouvinsa" class="logo" />
+                <!-- <img class="header-logo" src="../static/images/logo-white.svg" alt="logo mouvinsa" class="logo" /> -->
+                <span class ="titre_SPAN">
+                    {% block positionPage %}{% endblock %}
+                </span>
             </div>
             <div class="linksOtherPages_DIV">
-                <span class="titre_SPAN">
-                </span>
+                {% block linksOtherPages %}{% endblock %}
             </div>
         </nav>
         {% block main %}{% endblock %}
