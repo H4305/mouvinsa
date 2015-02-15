@@ -4,7 +4,7 @@
 
 __author__ = 'marcomontalto'
 
-from mouvinsa.models import db, Level, Group, City
+from mouvinsa.models import db, Level, Group, City, Person
 
 nomsGroupes = [ u"Jumperzap", u"Highjumps", u"Batsqueak", u"Athletebrring", u"Sportouch", u"Catcherparp", u"Frisbeeplonk",
                 u"Skateroar", u"Tiecheep", u"Tennisbuzz", u"Volleytweet", u"Gearmeow", u"Outslouch", u"Hockeytwang",
@@ -14,14 +14,14 @@ nomsGroupes = [ u"Jumperzap", u"Highjumps", u"Batsqueak", u"Athletebrring", u"Sp
                 u"Boxingboom", u"Movementbuzz", u"Waterskiwoof", u"Canoeingcheep", u"Crazy Legs", u"Catchmurmer"]
 
 levels = [u'Très facile', u'Facile', u'Moyen', u'Difficile', u'Très difficile', u'Champion']
-distances = []
+distances = [200, 450, 700, 1100, 1700, 3000]
 
-cities_tr_facile = []
-cities_facile = []
-cities_moyen = []
-cities_difficile = []
-cities_tr_difficile = []
-cities_champion = []
+cities_tr_facile = [u'Genève', u'Marseille', u'Zurich', u'Grenoble']
+cities_facile = [u'Paris', u'Nice', u'Stuttgart', u'Bordeaux', u'Barcelone']
+cities_moyen = [u'Rome', u'Prague', u'Amsterdam', u'Berlin', u'Bruxelles', u'Londres']
+cities_difficile = [u'Dublin', u'Budapest', u'Alger', u'Tunis', u'Lisbonne', u'Vienne']
+cities_tr_difficile = [u'Istanbul', u'Bucharest', u'Casablanca', u'Athènes', u'Stockholm', u'Oslo']
+cities_champion = [u'Moscou', u'Dakar', u'Montréal', u'San Juan(Puerto Rico)', u'Reykjavik', u'Rio de Janeiro']
 
 def create_groups():
     for name in nomsGroupes:
@@ -43,7 +43,7 @@ def create_levels():
     db.session.commit()
 
 def create_cities():
-    level_city = 0
+    level_city = 1
     for city_name in cities_tr_facile:
         city = City()
         city.nom = city_name
@@ -55,7 +55,7 @@ def create_cities():
         city.level_id = level_city
         db.session.add(city)
 
-    ++level_city
+    level_city = level_city + 1
     for city_name in cities_facile:
         city = City()
         city.nom = city_name
@@ -67,7 +67,7 @@ def create_cities():
         city.level_id = level_city
         db.session.add(city)
 
-    ++level_city
+    level_city = level_city + 1
     for city_name in cities_moyen:
         city = City()
         city.nom = city_name
@@ -79,7 +79,7 @@ def create_cities():
         city.level_id = level_city
         db.session.add(city)
 
-    ++level_city
+    level_city = level_city + 1
     for city_name in cities_difficile:
         city = City()
         city.nom = city_name
@@ -91,8 +91,21 @@ def create_cities():
         city.level_id = level_city
         db.session.add(city)
 
-    ++level_city
+    level_city = level_city + 1
     for city_name in cities_tr_difficile:
+        city = City()
+        city.nom = city_name
+        city.description = ""
+        city.image_atteinte1 = ""
+        city.image_atteinte2 = ""
+        city.image_atteinte3 = ""
+        city.image_but = ""
+        city.level_id = level_city
+        db.session.add(city)
+
+
+    level_city = level_city + 1
+    for city_name in cities_champion:
         city = City()
         city.nom = city_name
         city.description = ""
@@ -105,3 +118,19 @@ def create_cities():
 
     db.session.commit()
 
+
+def default_image():
+    person = Person.query.all()
+    for per in person:
+        per.image="/static/images/person/defaultm.png"
+
+    woman = Person.query.filter_by(sex="Féminin").all()
+    for wom in woman:
+        wom.image="/static/images/person/defaultf.png"
+
+    db.session.commit()
+
+def init_image_levels_cities():
+    default_image()
+    create_levels()
+    create_cities()

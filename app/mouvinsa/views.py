@@ -10,7 +10,7 @@ from controllers.confirmation_controller import ConfirmationForm, updateProfil, 
 from controllers.signin_controller import LoginForm, MdpForm
 from controllers.inscription_controller import createEmployee, createStudent
 from controllers.tirageGroups_controller import tirageGroups
-from controllers.init_elements_bdd_controller import nomsGroupes
+from controllers.bdd_controller import nomsGroupes
 from models import db, Student, Person, Employee
 from emails import sendInscriptionMailAndAlert, inscription_notification, inscription_alert, sendRappelRendezVous, mail_mot_de_passe_oublie
 from sqlalchemy import func
@@ -207,8 +207,14 @@ def login():
                 flash(problem, 'error_login')
                 page = "accueil/index.html"
                 person = getPersonFromSession()
-                return render_template(page, form=form, person=person)
 
+                #urlnext = request.args.get('next')
+                #if urlnext == '':
+                #    return render_template(page, form=form, person=person)
+                #else:
+                #    return render_template(urlnext, form=form, person=person)
+
+                return render_template(page, form=form, person=person)
             return render_template(page, form=form)
 
         else:
