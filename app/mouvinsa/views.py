@@ -19,6 +19,7 @@ from mouvinsa.user.UserManager import loginmouv
 from mouvinsa.user.SessionManager import saveInSession, checkSession, clearSession, getPersonFromSession, login_required
 from mouvinsa.utils.mdp import generate_mdp
 
+
 @app.route('/', methods=['GET', 'POST'])
 def home():
     person = getPersonFromSession()
@@ -205,6 +206,7 @@ def login():
                 saveInSession(objeet.id)
                 problem = u'Connexion ok'
                 flash(problem, 'error_login')
+
                 page = "accueil/index.html"
                 person = getPersonFromSession()
 
