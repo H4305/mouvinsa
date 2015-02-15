@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+{% block title %} {{ group.label }} {% endblock %}
+{% block pageName %} {{ group.label }} {% endblock %}
+{% block positionPage %}
+    mouv’insa - {{ group.label }}
+{% endblock %}
+{% block linksOtherPages %}
+    {% include "group/navBar.html" %}
+{% endblock %}
+{% block main %}
+    {% include "group/header.html" %}
+  <div class="container activity-main">
+    {% include "group/destination_bar.html" %}
+    {% include "group/members.html" %}
+    {% include "group/infobox.html" %}
+    {% include "group/destination_list.html" %}
+  </div>
+{% endblock %}

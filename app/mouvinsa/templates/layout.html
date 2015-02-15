@@ -7,12 +7,13 @@
         <meta name="description" content="165c. uniques">
 
 {% block header %}
-    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='styles/normalize.css') }}">
-    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='styles/style.css') }}">
-    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='styles/flipclock.css') }}">
-    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='styles/navigationBarStyle.css') }}">
-    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='styles/descriptionProjetStyle.css') }}">
-    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='styles/person.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/normalize.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/style.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/flipclock.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='bower_components/chartist/dist/chartist.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/navigationBarStyle.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/descriptionProjetStyle.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/person.css') }}">
     <link href="{{ url_for('static', filename='images/icon.ico') }}" rel="icon" type="image/x-icon" />
 {% endblock %}
 
@@ -41,7 +42,7 @@
         {% block main %}{% endblock %}
         <footer>{% include 'footer.html' %}</footer>
     </div>
-
+    {%block optScript %}{% endblock %}
 
 </body>
 </html>
