@@ -53,6 +53,7 @@ h1.person-name {
 .activity-main {
   margin-top: -30px;
   position: relative;
+  max-width:960px;
 }
 
 .activity-box {

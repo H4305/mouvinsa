@@ -206,6 +206,7 @@ def login():
                 saveInSession(objeet.id)
                 problem = u'Connexion ok'
                 flash(problem, 'error_login')
+
                 return redirect(url_for('personnel'))
 
             return render_template(page, form=form)
@@ -244,6 +245,12 @@ def page_not_found(e):
 @app.errorhandler(500)
 def page_not_found(e):
     return render_template('500.html', error=e)
+
+@app.route('/reglages')
+def reglages():
+    person = getPersonFromSession()
+
+    return render_template('reglages/main.html', person=person)
 
 
 @app.route('/test/inscription/<user>')
