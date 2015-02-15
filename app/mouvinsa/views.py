@@ -207,8 +207,8 @@ def login():
                 problem = u'Connexion ok'
                 flash(problem, 'error_login')
 
-                page = "accueil/index.html"
-                person = getPersonFromSession()
+
+                return redirect(url_for('personnel'))
 
                 #urlnext = request.args.get('next')
                 #if urlnext == '':
@@ -216,7 +216,7 @@ def login():
                 #else:
                 #    return render_template(urlnext, form=form, person=person)
 
-                return render_template(page, form=form, person=person)
+                #return render_template(page, form=form, person=person)
             return render_template(page, form=form)
 
         else:
