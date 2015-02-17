@@ -11,8 +11,8 @@ from controllers.signin_controller import LoginForm, MdpForm
 from controllers.inscription_controller import createEmployee, createStudent
 from controllers.tirageGroups_controller import tirageGroups
 from controllers.bdd_controller import nomsGroupes
-from models import db, Student, Person, Employee
-from emails import sendInscriptionMailAndAlert, inscription_notification, inscription_alert, sendRappelRendezVous, mail_mot_de_passe_oublie
+from models import db, Student, Person, Employee, Group
+from emails import sendInscriptionMailAndAlert, inscription_notification, inscription_alert, sendRappelRendezVous, mail_mot_de_passe_oublie, sendMailGroupes
 from sqlalchemy import func
 from mouvinsa.utils.passHash import check_password, hash_password
 from mouvinsa.user.UserManager import loginmouv
@@ -438,4 +438,19 @@ def attributionGroupes():
         message += "<table><br><br> "
         i=i+1
 
+    return message
+
+@app.route('/sendMail/groupes')
+def sendMailGroupes():
+    message = "";
+    index = 0;
+    for person in Person.query.all():
+        index = index + 1;
+        if index<206:
+            surnom = person.nickname
+            email = person.email
+            numeroGroupe = person.group_id
+            nomGroupe = Group.query.filter_by(id=numeroGroupe).first().label
+            message += str(index) + ". " + surnom + " " + email + " " + str(numeroGroupe) + " " + nomGroupe + "<br>";
+            #sendMailGroupes(surnom=surnom, email=email, numeroGroupe=numeroGroupe, nomGroupe=nomGroupe)
     return message

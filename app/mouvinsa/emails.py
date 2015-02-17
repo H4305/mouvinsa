@@ -71,3 +71,12 @@ def sendRappelRendezVous(surnom,email):
                                surnom=surnom),
                render_template("/mails/rappel_retirer_podometre.html",
                                surnom=surnom))
+
+def sendMailGroupes(surnom, email, nomGroupe, numeroGroupe):
+    send_email(u'[Mouv\'INSA] - %s voici la composition définitive des groupes!' %surnom,
+               ADMIN[0],
+               [email],
+               render_template("/mails/groupes_alert.txt",
+                               surnom=surnom, nomGroupe=nomGroupe, numeroGroupe=numeroGroupe),
+               render_template("/mails/groupes_alert.html",
+                               surnom=surnom, nomGroupe=nomGroupe, numeroGroupe=numeroGroupe))
