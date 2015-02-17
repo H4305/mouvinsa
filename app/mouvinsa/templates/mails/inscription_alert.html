@@ -1,0 +1,188 @@
+<body bgcolor="#FCFCFC" style="font-size: 15px">
+    <img src="http://mouvinsa.insa-lyon.fr/static/images/logo-contours.png" style="width:200px; height:40px" align="middle">
+    <br>
+    <p>Bonjour Moi meme ;)</p>
+    <p><b>NOUVEAU INSCRIT!!!!!!! Mouv'INSA</b></p>
+
+    <table align="center" border="0px 2px 0px 2px">
+        <tr>
+            <td width=”50%”>
+                <span>COUNT : </span>
+            </td>
+            <td width=”50%”>
+                <span><b>{{ inscrits }}</b></span>
+            </td>
+        </tr>
+
+        <br>
+
+        <tr>
+            <td width=”50%”>
+                <span>Adresse Mail : </span>
+            </td>
+            <td width=”50%”>
+                <span><b>{{ email }}</b></span>
+            </td>
+        </tr>
+
+        <tr>
+            <td width=”50%”>
+            <span>Surnom : </span>
+            </td>
+            <td width=”50%”>
+                <span><b>{{ surnom }}</b></span>
+            </td>
+        </tr>
+
+        <tr>
+            <td width=”50%”>
+            <span>Categorie : </span>
+            </td>
+            <td width=”50%”>
+                <span><b>{{ categorie }}</b></span>
+            </td>
+        </tr>
+
+        <tr>
+            <td width=”50%”>
+            <span>Nom : </span>
+            </td>
+            <td width=”50%”>
+                <span><b>{{ nom }}</b></span>
+            </td>
+        </tr>
+
+        <tr>
+            <td width=”50%”>
+            <span>Prenom : </span>
+            </td>
+            <td width=”50%”>
+                <span><b>{{ prenom }}</b></span>
+            </td>
+        </tr>
+
+        <tr>
+            <td width=”50%”>
+            <span>Sexe : </span>
+            </td>
+            <td width=”50%”>
+                <span><b>{{ sexe }}</b></span>
+            </td>
+        </tr>
+
+        <tr>
+            <td width=”50%”>
+            <span>Date de naissance : </span>
+            </td>
+            <td width=”50%”>
+                <span><b>{{ dateNaissance }}</b></span>
+            </td>
+        </tr>
+
+
+        <tr>
+            <td width=”50%”>
+            <span>Poids (KG) : </span>
+            </td>
+            <td width=”50%”>
+                <span><b>{{ poids }}</b></span>
+            </td>
+        </tr>
+
+        <tr>
+            <td width=”50%”>
+            <span>Taille (CM) : </span>
+            </td>
+            <td width=”50%”>
+                <span><b>{{ taille }}</b></span>
+            </td>
+        </tr>
+
+        {% if categorie=='Etudiant' %}
+            <tr>
+                <td width=”50%”>
+                <span>Cycle : </span>
+                </td>
+                <td width=”50%”>
+                    <span><b>{{ cycle }}</b></span>
+                </td>
+            </tr>
+
+            <tr>
+                <td width=”50%”>
+                <span>Annee : </span>
+                </td>
+                <td width=”50%”>
+                    <span><b>{{ annee }}</b></span>
+                </td>
+            </tr>
+
+            <tr>
+                <td width=”50%”>
+                <span>Departement : </span>
+                </td>
+                <td width=”50%”>
+                    <span><b>{{ departement }}</b></span>
+                </td>
+            </tr>
+            <tr>
+                <td width=”50%”>
+                <span>Filiere : </span>
+                </td>
+                <td width=”50%”>
+                    <span><b>{{ filiere }}</b></span>
+                </td>
+            </tr>
+
+        {% endif %}
+        {% if categorie=='Enseignant-Chercheur' %}
+
+            <tr>
+                <td width=”50%”>
+                <span>Departement : </span>
+                </td>
+                <td width=”50%”>
+                    <span><b>{{ departement }}</b></span>
+                </td>
+            </tr>
+
+            <tr>
+                <td width=”50%”>
+                <span>Position : </span>
+                </td>
+                <td width=”50%”>
+                    <span><b>{{ position }}</b></span>
+                </td>
+            </tr>
+
+            <tr>
+                <td width=”50%”>
+                <span>Affiliation : </span>
+                </td>
+                <td width=”50%”>
+                    <span><b>{{ affiliation }}</b></span>
+                </td>
+            </tr>
+
+        {% endif %}
+        {% if categorie=='Personnel IATOS' %}
+            <tr>
+                <td width=”50%”>
+                <span>Position : </span>
+                </td>
+                <td width=”50%”>
+                    <span><b>{{ position }}</b></span>
+                </td>
+            </tr>
+
+            <tr>
+                <td width=”50%”>
+                <span>Affiliation : </span>
+                </td>
+                <td width=”50%”>
+                    <span><b>{{ affiliation }}</b></span>
+                </td>
+            </tr>
+        {% endif %}
+
+    </table>

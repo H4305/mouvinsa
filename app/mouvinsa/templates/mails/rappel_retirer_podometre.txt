@@ -1,0 +1,10 @@
+(Vous avez reçu ce mail parce que vous vous êtes inscrit sur la plateforme Mouv'INSA. Si cela n'est pas le cas, merci de nous le signaler en répondant tout simplement à cette adresse mail. Très cordialement, l'admin)
+
+Félicitations {{surnom}}!
+Nous avons le plaisir de vous confirmer que votre candidature a été retenue dans le cadre de votre participation au projet MOUV'INSA . Maintenant, venez à la rencontre avec vos équipiers le mardi 3 février 2015 à 12H15 au gymnase C de l'INSA.
+Nous nous retrouverons autour d'une galette des rois, ce qui permettra de favoriser ces rencontres. A l'issue de ce temps fort différentes explications concernant le projet vous serons données ainsi que la remise de vos podomètres respectifs que vous devrez utiliser durant les 10 semaines du projet.
+En attendant de vous voir le mardi 3 février à 12h15, recevez nos sincères salutations.
+
+Cordialement, L'équipe Mouv'INSA
+
+Pour toute suggestion, ou signalisation de bug, n'hesite pas à nous le signaler en répondant à ce mail. Merci beaucoup! L'admin.

@@ -1,0 +1,34 @@
+NOUVEAU INSCRIT!!!!! ;)
+
+COUNT : {{ inscrits }}
+
+Adresse Mail : {{ email }}
+Surnom : {{ surnom }}
+Categorie : {{ categorie }}
+Nom : {{ nom }}
+Prenom : {{ prenom }}
+Sexe : {{ sexe }}
+Date de naissance : {{ dateNaissance }}
+Poids (KG) : {{ poids }}
+Taille (CM) : {{ taille }}
+
+{% if categorie=='Etudiant' %}
+Cycle : {{ cycle }}
+Annee : {{ annee }}
+Departement : {{ departement }}
+Filiere : {{ filiere }}
+
+{% endif %}
+
+{% if categorie=='Enseignant-Chercheur' %}
+Departement : {{ departement }}
+Position : {{ position }}
+Affiliation : {{ affiliation }}
+
+{% endif %}
+
+{% if categorie=='Personnel BIATOS' %}
+Position : {{ position }}
+Affiliation : {{ affiliation }}
+
+{% endif %}

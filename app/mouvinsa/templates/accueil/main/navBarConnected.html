@@ -1,0 +1,12 @@
+<form action="/resultats/personnel" method="post">
+    <button name="personID" value="{{ person.id }}" type="submit">{{ person.nickname }}</button>
+</form>
+<form action="/resultats/equipe" method="get">
+    <button name="idEquipe" value="{{ person.group_id }}" type="submit">MON EQUIPE</button>
+</form>
+<form action="/reglages" method="get">
+    <button>REGLAGES</button>
+</form>
+<form action="/logout" method="get">
+    <button>DECONNEXION</button>
+</form>

@@ -1,0 +1,11 @@
+<div class="person-header">
+  <div class="container">
+    <div class="person-avatar-wrapper">
+      <img src="{{ person.image or '/static/images/person/defaultm.png' }}" alt="{{ person.nickname }}" class="person-avatar">
+    </div>
+    <div class="person-name-wrapper">
+      <span class="person-group">{{ person.group.label|default('no group assigned')}}</span>
+      <h1 class="person-name">{{ person.nickname }}</h1>
+    </div>
+  </div>
+</div>

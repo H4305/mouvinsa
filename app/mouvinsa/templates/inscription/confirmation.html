@@ -1,0 +1,151 @@
+{% extends "layout.html" %}
+
+{% block title %}Confirmation d'inscription{% endblock %}
+{% block pageName %}Confirmation d'inscription{% endblock %}
+
+{% block header %}
+    <link rel=stylesheet type=text/css href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+    {{ super() }}
+    <link href="{{ url_for('static', filename='styles/inscription/inscription_style.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ url_for('static', filename='styles/inscription/confirmation_style.css') }}" rel="stylesheet" type="text/css" />
+{% endblock %}
+{% block main %}
+    <div id="confirmationContent" class="trasparentContainer_DIV">
+    {% if msg == 'confirme' %}
+        {% macro render_field(field, placeholder) %}
+            <div class="confirmationField_LABEL">{{ field.label }}</div>
+            <div class="confirmationField_DATA">
+                {% if field.errors %}
+                {{ field(placeholder=placeholder, autofocus=true) }}
+                </div>
+                <ul class=confirmationField_ERRORS>
+                {% for error in field.errors %}
+                    <li>{{ error }}</li>
+                {% endfor %}
+                </ul>
+                {% else %}
+                {{ field(placeholder=placeholder) }}
+                </div>
+                {% endif %}
+        {% endmacro %}
+      <!-- Nav tabs -->
+      <ul class="nav nav-tabs" role="tablist" id="tab_title_confirmation">
+        {% if form_active==1 %}
+        <li><a href="#remerciement_inscription" aria-controls="remerciement_inscription" role="tab" data-toggle="tab">Confirmation</a></li>
+        <li class="active"><a href="#completer_profil" aria-controls="completer_profil" role="tab" data-toggle="tab">Profil</a></li>
+        <li><a href="#photo_profil" aria-controls="photo_profil" role="tab" data-toggle="tab">Photo</a></li>
+        {% elif form_active==2 %}
+        <li><a href="#remerciement_inscription" aria-controls="remerciement_inscription" role="tab" data-toggle="tab">Confirmation</a></li>
+        <li><a href="#completer_profil" aria-controls="completer_profil" role="tab" data-toggle="tab">Profil</a></li>
+        <li class="active"><a href="#photo_profil" aria-controls="photo_profil" role="tab" data-toggle="tab">Photo</a></li>
+        {% else %}
+        <li class="active"><a href="#remerciement_inscription" aria-controls="remerciement_inscription" role="tab" data-toggle="tab">Confirmation</a></li>
+        <li><a href="#completer_profil" aria-controls="completer_profil" role="tab" data-toggle="tab">Profil</a></li>
+        <li><a href="#photo_profil" aria-controls="photo_profil" role="tab" data-toggle="tab">Photo</a></li>
+        {% endif %}
+      </ul>
+            <!-- Tab panes -->
+      <div class="tab-content" id="tab_content_confirmation">
+        <div class="tab-pane" id="remerciement_inscription">
+            <div class="title_confirmation_block">Confirmation d'inscription</div>
+            <div class="description_block">Bonjour {{user.nickname}}!
+            <br>Vous avez confirmé votre inscription pour le projet MOUV'INSA</div>
+            <div class="next_button">Étape suivante</div>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="completer_profil">
+            <div class="title_confirmation_block">Compléter votre profil</div>
+            <div class="description_block">
+                {% with messages = get_flashed_messages(category_filter=["infos_enregistrees"]) %}
+                    {% if messages %}
+                    <ul class=confirmationField_MESSAGE>
+                    {% for message in messages %}
+                        <li>{{ message }}</li>
+                    {% endfor %}
+                    </ul>
+                    {% endif %}
+                {% endwith %}
+                <form action="" method=post enctype=multipart/form-data id="formProfil">
+                    <fieldset class="leftElements_DIV">
+                            <div class="elementForm_DIV">
+                            {{ render_field(form.firstname) }}
+                            </div>
+                            <div class="elementForm_DIV">
+                            {{ render_field(form.lastname) }}
+                            </div>
+                            <div class="elementForm_DIV">
+                            {{ render_field(form.sex) }}
+                            </div>
+                    </fieldset>
+                    <fieldset class="rightElements_DIV">
+                            <div class="elementForm_DIV">
+                            {{ render_field(form.birthdate,'jj/mm/aaaa') }}
+                            </div>
+                            <div class="elementForm_DIV">
+                            {{ render_field(form.weight) }}
+                            </div>
+                            <div class="elementForm_DIV">
+                            {{ render_field(form.height) }}
+                            </div>
+                   </fieldset>
+                        <input type="hidden" name="hidden" value="Enregistrer">
+                </form>
+            </div>
+            <div class="prev_button">Étape précédente</div>
+            <div class="submit_button" id="btn_enregistrer" onclick="submitForm('formProfil');">Enregistrer</div>
+            <div class="next_button">Étape suivante</div>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="photo_profil">
+            <div class="title_confirmation_block">Ajouter une photo de votre profil</div>
+            <div class="description_block">
+                <form method=post enctype=multipart/form-data id="formImage">
+                    <input id="image_upload" name="image_upload" type=file style="display:none;">
+                    <input type="hidden" name="hidden" value="Envoyer">
+                </form>
+                <div id="divPhotoUpload">
+                    <div id="divPhotoPreview">
+                        {% if user['image'] == None or user['image'] == '' %}
+                        <img src="static/images/icon.ico">
+                        {% else %}
+                        <img src="{{user['image']}}">
+                        {% endif %}
+                    </div>
+                    <div id="divPhotoDescription">
+                        <input type="button" id="btn_choisir" value="Choisissez votre photo" autofocus=true>
+                        <label id="imgFileName"></label>
+                        <ul class=photoField_ERRORS>
+                        {% with errors = get_flashed_messages(category_filter=["errorFileUpload"]) %}
+                        {% if errors %}
+                        {% for error in errors %}
+                            <li>{{ error }}</li>
+                        {% endfor %}
+                        {% endif %}
+                        {% endwith %}
+                        </ul>
+                        {% with messages = get_flashed_messages(category_filter=["image_uploaded"]) %}
+                        {% if messages %}
+                        <ul class=photoField_MESSAGE>
+                        {% for message in messages %}
+                            <li>{{ message }}</li>
+                        {% endfor %}
+                        </ul>
+                        {% endif %}
+                        {% endwith %}
+                    </div>
+                </div>
+            </div>
+            <div class="prev_button">Étape précédente</div>
+            <div class="submit_button" id="btn_envoyer" onclick="submitImageForm('formImage');">Envoyer</div>
+            <div class="next_button">Terminer</div>
+        </div>
+      </div>
+    {% elif msg =='refuse' %}
+        <div class="title_confirmation_block">Refus d'inscription</div>
+            <div class="description_block">Bonjour {{user.nickname}}!
+            <br>Vous avez refusé votre inscription pour le projet MOUV'INSA. Nous vous remercions de votre attention.</div>
+            <a class="next_button" href="/">Accueil</a>
+    {% endif %}
+    </div>
+<script type=text/javascript src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+<script type=text/javascript src="{{url_for('static', filename='scripts/inscription/confirmation.js') }}"></script>
+{% endblock %}
+{% block footer %}{% include 'footer.html' %}{% endblock %}

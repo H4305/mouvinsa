@@ -1,0 +1,67 @@
+.menuButton_DIV:focus {
+    /* clicking on label should toggle the menu */
+    pointer-events: none;
+}
+
+.menuButton_DIV:focus .onclick-menu-content {
+    /*  opacity is 1 in opened state (see below) */
+    opacity: 1;
+    visibility: visible;
+
+    /* don't let pointer-events affect descendant elements */
+    pointer-events: auto;
+}
+
+  .onclick-menu-content {
+    position: absolute;
+    z-index: 0;
+    opacity: 0;
+    transition: visibility 0.5s ease 0s;
+    background-color: 	rgba(238, 41, 34, 0.90);
+    visibility: hidden;
+    top: 10px;
+    left: 0px;
+    padding-left: 9px;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    padding-right: 6px;
+    margin-top: 32px;
+    width:160px;
+	border-radius: 10px;
+	box-shadow: 6px 8px 6px -6px #000;
+}
+
+.onclick-menu-content li {
+	border-bottom: solid rgba(255,255,255,0.3) 1px;
+    font-style: normal;
+    color: #F00;
+    font-weight: normal;
+    font-size: 60%;
+    margin-right: 0px;
+    margin-left: 0%;
+}
+
+.navigationBarReference {
+	font-style: normal;
+    color: white;
+    font-weight: normal;
+    font-size: 85%;
+    margin-right: 0px;
+    margin-left: 0%;
+}
+
+.navigationBarReference:link {
+	text-decoration:none; 
+}
+
+.buttonClicked {
+	background: #222222;
+	box-shadow: 0 -9px 0 0 #222222, 0 9px 0 0 #222222;
+}
+
+.paddingFromNavBar {
+    display: block;
+    position: relative;
+    top: -37px;
+    visibility: hidden;
+}

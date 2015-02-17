@@ -1,0 +1,12 @@
+[uwsgi]
+vhost = true
+socket = /tmp/uwsgi.sock
+chdir = /app
+module = mouvinsa.app
+callable = app
+py-autoreload=1
+enable-threads = true
+master=true
+vacuum=True
+processes = 2
+threads = 2

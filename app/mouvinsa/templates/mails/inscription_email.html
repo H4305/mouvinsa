@@ -1,0 +1,190 @@
+<body bgcolor="#FCFCFC" style="font-size: 15px">
+    <p style="font-size: 12px"><i>(Vous avez reçu ce mail parce que vous vous êtes inscrit sur la plateforme Mouv'INSA. Si cela n'est pas le cas, merci de nous le signaler en répondant tout simplement à cette adresse mail. Très cordialement, l'admin)</i></p><br>
+    <img src="http://mouvinsa.insa-lyon.fr/static/images/logo-contours.png" style="width:200px; height:40px" align="middle">
+    <br>
+    <p>Bonjour <b>{{ surnom }}</b>!</p>
+    <p>L'équipe <b>Mouv'INSA</b> vous souhaite la bienvenue sur notre plateforme et vous remercie pour votre inscription!</p>
+    <p>Voici le résumé de vos informations personnelles (vous pourrez les changer par la suite!) : </p>
+
+    <table align="center" border="0px 2px 0px 2px">
+        <tr>
+            <td width=”50%”>
+                <span>Adresse Mail : </span>
+            </td>
+            <td width=”50%”>
+                <span><b>{{ email }}</b></span>
+            </td>
+        </tr>
+
+        <tr>
+            <td width=”50%”>
+            <span>Surnom : </span>
+            </td>
+            <td width=”50%”>
+                <span><b>{{ surnom }}</b></span>
+            </td>
+        </tr>
+
+        <tr>
+            <td width=”50%”>
+            <span>Categorie : </span>
+            </td>
+            <td width=”50%”>
+                <span><b>{{ categorie }}</b></span>
+            </td>
+        </tr>
+
+        <tr>
+            <td width=”50%”>
+            <span>Nom : </span>
+            </td>
+            <td width=”50%”>
+                <span><b>{{ nom }}</b></span>
+            </td>
+        </tr>
+
+        <tr>
+            <td width=”50%”>
+            <span>Prenom : </span>
+            </td>
+            <td width=”50%”>
+                <span><b>{{ prenom }}</b></span>
+            </td>
+        </tr>
+
+        <tr>
+            <td width=”50%”>
+            <span>Sexe : </span>
+            </td>
+            <td width=”50%”>
+                <span><b>{{ sexe }}</b></span>
+            </td>
+        </tr>
+
+        <tr>
+            <td width=”50%”>
+            <span>Date de naissance : </span>
+            </td>
+            <td width=”50%”>
+                <span><b>{{ dateNaissance }}</b></span>
+            </td>
+        </tr>
+
+
+        <tr>
+            <td width=”50%”>
+            <span>Poids (KG) : </span>
+            </td>
+            <td width=”50%”>
+                <span><b>{{ poids }}</b></span>
+            </td>
+        </tr>
+
+        <tr>
+            <td width=”50%”>
+            <span>Taille (CM) : </span>
+            </td>
+            <td width=”50%”>
+                <span><b>{{ taille }}</b></span>
+            </td>
+        </tr>
+
+        {% if categorie=='Etudiant' %}
+            <tr>
+                <td width=”50%”>
+                <span>Cycle : </span>
+                </td>
+                <td width=”50%”>
+                    <span><b>{{ cycle }}</b></span>
+                </td>
+            </tr>
+
+            <tr>
+                <td width=”50%”>
+                <span>Annee : </span>
+                </td>
+                <td width=”50%”>
+                    <span><b>{{ annee }}</b></span>
+                </td>
+            </tr>
+
+            <tr>
+                <td width=”50%”>
+                <span>Departement : </span>
+                </td>
+                <td width=”50%”>
+                    <span><b>{{ departement }}</b></span>
+                </td>
+            </tr>
+            <tr>
+                <td width=”50%”>
+                <span>Filiere : </span>
+                </td>
+                <td width=”50%”>
+                    <span><b>{{ filiere }}</b></span>
+                </td>
+            </tr>
+
+        {% endif %}
+        {% if categorie=='Enseignant-Chercheur' %}
+
+            <tr>
+                <td width=”50%”>
+                <span>Departement : </span>
+                </td>
+                <td width=”50%”>
+                    <span><b>{{ departement }}</b></span>
+                </td>
+            </tr>
+
+            <tr>
+                <td width=”50%”>
+                <span>Position : </span>
+                </td>
+                <td width=”50%”>
+                    <span><b>{{ position }}</b></span>
+                </td>
+            </tr>
+
+            <tr>
+                <td width=”50%”>
+                <span>Affiliation : </span>
+                </td>
+                <td width=”50%”>
+                    <span><b>{{ affiliation }}</b></span>
+                </td>
+            </tr>
+
+        {% endif %}
+        {% if categorie=='Personnel IATOS' %}
+            <tr>
+                <td width=”50%”>
+                <span>Position : </span>
+                </td>
+                <td width=”50%”>
+                    <span><b>{{ position }}</b></span>
+                </td>
+            </tr>
+
+            <tr>
+                <td width=”50%”>
+                <span>Affiliation : </span>
+                </td>
+                <td width=”50%”>
+                    <span><b>{{ affiliation }}</b></span>
+                </td>
+            </tr>
+        {% endif %}
+
+    </table>
+
+    <p>Prochain rendez-vous la semaine du 26 Janvier pour le résultat du tirage au sort, vous serez notifé par mail!</p>
+    <p>Si vous êtes chanceux (et c'est ce que l'on espère ;)),
+    vous aurez la possibilité de participer grâce aux resultats du tirage au sort. Cela vous engage vis à vis de vos collègues de l'équipe à participer activement,
+    pour arriver <b>le plus loin possible!!</b></p>
+
+    <p>A bientôt et bonne chance!</p>
+    <p><i>Cordialement, L'équipe Mouv'INSA</i></p>
+
+    <p style="font-size: 14px; color:red;">Pour toute suggestion, ou signalisation de bug, n'hesitez pas à nous le signaler en répondant à ce mail. Merci beaucoup!<br>L'admin.</p>
+</body>

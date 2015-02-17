@@ -1,0 +1,15 @@
+(Vous avez reçu ce mail parce que vous vous êtes inscrit sur la plateforme Mouv'INSA. Si cela n'est pas le cas, merci de nous le signaler en répondant tout simplement à cette adresse mail. Très cordialement, l'admin)
+Bonjour {{ surnom }}!
+Suite aux désistements de certains inscrits, petites modifications ont été faites.
+Voici les nouvelles compositions des groupes :
+Votre équipe est la numéro {{ numeroGroupe }}, qui s'appelle <b>{{ nomGroupe }}.
+
+PETIT RAPPEL:
+Le projet demarrera le lundi 26 février. Cela signifie que à partir de cette date, vous pourrez vous connecter sur la platteforme, consulter votre profil, changer vos données et, surtout, RENTRER VOS PAS!!
+
+Etes vous prets à marcher?
+
+A bientôt!
+Cordialement, L'équipe Mouv'INSA
+
+Pour toute suggestion, ou signalisation de bug, n'hesitez pas à nous le signaler en répondant à ce mail. Merci beaucoup!L'admin.
