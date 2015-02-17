@@ -12,7 +12,7 @@ from controllers.inscription_controller import createEmployee, createStudent
 from controllers.tirageGroups_controller import tirageGroups
 from controllers.bdd_controller import nomsGroupes
 from models import db, Student, Person, Employee, Group
-from emails import sendInscriptionMailAndAlert, inscription_notification, inscription_alert, sendRappelRendezVous, mail_mot_de_passe_oublie, sendMailGroupes
+from emails import sendInscriptionMailAndAlert, inscription_notification, inscription_alert, sendRappelRendezVous, mail_mot_de_passe_oublie, sendMailGroupesDefinitifs
 from sqlalchemy import func
 from mouvinsa.utils.passHash import check_password, hash_password
 from mouvinsa.user.UserManager import loginmouv
@@ -242,7 +242,7 @@ def group():
     person = getPersonFromSession()
     group = person.group
 
-    return render_template('group/main.html', group=group)
+    return render_template('group/main.html', group=group, person=person)
 
 
 #
@@ -435,16 +435,16 @@ def countCategories():
 
 @app.route('/groupes')
 def attributionGroupes():
-    tirageGroups()
     i = 1;
     message =""
-    while (i<42):
-        message += "<b>"+"Groupe " +str(i)+ ": "+ nomsGroupes[i-1] + "</b><br>"
+    while (i<43):
+        nomGroupe = Group.query.filter_by(id=i).first().label
+        message += "<b>"+"Groupe " +str(i)+ ": "+ nomGroupe + "</b><br>"
         groupe = Person.query.filter_by(group_id = i).all()
         message += "<table> "
         for person in groupe:
-            message += "<tr><td><i>"+person.email +"  "+"</i></td><td>"+ person.category+"  "+"</td></tr>"
-        message += "<table><br><br> "
+            message += "<tr><td><i>"+person.email +"</i></td>"+ "</tr>"
+        message += "</table><br><br> "
         i=i+1
 
     return message
@@ -455,11 +455,11 @@ def sendMailGroupes():
     index = 0;
     for person in Person.query.all():
         index = index + 1;
-        if index<206:
+        if index<211:
             surnom = person.nickname
             email = person.email
             numeroGroupe = person.group_id
             nomGroupe = Group.query.filter_by(id=numeroGroupe).first().label
             message += str(index) + ". " + surnom + " " + email + " " + str(numeroGroupe) + " " + nomGroupe + "<br>";
-            #sendMailGroupes(surnom=surnom, email=email, numeroGroupe=numeroGroupe, nomGroupe=nomGroupe)
+            #DO NOT UNCOMMENT sendMailGroupesDefinitifs(surnom=surnom, email=email, numeroGroupe=numeroGroupe, nomGroupe=nomGroupe)
     return message

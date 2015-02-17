@@ -11,7 +11,7 @@ nomsGroupes = [ u"Jumperzap", u"Highjumps", u"Batsqueak", u"Athletebrring", u"Sp
                 u"Rowingthump", u"Uniformfizz", u"Walkgrowl", u"Hardballping", u"Freethrowrip", u"Golfingsmash", u"Championouch",
                 u"Hockeyhoot", u"Lutzboink", u"Fitnesstweet", u"Bowlingbelch", u"Runningshush", u"Surferfizz", u"Batbeep",
                 u"Biathlonboom", u"Battingbuzz", u"Cyclingcuckoo", u"Dartdingdong", u"Divedrip", u"Fitnessfizzle", u"Footballfizz",
-                u"Boxingboom", u"Movementbuzz", u"Waterskiwoof", u"Canoeingcheep", u"Crazy Legs", u"Catchmurmer"]
+                u"Boxingboom", u"Movementbuzz", u"Waterskiwoof", u"Canoeingcheep", u"Crazy Legs", u"Catchmurmer", u'Crazy Steps']
 
 levels = [u'Très facile', u'Facile', u'Moyen', u'Difficile', u'Très difficile', u'Champion']
 distances = [200, 450, 700, 1100, 1700, 3000]
@@ -48,10 +48,9 @@ def create_cities():
         city = City()
         city.nom = city_name
         city.description = ""
-        city.image_atteinte1 = ""
-        city.image_atteinte2 = ""
-        city.image_atteinte3 = ""
-        city.image_but = ""
+        city.description_image_1 = ""
+        city.description_image_2 = ""
+        city.description_image_3 = ""
         city.level_id = level_city
         db.session.add(city)
 
@@ -60,9 +59,9 @@ def create_cities():
         city = City()
         city.nom = city_name
         city.description = ""
-        city.image_atteinte1 = ""
-        city.image_atteinte2 = ""
-        city.image_atteinte3 = ""
+        city.description_image_1 = ""
+        city.description_image_2 = ""
+        city.description_image_3 = ""
         city.image_but = ""
         city.level_id = level_city
         db.session.add(city)
@@ -72,9 +71,9 @@ def create_cities():
         city = City()
         city.nom = city_name
         city.description = ""
-        city.image_atteinte1 = ""
-        city.image_atteinte2 = ""
-        city.image_atteinte3 = ""
+        city.description_image_1 = ""
+        city.description_image_2 = ""
+        city.description_image_3 = ""
         city.image_but = ""
         city.level_id = level_city
         db.session.add(city)
@@ -84,9 +83,9 @@ def create_cities():
         city = City()
         city.nom = city_name
         city.description = ""
-        city.image_atteinte1 = ""
-        city.image_atteinte2 = ""
-        city.image_atteinte3 = ""
+        city.description_image_1 = ""
+        city.description_image_2 = ""
+        city.description_image_3 = ""
         city.image_but = ""
         city.level_id = level_city
         db.session.add(city)
@@ -96,9 +95,9 @@ def create_cities():
         city = City()
         city.nom = city_name
         city.description = ""
-        city.image_atteinte1 = ""
-        city.image_atteinte2 = ""
-        city.image_atteinte3 = ""
+        city.description_image_1 = ""
+        city.description_image_2 = ""
+        city.description_image_3 = ""
         city.image_but = ""
         city.level_id = level_city
         db.session.add(city)
@@ -109,9 +108,9 @@ def create_cities():
         city = City()
         city.nom = city_name
         city.description = ""
-        city.image_atteinte1 = ""
-        city.image_atteinte2 = ""
-        city.image_atteinte3 = ""
+        city.description_image_1 = ""
+        city.description_image_2 = ""
+        city.description_image_3 = ""
         city.image_but = ""
         city.level_id = level_city
         db.session.add(city)
