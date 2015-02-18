@@ -5,9 +5,6 @@
 {% block positionPage %}
     Reglages
 {% endblock %}
-{% block linksOtherPages %}
-    {% include "reglages/main/navBar.html" %}
-{% endblock %}
 {% block main %}
     <form method="post" >
         <div>{{ form.password.label }} : {{ form.password() }}</div>

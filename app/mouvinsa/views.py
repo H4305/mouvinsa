@@ -21,7 +21,8 @@ from mouvinsa.utils.mdp import generate_mdp
 @app.route('/', methods=['GET', 'POST'])
 def home():
     person = getPersonFromSession()
-    return render_template('/accueil/index.html', person=person)
+    index = 'yes'
+    return render_template('/accueil/index.html', person=person, index=index)
 
 
 #@app.route('/', methods=['GET', 'POST'])
@@ -241,7 +242,7 @@ def group():
         idEq = request.args.get('idEquipe', '')
         try:
             idEqInt = int(idEq)
-            if idEqInt>1 and idEqInt<43:
+            if idEqInt>0 and idEqInt<43:
                 group = Group.query.filter_by(id=idEq).first()
                 person = getPersonFromSession()
                 return render_template('group/main.html', group=group, person=person)

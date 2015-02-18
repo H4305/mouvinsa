@@ -4,13 +4,6 @@
 {% block positionPage %}
     {{ group.label }}
 {% endblock %}
-{% block linksOtherPages %}
-    {% if person=="none" %}
-        {% include "accueil/main/navBarNotConnected.html" %}
-    {% else %}
-        {% include "group/navBar.html" %}
-    {% endif %}
-{% endblock %}
 {% block main %}
     {% include "group/header.html" %}
   <div class="container activity-main">
