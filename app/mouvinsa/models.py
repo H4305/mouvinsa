@@ -11,24 +11,9 @@ badges_person = db.Table('badges_person',
                          db.Column('badge_id', db.Integer, db.ForeignKey('badge.id'))
 )
 
-"""city_goal = db.Table('city_goal',
-                     db.Column('city_id', db.Integer, db.ForeignKey('city.id')),
-                     db.Column('goal_id', db.Integer, db.ForeignKey('goal.id'))
-)"""
-
 person_steps = db.Table('person_steps',
                         db.Column('person_id', db.Integer, db.ForeignKey('person.id')),
                         db.Column('step_id', db.Integer, db.ForeignKey('steps.id'))
-)
-
-group_goals = db.Table('group_goals',
-                       db.Column('group_id', db.Integer, db.ForeignKey('group.id')),
-                       db.Column('city_tres_facile_id', db.Integer, db.ForeignKey('city.id')),
-                       db.Column('city_facile_id', db.Integer, db.ForeignKey('city.id')),
-                       db.Column('city_moyen_id', db.Integer, db.ForeignKey('city.id')),
-                       db.Column('city_difficile_id', db.Integer, db.ForeignKey('city.id')),
-                       db.Column('city_tres_difficile_id', db.Integer, db.ForeignKey('city.id')),
-                       db.Column('city_champion_id', db.Integer, db.ForeignKey('city.id'))
 )
 
 # Defining models
@@ -64,7 +49,8 @@ class Person(db.Model):
 
     __mapper_args__ = {
         'polymorphic_identity': 'person',
-        'polymorphic_on': type}
+        'polymorphic_on': type
+    }
 
 
 class Student(Person):
@@ -108,13 +94,10 @@ class City(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     nom = db.Column(db.String(127), nullable=False)
     description = db.Column(db.Text)
-    image_atteinte1 = db.Column(db.String(120), nullable=True)
-    image_atteinte2 = db.Column(db.String(120), nullable=True)
-    image_atteinte3 = db.Column(db.String(120), nullable=True)
-    image_but = db.Column(db.String(120), nullable=True)
-    # lattitude = db.Column(db.Float, nullable=False)
-    #longitude = db.Column(db.Float, nullable=False)
-    #caption = db.Column(db.String(255))
+    description_image_1 = db.Column(db.String(120), nullable=True)
+    description_image_2 = db.Column(db.String(120), nullable=True)
+    description_image_3 = db.Column(db.String(120), nullable=True)
+
     level_id = db.Column(db.Integer, db.ForeignKey('level.id'))
 
     #groups = db.relationship('Group', backref='cities', lazy='dynamic')
@@ -123,25 +106,21 @@ class City(db.Model):
     }
 
 
-"""class Goal(db.Model):
-    __tablename__ = 'goal'
-    id = db.Column(db.Integer, primary_key=True)
-    #difficulty = db.Column('difficulty', Enum('difficile', 'moyen', 'facile'), nullable=False)
-    #label = db.Column(db.String(45), nullable=False)
-    #distance = db.Column(db.Integer, nullable=False)
-    #image = db.Column(db.String(45), nullable=False)
-    #groups = db.relationship('Group', backref='goals', lazy='dynamic')"""
-
-
 class Group(db.Model):
     __tablename__ = 'group'
     id = db.Column(db.Integer, primary_key=True)
     label = db.Column(db.String(127), nullable=False)
-    slogan = db.Column(db.String(255), nullable=True)
     stepSum = db.Column(db.Integer, default=0)
     image = db.Column(db.String(255), nullable=True)
     city_arrived_id = db.Column(db.Integer, db.ForeignKey('city.id'))
     city_destination_id = db.Column(db.Integer, db.ForeignKey('city.id'))
+
+    city_tres_facile_id = db.Column(db.Integer, db.ForeignKey('city.id'))
+    city_facile_id = db.Column(db.Integer, db.ForeignKey('city.id'))
+    city_moyen_id = db.Column(db.Integer, db.ForeignKey('city.id'))
+    city_difficile_id = db.Column(db.Integer, db.ForeignKey('city.id'))
+    city_tres_difficile_id = db.Column(db.Integer, db.ForeignKey('city.id'))
+    city_champion_id = db.Column(db.Integer, db.ForeignKey('city.id'))
 
     __mapper_args__ = {
         'polymorphic_identity': 'group',
@@ -151,6 +130,13 @@ class Group(db.Model):
 
     city_arrived = db.relationship(City, foreign_keys=city_arrived_id, backref='cities_arrived')
     city_destination = db.relationship(City, foreign_keys=city_destination_id, backref='cities_destination')
+
+    city_tres_facile = db.relationship(City, foreign_keys=city_tres_facile_id, backref='cities_tres_facile')
+    city_facile = db.relationship(City, foreign_keys=city_facile_id, backref='cities_facile')
+    city_moyen = db.relationship(City, foreign_keys=city_moyen_id, backref='cities_moyen')
+    city_difficile = db.relationship(City, foreign_keys=city_difficile_id, backref='cities_difficile')
+    city_tres_difficile = db.relationship(City, foreign_keys=city_tres_difficile_id, backref='cities_tres_difficile')
+    city_champion = db.relationship(City, foreign_keys=city_champion_id, backref='cities_champion')
 
 
 class Steps(db.Model):
@@ -177,8 +163,3 @@ class Badge(db.Model):
     label = db.Column(db.String(127), nullable=False)
     description = db.Column(db.String(255), nullable=True)
     image = db.Column(db.String(255), nullable=True)
-
-
-"""class Vip(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    email = db.Column(db.String(255), nullable=True)"""

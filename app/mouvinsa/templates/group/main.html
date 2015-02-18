@@ -2,10 +2,14 @@
 {% block title %} {{ group.label }} {% endblock %}
 {% block pageName %} {{ group.label }} {% endblock %}
 {% block positionPage %}
-    mouv’insa - {{ group.label }}
+    {{ group.label }}
 {% endblock %}
 {% block linksOtherPages %}
-    {% include "group/navBar.html" %}
+    {% if person=="none" %}
+        {% include "accueil/main/navBarNotConnected.html" %}
+    {% else %}
+        {% include "group/navBar.html" %}
+    {% endif %}
 {% endblock %}
 {% block main %}
     {% include "group/header.html" %}

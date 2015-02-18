@@ -2,7 +2,7 @@
 {% block title %} Ma Page {% endblock %}
 {% block pageName %} Ma Page {% endblock %}
 {% block positionPage %}
-    mouv’insa - ma page
+    ma page
 {% endblock %}
 {% block linksOtherPages %}
     {% include "person/main/navBar.html" %}
@@ -19,12 +19,43 @@
 {% block optScript %}
   <script src="{{ url_for('static', filename='bower_components/chartist/dist/chartist.min.js') }}"></script>
   <script>
+  var maxSteps = 10000; //TO-DO: mettre le vrai max de l'utilisateur
+  var calendar = document.getElementsByClassName("calendar");
+
+  for(var week in calendar) {
+    if(calendar.hasOwnProperty( week )) {
+      var weekdays = calendar[week].children;
+      for(var day in weekdays) {
+        if(calendar.hasOwnProperty( day )) {
+          var today = weekdays[day];
+          var steps = today.dataset.step;
+          if(steps) {
+            steps = parseInt(steps,10);
+            if(steps > 20000) {
+              today.style.background = "#000";
+            } else {
+              today.style.background = stepToHSL(steps);
+            }
+            /*today.addEventListener('mouseenter', function(e) {
+
+            });*/
+          }
+        }
+      }
+    }
+  }
+
+  function stepToHSL(steps) {
+    var l = steps * 50 / maxSteps;
+    return "hsl(123,70%," + (80 - l) + "%)";
+  }
+
   // Our labels and three data series
   var data = {
-    labels: ['Week1', 'Week2', 'Week3', 'Week4', 'Week5', 'Week6'],
+    labels: ['Week1', 'Week2', 'Week3', 'Week4', 'Week5', 'Week6', 'Week7', 'Week8'],
     series: [
-      [5000, 12000, 8000, 7000, 9000, 10000],
-      [10000, 10000, 10000, 10000, 10000, 10000]
+      [5000, 12000, 8000, 7000, 9000, 10000, 1000, 10000],
+      [10000, 10000, 10000, 10000, 10000, 10000, 10000, 10000, 10000 ]
     ]
   };
 

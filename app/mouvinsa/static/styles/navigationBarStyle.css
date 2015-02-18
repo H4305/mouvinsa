@@ -91,10 +91,11 @@
 }
 
 .titrePage_DIV {
+	width:	50%;
 	height: 33px;
 	padding: 4px;
 	position: absolute;
-	left: 60px;
+	/*left: 60px;*/
 	font-family: bebas_neue_bold,Helvetica,Arial;
 }
 
@@ -115,7 +116,7 @@
 }
 
 .linksOtherPages_DIV {       
-	width: 60%;
+	width: 50%;
 	height: 40px;
 	display: inline-block;
 	margin-right: 0px;

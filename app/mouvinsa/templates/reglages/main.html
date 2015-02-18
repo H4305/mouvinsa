@@ -3,12 +3,19 @@
 {% block pageName %} Reglages {% endblock %}
 {% block pageId %}reglages{% endblock %}
 {% block positionPage %}
-    mouv’insa - Reglages
+    Reglages
 {% endblock %}
 {% block linksOtherPages %}
     {% include "reglages/main/navBar.html" %}
 {% endblock %}
 {% block main %}
-    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <form method="post" >
+        <div>{{ form.password.label }} : {{ form.password() }}</div>
+        <div>{{ form.confirm.label }} : {{ form.confirm() }}</div>
+        <div>{{ form.birthdate.label }} : {{ form.birthdate() }}</div>
+        <div>{{ form.sex.label }} : {{ form.sex() }}</div>
+        <div>{{ form.weight.label }} : {{ form.weight() }}</div>
+        <div>{{ form.height.label }} : {{ form.height() }}</div>
+    </form>
     {% include 'apropos.html' %}
 {% endblock %}
