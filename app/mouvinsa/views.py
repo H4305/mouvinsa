@@ -239,26 +239,23 @@ def personnel():
 @app.route('/resultats/equipe', methods=['GET', 'POST'])
 #@login_required
 def group():
-    person = getPersonFromSession()
-    if person!="none" :
-        group = person.group
-    else :
-        if 'idEquipe' in request.args:
-            idEq = request.args.get('idEquipe', '')
-            try:
-                idEqInt = int(idEq)
-                if idEqInt>1 and idEqInt<43:
-                    group = Group.query.filter_by(id=idEq).first()
-                else:
-                    error = u'ERROR : le parametre idEquipe doit etre un entier compris entre 1 et 43'
-                    return error
-            except ValueError:
+    if 'idEquipe' in request.args:
+        idEq = request.args.get('idEquipe', '')
+        try:
+            idEqInt = int(idEq)
+            if idEqInt>1 and idEqInt<43:
+                group = Group.query.filter_by(id=idEq).first()
+                person = getPersonFromSession()
+                return render_template('group/main.html', group=group, person=person)
+            else:
                 error = u'ERROR : le parametre idEquipe doit etre un entier compris entre 1 et 43'
                 return error
-        else:
-                error = u'ERROR : le parametre idEquipe est demandé'
-                return error
-    return render_template('group/main.html', group=group, person=person)
+        except ValueError:
+            error = u'ERROR : le parametre idEquipe doit etre un entier compris entre 1 et 43'
+            return error
+    else:
+        error = u'ERROR : le parametre idEquipe est demandé'
+        return error
 
 
 #
