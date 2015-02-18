@@ -5,13 +5,6 @@
 {% block positionPage %}
     Accueil
 {% endblock %}
-{% block linksOtherPages %}
-    {% if person=="none" %}
-        {% include "accueil/main/navBarNotConnected.html" %}
-    {% else %}
-        {% include "accueil/main/navBarConnected.html" %}
-    {% endif %}
-{% endblock %}
 {% block main %}
 	<div id="main" class="main">
         <div class="inscriptionTermine_DIV">

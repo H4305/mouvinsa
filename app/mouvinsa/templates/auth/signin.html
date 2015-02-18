@@ -3,9 +3,6 @@
 {% block positionPage %}
     Login
 {% endblock %}
-{% block linksOtherPages %}
-    {% include "auth/main/navBar.html" %}
-{% endblock %}
 {% block header %}
     {{ super() }}
     <link href="{{ url_for('static', filename='styles/inscription/inscription_style.css') }}" rel="stylesheet" type="text/css" />

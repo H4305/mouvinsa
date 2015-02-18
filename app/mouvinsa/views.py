@@ -23,7 +23,8 @@ from mouvinsa.utils.mdp import generate_mdp
 @app.route('/', methods=['GET', 'POST'])
 def home():
     person = getPersonFromSession()
-    return render_template('/accueil/index.html', person=person)
+    index = 'yes'
+    return render_template('/accueil/index.html', person=person, index=index)
 
 
 #@app.route('/', methods=['GET', 'POST'])
