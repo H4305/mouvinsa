@@ -2,6 +2,15 @@
     Paramètres du compte
 </span>
 <div class="horizontal-line"></div>
+  {% if form.errors %}
+    <ul class="errors">
+        {% for field_name, field_errors in form.errors|dictsort if field_errors %}
+            {% for error in field_errors %}
+                <li>{{ form[field_name].label }}: {{ error }}</li>
+            {% endfor %}
+        {% endfor %}
+    </ul>
+{% endif %}
 <table class="table-setting">
     <tr>
         <td class="td_label"> {{ form.image.label }} </td>

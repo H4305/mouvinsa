@@ -16,16 +16,21 @@ def validateSetting(request, person):
 
 
 def saveSettings(person, form):
-    UserManager.change_info(person,
-                            form.birthdate.data,
-                            form.sex.data,
-                            form.weight.data,
-                            form.height.data
-    )
-
     if form.password.data and not form.password.errors:
         UserManager.change_password(person, form.password.data)
 
-    if form.image and not form.image.errors:
+    if form.image.data and not form.image.errors:
         UserManager.change_picture()
+
+    UserManager.update_from_form(person, form)
+
+    # UserManager.change_info(person,
+    #                         form.birthdate.data,
+    #                         form.sex.data,
+    #                         form.weight.data,
+    #                         form.height.data,
+    #                         form.firstname,
+    #                         form.lastname,
+    # )
+
     return
