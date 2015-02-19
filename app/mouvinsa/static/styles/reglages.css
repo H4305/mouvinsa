@@ -136,9 +136,9 @@
 
 }
 
-#tr_dernier {
+.tr_dernier {
     margin-bottom:5px;
-    border-bottom: hidden;
+    border-bottom: hidden !important;
 }
 
 .annuler_valider_button {
@@ -151,4 +151,8 @@
     display: inline;
     width: 130%;
     border: none;
+}
+
+#input {
+    display: block;
 }

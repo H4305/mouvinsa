@@ -54,6 +54,7 @@
                  ****
              </span>
             {{ form.password() }}
+            {{ form.confirm() }}
         </td>
         <td class="td_button">
             <button id="password_cancel_button" class="annuler_valider_button invisible_button" type="button">
@@ -192,7 +193,7 @@
                 </button>
                 <button id="affiliation_button" type="button"><img src="{{ url_for('static', filename='images/edit-icon-red.png') }}"></button></td>
         </tr>
-        <tr>
+        <tr class="tr_dernier">
             <td class="td_label">{{ form.position.label }} </td>
             <td class="td_content">
                 <span id="position_span" class="span-visible">
@@ -245,7 +246,7 @@
                 </button>
                 <button id="year_button" type="button"><img src="{{ url_for('static', filename='images/edit-icon-red.png') }}"></button></td>
         </tr>
-        <tr>
+        <tr class="tr_dernier">
             {% if cycl == "Premier" %}
                 <td class="td_label">Filière </td>
             {% else %}
