@@ -5,9 +5,24 @@ from wtforms.fields.simple import SubmitField
 from flask import render_template
 from flask.ext.wtf.file import FileField
 from flask.ext.wtf import Form
-from wtforms import FloatField, PasswordField, SelectField, DateField, validators
+from wtforms import FloatField, PasswordField, SelectField, DateField, validators, StringField
 from mouvinsa.controllers.inscription_controller import \
-    messagePassword, messageLongueur4_25, CHOIX_SEXE, messagePoids, messageTaille
+    messagePassword, messageLongueur4_25, CHOIX_SEXE, messagePoids, messageTaille, messageLongueur2_25, CHOIX_ANNEE, \
+    CHOIX_CYCLE, CHOIX_FILIERE, CHOIX_DEPARTEMENT, messageLongueur3_100
+
+LABEL_AFFILIATION = u'Affiliation'
+
+LABEL_POSITION = u'Position'
+
+LABEL_BRANCH = u'Département'
+
+LABEL_CYCLE = u'Cycle'
+
+LABEL_YEAR = u'Année'
+
+LABEL_FIRSTNAME = u'Prénom'
+
+LABEL_LASTNAME = u'Nom'
 
 __author__ = 'vcaen'
 
@@ -59,6 +74,9 @@ class UserForm(Form):
         validators.EqualTo('confirm', message=messagePassword),
         validators.Length(min=4, max=25, message=messageLongueur4_25)
     ])
+    lastname = StringField(LABEL_LASTNAME, [validators.Optional(), validators.Length(min=2, max=25, message=messageLongueur2_25)])
+    firstname = StringField(LABEL_FIRSTNAME,
+                       [validators.Optional(), validators.Length(min=2, max=25, message=messageLongueur2_25)])
     confirm = PasswordField(LABEL_CONF_PASS)
     birthdate = DateField(LABEL_BIRTHDATE, format='%d/%m/%Y', validators=[validators.Optional()])
     sex = SelectField(LABEL_SEX, choices=CHOIX_SEXE)
@@ -67,6 +85,13 @@ class UserForm(Form):
     height = FloatField(LABEL_HEIGHT,
                         [validators.Optional(), validators.NumberRange(min=90, max=250, message=messageTaille)])
     submit = SubmitField(LABEL_SUBMIT)
+    year = SelectField(LABEL_YEAR, choices=CHOIX_ANNEE)
+    cycle = SelectField(LABEL_CYCLE, choices=CHOIX_CYCLE)
+    branch = SelectField(LABEL_BRANCH, choices=CHOIX_DEPARTEMENT)
+    position = StringField(LABEL_POSITION,
+                         [validators.Optional(), validators.Length(min=3, max=100, message=messageLongueur3_100)])
+    affiliation = StringField(LABEL_AFFILIATION,
+                            [validators.Optional(), validators.Length(min=3, max=100, message=messageLongueur3_100)])
 
 
 

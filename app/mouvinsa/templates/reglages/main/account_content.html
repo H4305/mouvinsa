@@ -42,27 +42,29 @@
     <tr>
         <td class="td_label"> {{ form.image.label }} </td>
         <td class="td_content">
-             <span id="prenom_span" class="span-visible">
+             <span id="image_span" class="span-visible">
                 {{ form.image(accept="image/*") }}
              </span>
         </td>
-        <td class="td_button"><button id="prenom_button" type="button"><img src="{{ url_for('static', filename='images/edit-icon-red.png') }}"></button></td>
+        <td class="td_button"></td>
     </tr>
     <tr>
-        <td class="td_label">Prénom </td>
+        <td class="td_label">{{ form.firstname.label }} </td>
         <td class="td_content">
              <span id="prenom_span" class="span-visible">
                 {{ person.firstname }}
              </span>
+            {{ form.firstname() }}
         </td>
         <td class="td_button"><button id="prenom_button" type="button"><img src="{{ url_for('static', filename='images/edit-icon-red.png') }}"></button></td>
     </tr>
     <tr>
-        <td class="td_label">Nom </td>
+        <td class="td_label">{{ form.lastname.label }} </td>
         <td class="td_content">
              <span id="nom_span" class="span-visible">
                 {{ person.lastname }}
              </span>
+            {{ form.lastname() }}
         </td>
         <td class="td_button"><button id="nom_button" type="button"><img src="{{ url_for('static', filename='images/edit-icon-red.png') }}"></button></td>
     </tr>
@@ -110,40 +112,44 @@
     </tr>
     {% if cat =="enseignant" or cat=="iatos" %}
         <tr>
-            <td class="td_label">Affiliation </td>
+            <td class="td_label">{{ form.affiliation.label }} </td>
             <td class="td_content">
                 <span id="affiliation_span" class="span-visible">
                     {{ person.affiliation }}
                 </span>
+                {{ form.affiliation() }}
             </td>
             <td class="td_button"><button id="affiliation_button" type="button"><img src="{{ url_for('static', filename='images/edit-icon-red.png') }}"></button></td>
         </tr>
         <tr>
-            <td class="td_label">Position </td>
+            <td class="td_label">{{ form.position.label }} </td>
             <td class="td_content">
                 <span id="position_span" class="span-visible">
                     {{ person.position }}
                 </span>
+                {{ form.position() }}
             </td>
             <td class="td_button"><button id="position_button" type="button"><img src="{{ url_for('static', filename='images/edit-icon-red.png') }}"></button></td>
         </tr>
     {% else %}
         {% set cycl = person.cycle %}
         <tr>
-            <td class="td_label">Cycle </td>
+            <td class="td_label">{{ form.cycle.label }} </td>
             <td class="td_content">
                 <span id="cycle_span" class="span-visible">
                     {{ cycl }}
                 </span>
+                {{ form.cycle() }}
             </td>
             <td class="td_button"><button id="cycle_button" type="button"><img src="{{ url_for('static', filename='images/edit-icon-red.png') }}"></button></td>
         </tr>
         <tr>
-            <td class="td_label">Année </td>
+            <td class="td_label">{{ form.year.label }} </td>
             <td class="td_content">
                 <span id="annee_span" class="span-visible">
                     {{ person.year }}
                 </span>
+                {{ form.year() }}
             </td>
             <td class="td_button"><button id="year_button" type="button"><img src="{{ url_for('static', filename='images/edit-icon-red.png') }}"></button></td>
         </tr>
@@ -157,6 +163,7 @@
                 <span id="branch_span" class="span-visible">
                     {{ person.branch }}
                 </span>
+                {{ form.branch() }}
             </td>
             <td class="td_button"><button id="branch_button" type="button"><img src="{{ url_for('static', filename='images/edit-icon-red.png') }}"></button></td>
         </tr>
