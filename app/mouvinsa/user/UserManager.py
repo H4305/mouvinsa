@@ -21,10 +21,15 @@ def change_password(person, password):
 def change_picture(person, image):
     return
 
-def change_info(person, birthdate, sex, weight, height):
+def change_info(person, birthdate, sex, weight, height, first):
     person.birthdate = birthdate
     person.sex = sex
     person.weight = weight
     person.height = height
     db.session.commit()
     return
+
+def update_from_form(person, form):
+    form.password.data = hash_password(form.password.data)
+    form.populate_obj(person)
+    db.session.commit()
