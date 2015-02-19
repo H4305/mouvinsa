@@ -277,11 +277,12 @@ def page_not_found(e):
 
 @app.route('/reglages/', methods=['GET', 'POST'])
 def reglages():
+    person = getPersonFromSession()
     if request.method == 'GET':
-        person = getPersonFromSession()
         return UserController.displaySettings(request, person)
     elif request.method == 'POST':
-        return UserController.validateSetting(request)
+        return UserController.validateSetting(request, person)
+
 
 
 @app.route('/test/inscription/<user>')

@@ -6,13 +6,27 @@
     Reglages
 {% endblock %}
 {% block main %}
-    <form method="post" >
+    {% include "person/main/header.html" %}
+    {% if form.errors %}
+    <ul class="errors">
+        {% for field_name, field_errors in form.errors|dictsort if field_errors %}
+            {% for error in field_errors %}
+                <li>{{ form[field_name].label }}: {{ error }}</li>
+            {% endfor %}
+        {% endfor %}
+    </ul>
+{% endif %}
+    <form method="post" enctype="multipart/form-data" action="{{ url_for('reglages') }}" >
+        {{ form.hidden_tag() }}
+        <div>{{ form.image.label }} : {{ form.image(accept="image/*") }}</div>
+        <div> Laissez le champs vide pour garder votre mot de passe </div>
         <div>{{ form.password.label }} : {{ form.password() }}</div>
         <div>{{ form.confirm.label }} : {{ form.confirm() }}</div>
         <div>{{ form.birthdate.label }} : {{ form.birthdate() }}</div>
         <div>{{ form.sex.label }} : {{ form.sex() }}</div>
         <div>{{ form.weight.label }} : {{ form.weight() }}</div>
         <div>{{ form.height.label }} : {{ form.height() }}</div>
+        <div>{{ form.submit }}</div>
     </form>
     {% include 'apropos.html' %}
 {% endblock %}
