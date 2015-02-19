@@ -145,3 +145,9 @@
     text-decoration: underline;
     margin-top: 14px !important;
 }
+
+#image {
+    display: inline;
+    width: 130%;
+    border: none;
+}

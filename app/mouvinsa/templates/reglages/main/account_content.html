@@ -3,6 +3,15 @@
 </span>
 <div class="horizontal-line"></div>
 <table class="table-setting">
+    <tr>
+        <td class="td_label"> {{ form.image.label }} </td>
+        <td class="td_content">
+             <span id="image_span" class="span-visible">
+                {{ form.image(accept="image/*") }}
+             </span>
+        </td>
+        <td class="td_button"></td>
+    </tr>
     {% set cat = person.category %}
     <tr>
         <td class="td_label">Categorie </td>
@@ -48,15 +57,6 @@
                 <img src="{{ url_for('static', filename='images/edit-icon-red.png') }}">
             </button>
         </td>
-    </tr>
-    <tr>
-        <td class="td_label"> {{ form.image.label }} </td>
-        <td class="td_content">
-             <span id="image_span" class="span-visible">
-                {{ form.image(accept="image/*") }}
-             </span>
-        </td>
-        <td class="td_button"></td>
     </tr>
     <tr>
         <td class="td_label">{{ form.firstname.label }} </td>
