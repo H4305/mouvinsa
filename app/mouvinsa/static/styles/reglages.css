@@ -144,6 +144,7 @@
 .annuler_valider_button {
     text-decoration: underline;
     margin-top: 14px !important;
+    display:none;
 }
 
 #image {
