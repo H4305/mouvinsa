@@ -1,0 +1,123 @@
+/* ================================
+  Reglages pages styles
+================================ */
+
+.account-content {
+    margin-top: -30px;
+    position: relative;
+    max-width: 960px;
+    background: none repeat scroll 0% 0% #FFB300;
+    padding-right: 40px;
+    padding-left: 40px;
+    padding-top: 15px;
+    padding-bottom: 20px;
+    margin-bottom: 30px;
+}
+
+.category_span {
+    font-family: bebas_neue_bold,Helvetica,Arial;
+    position: relative;
+    font-size: 40px;
+    color:#fff;
+}
+
+.horizontal-line {
+    background: #fff  no-repeat scroll center;
+    margin:auto;
+    height:2px;
+    position:relative;
+}
+
+.data-box {
+    position: relative;
+    margin-bottom: 5%;
+    margin-top: 2%;
+    margin-left: 6%;
+    width: 85%;
+    height: 90%;
+}
+
+.data-box label{
+    display: block;
+	width: 38%;
+	float: left;
+}
+
+.data-box input{
+    position: relative;
+    border: 0;
+    outline: 0;
+    background: transparent;
+    border-bottom: 2px solid black;
+    width: 60%;
+    float: right;
+    bottom: 0;
+    border-width: medium medium 2px;
+    border-style: none none solid;
+    border-color: -moz-use-text-color -moz-use-text-color #000;
+    background-color: transparent;
+    outline-color: #E42618;
+}
+
+.data-box select{
+    position: relative;
+    width: 40%;
+    vertical-align: top;
+    margin-right: 7%;
+    border-width: medium medium 2px;
+    border-style: none none solid;
+    border-color: -moz-use-text-color -moz-use-text-color #000;
+    -moz-border-top-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    border-image: none;
+    background-color: transparent;
+    outline-color: #E42618;
+}
+
+.table-setting {
+    width: 95%;
+    margin: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.table-setting tr {
+    margin-bottom:5px;
+    border-bottom: 1px solid;
+}
+
+.table-setting tr:hover {
+    background-color: #aacbe2;
+}
+
+.table-setting td {
+    height:40px;
+}
+
+.table-setting button {
+    margin-top: 10px;
+    background-color: transparent;
+    border: medium none;
+}
+
+.td_label {
+    font-weight: bold;
+    width:30%;
+    padding-left: 5px;
+}
+
+.td_content {
+    width:30%;
+}
+
+.td_button {
+    width:10%;
+    float:right;
+}
+
+#tr_dernier{
+    margin-bottom:5px;
+    border-bottom: hidden;
+}

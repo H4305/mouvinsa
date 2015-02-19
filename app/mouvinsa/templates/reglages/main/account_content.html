@@ -1,0 +1,105 @@
+<span class="category_span">
+    Paramètres du compte
+</span>
+<div class="horizontal-line"></div>
+<table class="table-setting">
+    {% set cat = person.category %}
+    <tr>
+        <td class="td_label">Categorie </td>
+        <td class="td_content">
+            {% if cat =="enseignant" %}
+            enseignant-chercheur
+            {% else %}
+                {{ cat }}
+            {% endif %}
+        </td>
+        <td class="td_button"></td>
+    </tr>
+    <tr>
+        <td class="td_label">Surnom </td>
+        <td class="td_content">
+            {{ person.nickname }}
+        </td>
+        <td class="td_button"></td>
+    </tr>
+    <tr>
+        <td class="td_label">Email </td>
+        <td class="td_content">
+            {{ person.email }}
+        </td>
+        <td class="td_button"></td>
+    </tr>
+    <tr>
+        <td class="td_label">{{ form.password.label }} </td>
+        <td class="td_content">****</td>
+        <td class="td_button"><button id="password_button" type="button"><img src="{{ url_for('static', filename='images/edit-icon.png') }}"></button></td>
+    </tr>
+    <tr>
+        <td class="td_label">Prénom </td>
+        <td class="td_content">{{ person.firstname }}</td>
+        <td class="td_button"><button id="prenom_button" type="button"><img src="{{ url_for('static', filename='images/edit-icon.png') }}"></button></td>
+    </tr>
+    <tr>
+        <td class="td_label">Nom </td>
+        <td class="td_content">{{ person.lastname }}</td>
+        <td class="td_button"><button id="nom_button" type="button"><img src="{{ url_for('static', filename='images/edit-icon.png') }}"></button></td>
+    </tr>
+    <tr>
+        <td class="td_label">{{ form.birthdate.label }} </td>
+        <td class="td_content">{% if person.birthdate is not none %}
+                {{ person.birthdate.strftime('%d-%m-%Y') }}
+            {% else %}Inconnu
+            {% endif %}
+        </td>
+        <td class="td_button"><button id="birthdate_button" type="button"><img src="{{ url_for('static', filename='images/edit-icon.png') }}"></button></td>
+    </tr>
+    <tr>
+        <td class="td_label">{{ form.sex.label }} </td>
+        <td class="td_content">{{ person.sex }}</td>
+        <td class="td_button"><button id="sex_button" type="button"><img src="{{ url_for('static', filename='images/edit-icon.png') }}"></button></td>
+    </tr>
+    <tr>
+        <td class="td_label">{{ form.weight.label }} </td>
+        <td class="td_content">{{ person.weight }}</td>
+        <td class="td_button"><button id="weight_button" type="button"><img src="{{ url_for('static', filename='images/edit-icon.png') }}"></button></td>
+    </tr>
+    <tr>
+        <td class="td_label">{{ form.height.label }} </td>
+        <td class="td_content">{{ person.height }}</td>
+        <td class="td_button"><button id="height_button" type="button"><img src="{{ url_for('static', filename='images/edit-icon.png') }}"></button></td>
+    </tr>
+    {% if cat =="enseignant" or cat=="iatos" %}
+        <tr>
+            <td class="td_label">Affiliation </td>
+            <td class="td_content">{{ person.affiliation }}</td>
+            <td class="td_button"><button id="affiliation_button" type="button"><img src="{{ url_for('static', filename='images/edit-icon.png') }}"></button></td>
+        </tr>
+        <tr>
+            <td class="td_label">Position </td>
+            <td class="td_content">{{ person.position }}</td>
+            <td class="td_button"><button id="position_button" type="button"><img src="{{ url_for('static', filename='images/edit-icon.png') }}"></button></td>
+        </tr>
+    {% else %}
+        {% set cycl = person.cycle %}
+        <tr>
+            <td class="td_label">Cycle </td>
+            <td class="td_content">{{ cycl }}</td>
+            <td class="td_button"><button id="cycle_button" type="button"><img src="{{ url_for('static', filename='images/edit-icon.png') }}"></button></td>
+        </tr>
+        <tr>
+            <td class="td_label">Année </td>
+            <td class="td_content">{{ person.year }}</td>
+            <td class="td_button"><button id="year_button" type="button"><img src="{{ url_for('static', filename='images/edit-icon.png') }}"></button></td>
+        </tr>
+        <tr>
+            {% if cycl == "Premier" %}
+                <td class="td_label">Filière </td>
+            {% else %}
+                <td class="td_label">Département </td>
+            {% endif %}
+            <td class="td_content">{{ person.branch }}</td>
+            <td class="td_button"><button id="branch_button" type="button"><img src="{{ url_for('static', filename='images/edit-icon.png') }}"></button></td>
+        </tr>
+    {% endif %}
+</table>
+<div class="horizontal-line"></div>

@@ -6,13 +6,8 @@
     Reglages
 {% endblock %}
 {% block main %}
-    <form method="post" >
-        <div>{{ form.password.label }} : {{ form.password() }}</div>
-        <div>{{ form.confirm.label }} : {{ form.confirm() }}</div>
-        <div>{{ form.birthdate.label }} : {{ form.birthdate() }}</div>
-        <div>{{ form.sex.label }} : {{ form.sex() }}</div>
-        <div>{{ form.weight.label }} : {{ form.weight() }}</div>
-        <div>{{ form.height.label }} : {{ form.height() }}</div>
-    </form>
-    {% include 'apropos.html' %}
+    {% include "person/main/header.html" %}
+    <div class="container account-content">
+        {% include "reglages/main/account_content.html" %}
+    </div>
 {% endblock %}
