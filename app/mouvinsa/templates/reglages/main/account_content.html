@@ -160,6 +160,13 @@
             </td>
             <td class="td_button"><button id="branch_button" type="button"><img src="{{ url_for('static', filename='images/edit-icon-red.png') }}"></button></td>
         </tr>
+        <tr>
+            <td class="td_content">
+                <span id="branch_span" class="span-visible">
+                    {{ form.submit() }}
+                </span>
+            </td>
+        </tr>
     {% endif %}
 </table>
 <div class="horizontal-line"></div>
