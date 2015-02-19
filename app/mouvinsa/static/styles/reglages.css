@@ -127,15 +127,21 @@
 }
 
 .td_button {
-    width:10%;
+    width:48%;
     float:right;
+    text-align: right;
 }
 
 .span-visible {
 
 }
 
-#tr_dernier{
+#tr_dernier {
     margin-bottom:5px;
     border-bottom: hidden;
+}
+
+.annuler_valider_button {
+    text-decoration: underline;
+    margin-top: 0px !important;
 }
