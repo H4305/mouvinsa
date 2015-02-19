@@ -276,6 +276,7 @@ def page_not_found(e):
     return render_template('500.html', error=e)
 
 @app.route('/reglages/', methods=['GET', 'POST'])
+@login_required
 def reglages():
     person = getPersonFromSession()
     if request.method == 'GET':

@@ -3,7 +3,6 @@ from mouvinsa.user import UserManager
 __author__ = 'vcaen'
 import UserView
 
-
 def displaySettings(request, person):
     return UserView.display_settings(person, UserView.generate_setting_form(request, person))
 

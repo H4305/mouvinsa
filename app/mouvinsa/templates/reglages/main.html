@@ -17,16 +17,9 @@
     </ul>
 {% endif %}
     <form method="post" enctype="multipart/form-data" action="{{ url_for('reglages') }}" >
-        {{ form.hidden_tag() }}
-        <div>{{ form.image.label }} : {{ form.image(accept="image/*") }}</div>
-        <div> Laissez le champs vide pour garder votre mot de passe </div>
-        <div>{{ form.password.label }} : {{ form.password() }}</div>
-        <div>{{ form.confirm.label }} : {{ form.confirm() }}</div>
-        <div>{{ form.birthdate.label }} : {{ form.birthdate() }}</div>
-        <div>{{ form.sex.label }} : {{ form.sex() }}</div>
-        <div>{{ form.weight.label }} : {{ form.weight() }}</div>
-        <div>{{ form.height.label }} : {{ form.height() }}</div>
-        <div>{{ form.submit }}</div>
+       <div class="container account-content">
+        {% include "reglages/main/account_content.html" %}
+    </div>
     </form>
     {% include 'apropos.html' %}
 {% endblock %}
