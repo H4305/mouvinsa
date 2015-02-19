@@ -40,6 +40,15 @@
         <td class="td_button"><button id="password_button" type="button"><img src="{{ url_for('static', filename='images/edit-icon-red.png') }}"></button></td>
     </tr>
     <tr>
+        <td class="td_label"> {{ form.image.label }} </td>
+        <td class="td_content">
+             <span id="prenom_span" class="span-visible">
+                {{ form.image(accept="image/*") }}
+             </span>
+        </td>
+        <td class="td_button"><button id="prenom_button" type="button"><img src="{{ url_for('static', filename='images/edit-icon-red.png') }}"></button></td>
+    </tr>
+    <tr>
         <td class="td_label">Prénom </td>
         <td class="td_content">
              <span id="prenom_span" class="span-visible">
