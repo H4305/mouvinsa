@@ -37,7 +37,17 @@
              </span>
             {{ form.password() }}
         </td>
-        <td class="td_button"><button id="password_button" type="button"><img src="{{ url_for('static', filename='images/edit-icon-red.png') }}"></button></td>
+        <td class="td_button">
+            <button id="password_cancel_button" class="annuler_valider_button invisible_button" type="button">
+                Annuller
+            </button>
+            <button id="password_validate_button" class="annuler_valider_button invisible_button" type="button">
+                Valider
+            </button>
+            <button id="password_button" type="button">
+                <img src="{{ url_for('static', filename='images/edit-icon-red.png') }}">
+            </button>
+        </td>
     </tr>
     <tr>
         <td class="td_label">Prénom </td>
@@ -46,7 +56,17 @@
                 {{ person.firstname }}
              </span>
         </td>
-        <td class="td_button"><button id="prenom_button" type="button"><img src="{{ url_for('static', filename='images/edit-icon-red.png') }}"></button></td>
+        <td class="td_button">
+            <button id="prenom_cancel_button" class="annuler_valider_button invisible_button" type="button">
+                Annuller
+            </button>
+            <button id="prenom_validate_button" class="annuler_valider_button invisible_button" type="button">
+                Valider
+            </button>
+            <button id="prenom_button" type="button">
+                <img src="{{ url_for('static', filename='images/edit-icon-red.png') }}">
+            </button>
+        </td>
     </tr>
     <tr>
         <td class="td_label">Nom </td>
@@ -55,7 +75,14 @@
                 {{ person.lastname }}
              </span>
         </td>
-        <td class="td_button"><button id="nom_button" type="button"><img src="{{ url_for('static', filename='images/edit-icon-red.png') }}"></button></td>
+        <td class="td_button">
+            <button id="nom_cancel_button" class="annuler_valider_button invisible_button" type="button">
+                Annuller
+            </button>
+            <button id="nom_validate_button" class="annuler_valider_button invisible_button" type="button">
+                Valider
+            </button>
+            <button id="nom_button" type="button"><img src="{{ url_for('static', filename='images/edit-icon-red.png') }}"></button></td>
     </tr>
     <tr>
         <td class="td_label">{{ form.birthdate.label }} </td>
@@ -67,7 +94,14 @@
             </span>
             {{ form.birthdate() }}
         </td>
-        <td class="td_button"><button id="birthdate_button" type="button"><img src="{{ url_for('static', filename='images/edit-icon-red.png') }}"></button></td>
+        <td class="td_button">
+            <button id="date_cancel_button" class="annuler_valider_button invisible_button" type="button">
+                Annuller
+            </button>
+            <button id="date_validate_button" class="annuler_valider_button invisible_button" type="button">
+                Valider
+            </button>
+            <button id="birthdate_button" type="button"><img src="{{ url_for('static', filename='images/edit-icon-red.png') }}"></button></td>
     </tr>
     <tr>
         <td class="td_label">{{ form.sex.label }} </td>
@@ -77,7 +111,14 @@
             </span>
             {{ form.sex() }}
         </td>
-        <td class="td_button"><button id="sex_button" type="button"><img src="{{ url_for('static', filename='images/edit-icon-red.png') }}"></button></td>
+        <td class="td_button">
+            <button id="sex_cancel_button" class="annuler_valider_button invisible_button" type="button">
+                Annuller
+            </button>
+            <button id="sex_validate_button" class="annuler_valider_button invisible_button" type="button">
+                Valider
+            </button>
+            <button id="sex_button" type="button"><img src="{{ url_for('static', filename='images/edit-icon-red.png') }}"></button></td>
     </tr>
     <tr>
         <td class="td_label">{{ form.weight.label }} </td>
@@ -87,7 +128,14 @@
             </span>
             {{ form.weight() }}
         </td>
-        <td class="td_button"><button id="weight_button" type="button"><img src="{{ url_for('static', filename='images/edit-icon-red.png') }}"></button></td>
+        <td class="td_button">
+            <button id="weight_cancel_button" class="annuler_valider_button invisible_button" type="button">
+                Annuller
+            </button>
+            <button id="weight_validate_button" class="annuler_valider_button invisible_button" type="button">
+                Valider
+            </button>
+            <button id="weight_button" type="button"><img src="{{ url_for('static', filename='images/edit-icon-red.png') }}"></button></td>
     </tr>
     <tr>
         <td class="td_label">{{ form.height.label }} </td>
@@ -97,7 +145,14 @@
             </span>
             {{ form.height() }}
         </td>
-        <td class="td_button"><button id="height_button" type="button"><img src="{{ url_for('static', filename='images/edit-icon-red.png') }}"></button></td>
+        <td class="td_button">
+            <button id="height_cancel_button" class="annuler_valider_button invisible_button" type="button">
+                Annuller
+            </button>
+            <button id="height_validate_button" class="annuler_valider_button invisible_button" type="button">
+                Valider
+            </button>
+            <button id="height_button" type="button"><img src="{{ url_for('static', filename='images/edit-icon-red.png') }}"></button></td>
     </tr>
     {% if cat =="enseignant" or cat=="iatos" %}
         <tr>
@@ -107,7 +162,14 @@
                     {{ person.affiliation }}
                 </span>
             </td>
-            <td class="td_button"><button id="affiliation_button" type="button"><img src="{{ url_for('static', filename='images/edit-icon-red.png') }}"></button></td>
+            <td class="td_button">
+                <button id="affiliation_cancel_button" class="annuler_valider_button invisible_button" type="button">
+                    Annuller
+                </button>
+                <button id="affiliation_validate_button" class="annuler_valider_button invisible_button" type="button">
+                    Valider
+                </button>
+                <button id="affiliation_button" type="button"><img src="{{ url_for('static', filename='images/edit-icon-red.png') }}"></button></td>
         </tr>
         <tr>
             <td class="td_label">Position </td>
@@ -116,7 +178,14 @@
                     {{ person.position }}
                 </span>
             </td>
-            <td class="td_button"><button id="position_button" type="button"><img src="{{ url_for('static', filename='images/edit-icon-red.png') }}"></button></td>
+            <td class="td_button">
+                <button id="position_cancel_button" class="annuler_valider_button invisible_button" type="button">
+                    Annuller
+                </button>
+                <button id="position_validate_button" class="annuler_valider_button invisible_button" type="button">
+                    Valider
+                </button>
+                <button id="position_button" type="button"><img src="{{ url_for('static', filename='images/edit-icon-red.png') }}"></button></td>
         </tr>
     {% else %}
         {% set cycl = person.cycle %}
@@ -127,7 +196,14 @@
                     {{ cycl }}
                 </span>
             </td>
-            <td class="td_button"><button id="cycle_button" type="button"><img src="{{ url_for('static', filename='images/edit-icon-red.png') }}"></button></td>
+            <td class="td_button">
+                <button id="cycle_cancel_button" class="annuler_valider_button invisible_button" type="button">
+                    Annuller
+                </button>
+                <button id="cycle_validate_button" class="annuler_valider_button invisible_button" type="button">
+                    Valider
+                </button>
+                <button id="cycle_button" type="button"><img src="{{ url_for('static', filename='images/edit-icon-red.png') }}"></button></td>
         </tr>
         <tr>
             <td class="td_label">Année </td>
@@ -136,7 +212,14 @@
                     {{ person.year }}
                 </span>
             </td>
-            <td class="td_button"><button id="year_button" type="button"><img src="{{ url_for('static', filename='images/edit-icon-red.png') }}"></button></td>
+            <td class="td_button">
+                <button id="year_cancel_button" class="annuler_valider_button invisible_button" type="button">
+                    Annuller
+                </button>
+                <button id="year_validate_button" class="annuler_valider_button invisible_button" type="button">
+                    Valider
+                </button>
+                <button id="year_button" type="button"><img src="{{ url_for('static', filename='images/edit-icon-red.png') }}"></button></td>
         </tr>
         <tr>
             {% if cycl == "Premier" %}
@@ -149,7 +232,15 @@
                     {{ person.branch }}
                 </span>
             </td>
-            <td class="td_button"><button id="branch_button" type="button"><img src="{{ url_for('static', filename='images/edit-icon-red.png') }}"></button></td>
+            <td class="td_button">
+                <button id="branch_cancel_button" class="annuler_valider_button invisible_button" type="button">
+                    Annuller
+                </button>
+                <button id="branch_validate_button" class="annuler_valider_button invisible_button" type="button">
+                    Valider
+                </button>
+                <button id="branch_button" type="button"><img src="{{ url_for('static', filename='images/edit-icon-red.png') }}"></button>
+            </td>
         </tr>
     {% endif %}
 </table>
