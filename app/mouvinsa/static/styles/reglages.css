@@ -96,6 +96,18 @@
     height:40px;
 }
 
+.table-setting input {
+    border: 1px solid;
+    width: 80%;
+    outline-color: #E42618;
+}
+
+.table-setting select {
+    border: 1px solid;
+    width: 80%;
+    outline-color: #E42618;
+}
+
 .table-setting button {
     margin-top: 10px;
     background-color: transparent;
@@ -115,6 +127,10 @@
 .td_button {
     width:10%;
     float:right;
+}
+
+.span-visible {
+
 }
 
 #tr_dernier{
