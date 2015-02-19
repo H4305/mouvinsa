@@ -17,7 +17,7 @@ levels = [u'Très facile', u'Facile', u'Moyen', u'Difficile', u'Très difficile'
 distances = [200, 450, 700, 1100, 1700, 3000]
 
 cities_tr_facile = [u'Genève', u'Marseille', u'Zurich', u'Grenoble']
-cities_facile = [u'Paris', u'Nice', u'Stuttgart', u'Bordeaux', u'Barcelone']
+cities_facile = [u'Paris', u'Nice', u'Stuttgart', u'Bordeaux', u'Barcelone', u'Milan']
 cities_moyen = [u'Rome', u'Prague', u'Amsterdam', u'Berlin', u'Bruxelles', u'Londres']
 cities_difficile = [u'Dublin', u'Budapest', u'Alger', u'Tunis', u'Lisbonne', u'Vienne']
 cities_tr_difficile = [u'Istanbul', u'Bucharest', u'Casablanca', u'Athènes', u'Stockholm', u'Oslo']
