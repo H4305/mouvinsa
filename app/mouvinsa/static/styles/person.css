@@ -106,6 +106,24 @@ h1.person-name, h1.group-name {
   text-align: center;
 }
 
+.input-types li {
+  margin-bottom:15px;
+}
+
+.input-types li::after {
+  content: '';
+  position:absolute;
+  display: block;
+  height:1px;
+  width:240px;
+  border-bottom:1px solid #eee;
+  margin:7px 0 0 22px;
+}
+
+.input-types li:last-child::after {
+  display: none;
+}
+
 .activity-input {
   border:none;
   border-bottom: 3px solid #F44336;

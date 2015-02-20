@@ -307,3 +307,7 @@ transform: rotate(5deg);
     background-size: cover; /* version standardisÃ©e */
 }
 
+.hidden {
+    display: none;
+}
+
