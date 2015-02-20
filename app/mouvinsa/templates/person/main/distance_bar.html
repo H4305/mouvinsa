@@ -7,9 +7,66 @@
       s20.953-46.8,46.801-46.8s46.801,20.953,46.801,46.8S281.848,224.133,256,224.133z"/>
   </svg>
   <svg width="100%" height="10" fill="#333333" class="distance-bar-appendix">
-    <rect width="1500" height="10" x="54px"/>
+    <rect id="distance-bar-rect" width="1500" height="10" x="54px"/>
   </svg>
-  <div class="distance-bar">
-  27,6 Km
+  <div id="distance-value-bar" class="distance-bar">
+  <span id="distance-value-number">27,6</span> Km
   </div>
 </div>
+<script>
+    /*
+ jQuery animateNumber plugin v0.0.10
+ (c) 2013, Alexandr Borisov.
+ https://github.com/aishek/jquery-animateNumber
+*/
+(function(d){var p=function(b){return b.split("").reverse().join("")},l={numberStep:function(b,a){var e=Math.floor(b);d(a.elem).text(e)}},h=function(b){var a=b.elem;a.nodeType&&a.parentNode&&(a=a._animateNumberSetter,a||(a=l.numberStep),a(b.now,b))};d.Tween&&d.Tween.propHooks?d.Tween.propHooks.number={set:h}:d.fx.step.number=h;d.animateNumber={numberStepFactories:{append:function(b){return function(a,e){var k=Math.floor(a);d(e.elem).prop("number",a).text(k+b)}},separator:function(b,a){b=b||" ";a=
+a||3;return function(e,k){var c=Math.floor(e).toString(),s=d(k.elem);if(c.length>a){for(var f=c,g=a,l=f.split("").reverse(),c=[],m,q,n,r=0,h=Math.ceil(f.length/g);r<h;r++){m="";for(n=0;n<g;n++){q=r*g+n;if(q===f.length)break;m+=l[q]}c.push(m)}f=c.length-1;g=p(c[f]);c[f]=p(parseInt(g,10).toString());c=c.join(b);c=p(c)}s.prop("number",e).text(c)}}}};d.fn.animateNumber=function(){for(var b=arguments[0],a=d.extend({},l,b),e=d(this),k=[a],c=1,h=arguments.length;c<h;c++)k.push(arguments[c]);if(b.numberStep){var f=
+this.each(function(){this._animateNumberSetter=b.numberStep}),g=a.complete;a.complete=function(){f.each(function(){delete this._animateNumberSetter});g&&g.apply(this,arguments)}}return e.animate.apply(e,k)}})(jQuery);
+
+    $(document).ready(function () {
+        bar = $("#distance-value-bar");
+        bar.css("marginRight", "70%");
+        bar.animate(
+                { marginRight: "0%"},
+                {
+                    duration: 2000
+                });
+
+        var comma_separator_number_step = $.animateNumber.numberStepFactories.separator(',');
+        km = $("#distance-value-number").html().replace(',', '.');
+        var decimal_places = 2;
+        var decimal_factor = decimal_places === 0 ? 1 : decimal_places * 10;
+        $("#distance-value-number").animateNumber(
+                {
+                    number: parseFloat(km) * decimal_factor,
+
+                    numberStep: function(now, tween) {
+                        var floored_number = Math.floor(now) / decimal_factor,
+                                target = $(tween.elem);
+
+                        if (decimal_places > 0) {
+                            // force decimal places even if they are 0
+                            floored_number = floored_number.toFixed(decimal_places);
+
+                            // replace '.' separator with ','
+                            floored_number = floored_number.toString().replace('.', ',');
+                        }
+
+                        target.text(floored_number);
+                    }
+                },
+    2000
+  );
+
+        $("#distance-bar-rect").animate(
+                {width: 1500},
+                {
+                    duration: 1500,
+                    step: function (now) {
+                        $(this).attr("width", now);
+                    }
+                });
+    });
+
+
+</script>

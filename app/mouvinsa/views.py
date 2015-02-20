@@ -9,12 +9,10 @@ from controllers.inscription_controller import InscriptionForm
 from controllers.confirmation_controller import ConfirmationForm, updateProfil, uploadImage
 from controllers.signin_controller import LoginForm, MdpForm
 from controllers.inscription_controller import createEmployee, createStudent
-from controllers.tirageGroups_controller import tirageGroups
-from controllers.bdd_controller import nomsGroupes
 from models import db, Student, Person, Employee, Group
-from emails import sendInscriptionMailAndAlert, inscription_notification, inscription_alert, sendRappelRendezVous, mail_mot_de_passe_oublie, sendMailGroupesDefinitifs
-from sqlalchemy import func
-from mouvinsa.utils.passHash import check_password, hash_password
+from emails import sendInscriptionMailAndAlert, inscription_notification, inscription_alert, mail_mot_de_passe_oublie
+from mouvinsa.user import UserController
+from mouvinsa.utils.passHash import hash_password
 from mouvinsa.user.UserManager import loginmouv
 from mouvinsa.user.SessionManager import saveInSession, checkSession, clearSession, getPersonFromSession, login_required
 from mouvinsa.utils.mdp import generate_mdp
@@ -244,7 +242,7 @@ def group():
         idEq = request.args.get('idEquipe', '')
         try:
             idEqInt = int(idEq)
-            if idEqInt>1 and idEqInt<43:
+            if idEqInt>0 and idEqInt<43:
                 group = Group.query.filter_by(id=idEq).first()
                 person = getPersonFromSession()
                 return render_template('group/main.html', group=group, person=person)
@@ -277,11 +275,15 @@ def page_not_found(e):
 def page_not_found(e):
     return render_template('500.html', error=e)
 
-@app.route('/reglages')
+@app.route('/reglages/', methods=['GET', 'POST'])
+@login_required
 def reglages():
     person = getPersonFromSession()
+    if request.method == 'GET':
+        return UserController.displaySettings(request, person)
+    elif request.method == 'POST':
+        return UserController.validateSetting(request, person)
 
-    return render_template('reglages/main.html', person=person)
 
 @app.route('/testtttt/')
 def testtttt():
