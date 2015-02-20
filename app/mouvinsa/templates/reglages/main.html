@@ -3,12 +3,14 @@
 {% block pageName %} Reglages {% endblock %}
 {% block pageId %}reglages{% endblock %}
 {% block positionPage %}
-    mouv’insa - Reglages
-{% endblock %}
-{% block linksOtherPages %}
-    {% include "reglages/main/navBar.html" %}
+    Reglages
 {% endblock %}
 {% block main %}
-    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-    {% include 'apropos.html' %}
+    {% include "person/main/header.html" %}
+    <form method="post" enctype="multipart/form-data" action="{{ url_for('reglages') }}" >
+        {{ form.hidden_tag() }}
+       <div class="container account-content">
+        {% include "reglages/main/account_content.html" %}
+    </div>
+    </form>
 {% endblock %}

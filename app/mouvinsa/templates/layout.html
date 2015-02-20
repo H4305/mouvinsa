@@ -14,6 +14,10 @@
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/navigationBarStyle.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/descriptionProjetStyle.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/person.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/reglages.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/inscription/inscription_style.css') }}"/>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/navigationMenuStyle.css') }}"/>
+
     <link href="{{ url_for('static', filename='images/icon.ico') }}" rel="icon" type="image/x-icon" />
 {% endblock %}
 
@@ -24,19 +28,19 @@
     <div id="page">
         <header></header>
         <nav id="navigation_menu_NAV">
-            <div tabindex="0" class="menuButton_DIV" id="menuButton">
+            <!--<div tabindex="0" class="menuButton_DIV" id="menuButton">
                 <div class="box-shadow-menu">
                 </div>
                 {% block buttonMenu %}{% endblock %}
-            </div>
+            </div>-->
             <div class="titrePage_DIV">
-                <!-- <img class="header-logo" src="../static/images/logo-white.svg" alt="logo mouvinsa" class="logo" /> -->
+
                 <span class ="titre_SPAN">
-                    {% block positionPage %}{% endblock %}
+                     <a href="/"><img class="header-logo" src="../static/images/logo-white.svg" alt="logo mouvinsa" class="logo" /></a>- {% block positionPage %}{% endblock %}
                 </span>
             </div>
             <div class="linksOtherPages_DIV">
-                {% block linksOtherPages %}{% endblock %}
+                {% include "navigation_bar/boutonsNavBar.html" %}
             </div>
         </nav>
         {% block main %}{% endblock %}

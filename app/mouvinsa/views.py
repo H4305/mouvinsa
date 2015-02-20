@@ -9,12 +9,10 @@ from controllers.inscription_controller import InscriptionForm
 from controllers.confirmation_controller import ConfirmationForm, updateProfil, uploadImage
 from controllers.signin_controller import LoginForm, MdpForm
 from controllers.inscription_controller import createEmployee, createStudent
-from controllers.tirageGroups_controller import tirageGroups
-from controllers.bdd_controller import nomsGroupes
 from models import db, Student, Person, Employee, Group
-from emails import sendInscriptionMailAndAlert, inscription_notification, inscription_alert, sendRappelRendezVous, mail_mot_de_passe_oublie, sendMailGroupes
-from sqlalchemy import func
-from mouvinsa.utils.passHash import check_password, hash_password
+from emails import sendInscriptionMailAndAlert, inscription_notification, inscription_alert, mail_mot_de_passe_oublie
+from mouvinsa.user import UserController
+from mouvinsa.utils.passHash import hash_password
 from mouvinsa.user.UserManager import loginmouv
 from mouvinsa.user.SessionManager import saveInSession, checkSession, clearSession, getPersonFromSession, login_required
 from mouvinsa.utils.mdp import generate_mdp
@@ -23,7 +21,8 @@ from mouvinsa.utils.mdp import generate_mdp
 @app.route('/', methods=['GET', 'POST'])
 def home():
     person = getPersonFromSession()
-    return render_template('/accueil/index.html', person=person)
+    index = 'yes'
+    return render_template('/accueil/index.html', person=person, index=index)
 
 
 #@app.route('/', methods=['GET', 'POST'])
@@ -237,12 +236,25 @@ def personnel():
 
 
 @app.route('/resultats/equipe', methods=['GET', 'POST'])
-@login_required
+#@login_required
 def group():
-    person = getPersonFromSession()
-    group = person.group
-
-    return render_template('group/main.html', group=group)
+    if 'idEquipe' in request.args:
+        idEq = request.args.get('idEquipe', '')
+        try:
+            idEqInt = int(idEq)
+            if idEqInt>0 and idEqInt<43:
+                group = Group.query.filter_by(id=idEq).first()
+                person = getPersonFromSession()
+                return render_template('group/main.html', group=group, person=person)
+            else:
+                error = u'ERROR : le parametre idEquipe doit etre un entier compris entre 1 et 43'
+                return error
+        except ValueError:
+            error = u'ERROR : le parametre idEquipe doit etre un entier compris entre 1 et 43'
+            return error
+    else:
+        error = u'ERROR : le parametre idEquipe est demandé'
+        return error
 
 
 #
@@ -263,11 +275,15 @@ def page_not_found(e):
 def page_not_found(e):
     return render_template('500.html', error=e)
 
-@app.route('/reglages')
+@app.route('/reglages/', methods=['GET', 'POST'])
+@login_required
 def reglages():
     person = getPersonFromSession()
+    if request.method == 'GET':
+        return UserController.displaySettings(request, person)
+    elif request.method == 'POST':
+        return UserController.validateSetting(request, person)
 
-    return render_template('reglages/main.html', person=person)
 
 
 @app.route('/test/inscription/<user>')
@@ -435,16 +451,16 @@ def countCategories():
 
 @app.route('/groupes')
 def attributionGroupes():
-    tirageGroups()
     i = 1;
     message =""
-    while (i<42):
-        message += "<b>"+"Groupe " +str(i)+ ": "+ nomsGroupes[i-1] + "</b><br>"
+    while (i<43):
+        nomGroupe = Group.query.filter_by(id=i).first().label
+        message += "<b>"+"Groupe " +str(i)+ ": "+ nomGroupe + "</b><br>"
         groupe = Person.query.filter_by(group_id = i).all()
         message += "<table> "
         for person in groupe:
-            message += "<tr><td><i>"+person.email +"  "+"</i></td><td>"+ person.category+"  "+"</td></tr>"
-        message += "<table><br><br> "
+            message += "<tr><td><i>"+person.email +"</i></td>"+ "</tr>"
+        message += "</table><br><br> "
         i=i+1
 
     return message
@@ -455,11 +471,11 @@ def sendMailGroupes():
     index = 0;
     for person in Person.query.all():
         index = index + 1;
-        if index<206:
+        if index<211:
             surnom = person.nickname
             email = person.email
             numeroGroupe = person.group_id
             nomGroupe = Group.query.filter_by(id=numeroGroupe).first().label
             message += str(index) + ". " + surnom + " " + email + " " + str(numeroGroupe) + " " + nomGroupe + "<br>";
-            #sendMailGroupes(surnom=surnom, email=email, numeroGroupe=numeroGroupe, nomGroupe=nomGroupe)
+            #DO NOT UNCOMMENT sendMailGroupesDefinitifs(surnom=surnom, email=email, numeroGroupe=numeroGroupe, nomGroupe=nomGroupe)
     return message
