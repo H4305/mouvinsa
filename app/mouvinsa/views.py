@@ -283,6 +283,9 @@ def reglages():
 
     return render_template('reglages/main.html', person=person)
 
+@app.route('/testtttt/')
+def testtttt():
+    return "lol" +  hash_password('azerty')
 
 @app.route('/test/inscription/<user>')
 def test_inscription(user="TestUser"):
@@ -302,6 +305,32 @@ def test_inscription(user="TestUser"):
 
     return "Insere : " + student.__repr__()
 
+@app.route('/test/group')
+def ajout_group():
+    group = Group()
+    group.label = "label du group"
+    group.stepSum = 75301
+    group.image = "http://"
+    group.city_arrived_id =1
+    group.city_destination_id =1
+    group.city_tres_facile_id =1
+    group.city_facile_id =1
+    group.city_moyen_id =1
+    group.city_difficile_id =1
+    group.city_tres_difficile_id = 1
+    group.city_champion_id =1
+    group.persons = ""
+    group.city_arrived = "Nice"
+    group.city_destination ="Palerme"
+    group.city_tres_facile = "Palerme"
+    group.city_facile ="Nice"
+    group.city_moyen = "Geneve"
+    group.city_difficile = "Paris"
+    group.city_tres_difficile = "Amsterdam"
+    group.city_champion = "Rio"
+    db.session.add(group)
+    db.session.commit()
+    return "dskdk"
 
 @app.route('/test/listuser')
 def list_users() :
