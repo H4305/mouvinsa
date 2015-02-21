@@ -229,32 +229,36 @@ def login():
 def personnel():
     person = getPersonFromSession()
 
-    # if request.method == 'GET':
-
-    # elif request.method == 'POST':
-    return render_template('person/main.html', person=person)
+    if request.method == 'GET':
+        return render_template('person/main.html', person=person)
+    elif request.method == 'POST':
+        return "{piupiupiu:boom}"
 
 
 @app.route('/resultats/equipe', methods=['GET', 'POST'])
 #@login_required
 def group():
-    if 'idEquipe' in request.args:
-        idEq = request.args.get('idEquipe', '')
-        try:
-            idEqInt = int(idEq)
-            if idEqInt>0 and idEqInt<43:
-                group = Group.query.filter_by(id=idEq).first()
-                person = getPersonFromSession()
-                return render_template('group/main.html', group=group, person=person)
-            else:
+    person = getPersonFromSession()
+    if person != "none":
+        return render_template('group/main.html', group=person.group, person=person)
+    else:
+        if 'idEquipe' in request.args:
+            idEq = request.args.get('idEquipe', '')
+            try:
+                idEqInt = int(idEq)
+                if idEqInt>0 and idEqInt<43:
+                    group = Group.query.filter_by(id=idEq).first()
+                    person = getPersonFromSession()
+                    return render_template('group/main.html', group=group, person=person)
+                else:
+                    error = u'ERROR : le parametre idEquipe doit etre un entier compris entre 1 et 43'
+                    return error
+            except ValueError:
                 error = u'ERROR : le parametre idEquipe doit etre un entier compris entre 1 et 43'
                 return error
-        except ValueError:
-            error = u'ERROR : le parametre idEquipe doit etre un entier compris entre 1 et 43'
+        else:
+            error = u'ERROR : le parametre idEquipe est demandé'
             return error
-    else:
-        error = u'ERROR : le parametre idEquipe est demandé'
-        return error
 
 
 #
