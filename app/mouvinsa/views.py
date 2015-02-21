@@ -18,6 +18,7 @@ from mouvinsa.user.SessionManager import saveInSession, checkSession, clearSessi
 from mouvinsa.utils.mdp import generate_mdp
 from datetime import date
 
+
 @app.route('/', methods=['GET', 'POST'])
 def home():
     person = getPersonFromSession()
@@ -228,14 +229,16 @@ def login():
 @login_required
 def personnel():
     person = getPersonFromSession()
-    today = date.today().strftime('%d/%m/%Y')
 
-    list_stepsNumber = Steps.query.filter_by(person_id=person.id)
-    size_list_stepsNumber = list_stepsNumber.count()
-    # if request.method == 'GET':
+    if request.method == 'GET':
+        today = date.today().strftime('%d/%m/%Y')
 
-    # elif request.method == 'POST':
-    return render_template('person/main.html', person=person, list_stepsNumber=list_stepsNumber, size_list_stepsNumber=size_list_stepsNumber)
+        list_stepsNumber = Steps.query.filter_by(person_id=person.id)
+        size_list_stepsNumber = list_stepsNumber.count()
+        return render_template('person/main.html', person=person, list_stepsNumber=list_stepsNumber, size_list_stepsNumber=size_list_stepsNumber)
+    elif request.method == 'POST':
+        return UserController.validateStepsData(request, person)
+
 
 @app.route('/resultats/equipe', methods=['GET', 'POST'])
 #@login_required
