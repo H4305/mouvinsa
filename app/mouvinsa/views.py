@@ -239,7 +239,7 @@ def personnel():
 #@login_required
 def group():
     person = getPersonFromSession()
-    if person != "none":
+    if person != "none" and 'idEquipe' not in request.args:
         return render_template('group/main.html', group=person.group, person=person)
     else:
         if 'idEquipe' in request.args:
