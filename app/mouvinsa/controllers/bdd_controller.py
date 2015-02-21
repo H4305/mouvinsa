@@ -4,7 +4,7 @@
 
 __author__ = 'marcomontalto'
 
-from mouvinsa.models import db, Level, Group, City, Person
+from mouvinsa.models import db, Level, Group, City, Person, FitnessInfo
 
 nomsGroupes = [ u"Jumperzap", u"Highjumps", u"Batsqueak", u"Athletebrring", u"Sportouch", u"Catcherparp", u"Frisbeeplonk",
                 u"Skateroar", u"Tiecheep", u"Tennisbuzz", u"Volleytweet", u"Gearmeow", u"Outslouch", u"Hockeytwang",
@@ -35,7 +35,7 @@ def create_levels():
     index_distances = 0
     for label in levels:
         level = Level()
-        level.label = label;
+        level.label = label
         level.distance = distances[index_distances]
         index_distances = index_distances + 1
         db.session.add(level)
@@ -133,3 +133,10 @@ def init_image_levels_cities():
     default_image()
     create_levels()
     create_cities()
+
+def create_fitnessInfo():
+    person = Person.query.all()
+    for per in person:
+        fitnessInfo = FitnessInfo()
+        fitnessInfo.person_id=per.id
+        fitnessInfo.goal = 10000
