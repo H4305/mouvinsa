@@ -15,101 +15,28 @@
     <h2>Toute votre activité</h2>
     <div class="calendar-wrapper" id="calendar">
       <ul class="calendar">
-        <li data-step="10000" data-date="9/12"></li>
-        <li data-step="3000" data-date="10/12"></li> 
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-      </ul>
-      <ul class="calendar">
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-      </ul>
-      <ul class="calendar">
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-      </ul>
-      <ul class="calendar">
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-      </ul>
-      <ul class="calendar">
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-      </ul>
-      <ul class="calendar">
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-      </ul>
-      <ul class="calendar">
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-      </ul>
-      <ul class="calendar">
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-      </ul>
-      <ul class="calendar">
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-      </ul>
-      <ul class="calendar">
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
+        {% for item in list_stepsNumber %}
+            {%- if loop.index is divisibleby(7) %}
+                </ul>
+                <ul class="calendar">
+            {% endif %}
+            <li data-step="{{ item.stepnumber }}" data-date="{{ item.date|slice(5) }}"></li>
+        {% endfor %}
+        {%  set jourRestant=(70-size_list_stepsNumber) %}
+        {% for item in range(jourRestant) %}
+            {%- if loop.index is divisibleby(7) %}
+                </ul>
+                <ul class="calendar">
+            {% endif %}
+            <li></li>
+        {% endfor %}
       </ul>
     </div>
     <div class="activity-details">
       <ul>
-        <li>Objectif Personnel <br> <strong>120000 Pas/J</strong></li>
-        <li>Séquence <br> <strong>4 Jours</strong> </li>
-        <li>Séquence Record <br> <strong>4 Jours</strong></li>
+        <li>Objectif Personnel <br> <strong>{{ person.fitnessInfo.goal }} Pas/J</strong></li>
+        <li>Séquence <br> <strong>{{ person.fitnessInfo.streak }} Jours</strong> </li>
+        <li>Séquence Record <br> <strong>{{ person.fitnessInfo.bestStreak }} Jours</strong></li>
       </ul>
     </div>
   </div>
