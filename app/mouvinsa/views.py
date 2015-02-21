@@ -232,7 +232,7 @@ def personnel():
     if request.method == 'GET':
         return render_template('person/main.html', person=person)
     elif request.method == 'POST':
-        return "{piupiupiu:boom}"
+        return UserController.validateStepsData(request, person)
 
 
 @app.route('/resultats/equipe', methods=['GET', 'POST'])
