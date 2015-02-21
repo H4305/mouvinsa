@@ -92,6 +92,30 @@ h1.group-name {
 .activity-input-box h2 > strong{
   font-family: bebas_neue_regular, Helvetica, Arial;
   font-weight: normal;
+  cursor: pointer;
+}
+
+.activity-input-box h2 .date-picker {
+  font-family: bebas_neue_regular, Helvetica, Arial;
+  position: absolute;
+  list-style: none;
+  margin:0;
+  padding:0;
+  left: 173px;
+  display: none;
+  z-index: 100;
+  background: #fff;
+  box-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+  cursor:pointer;
+}
+
+.activity-input-box h2 .date-picker li {
+  padding:6px 12px;
+  border-bottom: 1px solid #eee;
+}
+
+.activity-input-box h2 .date-picker li:hover {
+  background: #f9f9f9;
 }
 
 .activity-filter-btn {
