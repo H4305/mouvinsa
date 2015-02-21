@@ -3,6 +3,10 @@ var maxSteps = 10000; //TO-DO: mettre le vrai max de l'utilisateur
 var actToolTip = document.querySelector('.activity-data > .tooltip');
 
 var days = document.querySelectorAll('.calendar > li');
+
+var datePicker = document.getElementById('date-picker');
+var dateView = document.getElementById('date-view');
+
 for(var d = 0; d < days.length; d++) {
   var today = days[d];
   var steps = today.dataset.step;
@@ -17,7 +21,6 @@ for(var d = 0; d < days.length; d++) {
       actToolTip.style.display = "block";
     });
     today.addEventListener('mousemove', function(e) {
-      console.log(actToolTip.style.width);
       actToolTip.style.left = (e.offsetX || e.layerX) - 50 + "px";
       actToolTip.style.top  = (e.offsetY || e.layerY) - 68 + "px";
     });
@@ -26,6 +29,26 @@ for(var d = 0; d < days.length; d++) {
     });
   }
 }
+
+var datePickerOpen = false;
+dateView.addEventListener('click', function(e) {
+  if(datePickerOpen) {
+    datePickerOpen = false;
+    datePicker.style.display = "none";
+  } else {
+    datePickerOpen = true;
+    datePicker.style.display = "block";
+  }
+});
+
+datePicker.addEventListener('click', function(e) {
+  if(e.target.tagName == "LI") {
+    document.getElementById('date').value = e.target.id;
+    dateView.firstChild.textContent = e.target.innerHTML + " ";
+    datePickerOpen = false;
+    datePicker.style.display = "none";
+  }
+});
 
   function stepToHSL(steps) {
     var l = steps * 50 / maxSteps;

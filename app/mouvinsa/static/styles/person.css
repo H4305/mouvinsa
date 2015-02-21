@@ -46,6 +46,11 @@ h1.person-name, h1.group-name {
   color:#fff;
   border:none;
   margin-top:-10px;
+  text-shadow:0px 0px 5px rgba(0,0,0,0.8);
+}
+
+h1.group-name {
+  line-height: 116px;
 }
 
 /* Activity Box */
@@ -77,7 +82,7 @@ h1.person-name, h1.group-name {
   margin-bottom: 30px;
 }
 
-.activity-input-box h2, .activity-data h2, .distance-bar-box h2, .chart-box h2{
+.activity-input-box h2, .activity-data h2, .distance-bar-box h2, .chart-box h2, .group-destination-bar-box h2{
   font-family: bebas_neue_light, Helvetica, Arial;
   font-weight: lighter;
   font-size:30px;
@@ -87,6 +92,30 @@ h1.person-name, h1.group-name {
 .activity-input-box h2 > strong{
   font-family: bebas_neue_regular, Helvetica, Arial;
   font-weight: normal;
+  cursor: pointer;
+}
+
+.activity-input-box h2 .date-picker {
+  font-family: bebas_neue_regular, Helvetica, Arial;
+  position: absolute;
+  list-style: none;
+  margin:0;
+  padding:0;
+  left: 173px;
+  display: none;
+  z-index: 100;
+  background: #fff;
+  box-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+  cursor:pointer;
+}
+
+.activity-input-box h2 .date-picker li {
+  padding:6px 12px;
+  border-bottom: 1px solid #eee;
+}
+
+.activity-input-box h2 .date-picker li:hover {
+  background: #f9f9f9;
 }
 
 .activity-filter-btn {
@@ -218,7 +247,7 @@ h1.person-name, h1.group-name {
   font-family: bebas_neue_bold, Helvetica, Arial;
 }
 
-.distance-bar-box {
+.distance-bar-box, .group-destination-bar-box {
   padding:20px 30px 30px;
   background: #fff;
   box-shadow: 0px 1px 3px rgba(0,0,0,0.3);
@@ -317,14 +346,39 @@ h1.person-name, h1.group-name {
   display: none;
 }
 
-/*
-BKG ffb300
-VERT FONCE 1b5e20
-VERT CLAIR 66bb6a
-2e7d32
+/* GROUP HEADER */
 
-686868
+.group-header {
+  height:290px;
+}
 
+.group-header-lisbonne {
+  background: url('../images/destinations/lisbonne.jpg') left top;
+}
 
+.group-id {
+  color: #FFF;
+  font-family: bebas_neue_bold,Helvetica,Arial;
+  font-size: 150px;
+  line-height: 166px;
+  text-shadow:0px 0px 5px rgba(0,0,0,0.8);
+  margin-left: 30px;
+}
 
-*/
+/* GROUP DESTINATION BAR */
+
+.group-destination-bar-box {
+  top:-140px;
+  height: 240px;
+}
+
+.group-destination-bar-box h2{
+  font-family: bebas_neue_light, Helvetica, Arial;
+  font-size: 40px;
+  text-align: right;
+}
+
+.group-destination-bar-box h2 strong{
+  font-family: bebas_neue_regular, Helvetica, Arial;
+  font-weight: normal;
+}

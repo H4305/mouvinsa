@@ -1,30 +1,18 @@
 {% if person is not defined or person=="none" %}
-    <form action="/login" method="get">
-        <button>LOGIN</button>
-    </form>
+    <a href="/login">LOGIN</a>
 {% else %}
     {% if "accueil" not in request.path and index is not defined %}
-        <form action="/" method="get">
-            <button>ACCUEIL</button>
-        </form>
+        <a href="/">ACCUEIL</a>
     {% endif %}
     {% if "personnel" not in request.path %}
-        <form action="/resultats/personnel" method="post">
-            <button name="personID" value="{{ person.id }}" type="submit">{{ person.nickname }}</button>
-        </form>
+        <a href="/resultats/personnel">{{ person.nickname }}</a>
     {% endif %}
     {% if "equipe" not in request.path %}
-        <form action="/resultats/equipe" method="get">
-            <button name="idEquipe" value="{{ person.group_id }}" type="submit">MON EQUIPE</button>
-        </form>
+        <a href="/resultats/equipe">MON EQUIPE</a>
     {% endif %}
     {% if "reglages" not in request.path %}
-        <form action="/reglages" method="get">
-            <button>REGLAGES</button>
-        </form>
+        <a href="/reglages">REGLAGES</a>
     {% endif %}
-    <form action="/logout" method="get">
-        <button>DECONNEXION</button>
-    </form>
+    <a href="/logout">DECONNEXION</a>
 {% endif %}
 
