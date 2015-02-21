@@ -50,6 +50,21 @@ datePicker.addEventListener('click', function(e) {
   }
 });
 
+/* jQuery parce que je suis pressé */
+var activityForm = $('#activity-form');
+activityForm.submit(function(e) {
+  e.preventDefault();
+  $.ajax({
+    type: "POST",
+    url: activityForm.attr('action'),
+    data: activityForm.serializeArray(),
+    success: function(ret) {
+      console.log(ret);
+    }  ,
+    dataType: json
+  });
+});
+
   function stepToHSL(steps) {
     var l = steps * 50 / maxSteps;
     return "hsl(123,70%," + (80 - l) + "%)";
