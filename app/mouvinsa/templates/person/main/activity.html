@@ -24,21 +24,13 @@
     <h2>Toute votre activité</h2>
     <div class="calendar-wrapper" id="calendar">
       <ul class="calendar">
-        {% for item in list_stepsNumber %}
-            {%- if loop.index is divisibleby(7) %}
-                </ul>
-                <ul class="calendar">
-            {% endif %}
-            <li data-step="{{ item.stepnumber }}" data-date="{{ item.date|slice(5) }}"></li>
-        {% endfor %}
-        {%  set jourRestant=(70-size_list_stepsNumber) %}
-        {% for item in range(jourRestant) %}
-            {%- if loop.index is divisibleby(7) %}
-                </ul>
-                <ul class="calendar">
-            {% endif %}
-            <li></li>
-        {% endfor %}
+            {% for key in list_date_steps %}
+            <li data-step="{{ key.1 }}" data-date="date-{{ key.0|datetimeformat('%d/%m/%Y') }}"></li>
+                {% if loop.index is divisibleby(7) %}
+                    </ul>
+                    <ul class="calendar">
+                {% endif %}
+            {% endfor %}
       </ul>
     </div>
     <div class="activity-details">
