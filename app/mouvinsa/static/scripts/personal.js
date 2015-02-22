@@ -43,7 +43,7 @@ dateView.addEventListener('click', function(e) {
 
 datePicker.addEventListener('click', function(e) {
   if(e.target.tagName == "LI") {
-    document.getElementById('date').value = e.target.id;
+    document.getElementById('date').value = e.target.id.substr(2);
     dateView.firstChild.textContent = e.target.innerHTML + " ";
     datePickerOpen = false;
     datePicker.style.display = "none";
