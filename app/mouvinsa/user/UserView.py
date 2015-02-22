@@ -1,8 +1,11 @@
 #!/usr/bin/python
 #  -*- coding: utf-8 -*-
 # coding: utf-8
+import os
+from werkzeug.utils import secure_filename, redirect
+from mouvinsa.app import app
 from wtforms.fields.simple import SubmitField
-from flask import render_template
+from flask import render_template, request, url_for, send_from_directory
 from flask.ext.wtf.file import FileField
 from flask.ext.wtf import Form
 from wtforms import FloatField, PasswordField, SelectField, DateField, validators, StringField
@@ -34,6 +37,7 @@ LABEL_CONF_PASS = u'Confirmez le mot de passe'
 LABEL_MOTDEPASSE = u'Mot de Passe'
 LABEL_IMAGE = u'Photo de profil'
 LABEL_SUBMIT = u'Valider les changements'
+
 
 def display_profil(person):
     """
@@ -95,4 +99,9 @@ class UserForm(Form):
 
 
 
+
+@app.route('/uploads/<filename>')
+def display_picture(filename):
+    return send_from_directory(app.config['UPLOAD_FOLDER'],
+                               filename)
 

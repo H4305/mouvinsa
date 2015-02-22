@@ -6,6 +6,7 @@ DEBUG = True
 # Define the application directory
 import os
 BASE_DIR = os.path.abspath(os.path.dirname(__file__))
+HOME_DIR = os.path.expanduser('~')
 
 # Define the database - we are working with
 # SQLite for this example
@@ -38,3 +39,5 @@ MAIL_USE_TLS = False
 MAIL_USE_SSL = True
 MAIL_USERNAME = 'mouvinsa.communication@gmail.com'
 MAIL_PASSWORD = '**********'
+
+UPLOAD_FOLDER = HOME_DIR + '/mouvinsa/uploads'

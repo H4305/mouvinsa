@@ -2,14 +2,16 @@
 #  -*- coding: utf-8 -*-
 # coding: utf-8
 #
-
-__author__ = 'afaraut'
-
+import os
 from mouvinsa.utils.passHash import check_password, hash_password
 from mouvinsa.user.BDDManager import loadPersonByMail
 from mouvinsa.models import db, Steps
 from flask import jsonify
 from datetime import date, timedelta
+from werkzeug.utils import secure_filename, redirect
+from mouvinsa.app import app
+
+ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'])
 
 def loginmouv(email, password):
     person = loadPersonByMail(email)
@@ -25,8 +27,21 @@ def change_password(person, password):
     db.session.commit()
     return
 
-def change_picture(person, image):
-    return
+def change_picture(person, file):
+    if file and allowed_file(file.filename):
+            #fileName, fileExtension = os.path.splitext('/path/to/somefile.ext')
+            filename = secure_filename(str(person.id))
+            path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+            file.save(path)
+            person.image = filename
+            db.session.commit()
+            return True
+    return False
+
+
+def allowed_file(filename):
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1] in ALLOWED_EXTENSIONS
 
 def change_info(person, birthdate, sex, weight, height, first):
     person.birthdate = birthdate
@@ -36,10 +51,21 @@ def change_info(person, birthdate, sex, weight, height, first):
     db.session.commit()
     return
 
+
 def update_from_form(person, form):
-    form.password.data = hash_password(form.password.data)
+    if form.password.data:
+        form.password.data = hash_password(form.password.data)
+    else:
+        form.password.data = person.password
+
+    if not form.image.data:
+        form.image.data = person.image
+
     form.populate_obj(person)
     db.session.commit()
+
+
+
 
 def send_JSON_error(error_message):
     return jsonify(error=error_message)

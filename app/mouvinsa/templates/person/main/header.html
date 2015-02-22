@@ -1,7 +1,7 @@
 <div class="person-header">
   <div class="container">
     <div class="person-avatar-wrapper">
-      <img src="{{ person.image or '/static/images/person/defaultm.png' }}" alt="{{ person.nickname }}" class="person-avatar">
+      <img src="{{ url_for('display_picture', filename=person.image) or '/static/images/person/defaultm.png' }}" alt="{{ person.nickname }}" class="person-avatar">
     </div>
     <div class="person-name-wrapper">
       <span class="person-group">{{ person.group.label|default('no group assigned')}}</span>
