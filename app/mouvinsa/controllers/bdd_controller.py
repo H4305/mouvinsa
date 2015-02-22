@@ -140,3 +140,6 @@ def create_fitnessInfo():
         fitnessInfo = FitnessInfo()
         fitnessInfo.person_id=per.id
         fitnessInfo.goal = 10000
+        db.session.add(fitnessInfo)
+
+    db.session.commit()
