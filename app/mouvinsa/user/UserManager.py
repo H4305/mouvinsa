@@ -1,3 +1,7 @@
+#!/usr/bin/python
+#  -*- coding: utf-8 -*-
+# coding: utf-8
+#
 __author__ = 'afaraut'
 
 from mouvinsa.utils.passHash import check_password, hash_password
@@ -44,14 +48,16 @@ def update_steps_ajax(person, form):
     swim=form['input-swim']
     date=form['date']
 
-    if date != 0 or date != 1 or date != 2:
-        error = "Date Invalide"
-        return send_JSON_error(error_message=error)
     try:
         stepInt = int(step)
         cycleInt = int(cycle)
         swimInt = int(swim)
         dateInt = int(date)
+
+        if dateInt<0 or dateInt>2:
+            error = "Date Invalide"
+            return send_JSON_error(error_message=error)
+
         if stepInt>=0 and cycleInt>=0 and swimInt>=0 and dateInt>=0:
 
             #Formules conversion velo, swim
@@ -63,8 +69,8 @@ def update_steps_ajax(person, form):
             return jsonify(date=date, stepj=stepInt, stepSum=10)
 
         else:
-            error = "Une des valeurs rentrée est inférieure à 0."
+            error = u'Une des valeurs rentrée est inférieure à 0.'
             return send_JSON_error(error_message=error)
     except ValueError:
-        error = "Une des valeurs rentrée n'est pas numérique."
+        error = u'Une des valeurs rentrée n\'est pas numérique.'
         return send_JSON_error(error_message=error)
