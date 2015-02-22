@@ -68,9 +68,10 @@ def update_steps_ajax(person, form):
             # dd/mm/yyyy format
             today = date.today().strftime('%d/%m/%Y')
 
+            # Difference in days
+            daysToSubstractDate = date.timedelta(days=daysToSubstractInt)
 
-
-            return jsonify(date=today, stepj=stepInt, stepSum=10)
+            return jsonify(date=today, stepj=stepInt, stepSum=10, difference=daysToSubstractDate)
 
         else:
             error = u'Une des valeurs rentrée est inférieure à 0.'
