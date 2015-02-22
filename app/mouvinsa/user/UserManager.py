@@ -68,32 +68,9 @@ def update_steps_ajax(person, form):
             # dd/mm/yyyy format
             today = date.today().strftime('%d/%m/%Y')
 
-            # Difference in days
-            daysToSubstractDate = date.timedelta(days=daysToSubstractInt)
-
-            dateSteps = today - daysToSubstractDate
-
-            steps = Steps.query.filter_by(date=dateSteps, person_id=person.id).first()
-
-            # List is not empty = that person has already entered steps once
-            if steps:
-
-                # I have to update with the new Number
-                steps.stepnumber = 50
 
 
-            else:
-            # List is empty -> New data
-                steps = Steps()
-                steps.person_id = person.id
-                steps.date = dateSteps
-                steps.stepnumber = 40
-
-                db.session.add(steps)
-
-            db.session.commit()
-
-            return jsonify(date=date, stepj=stepInt, stepSum=10)
+            return jsonify(date=today, stepj=stepInt, stepSum=10)
 
         else:
             error = u'Une des valeurs rentrée est inférieure à 0.'
