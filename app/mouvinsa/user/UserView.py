@@ -26,6 +26,7 @@ LABEL_LASTNAME = u'Nom'
 
 __author__ = 'vcaen'
 
+LABEL_GOAL = u'Objectif personnel (pas)'
 LABEL_HEIGHT = u'Taille (cm)'
 LABEL_WEIGHT = u'Poids (kg)'
 LABEL_SEX = u'Sexe '
@@ -69,6 +70,7 @@ def generate_setting_form(request, person):
 
 class UserForm(Form):
     image = FileField( LABEL_IMAGE, [validators.regexp(u'.*\.(jpg|png)$'), validators.Optional()])
+    goal = FloatField(LABEL_GOAL,[validators.Optional()])
     password = PasswordField(LABEL_MOTDEPASSE, [
         validators.Optional(),
         validators.EqualTo('confirm', message=messagePassword),

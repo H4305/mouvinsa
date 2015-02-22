@@ -30,11 +30,12 @@ def change_password(person, password):
 def change_picture(person, image):
     return
 
-def change_info(person, birthdate, sex, weight, height, first):
+def change_info(person, birthdate, sex, weight, height, first, goal):
     person.birthdate = birthdate
     person.sex = sex
     person.weight = weight
     person.height = height
+    person.fitnessInfo.goal=goal
     db.session.commit()
     return
 
