@@ -5,6 +5,7 @@
     ma page
 {% endblock %}
 {% block main %}
+<input type="hidden" id="today" value="{{today}}">
     {% include "person/main/header.html" %}
   <div class="container activity-main">
     {% include "person/main/activity.html" %}

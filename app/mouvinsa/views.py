@@ -9,13 +9,16 @@ from controllers.inscription_controller import InscriptionForm
 from controllers.confirmation_controller import ConfirmationForm, updateProfil, uploadImage
 from controllers.signin_controller import LoginForm, MdpForm
 from controllers.inscription_controller import createEmployee, createStudent
-from models import db, Student, Person, Employee, Group
+from models import db, Student, Person, Employee, Group, Steps
 from emails import sendInscriptionMailAndAlert, inscription_notification, inscription_alert, mail_mot_de_passe_oublie
 from mouvinsa.user import UserController
 from mouvinsa.utils.passHash import hash_password
 from mouvinsa.user.UserManager import loginmouv
 from mouvinsa.user.SessionManager import saveInSession, checkSession, clearSession, getPersonFromSession, login_required
 from mouvinsa.utils.mdp import generate_mdp
+from datetime import date, timedelta
+import datetime
+import operator
 
 
 @app.route('/', methods=['GET', 'POST'])
@@ -229,32 +232,53 @@ def login():
 def personnel():
     person = getPersonFromSession()
 
-    # if request.method == 'GET':
+    if request.method == 'GET':
+        today = date.today().strftime('%d/%m/%Y')
 
-    # elif request.method == 'POST':
-    return render_template('person/main.html', person=person)
+        startDate = datetime.datetime(2015, 02, 26)   # 1973-01-18 03:45:50
+        days = 70
+
+        list_date_steps = {}
+
+        for day in range(0,70):
+            dateTemp = startDate + timedelta(days=day)
+
+            stepsDay = Steps.query.filter_by(person_id=person.id, date=dateTemp).first()
+
+            if stepsDay:
+                list_date_steps[dateTemp] = stepsDay
+            else:
+                list_date_steps[dateTemp] = 0
+
+        return render_template('person/main.html', person=person, today=today, list_date_steps=sorted(list_date_steps.items(), key=operator.itemgetter(0)))
+    elif request.method == 'POST':
+        return UserController.validateStepsData(request, person)
 
 
 @app.route('/resultats/equipe', methods=['GET', 'POST'])
 #@login_required
 def group():
-    if 'idEquipe' in request.args:
-        idEq = request.args.get('idEquipe', '')
-        try:
-            idEqInt = int(idEq)
-            if idEqInt>0 and idEqInt<43:
-                group = Group.query.filter_by(id=idEq).first()
-                person = getPersonFromSession()
-                return render_template('group/main.html', group=group, person=person)
-            else:
+    person = getPersonFromSession()
+    if person != "none" and 'idEquipe' not in request.args:
+        return render_template('group/main.html', group=person.group, person=person)
+    else:
+        if 'idEquipe' in request.args:
+            idEq = request.args.get('idEquipe', '')
+            try:
+                idEqInt = int(idEq)
+                if idEqInt>0 and idEqInt<43:
+                    group = Group.query.filter_by(id=idEq).first()
+                    person = getPersonFromSession()
+                    return render_template('group/main.html', group=group, person=person)
+                else:
+                    error = u'ERROR : le parametre idEquipe doit etre un entier compris entre 1 et 43'
+                    return error
+            except ValueError:
                 error = u'ERROR : le parametre idEquipe doit etre un entier compris entre 1 et 43'
                 return error
-        except ValueError:
-            error = u'ERROR : le parametre idEquipe doit etre un entier compris entre 1 et 43'
+        else:
+            error = u'ERROR : le parametre idEquipe est demandé'
             return error
-    else:
-        error = u'ERROR : le parametre idEquipe est demandé'
-        return error
 
 
 #
@@ -340,7 +364,7 @@ def list_users() :
     string += '<tr><th>id</th><th>lastname</th><th>image</th><th>firstname</th><th>birthdate</th><th>etat</th><th>sex</th></tr>'
     for student in Person.query.all():
         string += '<tr><td>'+student.__repr__()+'</td><td>'+unicode(student.lastname)+'</td><td>'+unicode(student.image)+'</td><td>'+unicode(student.firstname)\
-                  +'</td><td>'+unicode(student.birthdate)+'</td><td>'+unicode(student.etat)+'</td><td>'+unicode(student.sex)
+                  +'</td><td>'+unicode(student.birthdate)+'</td><td>'+unicode(student.etat)+'</td><td>'+unicode(student.password)
     string += '</table>'
     return string
 
@@ -508,3 +532,7 @@ def sendMailGroupes():
             message += str(index) + ". " + surnom + " " + email + " " + str(numeroGroupe) + " " + nomGroupe + "<br>";
             #DO NOT UNCOMMENT sendMailGroupesDefinitifs(surnom=surnom, email=email, numeroGroupe=numeroGroupe, nomGroupe=nomGroupe)
     return message
+
+@app.template_filter('datetimeformat')
+def datetimeformat(value, format='%H:%M / %d/%m/%Y'):
+    return value.strftime(format)

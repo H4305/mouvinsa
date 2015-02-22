@@ -1,9 +1,9 @@
-html, body {
+/*html, body {
 	font-family: Helvetica, Arial, sans-serif;
 
   	margin:0;
     padding-bottom: 0;
-}
+}*/
 
 .PageSection_DIV {
     position: relative;
@@ -208,7 +208,7 @@ input#inscriptionValidate_BUTTON {
     margin-right: 7%;
 }
 
-
+/*
 fieldset {
     position: relative;
     margin-bottom: 5%;
@@ -230,20 +230,20 @@ em {
   font-style: normal;
   color: #f00;
 }
-
+*/
 #inscrivezVousContent_DIV p {
     margin-left: 6%;
     margin-right: 6%;
     text-align: justify;
 }
-
+/*
 li{
     margin-left: 7%;
     font-weight: normal;
     font-style: normal;
     color: #f00;
 }
-
+*/
 #positionDIV {
     display: none;
 

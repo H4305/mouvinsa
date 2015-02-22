@@ -34,3 +34,7 @@ def saveSettings(person, form):
     # )
 
     return
+
+def validateStepsData(request, person):
+
+    return UserManager.update_steps_ajax(person=person, form=request.form)
