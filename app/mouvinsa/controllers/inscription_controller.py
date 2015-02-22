@@ -15,7 +15,7 @@ from mouvinsa.utils import PassHash
 
 CHOIX_SEXE = [('', ''),
               ('Masculin', 'Masculin'),
-              (u'Féminin', u'Feminin')]
+              (u'Feminin', u'Feminin')]
 
 CHOIX_CATEGORIE = [('Etudiant', 'Etudiant'),
                    ('Enseignant-Chercheur', 'Enseignant-Chercheur'),
