@@ -7,7 +7,7 @@ __author__ = 'afaraut'
 
 from mouvinsa.utils.passHash import check_password, hash_password
 from mouvinsa.user.BDDManager import loadPersonByMail
-from mouvinsa.models import db, Steps
+from mouvinsa.models import db, Steps, FitnessInfo
 from flask import jsonify
 from datetime import date, timedelta
 
@@ -60,7 +60,7 @@ def update_steps_ajax(person, form):
         swim = 0
 
     try:
-        stepInt = int(step)
+        stepsInt = int(step)
         cycleInt = int(cycle)
         swimInt = int(swim)
         daysToSubstractInt = int(daysToSubstract)
@@ -69,34 +69,50 @@ def update_steps_ajax(person, form):
             error = "Date Invalide"
             return send_JSON_error(error_message=error)
 
-        if stepInt>=0 and cycleInt>=0 and swimInt>=0 and daysToSubstractInt>=0:
+        if stepsInt>=0 and cycleInt>=0 and swimInt>=0 and daysToSubstractInt>=0:
 
             #Formules conversion velo, swim
 
+            stepsFromCycle = cycleInt * 150
+            stepsFromSwimming = swimInt * 150
 
-            # Difference in days
+            newStepsTotal = stepsInt + stepsFromCycle + stepsFromSwimming
+
+            # Steps day
             dateSteps = date.today() - timedelta(days=daysToSubstractInt)
 
-            steps = Steps.query.filter_by(date=dateSteps, person_id=person.id).first()
+            fitnessInfo = FitnessInfo.query.filter_by(person_id=person.id).first()
+
+            stepsSumTotal = fitnessInfo.stepSum
+
+            stepsForDay = Steps.query.filter_by(date=dateSteps, person_id=person.id).first()
 
             # List is not empty = that person has already entered steps once
-            if steps:
+            if stepsForDay:
 
                 # I have to update with the new Number
-                steps.stepnumber = steps.stepnumber + stepInt
+                previousSteps = stepsForDay.stepnumber
+                stepsToSum = previousSteps - newStepsTotal
+                stepsForDay.stepnumber = newStepsTotal
+
+                stepsSumTotal = stepsSumTotal - stepsToSum
 
             else:
             # List is empty -> New data
                 steps = Steps()
                 steps.person_id = person.id
                 steps.date = dateSteps
-                steps.stepnumber = stepInt
+                steps.stepnumber = newStepsTotal
 
                 db.session.add(steps)
 
+                stepsSumTotal = stepsSumTotal + newStepsTotal
+
+            fitnessInfo.stepSum = stepsSumTotal
+
             db.session.commit()
 
-            return jsonify(date=dateSteps.strftime('%d/%m/%Y'), stepj=stepInt, stepSum=10)
+            return jsonify(date=dateSteps.strftime('%d/%m/%Y'), stepj=newStepsTotal, stepSum=stepsSumTotal)
 
         else:
             error = u'Une des valeurs rentrée est inférieure à 0.'
