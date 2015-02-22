@@ -69,7 +69,6 @@ def update_steps_ajax(person, form):
             today = date.today().strftime('%d/%m/%Y')
 
             # Difference in days
-            daysToSubstractDate = date.timedelta(days=daysToSubstractInt)
 
             return jsonify(date=today, stepj=stepInt, stepSum=10, differece=daysToSubstractInt)
 
