@@ -5,6 +5,8 @@
 
 __author__ = 'afaraut'
 
+moyenneDistancePas = 0.00064
+
 from mouvinsa.utils.passHash import check_password, hash_password
 from mouvinsa.user.BDDManager import loadPersonByMail
 from mouvinsa.models import db, Steps, FitnessInfo, Group, Person
@@ -121,7 +123,9 @@ def update_steps_ajax(person, form):
 
             db.session.commit()
 
-            return jsonify(date=dateSteps.strftime('%d/%m/%Y'), stepj=newStepsTotal, stepSum=stepsSumTotal)
+            distanceTot = "{0:.2f}".format(moyenneDistancePas * stepsSumTotal)
+
+            return jsonify(date=dateSteps.strftime('%d/%m/%Y'), stepj=newStepsTotal, distanceTot=distanceTot)
 
         else:
             error = u'Une des valeurs rentrée est inférieure à 0.'
