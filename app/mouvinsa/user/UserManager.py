@@ -9,7 +9,7 @@ from mouvinsa.utils.passHash import check_password, hash_password
 from mouvinsa.user.BDDManager import loadPersonByMail
 from mouvinsa.models import db, Steps
 from flask import jsonify
-from datetime import date
+from datetime import date, timedelta
 
 def loginmouv(email, password):
     person = loadPersonByMail(email)
@@ -66,11 +66,12 @@ def update_steps_ajax(person, form):
             #Prendo la data di oggi, meno dateInt
 
             # dd/mm/yyyy format
-            today = date.today().strftime('%d/%m/%Y')
+            today = date.today()
 
             # Difference in days
+            dateSteps = today - timedelta(days=daysToSubstractInt)
 
-            return jsonify(date=today, stepj=stepInt, stepSum=10, differece=daysToSubstractInt)
+            return jsonify(date=dateSteps, stepj=stepInt, stepSum=10)
 
         else:
             error = u'Une des valeurs rentrée est inférieure à 0.'
