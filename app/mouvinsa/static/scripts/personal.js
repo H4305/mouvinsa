@@ -43,11 +43,26 @@ dateView.addEventListener('click', function(e) {
 
 datePicker.addEventListener('click', function(e) {
   if(e.target.tagName == "LI") {
-    document.getElementById('date').value = e.target.id;
+    document.getElementById('date').value = e.target.id.substr(2);
     dateView.firstChild.textContent = e.target.innerHTML + " ";
     datePickerOpen = false;
     datePicker.style.display = "none";
   }
+});
+
+/* jQuery parce que je suis pressé */
+var activityForm = $('#activity-form');
+activityForm.submit(function(e) {
+  e.preventDefault();
+  $.ajax({
+    type: "POST",
+    url: activityForm.attr('action'),
+    data: activityForm.serializeArray(),
+    success: function(ret) {
+      console.log(ret);
+    }  ,
+    dataType: "json"
+  });
 });
 
   function stepToHSL(steps) {

@@ -2,12 +2,14 @@
 #  -*- coding: utf-8 -*-
 # coding: utf-8
 #
+
 __author__ = 'afaraut'
 
 from mouvinsa.utils.passHash import check_password, hash_password
 from mouvinsa.user.BDDManager import loadPersonByMail
-from mouvinsa.models import db
+from mouvinsa.models import db, Steps
 from flask import jsonify
+from datetime import date, timedelta
 
 def loginmouv(email, password):
     person = loadPersonByMail(email)
@@ -46,27 +48,55 @@ def update_steps_ajax(person, form):
     step=form['input-step']
     cycle=form['input-cycle']
     swim=form['input-swim']
-    date=form['date']
+    daysToSubstract =form['date']
+
+    if not step:
+        step = 0
+
+    if not cycle:
+        cycle = 0
+
+    if not swim:
+        swim = 0
 
     try:
         stepInt = int(step)
         cycleInt = int(cycle)
         swimInt = int(swim)
-        dateInt = int(date)
+        daysToSubstractInt = int(daysToSubstract)
 
-        if dateInt<0 or dateInt>2:
+        if daysToSubstractInt<0 or daysToSubstractInt>2:
             error = "Date Invalide"
             return send_JSON_error(error_message=error)
 
-        if stepInt>=0 and cycleInt>=0 and swimInt>=0 and dateInt>=0:
+        if stepInt>=0 and cycleInt>=0 and swimInt>=0 and daysToSubstractInt>=0:
 
             #Formules conversion velo, swim
 
 
+            # Difference in days
+            dateSteps = date.today() - timedelta(days=daysToSubstractInt)
+
+            steps = Steps.query.filter_by(date=dateSteps, person_id=person.id).first()
+
+            # List is not empty = that person has already entered steps once
+            if steps:
+
+                # I have to update with the new Number
+                steps.stepnumber = steps.stepnumber + stepInt
+
+            else:
+            # List is empty -> New data
+                steps = Steps()
+                steps.person_id = person.id
+                steps.date = dateSteps
+                steps.stepnumber = stepInt
+
+                db.session.add(steps)
 
             db.session.commit()
 
-            return jsonify(date=date, stepj=stepInt, stepSum=10)
+            return jsonify(date=dateSteps.strftime('%d/%m/%Y'), stepj=stepInt, stepSum=10)
 
         else:
             error = u'Une des valeurs rentrée est inférieure à 0.'

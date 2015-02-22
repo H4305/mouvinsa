@@ -4,20 +4,21 @@
       <ul class="date-picker" id="date-picker">
         <li id="j-2">Avant hier</li>
         <li id="j-1">Hier</li>
-        <li id="j">Aujourd'hui</li>
+        <li id="j-0">Aujourd'hui</li>
       </ul>
       <strong id="date-view">aujourd'hui <button class="activity-filter-btn" id="activity-filter-btn"></button></strong>
     </h2>
-    <form action="">
-      <input type="hidden" id="date" name="date" value="j">
+    <form id="activity-form" action="">
+      <input type="hidden" id="date" name="date" value="0">
       <ul class="input-types">
         <li><img src="/static/images/person/step.png" alt="Pas"><input type="text" class="activity-input" name="input-step" id="input-step">Pas</li>
-        <li><img src="/static/images/person/cycle.png" alt="Vélo"><input type="text" class="activity-input" name="input-cycle" id="input-cycle">Km</li>
+        <li><img src="/static/images/person/cycle.png" alt="Vélo"><input type="text" class="activity-input" name="input-cycle" id="input-cycle">Min</li>
         <li><img src="/static/images/person/swim.png" alt="Natation"><input type="text" class="activity-input" name="input-swim" id="input-swim">Min</li>
       </ul>
+      <button class="submit-activity" id="submit-activity">&gt;</button>
     </form>
   </div>
-  <button class="submit-activity" id="submit-activity">&gt;</button>
+  
   <div class="activity-data">
   <div class="tooltip" style="display:none"></div>
     <h2>Toute votre activité</h2>
