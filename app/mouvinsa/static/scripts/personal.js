@@ -61,7 +61,7 @@ activityForm.submit(function(e) {
     success: function(ret) {
       console.log(ret);
     }  ,
-    dataType: json
+    dataType: "json"
   });
 });
 

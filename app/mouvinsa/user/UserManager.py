@@ -1,3 +1,7 @@
+#!/usr/bin/python
+#  -*- coding: utf-8 -*-
+# coding: utf-8
+
 __author__ = 'afaraut'
 
 from mouvinsa.utils.passHash import check_password, hash_password
@@ -63,8 +67,8 @@ def update_steps_ajax(person, form):
             return jsonify(date=date, stepj=stepInt, stepSum=10)
 
         else:
-            error = "Une des valeurs rentrée est inférieure à 0."
+            error = u'Une des valeurs rentrée est inférieure à 0.'
             return send_JSON_error(error_message=error)
     except ValueError:
-        error = "Une des valeurs rentrée n'est pas numérique."
+        error = u'Une des valeurs rentrée n\'est pas numérique.'
         return send_JSON_error(error_message=error)
