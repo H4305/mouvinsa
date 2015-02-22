@@ -6,8 +6,9 @@ __author__ = 'afaraut'
 
 from mouvinsa.utils.passHash import check_password, hash_password
 from mouvinsa.user.BDDManager import loadPersonByMail
-from mouvinsa.models import db
+from mouvinsa.models import db, Steps
 from flask import jsonify
+from datetime import date
 
 def loginmouv(email, password):
     person = loadPersonByMail(email)
@@ -46,23 +47,48 @@ def update_steps_ajax(person, form):
     step=form['input-step']
     cycle=form['input-cycle']
     swim=form['input-swim']
-    date=form['date']
+    daysToSubstract =form['date']
 
     try:
         stepInt = int(step)
         cycleInt = int(cycle)
         swimInt = int(swim)
-        dateInt = int(date)
+        daysToSubstractInt = int(daysToSubstract)
 
-        if dateInt<0 or dateInt>2:
+        if daysToSubstractInt<0 or daysToSubstractInt>2:
             error = "Date Invalide"
             return send_JSON_error(error_message=error)
 
-        if stepInt>=0 and cycleInt>=0 and swimInt>=0 and dateInt>=0:
+        if stepInt>=0 and cycleInt>=0 and swimInt>=0 and daysToSubstractInt>=0:
 
             #Formules conversion velo, swim
+            #Prendo la data di oggi, meno dateInt
+
+            # dd/mm/yyyy format
+            today = date.today().strftime('%d/%m/%Y')
+
+            # Difference in days
+            daysToSubstractDate = date.timedelta(days=daysToSubstractInt)
+
+            dateSteps = today - daysToSubstractDate
+
+            steps = Steps.query.filter_by(date=dateSteps, person_id=person.id).first()
+
+            # List is not empty = that person has already entered steps once
+            if steps:
+
+                # I have to update with the new Number
+                steps.stepnumber = 50
 
 
+            else:
+            # List is empty -> New data
+                steps = Steps()
+                steps.person_id = person.id
+                steps.date = dateSteps
+                steps.stepnumber = 40
+
+                db.session.add(steps)
 
             db.session.commit()
 
