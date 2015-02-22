@@ -7,7 +7,7 @@ __author__ = 'afaraut'
 
 from mouvinsa.utils.passHash import check_password, hash_password
 from mouvinsa.user.BDDManager import loadPersonByMail
-from mouvinsa.models import db, Steps, FitnessInfo
+from mouvinsa.models import db, Steps, FitnessInfo, Group, Person
 from flask import jsonify
 from datetime import date, timedelta
 
@@ -109,6 +109,15 @@ def update_steps_ajax(person, form):
                 stepsSumTotal = stepsSumTotal + newStepsTotal
 
             fitnessInfo.stepSum = stepsSumTotal
+
+            personsTeam = Person.query.filter_by(group_id=person.group_id)
+
+            teamSteps = 0
+
+            for pers in personsTeam:
+                teamSteps = teamSteps + FitnessInfo.query.filter_by(person_id=pers.id).first().stepSum
+
+            Group.query.filter_by(id=person.group_id).first().stepSum = teamSteps
 
             db.session.commit()
 
