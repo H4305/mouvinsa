@@ -9,13 +9,14 @@ from controllers.inscription_controller import InscriptionForm
 from controllers.confirmation_controller import ConfirmationForm, updateProfil, uploadImage
 from controllers.signin_controller import LoginForm, MdpForm
 from controllers.inscription_controller import createEmployee, createStudent
-from models import db, Student, Person, Employee, Group
+from models import db, Student, Person, Employee, Group, Steps
 from emails import sendInscriptionMailAndAlert, inscription_notification, inscription_alert, mail_mot_de_passe_oublie
 from mouvinsa.user import UserController
 from mouvinsa.utils.passHash import hash_password
 from mouvinsa.user.UserManager import loginmouv
 from mouvinsa.user.SessionManager import saveInSession, checkSession, clearSession, getPersonFromSession, login_required
 from mouvinsa.utils.mdp import generate_mdp
+from datetime import date
 
 
 @app.route('/', methods=['GET', 'POST'])
@@ -229,32 +230,40 @@ def login():
 def personnel():
     person = getPersonFromSession()
 
-    # if request.method == 'GET':
+    if request.method == 'GET':
+        today = date.today().strftime('%d/%m/%Y')
 
-    # elif request.method == 'POST':
-    return render_template('person/main.html', person=person)
+        list_stepsNumber = Steps.query.filter_by(person_id=person.id)
+        size_list_stepsNumber = list_stepsNumber.count()
+        return render_template('person/main.html', person=person, list_stepsNumber=list_stepsNumber, size_list_stepsNumber=size_list_stepsNumber)
+    elif request.method == 'POST':
+        return UserController.validateStepsData(request, person)
 
 
 @app.route('/resultats/equipe', methods=['GET', 'POST'])
 #@login_required
 def group():
-    if 'idEquipe' in request.args:
-        idEq = request.args.get('idEquipe', '')
-        try:
-            idEqInt = int(idEq)
-            if idEqInt>0 and idEqInt<43:
-                group = Group.query.filter_by(id=idEq).first()
-                person = getPersonFromSession()
-                return render_template('group/main.html', group=group, person=person)
-            else:
+    person = getPersonFromSession()
+    if person != "none" and 'idEquipe' not in request.args:
+        return render_template('group/main.html', group=person.group, person=person)
+    else:
+        if 'idEquipe' in request.args:
+            idEq = request.args.get('idEquipe', '')
+            try:
+                idEqInt = int(idEq)
+                if idEqInt>0 and idEqInt<43:
+                    group = Group.query.filter_by(id=idEq).first()
+                    person = getPersonFromSession()
+                    return render_template('group/main.html', group=group, person=person)
+                else:
+                    error = u'ERROR : le parametre idEquipe doit etre un entier compris entre 1 et 43'
+                    return error
+            except ValueError:
                 error = u'ERROR : le parametre idEquipe doit etre un entier compris entre 1 et 43'
                 return error
-        except ValueError:
-            error = u'ERROR : le parametre idEquipe doit etre un entier compris entre 1 et 43'
+        else:
+            error = u'ERROR : le parametre idEquipe est demandé'
             return error
-    else:
-        error = u'ERROR : le parametre idEquipe est demandé'
-        return error
 
 
 #
@@ -285,6 +294,9 @@ def reglages():
         return UserController.validateSetting(request, person)
 
 
+@app.route('/testtttt/')
+def testtttt():
+    return "lol" +  hash_password('azerty')
 
 @app.route('/test/inscription/<user>')
 def test_inscription(user="TestUser"):
@@ -304,6 +316,32 @@ def test_inscription(user="TestUser"):
 
     return "Insere : " + student.__repr__()
 
+@app.route('/test/group')
+def ajout_group():
+    group = Group()
+    group.label = "label du group"
+    group.stepSum = 75301
+    group.image = "http://"
+    group.city_arrived_id =1
+    group.city_destination_id =1
+    group.city_tres_facile_id =1
+    group.city_facile_id =1
+    group.city_moyen_id =1
+    group.city_difficile_id =1
+    group.city_tres_difficile_id = 1
+    group.city_champion_id =1
+    group.persons = ""
+    group.city_arrived = "Nice"
+    group.city_destination ="Palerme"
+    group.city_tres_facile = "Palerme"
+    group.city_facile ="Nice"
+    group.city_moyen = "Geneve"
+    group.city_difficile = "Paris"
+    group.city_tres_difficile = "Amsterdam"
+    group.city_champion = "Rio"
+    db.session.add(group)
+    db.session.commit()
+    return "dskdk"
 
 @app.route('/test/listuser')
 def list_users() :
@@ -311,7 +349,7 @@ def list_users() :
     string += '<tr><th>id</th><th>lastname</th><th>image</th><th>firstname</th><th>birthdate</th><th>etat</th><th>sex</th></tr>'
     for student in Person.query.all():
         string += '<tr><td>'+student.__repr__()+'</td><td>'+unicode(student.lastname)+'</td><td>'+unicode(student.image)+'</td><td>'+unicode(student.firstname)\
-                  +'</td><td>'+unicode(student.birthdate)+'</td><td>'+unicode(student.etat)+'</td><td>'+unicode(student.sex)
+                  +'</td><td>'+unicode(student.birthdate)+'</td><td>'+unicode(student.etat)+'</td><td>'+unicode(student.password)
     string += '</table>'
     return string
 
