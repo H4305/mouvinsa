@@ -71,7 +71,7 @@ def update_steps_ajax(person, form):
             # Difference in days
             daysToSubstractDate = date.timedelta(days=daysToSubstractInt)
 
-            return jsonify(date=today, stepj=stepInt, stepSum=10, difference=daysToSubstractDate)
+            return jsonify(date=today, stepj=stepInt, stepSum=10, differece=daysToSubstractInt)
 
         else:
             error = u'Une des valeurs rentrée est inférieure à 0.'
