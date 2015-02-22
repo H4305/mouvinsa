@@ -50,6 +50,15 @@ def update_steps_ajax(person, form):
     swim=form['input-swim']
     daysToSubstract =form['date']
 
+    if not step:
+        step = 0
+
+    if not cycle:
+        cycle = 0
+
+    if not swim:
+        swim = 0
+
     try:
         stepInt = int(step)
         cycleInt = int(cycle)
@@ -63,15 +72,31 @@ def update_steps_ajax(person, form):
         if stepInt>=0 and cycleInt>=0 and swimInt>=0 and daysToSubstractInt>=0:
 
             #Formules conversion velo, swim
-            #Prendo la data di oggi, meno dateInt
 
-            # dd/mm/yyyy format
-            today = date.today()
 
             # Difference in days
-            dateSteps = today - timedelta(days=daysToSubstractInt)
+            dateSteps = date.today() - timedelta(days=daysToSubstractInt)
 
-            return jsonify(date=dateSteps, stepj=stepInt, stepSum=10)
+            steps = Steps.query.filter_by(date=dateSteps, person_id=person.id).first()
+
+            # List is not empty = that person has already entered steps once
+            if steps:
+
+                # I have to update with the new Number
+                steps.stepnumber = steps.stepnumber + stepInt
+
+            else:
+            # List is empty -> New data
+                steps = Steps()
+                steps.person_id = person.id
+                steps.date = dateSteps
+                steps.stepnumber = stepInt
+
+                db.session.add(steps)
+
+            db.session.commit()
+
+            return jsonify(date=dateSteps.strftime('%d/%m/%Y'), stepj=stepInt, stepSum=10)
 
         else:
             error = u'Une des valeurs rentrée est inférieure à 0.'
