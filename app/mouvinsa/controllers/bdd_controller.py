@@ -4,7 +4,7 @@
 
 __author__ = 'marcomontalto'
 
-from mouvinsa.models import db, Level, Group, City, Person
+from mouvinsa.models import db, Level, Group, City, Person, FitnessInfo
 
 nomsGroupes = [ u"Jumperzap", u"Highjumps", u"Batsqueak", u"Athletebrring", u"Sportouch", u"Catcherparp", u"Frisbeeplonk",
                 u"Skateroar", u"Tiecheep", u"Tennisbuzz", u"Volleytweet", u"Gearmeow", u"Outslouch", u"Hockeytwang",
@@ -17,7 +17,7 @@ levels = [u'Très facile', u'Facile', u'Moyen', u'Difficile', u'Très difficile'
 distances = [200, 450, 700, 1100, 1700, 3000]
 
 cities_tr_facile = [u'Genève', u'Marseille', u'Zurich', u'Grenoble']
-cities_facile = [u'Paris', u'Nice', u'Stuttgart', u'Bordeaux', u'Barcelone']
+cities_facile = [u'Paris', u'Nice', u'Stuttgart', u'Bordeaux', u'Barcelone', u'Milan']
 cities_moyen = [u'Rome', u'Prague', u'Amsterdam', u'Berlin', u'Bruxelles', u'Londres']
 cities_difficile = [u'Dublin', u'Budapest', u'Alger', u'Tunis', u'Lisbonne', u'Vienne']
 cities_tr_difficile = [u'Istanbul', u'Bucharest', u'Casablanca', u'Athènes', u'Stockholm', u'Oslo']
@@ -35,7 +35,7 @@ def create_levels():
     index_distances = 0
     for label in levels:
         level = Level()
-        level.label = label;
+        level.label = label
         level.distance = distances[index_distances]
         index_distances = index_distances + 1
         db.session.add(level)
@@ -133,3 +133,10 @@ def init_image_levels_cities():
     default_image()
     create_levels()
     create_cities()
+
+def create_fitnessInfo():
+    person = Person.query.all()
+    for per in person:
+        fitnessInfo = FitnessInfo()
+        fitnessInfo.person_id=per.id
+        fitnessInfo.goal = 10000

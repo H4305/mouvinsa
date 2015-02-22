@@ -1,8 +1,13 @@
+#!/usr/bin/python
+#  -*- coding: utf-8 -*-
+# coding: utf-8
+#
 __author__ = 'afaraut'
 
 from mouvinsa.utils.passHash import check_password, hash_password
 from mouvinsa.user.BDDManager import loadPersonByMail
 from mouvinsa.models import db
+from flask import jsonify
 
 def loginmouv(email, password):
     person = loadPersonByMail(email)
@@ -33,3 +38,39 @@ def update_from_form(person, form):
     form.password.data = hash_password(form.password.data)
     form.populate_obj(person)
     db.session.commit()
+
+def send_JSON_error(error_message):
+    return jsonify(error=error_message)
+
+def update_steps_ajax(person, form):
+    step=form['input-step']
+    cycle=form['input-cycle']
+    swim=form['input-swim']
+    date=form['date']
+
+    try:
+        stepInt = int(step)
+        cycleInt = int(cycle)
+        swimInt = int(swim)
+        dateInt = int(date)
+
+        if dateInt<0 or dateInt>2:
+            error = "Date Invalide"
+            return send_JSON_error(error_message=error)
+
+        if stepInt>=0 and cycleInt>=0 and swimInt>=0 and dateInt>=0:
+
+            #Formules conversion velo, swim
+
+
+
+            db.session.commit()
+
+            return jsonify(date=date, stepj=stepInt, stepSum=10)
+
+        else:
+            error = u'Une des valeurs rentrée est inférieure à 0.'
+            return send_JSON_error(error_message=error)
+    except ValueError:
+        error = u'Une des valeurs rentrée n\'est pas numérique.'
+        return send_JSON_error(error_message=error)
