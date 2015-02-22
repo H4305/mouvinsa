@@ -9,13 +9,14 @@ from controllers.inscription_controller import InscriptionForm
 from controllers.confirmation_controller import ConfirmationForm, updateProfil, uploadImage
 from controllers.signin_controller import LoginForm, MdpForm
 from controllers.inscription_controller import createEmployee, createStudent
-from models import db, Student, Person, Employee, Group
+from models import db, Student, Person, Employee, Group, Steps
 from emails import sendInscriptionMailAndAlert, inscription_notification, inscription_alert, mail_mot_de_passe_oublie
 from mouvinsa.user import UserController
 from mouvinsa.utils.passHash import hash_password
 from mouvinsa.user.UserManager import loginmouv
 from mouvinsa.user.SessionManager import saveInSession, checkSession, clearSession, getPersonFromSession, login_required
 from mouvinsa.utils.mdp import generate_mdp
+from datetime import date
 
 
 @app.route('/', methods=['GET', 'POST'])
@@ -230,7 +231,11 @@ def personnel():
     person = getPersonFromSession()
 
     if request.method == 'GET':
-        return render_template('person/main.html', person=person)
+        today = date.today().strftime('%d/%m/%Y')
+
+        list_stepsNumber = Steps.query.filter_by(person_id=person.id)
+        size_list_stepsNumber = list_stepsNumber.count()
+        return render_template('person/main.html', person=person, list_stepsNumber=list_stepsNumber, size_list_stepsNumber=size_list_stepsNumber)
     elif request.method == 'POST':
         return UserController.validateStepsData(request, person)
 
@@ -344,7 +349,7 @@ def list_users() :
     string += '<tr><th>id</th><th>lastname</th><th>image</th><th>firstname</th><th>birthdate</th><th>etat</th><th>sex</th></tr>'
     for student in Person.query.all():
         string += '<tr><td>'+student.__repr__()+'</td><td>'+unicode(student.lastname)+'</td><td>'+unicode(student.image)+'</td><td>'+unicode(student.firstname)\
-                  +'</td><td>'+unicode(student.birthdate)+'</td><td>'+unicode(student.etat)+'</td><td>'+unicode(student.sex)
+                  +'</td><td>'+unicode(student.birthdate)+'</td><td>'+unicode(student.etat)+'</td><td>'+unicode(student.password)
     string += '</table>'
     return string
 
