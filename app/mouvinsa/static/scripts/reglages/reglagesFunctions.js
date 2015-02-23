@@ -39,7 +39,6 @@ jQuery(document).ready(function($) {
     $('#date_validate_button').on('click', function () {
 
         var $birthdateEditButton = $('#birthdate_button');
-        var $birthdateInput = $('#birthdate');
         var $birthdateSpan = $('#date_span');
         var $birthdateCancelButton = $('#date_cancel_button');
         var $birthdateValidateButton = $('#date_validate_button');
@@ -93,7 +92,6 @@ jQuery(document).ready(function($) {
     $('#sex_validate_button').on('click', function () {
 
         var $sexEditButton = $('#sex_button');
-        var $sexSelect = $('#sex');
         var $sexSpan = $('#sex_span');
         var $sexCancelButton = $('#sex_cancel_button');
         var $sexValidateButton = $('#sex_validate_button');
@@ -146,7 +144,6 @@ jQuery(document).ready(function($) {
     $('#weight_validate_button').on('click', function () {
 
         var $weightEditButton = $('#weight_button');
-        var $weightInput = $('#weight');
         var $weightSpan = $('#weight_span');
         var $weightCancelButton = $('#weight_cancel_button');
         var $weightValidateButton = $('#weight_validate_button');
@@ -199,7 +196,6 @@ jQuery(document).ready(function($) {
     $('#height_validate_button').on('click', function () {
 
         var $heightEditButton = $('#height_button');
-        var $heightInput = $('#height');
         var $heightSpan = $('#height_span');
         var $heightCancelButton = $('#height_cancel_button');
         var $heightValidateButton = $('#height_validate_button');
@@ -252,7 +248,6 @@ jQuery(document).ready(function($) {
     $('#cycle_validate_button').on('click', function () {
 
         var $cycleEditButton = $('#cycle_button');
-        var $cycleSelect = $('#cycle');
         var $cycleSpan = $('#cycle_span');
         var $cycleCancelButton = $('#cycle_cancel_button');
         var $cycleValidateButton = $('#cycle_validate_button');
@@ -305,7 +300,6 @@ jQuery(document).ready(function($) {
     $('#year_validate_button').on('click', function () {
 
         var $yearEditButton = $('#year_button');
-        var $yearSelect = $('#year');
         var $yearSpan = $('#annee_span');
         var $yearCancelButton = $('#year_cancel_button');
         var $yearValidateButton = $('#year_validate_button');
@@ -357,7 +351,6 @@ jQuery(document).ready(function($) {
     $('#branch_validate_button').on('click', function () {
 
         var $branchEditButton = $('#branch_button');
-        var $branchSelect = $('#branch');
         var $branchSpan = $('#branch_span');
         var $branchCancelButton = $('#branch_cancel_button');
         var $branchValidateButton = $('#branch_validate_button');
@@ -410,7 +403,6 @@ jQuery(document).ready(function($) {
     $('#nom_validate_button').on('click', function () {
 
         var $nomEditButton = $('#nom_button');
-        var $nomInput = $('#lastname');
         var $nomSpan = $('#nom_span');
         var $nomCancelButton = $('#nom_cancel_button');
         var $nomValidateButton = $('#nom_validate_button');
@@ -429,7 +421,7 @@ jQuery(document).ready(function($) {
     $('#prenom_button').on('click', function () {
 
         var $prenomEditButton = $('#prenom_button');
-        var $prenomSelect = $('#prenom');
+        var $prenomSelect = $('#firstname');
         var $prenomSpan = $('#prenom_span');
         var $prenomCancelButton = $('#prenom_cancel_button');
         var $prenomValidateButton = $('#prenom_validate_button');
@@ -446,7 +438,7 @@ jQuery(document).ready(function($) {
     $('#prenom_cancel_button').on('click', function () {
 
         var $prenomEditButton = $('#prenom_button');
-        var $prenomSelect = $('#prenom');
+        var $prenomSelect = $('#firstname');
         var $prenomSpan = $('#prenom_span');
         var $prenomCancelButton = $('#prenom_cancel_button');
         var $prenomValidateButton = $('#prenom_validate_button');
@@ -463,7 +455,6 @@ jQuery(document).ready(function($) {
     $('#prenom_validate_button').on('click', function () {
 
         var $prenomEditButton = $('#prenom_button');
-        var $prenomSelect = $('#prenom');
         var $prenomSpan = $('#prenom_span');
         var $prenomCancelButton = $('#prenom_cancel_button');
         var $prenomValidateButton = $('#prenom_validate_button');
@@ -516,7 +507,6 @@ jQuery(document).ready(function($) {
     $('#password_validate_button').on('click', function () {
 
         var $passwordEditButton = $('#password_button');
-        var $passwordSelect = $('#password');
         var $passwordSpan = $('#password_span');
         var $passwordCancelButton = $('#password_cancel_button');
         var $passwordValidateButton = $('#password_validate_button');
@@ -528,6 +518,59 @@ jQuery(document).ready(function($) {
     });
 });
 //#endregion
+
+
+//#region GOAL
+jQuery(document).ready(function($) {
+    $('#fitness_button').on('click', function () {
+
+        var $fitnessEditButton = $('#fitness_button');
+        var $fitnessInput = $('#goal');
+        var $fitnessSpan = $('#fitness_span');
+        var $fitnessCancelButton = $('#fitness_cancel_button');
+        var $fitnessValidateButton = $('#fitness_validate_button');
+
+        $fitnessEditButton.hide();
+        $fitnessInput.show();
+        $fitnessSpan.hide();
+        $fitnessCancelButton.show();
+        $fitnessValidateButton.show();
+    });
+});
+
+jQuery(document).ready(function($) {
+    $('#fitness_cancel_button').on('click', function () {
+
+        var $fitnessEditButton = $('#fitness_button');
+        var $fitnessInput = $('#goal');
+        var $fitnessSpan = $('#fitness_span');
+        var $fitnessCancelButton = $('#fitness_cancel_button');
+        var $fitnessValidateButton = $('#fitness_validate_button');
+
+        $fitnessEditButton.show();
+        $fitnessInput.hide();
+        $fitnessSpan.show();
+        $fitnessCancelButton.hide();
+        $fitnessValidateButton.hide();
+    });
+});
+
+jQuery(document).ready(function($) {
+    $('#fitness_validate_button').on('click', function () {
+
+        var $fitnessEditButton = $('#fitness_button');
+        var $fitnessSpan = $('#fitness_span');
+        var $fitnessCancelButton = $('#fitness_cancel_button');
+        var $fitnessValidateButton = $('#fitness_validate_button');
+
+        $fitnessEditButton.show();
+        $fitnessSpan.hide();
+        $fitnessCancelButton.hide();
+        $fitnessValidateButton.hide();
+    });
+});
+//#endregion
+
 
 
 

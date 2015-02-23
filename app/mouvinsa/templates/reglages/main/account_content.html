@@ -69,6 +69,26 @@
         </td>
     </tr>
     <tr>
+        <td class="td_label">{{ form.goal.label }} </td>
+        <td class="td_content">
+             <span id="fitness_span" class="span-visible">
+                {{ person.fitnessInfo.goal }}
+             </span>
+            {{ form.goal() }}
+        </td>
+        <td class="td_button">
+            <button id="fitness_cancel_button" class="annuler_valider_button invisible_button" type="button">
+                Annuler
+            </button>
+            <button id="fitness_validate_button" class="annuler_valider_button invisible_button" type="button">
+                Valider
+            </button>
+            <button id="fitness_button" type="button">
+                <img src="{{ url_for('static', filename='images/edit-icon-red.png') }}">
+            </button>
+        </td>
+    </tr>
+    <tr>
         <td class="td_label">{{ form.firstname.label }} </td>
         <td class="td_content">
              <span id="prenom_span" class="span-visible">
