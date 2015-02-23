@@ -1,6 +1,7 @@
+import os
 from mouvinsa.user import UserManager
 
-__author__ = 'vcaen'
+
 import UserView
 
 def displaySettings(request, person):
@@ -10,6 +11,11 @@ def validateSetting(request, person):
     form = UserView.generate_setting_form(request, person)
     if not form.errors:
         saveSettings(person, form)
+        file = request.files['image']
+        if file:
+            UserManager.change_picture(person, file)
+        else:
+            return "Error with the picture"
         return UserView.display_profil(person)
     else:
         return UserView.display_settings(person, form)

@@ -138,7 +138,7 @@ def forgetpassword():
         form = MdpForm(request.form)
         if form.validate():
             email = form.email.data
-            email += "@insa-lyon.fr"
+            #email += "@insa-lyon.fr" #No need for email, we ask the full email already
             person = Person.query.filter_by(email=email).first()
             if person is None:
                 problem = u'L\'utilisateur %s n\'existe pas' %email
@@ -309,10 +309,6 @@ def reglages():
     elif request.method == 'POST':
         return UserController.validateSetting(request, person)
 
-
-@app.route('/testtttt/')
-def testtttt():
-    return "lol" +  hash_password('azerty')
 
 @app.route('/test/inscription/<user>')
 def test_inscription(user="TestUser"):

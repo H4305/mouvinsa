@@ -5,6 +5,7 @@ from models import User
 
 db.create_all()
 
+
 # insert
 db.session.add(User("test","test"))
 
