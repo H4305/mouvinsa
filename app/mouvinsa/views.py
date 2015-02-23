@@ -141,7 +141,7 @@ def forgetpassword():
             email += "@insa-lyon.fr"
             person = Person.query.filter_by(email=email).first()
             if person is None:
-                problem = u'L\'utilisateur %s n\'existe pas', email
+                problem = u'L\'utilisateur %s n\'existe pas' %email
                 flash(problem, u'error_forgetpassword')
             else:
                 mdp = generate_mdp()
