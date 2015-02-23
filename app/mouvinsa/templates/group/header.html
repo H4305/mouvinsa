@@ -1,13 +1,13 @@
-<div class="group-header group-header-lisbonne">
+<div class="group-header group-header-{{group.city_destination_id}}">
   <div class="container">
     <div class="group-avatar-wrapper">
       {# <img src="{{ group.image or '/static/images/group/defaultm.png' }}" alt="Group" class="group-avatar"> #}
       <span class="group-id">
-        13
+        {{ group.id }}
       </span>
     </div>
     <div class="group-name-wrapper">
-      <h1 class="group-name">Les Ours</h1>
+      <h1 class="group-name"> {{ group.label }} </h1>
     </div>
   </div>
 </div>

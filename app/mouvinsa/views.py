@@ -9,14 +9,16 @@ from controllers.inscription_controller import InscriptionForm
 from controllers.confirmation_controller import ConfirmationForm, updateProfil, uploadImage
 from controllers.signin_controller import LoginForm, MdpForm
 from controllers.inscription_controller import createEmployee, createStudent
-from models import db, Student, Person, Employee, Group, Steps
+from models import db, Student, Person, Employee, Group, Steps, FitnessInfo
 from emails import sendInscriptionMailAndAlert, inscription_notification, inscription_alert, mail_mot_de_passe_oublie
 from mouvinsa.user import UserController
 from mouvinsa.utils.passHash import hash_password
 from mouvinsa.user.UserManager import loginmouv
 from mouvinsa.user.SessionManager import saveInSession, checkSession, clearSession, getPersonFromSession, login_required
 from mouvinsa.utils.mdp import generate_mdp
-from datetime import date
+from datetime import date, timedelta
+import datetime
+import operator
 
 
 @app.route('/', methods=['GET', 'POST'])
@@ -229,11 +231,28 @@ def login():
 @login_required
 def personnel():
     person = getPersonFromSession()
+
     if request.method == 'GET':
         today = date.today().strftime('%d/%m/%Y')
-        list_stepsNumber = Steps.query.filter_by(person_id=person.id)
-        size_list_stepsNumber = list_stepsNumber.count()  
-        return render_template('person/main.html', person=person, list_stepsNumber=list_stepsNumber, size_list_stepsNumber=size_list_stepsNumber)
+
+        startDate = datetime.datetime(2015, 02, 26)   # 1973-01-18 03:45:50
+        days = 70
+
+        list_date_steps = {}
+
+        for day in range(0,70):
+            dateTemp = startDate + timedelta(days=day)
+
+            stepsDay = Steps.query.filter_by(person_id=person.id, date=dateTemp).first()
+
+            if stepsDay:
+                list_date_steps[dateTemp] = stepsDay
+            else:
+                list_date_steps[dateTemp] = 0
+
+        stepNumberPerson = round(FitnessInfo.query.filter_by(person_id=person.id).first().stepSum * 0.00064, 2)
+
+        return render_template('person/main.html', person=person, today=today, list_date_steps=sorted(list_date_steps.items(), key=operator.itemgetter(0)), stepNumberPerson=stepNumberPerson)
     elif request.method == 'POST':
         return UserController.validateStepsData(request, person)
 
@@ -515,3 +534,7 @@ def sendMailGroupes():
             message += str(index) + ". " + surnom + " " + email + " " + str(numeroGroupe) + " " + nomGroupe + "<br>";
             #DO NOT UNCOMMENT sendMailGroupesDefinitifs(surnom=surnom, email=email, numeroGroupe=numeroGroupe, nomGroupe=nomGroupe)
     return message
+
+@app.template_filter('datetimeformat')
+def datetimeformat(value, format='%H:%M / %d/%m/%Y'):
+    return value.strftime(format)
