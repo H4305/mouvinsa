@@ -153,8 +153,7 @@ def forgetpassword():
                 flash(problem, u'ok_forgetpassword')
             return render_template('auth/forgetpassword.html')
         else:
-            mdp = generate_mdp(10)
-            problem = u'Mot de passe LOL ' + mdp
+            problem = u'Problème dans le formulaire'
             flash(problem, u'error_forgetpassword')
             return render_template('auth/forgetpassword.html')
 
