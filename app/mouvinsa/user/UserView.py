@@ -11,21 +11,13 @@ from mouvinsa.controllers.inscription_controller import \
     CHOIX_CYCLE, CHOIX_FILIERE, CHOIX_DEPARTEMENT, messageLongueur3_100
 
 LABEL_AFFILIATION = u'Affiliation'
-
 LABEL_POSITION = u'Position'
-
 LABEL_BRANCH = u'Département'
-
 LABEL_CYCLE = u'Cycle'
-
 LABEL_YEAR = u'Année'
-
 LABEL_FIRSTNAME = u'Prénom'
-
 LABEL_LASTNAME = u'Nom'
-
-__author__ = 'vcaen'
-
+LABEL_GOAL = u'Objectif personnel (pas)'
 LABEL_HEIGHT = u'Taille (cm)'
 LABEL_WEIGHT = u'Poids (kg)'
 LABEL_SEX = u'Sexe '
@@ -69,6 +61,7 @@ def generate_setting_form(request, person):
 
 class UserForm(Form):
     image = FileField( LABEL_IMAGE, [validators.regexp(u'.*\.(jpg|png)$'), validators.Optional()])
+    goal = FloatField(LABEL_GOAL,[validators.Optional()])
     password = PasswordField(LABEL_MOTDEPASSE, [
         validators.Optional(),
         validators.EqualTo('confirm', message=messagePassword),
@@ -92,7 +85,3 @@ class UserForm(Form):
                          [validators.Optional(), validators.Length(min=3, max=100, message=messageLongueur3_100)])
     affiliation = StringField(LABEL_AFFILIATION,
                             [validators.Optional(), validators.Length(min=3, max=100, message=messageLongueur3_100)])
-
-
-
-

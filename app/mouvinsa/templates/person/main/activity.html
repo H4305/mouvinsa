@@ -25,7 +25,7 @@
     <div class="calendar-wrapper" id="calendar">
       <ul class="calendar">
             {% for key in list_date_steps %}
-            <li data-step="{{ key.1 }}" data-date="date-{{ key.0|datetimeformat('%d/%m/%Y') }}"></li>
+            <li data-step="{{ key.1 }}" id="date-{{ key.0|datetimeformat('%d - %m') }}" data-date="{{ key.0|datetimeformat('%d / %m') }}"></li>
                 {% if loop.index is divisibleby(7) %}
                     </ul>
                     <ul class="calendar">

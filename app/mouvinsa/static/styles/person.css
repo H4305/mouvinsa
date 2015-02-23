@@ -19,12 +19,16 @@
   display: block;
   position: relative;
   float: left;
+  width: 160px;
+  text-align: right;
 }
 
 .person-avatar, .group-avatar {
   border-radius: 100%;
   border: 6px solid #fff;
   box-shadow: 0px 3px 2px rgba(0,0,0,0.2);
+  width: 128px;
+  height: 128px;
 }
 
 .person-name-wrapper, .group-name-wrapper {
@@ -352,10 +356,6 @@ h1.group-name {
   height:290px;
 }
 
-.group-header-lisbonne {
-  background: url('../images/destinations/lisbonne.jpg') left top;
-}
-
 .group-id {
   color: #FFF;
   font-family: bebas_neue_bold,Helvetica,Arial;
@@ -365,11 +365,15 @@ h1.group-name {
   margin-left: 30px;
 }
 
+.group-header-4 { background: url('../images/destinations/lisbonne.jpg') left top}
+
 /* GROUP DESTINATION BAR */
 
 .group-destination-bar-box {
   top:-140px;
-  height: 240px;
+  height: 350px;
+  position: relative;
+  padding:20px 45px;
 }
 
 .group-destination-bar-box h2{
@@ -378,7 +382,77 @@ h1.group-name {
   text-align: right;
 }
 
-.group-destination-bar-box h2 strong{
+.group-destination-bar-box h2 strong, .destination-counter {
   font-family: bebas_neue_regular, Helvetica, Arial;
   font-weight: normal;
 }
+
+.destination-bar {
+  height:160px;
+}
+
+.destination-counter {
+  font-size: 31px;
+  position: absolute;
+  left: 75px;
+  top: 20px;
+}
+
+.destination-bar-pin-end {
+  position: absolute;
+  right:0;
+  top:80px;
+  z-index: 11;
+}
+
+.destination-bar-pin {
+  position: absolute;
+  left: 0%;
+  top: 80px;
+  z-index: 12;
+}
+
+.destination-bar-appendix {
+  position: relative;
+  left: 0;
+  top: 88px;
+  z-index: 10;
+}
+
+.destination-bar-insa {
+  width:100px;
+  position: absolute;
+  left: 44px;
+  top:165px;
+}
+
+.destination-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  margin-left:-20px;
+}
+
+.destination-list li {
+  display: inline-block;
+  text-align: center;
+  margin:20px;
+}
+
+.destination-list li:last-child {
+  margin-right: 0;
+}
+
+.destination-list li strong {
+  font-family: bebas_neue_regular, Helvetica, Arial;
+  font-size: 100px;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+}
+.destination-list li small {
+  font-size: 0.6em;
+}
+
+.destination-list li span {
+  display: block;
+}
+
