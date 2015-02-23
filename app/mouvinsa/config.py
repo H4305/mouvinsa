@@ -37,4 +37,6 @@ MAIL_PORT = 465
 MAIL_USE_TLS = False
 MAIL_USE_SSL = True
 MAIL_USERNAME = 'mouvinsa.communication@gmail.com'
-MAIL_PASSWORD = '**********'
+MAIL_PASSWORD = '*******'
+
+DATE_DEBUT = "26/02/2015"
