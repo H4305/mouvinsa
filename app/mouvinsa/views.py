@@ -145,7 +145,7 @@ def forgetpassword():
                 flash(problem, u'error_forgetpassword')
             else:
                 mdp = generate_mdp()
-                problem = u'La demande de reinitialisation vous a été envoyée ' + mdp
+                problem = u'La demande de reinitialisation vous a été envoyée '
                 person.password=hash_password(mdp)
                 db.session.commit()
                 mail_mot_de_passe_oublie(person.nickname, person.email, mdp)
@@ -153,7 +153,7 @@ def forgetpassword():
                 flash(problem, u'ok_forgetpassword')
             return render_template('auth/forgetpassword.html')
         else:
-            problem = u'Problème dans le formulaire'
+            problem = u'Problème dans le formulaire - Vous ne devez pas écrire @insa-lyon.fr'
             flash(problem, u'error_forgetpassword')
             return render_template('auth/forgetpassword.html')
 
