@@ -29,7 +29,7 @@ def change_password(person, password):
 
 def change_picture(person, file):
     if file and allowed_file(file.filename):
-            #fileName, fileExtension = os.path.splitext('/path/to/somefile.ext')
+            # fileName, fileExtension = os.path.splitext('/path/to/somefile.ext')
             filename = secure_filename(str(person.id))
             path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
             file.save(path)
@@ -63,8 +63,6 @@ def update_from_form(person, form):
 
     form.populate_obj(person)
     db.session.commit()
-
-
 
 
 def send_JSON_error(error_message):

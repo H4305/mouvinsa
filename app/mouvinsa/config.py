@@ -41,3 +41,4 @@ MAIL_USERNAME = 'mouvinsa.communication@gmail.com'
 MAIL_PASSWORD = '**********'
 
 UPLOAD_FOLDER = HOME_DIR + '/mouvinsa/uploads'
+UPLOAD_MAX_SIZE = 16 * 1024 * 1024

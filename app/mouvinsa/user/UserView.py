@@ -14,21 +14,12 @@ from mouvinsa.controllers.inscription_controller import \
     CHOIX_CYCLE, CHOIX_FILIERE, CHOIX_DEPARTEMENT, messageLongueur3_100
 
 LABEL_AFFILIATION = u'Affiliation'
-
 LABEL_POSITION = u'Position'
-
 LABEL_BRANCH = u'Département'
-
 LABEL_CYCLE = u'Cycle'
-
 LABEL_YEAR = u'Année'
-
 LABEL_FIRSTNAME = u'Prénom'
-
 LABEL_LASTNAME = u'Nom'
-
-__author__ = 'vcaen'
-
 LABEL_HEIGHT = u'Taille (cm)'
 LABEL_WEIGHT = u'Poids (kg)'
 LABEL_SEX = u'Sexe '
@@ -47,6 +38,7 @@ def display_profil(person):
     """
     return render_template('person/main.html', person=person)
 
+
 def display_settings(person, form):
     """
     Display the settings for the user
@@ -55,6 +47,7 @@ def display_settings(person, form):
     :return: the populated template.
     """
     return render_template('reglages/main.html', person=person, form=form)
+
 
 def generate_setting_form(request, person):
     """
@@ -72,7 +65,7 @@ def generate_setting_form(request, person):
 
 
 class UserForm(Form):
-    image = FileField( LABEL_IMAGE, [validators.regexp(u'.*\.(jpg|png)$'), validators.Optional()])
+    image = FileField(LABEL_IMAGE, [validators.regexp(u'.*\.(jpg|png)$'), validators.Optional()])
     password = PasswordField(LABEL_MOTDEPASSE, [
         validators.Optional(),
         validators.EqualTo('confirm', message=messagePassword),
@@ -98,10 +91,18 @@ class UserForm(Form):
                             [validators.Optional(), validators.Length(min=3, max=100, message=messageLongueur3_100)])
 
 
-
-
 @app.route('/uploads/<filename>')
 def display_picture(filename):
-    return send_from_directory(app.config['UPLOAD_FOLDER'],
-                               filename)
+    """
+    Display an uploaded picture
+    :param filename: the filename insdide the upload directory
+    :return: the picture
+    """
+    if os.path.isfile(os.path.join(app.config['UPLOAD_FOLDER'], filename)):
+        # Check if the profile picture exists
+        return send_from_directory(app.config['UPLOAD_FOLDER'],
+                                   filename)
+    else:
+        # Or return the default picture
+        return redirect(url_for('static', filename='images/person/defaultm.png'))
 
