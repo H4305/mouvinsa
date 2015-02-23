@@ -139,11 +139,11 @@ def update_steps_ajax(person, form):
             group = Group.query.filter_by(id=person.group_id).first()
             group.stepSum = teamSteps
             distanceTot = "{0:.2f}".format(moyenneDistancePas * stepsSumTotal)
-            set_city_arrived_destination(moyenneDistancePas * stepsSumTotal, group)
+            city_changed = set_city_arrived_destination(moyenneDistancePas * stepsSumTotal, group)
 
             db.session.commit()
 
-            return jsonify(date=dateSteps.strftime('%d/%m/%Y'), stepj=newStepsTotal, distanceTot=distanceTot)
+            return jsonify(date=dateSteps.strftime('%d/%m/%Y'), stepj=newStepsTotal, distanceTot=distanceTot, cityChanged = city_changed)
 
         else:
             error = u'Une des valeurs rentrée est inférieure à 0.'
@@ -155,26 +155,33 @@ def update_steps_ajax(person, form):
 
 def set_city_arrived_destination(distanceGroup, group):
 
+    city_changed = 'no'
     if distanceGroup < 200:
         group.city_arrived_id = 35
         group.city_destination_id = group.city_tres_facile_id
     elif distanceGroup >= 200 and distanceGroup < 450:
         group.city_arrived_id = group.city_tres_facile_id
         group.city_destination_id = group.city_facile_id
+        city_changed = u'Félicitations! Ton équipe vient d\'arriver à %s' %group.city_arrived.nom
     elif distanceGroup >= 450 and distanceGroup < 700:
         group.city_arrived_id = group.city_facile_id
         group.city_destination_id = group.city_moyen_id
+        city_changed = u'Félicitations! Ton équipe vient d\'arriver à %s' %group.city_arrived.nom
     elif distanceGroup >= 700 and distanceGroup < 1100:
         group.city_arrived_id = group.city_moyen_id
         group.city_destination_id = group.city_difficile_id
+        city_changed = u'Félicitations! Ton équipe vient d\'arriver à %s' %group.city_arrived.nom
     elif distanceGroup >= 1100 and distanceGroup < 1700:
         group.city_arrived_id = group.city_difficile_id
         group.city_destination_id = group.city_tres_difficile_id
+        city_changed = u'Félicitations! Ton équipe vient d\'arriver à %s' %group.city_arrived.nom
     elif distanceGroup >= 1700 and distanceGroup < 3000:
         group.city_arrived_id = group.city_tres_difficile_id
         group.city_destination_id = group.city_champion_id
+        city_changed = u'Félicitations! Ton équipe vient d\'arriver à %s' %group.city_arrived.nom
     elif distanceGroup >= 3000:
         group.city_arrived_id = group.city_champion_id
         group.city_destination_id = group.city_champion_id
+        city_changed = u'Félicitations! Ton équipe vient d\'arriver à %s' %group.city_arrived.nom
 
-    return
+    return city_changed
