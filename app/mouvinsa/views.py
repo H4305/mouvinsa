@@ -9,7 +9,7 @@ from controllers.inscription_controller import InscriptionForm
 from controllers.confirmation_controller import ConfirmationForm, updateProfil, uploadImage
 from controllers.signin_controller import LoginForm, MdpForm
 from controllers.inscription_controller import createEmployee, createStudent
-from models import db, Student, Person, Employee, Group, Steps
+from models import db, Student, Person, Employee, Group, Steps, FitnessInfo
 from emails import sendInscriptionMailAndAlert, inscription_notification, inscription_alert, mail_mot_de_passe_oublie
 from mouvinsa.user import UserController
 from mouvinsa.utils.passHash import hash_password
@@ -250,7 +250,9 @@ def personnel():
             else:
                 list_date_steps[dateTemp] = 0
 
-        return render_template('person/main.html', person=person, today=today, list_date_steps=sorted(list_date_steps.items(), key=operator.itemgetter(0)))
+        stepNumberPerson = round(FitnessInfo.query.filter_by(person_id=person.id).first().stepSum * 0.00064, 2)
+
+        return render_template('person/main.html', person=person, today=today, list_date_steps=sorted(list_date_steps.items(), key=operator.itemgetter(0)), stepNumberPerson=stepNumberPerson)
     elif request.method == 'POST':
         return UserController.validateStepsData(request, person)
 
