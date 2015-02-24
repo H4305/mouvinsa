@@ -12,11 +12,6 @@
 	}
 
 	#menu-container {
-		position: absolute;
-		background-color: #E42618;
-		top: 40px;
-		left: 0px;
-		width: 200px;
 		visibility:hidden;
 	}
 
@@ -50,20 +45,20 @@
 @media screen and (max-width: 1000px) {
 
 	#navigation_menu_NAV {
-    position:           fixed;
-    top:                0;
-    left:               0;
-    z-index:            9999;
-    width:              100%;
-    font-family: 'Open Sans Light',X-LocaleSpecific-Light,'Open Sans',X-LocaleSpecific,sans-serif;
-	font-weight: normal;
-	color: #fff;
-		-webkit-box-shadow: 0 8px 6px -6px black;
-	   -moz-box-shadow: 0 8px 6px -6px black;
-	        box-shadow: 0 8px 6px -6px black;
-	background-color:   #E42618;
-	height: 41px;
-}
+		position:           fixed;
+		top:                0;
+		left:               0;
+		z-index:            9999;
+		width:              100%;
+		font-family: 'Open Sans Light',X-LocaleSpecific-Light,'Open Sans',X-LocaleSpecific,sans-serif;
+		font-weight: normal;
+		color: #fff;
+			-webkit-box-shadow: 0 8px 6px -6px black;
+		   -moz-box-shadow: 0 8px 6px -6px black;
+				box-shadow: 0 8px 6px -6px black;
+		background-color:   #E42618;
+		height: 41px;
+	}
 
 	#menu-deroulant {
 		visibility: visible;
@@ -103,6 +98,10 @@
 
 	.titre_SPAN {
 		border-left: 1px solid #FFF;
+	}
+
+	#menu-container {
+		display:none;
 	}
 }
 
