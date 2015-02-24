@@ -98,20 +98,4 @@ $(document).ready(function() {
     var numberSteps;
     var teamName;
 
-    for ( var i = 0; i < nombreEquipes; i++ ) {
-
-        numberSteps = lesEquipes[i].pas;
-        teamName = lesEquipes[i].nom;
-        tableHtml += "<td><table class='teamTable'><td class = 'team'><div class='imgIdGroup'>" + lesEquipes[i].id + "</td><td><ul class='listDescriptionTeam'><li class='teamName'>" +
-                    teamName +  "</li>" + "<li class='steps'>" + numberSteps + " pas</li>" + "</ul></td></table></td>";
-
-        if(i%3 == 2) {
-            tableHtml += "</tr><tr>";
-        }
-    }
-
-    tableHtml += "</tr>";
-    table.html(tableHtml);
-
-
 });

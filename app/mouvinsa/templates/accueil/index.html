@@ -12,10 +12,30 @@
     </div>
     <div class="teamsGroup">
         <div class="teamsDivTitle">Equipes</div>
-        <table id='teamsTable' class='teamsTable'>
 
+        <table id='teamsTable' class='teamsTable'>
+        {% for group in groups %}
+            <td>
+                <table class='teamTable'>
+                    <td class = 'team'>
+                        <a href="/resultats/equipe?idEquipe={{ group.id }}"><div class='imgIdGroup'>{{ loop.index }}</td></a>
+                    <td>
+                        <ul class='listDescriptionTeam'>
+                            <a href="/resultats/equipe?idEquipe={{ group.id }}"><li class='teamName'>{{ group.label }}</li></a>
+                            <li class='steps'>{{ group.stepNum or 0}} pas</li>
+                        </ul>
+                    </td>
+                </table>
+            </td>
+
+            {% if loop.index is divisibleby(3) %}
+                </tr><tr>
+            {% endif %}
+
+        {% endfor %}
+        </tr>
         </table>
     </div>
-    <br><br><br><br><br><br><br><br><br><br><br>
+
     {% include 'apropos.html' %}
 {% endblock %}

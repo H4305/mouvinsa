@@ -6,14 +6,15 @@
     margin-right: auto;
 }
 .teamsDivTitle {
-    background-color: red;
-    color: white;
+    background-color: #E42618;;
+    color: #FFF;
     text-align: left;
     font-weight: bold;
     padding-left: 10px;
-    font-size: larger;
-    height: 30px;
-    padding-top: 10px;
+    padding-top: 1px;
+    font-family: bebas_neue_bold,Helvetica,Arial;
+    font-size: 40px;
+    text-align: center;
 }
 .teamsTable {
     width: 100%;
@@ -58,6 +59,15 @@
     border-bottom-width: 1px;
     border-bottom-right-radius: 5px;
 }
+
+.listDescriptionTeam:hover {
+    background-color: #cee5F5;
+}
+
+.listDescriptionTeam a {
+    font-family: bebas_neue_bold,Helvetica,Arial;
+}
+
 .counter {
     width: 50%;
     margin: 0 auto;
@@ -70,7 +80,7 @@
     font-family: bebas_neue_bold,Helvetica,Arial;
     font-size: 25px;
     line-height: 5px;
-    text-shadow: 0px 0px 5px rgba(0, 0, 0, 0.8);
+    text-shadow: 0px 0px 5px rgba(0, 0, 0, 0.9);
     margin-left: 0px;
     text-align: center;
 }

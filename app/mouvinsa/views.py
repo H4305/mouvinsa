@@ -25,7 +25,8 @@ import operator
 def home():
     person = getPersonFromSession()
     index = 'yes'
-    return render_template('/accueil/index.html', person=person, index=index)
+    groups = Group.query.all()
+    return render_template('/accueil/index.html', person=person, index=index, groups=groups)
 
 
 #@app.route('/', methods=['GET', 'POST'])
