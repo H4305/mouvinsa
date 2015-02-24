@@ -45,9 +45,9 @@ def inscription_notification(surnom, email, categorie, nom, prenom, sexe, dateNa
     send_email("[Mouv\'INSA] - L\'equipe vous remercie pour votre inscription %s!" % surnom,
                ADMIN[0],
                [email],
-               render_template("/mails/inscription_email.txt",
+               render_template("/mails/inscription_email_ret.txt",
                                surnom=surnom, email=email, categorie=categorie, nom=nom, prenom=prenom, sexe=sexe, dateNaissance=dateNaissance, poids=poids, taille=taille, cycle=cycle, annee=annee, departement=departement, filiere=filiere, position=position, affiliation=affiliation),
-               render_template("/mails/inscription_email.html",
+               render_template("/mails/inscription_email_ret.html",
                                surnom=surnom, email=email, categorie=categorie, nom=nom, prenom=prenom, sexe=sexe, dateNaissance=dateNaissance, poids=poids, taille=taille, cycle=cycle, annee=annee, departement=departement, filiere=filiere, position=position, affiliation=affiliation))
 
 def inscription_alert(inscrits, surnom, email, categorie, nom, prenom, sexe, dateNaissance, poids, taille, cycle, annee, departement, filiere, position, affiliation ):
@@ -80,3 +80,12 @@ def sendMailGroupesDefinitifs(surnom, email, nomGroupe, numeroGroupe):
                                surnom=surnom, nomGroupe=nomGroupe, numeroGroupe=numeroGroupe),
                render_template("/mails/groupes_alert.html",
                                surnom=surnom, nomGroupe=nomGroupe, numeroGroupe=numeroGroupe))
+
+def sendMailDernierRappel(surnom, email):
+    send_email(u'[Mouv\'INSA] - Etes-vous prêts à marcher?',
+               ADMIN[0],
+               [email],
+               render_template("/mails/derniers_rappels_depart.txt",
+                               surnom=surnom),
+               render_template("/mails/derniers_rappels_depart.html",
+                               surnom=surnom))

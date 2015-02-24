@@ -7,14 +7,14 @@
 {% endblock %}
 {% block main %}
 	<div id="main" class="main">
-        <div class="inscriptionTermine_DIV">
-            <p>
-                Les inscriptions pour cette édition de Mouv'INSA sont terminées.
-                Pour toute info, nous contacter à l'adresse : mouvinsa.communication@gmail.com. A bientôt!
-            </p>
-        </div>
     	<img class="logo-main" src="{{ url_for('static', filename='images/logo.svg') }}" alt="">
     	<div class="your-clock"></div>
+    </div>
+    <div class="teamsGroup">
+        <div class="teamsDivTitle">Equipes</div>
+        <table id='teamsTable' class='teamsTable'>
+
+        </table>
     </div>
     <br><br><br><br><br><br><br><br><br><br><br>
     {% include 'apropos.html' %}
