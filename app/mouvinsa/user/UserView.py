@@ -1,8 +1,11 @@
 #!/usr/bin/python
 #  -*- coding: utf-8 -*-
 # coding: utf-8
+import os
+from werkzeug.utils import secure_filename, redirect
+from mouvinsa.app import app
 from wtforms.fields.simple import SubmitField
-from flask import render_template
+from flask import render_template, request, url_for, send_from_directory
 from flask.ext.wtf.file import FileField
 from flask.ext.wtf import Form
 from wtforms import FloatField, PasswordField, SelectField, DateField, validators, StringField
@@ -27,6 +30,7 @@ LABEL_MOTDEPASSE = u'Mot de Passe'
 LABEL_IMAGE = u'Photo de profil'
 LABEL_SUBMIT = u'Valider les changements'
 
+
 def display_profil(person):
     """
     Display the home page for the user
@@ -34,6 +38,7 @@ def display_profil(person):
     :return: the corresponding page template
     """
     return render_template('person/main.html', person=person)
+
 
 def display_settings(person, form):
     """
@@ -43,6 +48,7 @@ def display_settings(person, form):
     :return: the populated template.
     """
     return render_template('reglages/main.html', person=person, form=form)
+
 
 def generate_setting_form(request, person):
     """
@@ -85,3 +91,20 @@ class UserForm(Form):
                          [validators.Optional(), validators.Length(min=3, max=100, message=messageLongueur3_100)])
     affiliation = StringField(LABEL_AFFILIATION,
                             [validators.Optional(), validators.Length(min=3, max=100, message=messageLongueur3_100)])
+
+
+@app.route('/uploads/<filename>')
+def display_picture(filename):
+    """
+    Display an uploaded picture
+    :param filename: the filename insdide the upload directory
+    :return: the picture
+    """
+    if os.path.isfile(os.path.join(app.config['UPLOAD_FOLDER'], filename)):
+        # Check if the profile picture exists
+        return send_from_directory(app.config['UPLOAD_FOLDER'],
+                                   filename)
+    else:
+        # Or return the default picture
+        return redirect(url_for('static', filename='images/person/defaultm.png'))
+
