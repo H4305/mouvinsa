@@ -1,0 +1,29 @@
+Moscou
+
+	29_1 -> La cathédrale de l'Intercession-de-la-Vierge
+	29_2 -> La place Rouge
+	29_3 -> La galerie d'État Tretiakov
+
+Montréal
+
+	31_1 -> Musée La Biosphère
+	31_2 -> Le lac aux Castors
+	31_3 -> Le Vieux-Montréal
+
+San Juan(Puerto Rico)
+
+	32_1 -> Le fort San Felipe del Morro
+	32_2 -> Santa María Magdalena Cimetière de Pazzi
+	32_3 -> Une rue de San Juan au Porto Rico
+
+Reykjavik
+
+	33_1 -> Eglise Hallgrímskirkja
+	33_2 -> Le Perlan
+	33_3 -> Le Tjörnin
+
+Rio de Janeiro
+
+	34_1 -> Copacabana
+	34_2 -> Le mont du Pain de Sucre
+	34_3 -> Une favela
