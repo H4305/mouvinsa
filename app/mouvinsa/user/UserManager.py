@@ -16,7 +16,7 @@ from datetime import date, timedelta
 from werkzeug.utils import secure_filename, redirect
 from mouvinsa.app import app
 
-ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'])
+ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'gif'])
 
 def loginmouv(email, password):
     person = loadPersonByMail(email)
