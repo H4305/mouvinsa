@@ -4,7 +4,7 @@
 
 __author__ = 'marcomontalto'
 
-from mouvinsa.models import db, Level, Group, City, Person, FitnessInfo
+from mouvinsa.models import db, Level, Group, City, Person, FitnessInfo, Questions
 
 nomsGroupes = [ u"Jumperzap", u"Highjumps", u"Batsqueak", u"Athletebrring", u"Sportouch", u"Catcherparp", u"Frisbeeplonk",
                 u"Skateroar", u"Tiecheep", u"Tennisbuzz", u"Volleytweet", u"Gearmeow", u"Outslouch", u"Hockeytwang",
@@ -141,5 +141,14 @@ def create_fitnessInfo():
         fitnessInfo.person_id=per.id
         fitnessInfo.goal = 10000
         db.session.add(fitnessInfo)
+
+    db.session.commit()
+
+def create_questions():
+    person = Person.query.all()
+    for per in person:
+        questions = Questions()
+        questions.person_id=per.id
+        db.session.add(questions)
 
     db.session.commit()

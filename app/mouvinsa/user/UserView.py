@@ -107,3 +107,4 @@ def display_picture(filename):
     else:
         # Or return the default picture
         return redirect(url_for('static', filename='images/person/defaultm.png'))
+

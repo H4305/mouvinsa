@@ -146,6 +146,10 @@ class Steps(db.Model):
     date = db.Column(db.DateTime)
     stepnumber = db.Column(db.Integer, default=0)
 
+    __mapper_args__ = {
+        'polymorphic_identity': 'steps',
+    }
+
 
 class FitnessInfo(db.Model):
     __tablename__ = 'fitnessInfo'
@@ -156,6 +160,10 @@ class FitnessInfo(db.Model):
     bestStreak = db.Column(db.Integer, default=0)
     goal = db.Column(db.Integer, default=0)
 
+    __mapper_args__ = {
+        'polymorphic_identity': 'fitnessInfo',
+    }
+
 
 class Badge(db.Model):
     __tablename__ = 'badge'
@@ -163,3 +171,19 @@ class Badge(db.Model):
     label = db.Column(db.String(127), nullable=False)
     description = db.Column(db.String(255), nullable=True)
     image = db.Column(db.String(255), nullable=True)
+
+    __mapper_args__ = {
+        'polymorphic_identity': 'badge',
+    }
+
+class Questions(db.Model):
+    __tablename__ = 'questions'
+    id = db.Column(db.Integer, primary_key=True)
+    person_id = db.Column(db.Integer, db.ForeignKey('person.id'))
+    firstValue = db.Column(db.String(255), nullable=True)
+    secondValue = db.Column(db.String(255), nullable=True)
+    thirdValue = db.Column(db.String(255), nullable=True)
+
+    __mapper_args__ = {
+        'polymorphic_identity': 'questions',
+    }
