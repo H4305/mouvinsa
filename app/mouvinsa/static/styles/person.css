@@ -382,7 +382,7 @@ h1.group-name {
   text-align: right;
 }
 
-.group-destination-bar-box h2 strong, .destination-counter {
+.group-destination-bar-box h2 strong, .destination-counter, .destination-distance {
   font-family: bebas_neue_regular, Helvetica, Arial;
   font-weight: normal;
 }
@@ -398,6 +398,13 @@ h1.group-name {
   top: 20px;
 }
 
+.destination-distance {
+  font-size: 31px;
+  position: absolute;
+  right: 44px;
+  top: 161px;
+}
+
 .destination-bar-pin-end {
   position: absolute;
   right:0;
@@ -410,6 +417,8 @@ h1.group-name {
   left: 0%;
   top: 80px;
   z-index: 12;
+  transition: left 1s;
+  width:180px;
 }
 
 .destination-bar-appendix {
@@ -430,13 +439,14 @@ h1.group-name {
   list-style: none;
   padding: 0;
   margin: 0;
-  margin-left:-20px;
 }
 
 .destination-list li {
   display: inline-block;
   text-align: center;
-  margin:20px;
+  width:140px;
+  height: 140px;
+  position: relative;
 }
 
 .destination-list li:last-child {
@@ -445,14 +455,34 @@ h1.group-name {
 
 .destination-list li strong {
   font-family: bebas_neue_regular, Helvetica, Arial;
-  font-size: 100px;
+  font-size: 70px;
   text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+  line-height: 115px;
 }
+
 .destination-list li small {
   font-size: 0.6em;
 }
 
 .destination-list li span {
   display: block;
+  position: relative;
+  top: -35px;
 }
 
+.svg-c circle {
+  stroke-dashoffset: 427;
+  transition: stroke-dashoffset 1s;
+  stroke-width: 4px;
+}
+
+.svg-c .bar {
+  /*#FC5B3F*/
+  stroke: #FF9F1E;
+}
+
+.svg-c {
+  position: absolute;
+  left:0px;
+  top:0px;
+}

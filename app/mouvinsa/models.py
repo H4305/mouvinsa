@@ -138,6 +138,10 @@ class Group(db.Model):
     city_tres_difficile = db.relationship(City, foreign_keys=city_tres_difficile_id, backref='cities_tres_difficile')
     city_champion = db.relationship(City, foreign_keys=city_champion_id, backref='cities_champion')
 
+    @property
+    def distance(self):
+        return 100000 + self.stepSum * 0.64
+
 
 class Steps(db.Model):
     __tablename__ = 'steps'
