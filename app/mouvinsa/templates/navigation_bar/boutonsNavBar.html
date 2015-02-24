@@ -1,18 +1,40 @@
-{% if person is not defined or person=="none" %}
-    <a href="/login">LOGIN</a>
-{% else %}
-    {% if "accueil" not in request.path and index is not defined %}
-        <a href="/">ACCUEIL</a>
+<div class="linksOtherPages_DIV">
+    {% if person is not defined or person=="none" %}
+        <a href="/login">LOGIN</a>
+    {% else %}
+        {% if "accueil" not in request.path and index is not defined %}
+            <a href="/">ACCUEIL</a>
+        {% endif %}
+        {% if "personnel" not in request.path %}
+            <a href="/resultats/personnel">{{ person.nickname }}</a>
+        {% endif %}
+        {% if "equipe" not in request.path %}
+            <a href="/resultats/equipe">MON EQUIPE</a>
+        {% endif %}
+        {% if "reglages" not in request.path %}
+            <a href="/reglages">REGLAGES</a>
+        {% endif %}
+        <a href="/logout">DECONNEXION</a>
     {% endif %}
-    {% if "personnel" not in request.path %}
-        <a href="/resultats/personnel">{{ person.nickname }}</a>
+</div>
+<div id="menu-container">
+    <ul id="menu-pages">
+    {% if person is not defined or person=="none" %}
+            <ul><a href="/login">LOGIN</a></ul>
+    {% else %}
+        {% if "accueil" not in request.path and index is not defined %}
+            <ul><a href="/">ACCUEIL</a></ul>
+        {% endif %}
+        {% if "personnel" not in request.path %}
+            <ul><a href="/resultats/personnel">{{ person.nickname }}</a></ul>
+        {% endif %}
+        {% if "equipe" not in request.path %}
+            <ul><a href="/resultats/equipe">MON EQUIPE</a></ul>
+        {% endif %}
+        {% if "reglages" not in request.path %}
+            <ul><a href="/reglages">REGLAGES</a></ul>
+        {% endif %}
+        <ul><a href="/logout">DECONNEXION</a></ul>
     {% endif %}
-    {% if "equipe" not in request.path %}
-        <a href="/resultats/equipe">MON EQUIPE</a>
-    {% endif %}
-    {% if "reglages" not in request.path %}
-        <a href="/reglages">REGLAGES</a>
-    {% endif %}
-    <a href="/logout">DECONNEXION</a>
-{% endif %}
-
+    </ul>
+</div>

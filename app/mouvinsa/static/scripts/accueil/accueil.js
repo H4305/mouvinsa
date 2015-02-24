@@ -2,6 +2,30 @@
  * Created by marcomontalto on 24/02/15.
  */
 
+jQuery(document).ready(function($) {
+    $('#menu-deroulant').on('click', function () {
+
+        var $menuContainer = $('#menu-container');
+
+        if ($menuContainer.is(':visible')) {
+            $menuContainer.hide();
+
+        }
+        else {
+            $menuContainer.show();
+        }
+
+        event.stopPropagation();
+    });
+});
+
+$(document).click(function(event) {
+    if(!$(event.target).closest('#menu-container').length && !$(event.target).closest('#menu-deroulant').length) {
+        if($('#menu-container').is(":visible")) {
+            $('#menu-container').hide()
+        }
+    }
+})
 
 $(document).ready(function() {
 
