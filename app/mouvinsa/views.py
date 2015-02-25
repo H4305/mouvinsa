@@ -525,7 +525,7 @@ def countCategories():
 
 @app.route('/groupes')
 def attributionGroupes():
-    i = 1;
+    i = 1
     message =""
     while (i<43):
         nomGroupe = Group.query.filter_by(id=i).first().label
@@ -541,10 +541,10 @@ def attributionGroupes():
 
 @app.route('/sendMail/groupes')
 def sendMailGroupes():
-    message = "";
-    index = 0;
+    message = ""
+    index = 0
     for person in Person.query.all():
-        index = index + 1;
+        index = index + 1
         if index<211:
             surnom = person.nickname
             email = person.email
@@ -556,14 +556,14 @@ def sendMailGroupes():
 
 @app.route('/sendMail/dernierRappel')
 def sendMailDerRappel():
-    message = "";
-    index = 0;
+    message = ""
+    index = 0
     for person in Person.query.all():
-        index = index + 1;
+        index = index + 1
         if index<211:
             surnom = person.nickname
             email = person.email
-            message += str(index) + ". " + surnom + "<br>";
+            message += str(index) + ". " + surnom + "<br>"
             #DO NOT UNCOMMENT sendMailDernierRappel(surnom=surnom, email=email)
     return message
 
