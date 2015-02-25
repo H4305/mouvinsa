@@ -12,6 +12,7 @@ from wtforms import FloatField, PasswordField, SelectField, DateField, validator
 from mouvinsa.controllers.inscription_controller import \
     messagePassword, messageLongueur4_25, CHOIX_SEXE, messagePoids, messageTaille, messageLongueur2_25, CHOIX_ANNEE, \
     CHOIX_CYCLE, CHOIX_FILIERE, CHOIX_DEPARTEMENT, messageLongueur3_100
+from mouvinsa.decorators import nocache
 
 LABEL_AFFILIATION = u'Affiliation'
 LABEL_POSITION = u'Position'
@@ -94,6 +95,7 @@ class UserForm(Form):
 
 
 @app.route('/uploads/<filename>')
+@nocache
 def display_picture(filename):
     """
     Display an uploaded picture

@@ -1,0 +1,86 @@
+.teamsGroup {
+    width: 70%;
+    background: white;
+    opacity: 0.85;
+    margin-left: auto;
+    margin-right: auto;
+}
+.teamsDivTitle {
+    background-color: #E42618;;
+    color: #FFF;
+    text-align: left;
+    font-weight: bold;
+    padding-left: 10px;
+    padding-top: 1px;
+    font-family: bebas_neue_bold,Helvetica,Arial;
+    font-size: 40px;
+    text-align: center;
+}
+.teamsTable {
+    width: 100%;
+}
+.team {
+    width: 15%;
+    height: 40px;
+    text-align: left;
+}
+.tableTeamPhoto {
+    border: 1px solid #fff;
+    border-radius: 20px;
+    width: 35px;
+    height: 35px;
+    box-shadow: 0px 0px 2px #000;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 10px;
+}
+.teamTable {
+    width: 97%;
+    margin-bottom: 10px;
+}
+.teamName {
+    text-align: left;
+    width: 75%;
+    font-size: large;
+}
+.steps {
+    text-align: left;
+    color: #837d7d;
+    font-size: small;
+}
+
+.listDescriptionTeam {
+    margin: 10px 0px 0px 0px;
+    padding: 0;
+    list-style-type: none;
+    border-bottom: #d3d3d3;
+    border-bottom-left-radius: 5px;
+    border-bottom-style: inset;
+    border-bottom-width: 1px;
+    border-bottom-right-radius: 5px;
+}
+
+.listDescriptionTeam:hover {
+    background-color: #cee5F5;
+}
+
+.listDescriptionTeam a {
+    font-family: bebas_neue_bold,Helvetica,Arial;
+}
+
+.counter {
+    width: 50%;
+    margin: 0 auto;
+}
+.logoMouvinsa {
+    text-align: center;
+}
+.imgIdGroup {
+   color: #000;
+    font-family: bebas_neue_bold,Helvetica,Arial;
+    font-size: 25px;
+    line-height: 5px;
+    text-shadow: 0px 0px 5px rgba(0, 0, 0, 0.9);
+    margin-left: 0px;
+    text-align: center;
+}

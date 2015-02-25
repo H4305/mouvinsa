@@ -1,0 +1,42 @@
+Dublin
+
+	17_0 -> 
+	17_1 -> Le Pont Samuel Beckett
+	17_2 -> La Cathédrale Saint-Patrick
+	17_3 -> Le port Dún Laoghaire
+
+Budapest
+
+	18_0 -> 
+	18_1 -> Bastion des pêcheurs
+	18_2 -> Le pont des chaînes
+	18_3 -> Le parlement hongrois 
+
+Alger
+	
+	19_0 -> 
+	19_1 -> Le square Port Saïd
+	19_2 -> Le Mémorial du martyr 
+	19_3 -> Bab El Oued ( "porte de la Rivière" )
+	
+Tunis
+
+	20_0 -> 
+	20_1 -> Cathédrale Saint-Vincent-de-Paul 
+	20_2 -> Theatre Municipal de Tunis
+	20_2 -> Theatre Municipal de Tunis
+	20_3 -> Ruines de Carthage
+
+Lisbonne
+
+	21_0 -> 
+	21_1 -> Parque Eduardo VII
+	21_2 -> Jardin botanique d'Ajuda
+	21_3 -> Port de Lisbonne
+
+Vienne
+	
+	22_0 -> 
+	22_1 -> Hofburg, résidence d'hiver des Habsbourg
+	22_2 -> Le parlement autrichien
+	22_3 -> Le palais du Belvédère

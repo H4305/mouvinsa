@@ -74,7 +74,7 @@
              <span id="fitness_span" class="span-visible">
                 {{ person.fitnessInfo.goal }}
              </span>
-            {{ form.goal() }}
+            {{ form.goal(type="number", min="100", max="100000", step="100") }}
         </td>
         <td class="td_button">
             <button id="fitness_cancel_button" class="annuler  invisible_button" type="button">
@@ -167,7 +167,7 @@
             <span id="weight_span" class="span-visible">
                 {{ person.weight }}
             </span>
-            {{ form.weight() }}
+            {{ form.weight(type="number", min="10", step="0.1") }}
         </td>
         <td class="td_button">
             <button id="weight_cancel_button" class="annuler  invisible_button" type="button">
@@ -184,7 +184,7 @@
             <span id="height_span" class="span-visible">
                 {{ person.height }}
             </span>
-            {{ form.height() }}
+            {{ form.height(type='number', min="100", max="300", step="1") }}
         </td>
         <td class="td_button">
             <button id="height_cancel_button" class="annuler  invisible_button" type="button">

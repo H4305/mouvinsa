@@ -10,7 +10,7 @@ from controllers.confirmation_controller import ConfirmationForm, updateProfil, 
 from controllers.signin_controller import LoginForm, MdpForm
 from controllers.inscription_controller import createEmployee, createStudent
 from models import db, Student, Person, Employee, Group, Steps, FitnessInfo
-from emails import sendInscriptionMailAndAlert, inscription_notification, inscription_alert, mail_mot_de_passe_oublie
+from emails import sendInscriptionMailAndAlert, inscription_notification, inscription_alert, mail_mot_de_passe_oublie, sendMailDernierRappel
 from mouvinsa.user import UserController
 from mouvinsa.utils.passHash import hash_password
 from mouvinsa.user.UserManager import loginmouv
@@ -25,7 +25,8 @@ import operator
 def home():
     person = getPersonFromSession()
     index = 'yes'
-    return render_template('/accueil/index.html', person=person, index=index)
+    groups = Group.query.all()
+    return render_template('/accueil/index.html', person=person, index=index, groups=groups)
 
 
 #@app.route('/', methods=['GET', 'POST'])
@@ -138,7 +139,7 @@ def forgetpassword():
         form = MdpForm(request.form)
         if form.validate():
             email = form.email.data
-            #email += "@insa-lyon.fr" #No need for email, we ask the full email already
+            email += "@insa-lyon.fr" #No need for email, we ask the full email already
             person = Person.query.filter_by(email=email).first()
             if person is None:
                 problem = u'L\'utilisateur %s n\'existe pas' %email
@@ -551,6 +552,19 @@ def sendMailGroupes():
             nomGroupe = Group.query.filter_by(id=numeroGroupe).first().label
             message += str(index) + ". " + surnom + " " + email + " " + str(numeroGroupe) + " " + nomGroupe + "<br>";
             #DO NOT UNCOMMENT sendMailGroupesDefinitifs(surnom=surnom, email=email, numeroGroupe=numeroGroupe, nomGroupe=nomGroupe)
+    return message
+
+@app.route('/sendMail/dernierRappel')
+def sendMailDerRappel():
+    message = "";
+    index = 0;
+    for person in Person.query.all():
+        index = index + 1;
+        if index<211:
+            surnom = person.nickname
+            email = person.email
+            message += str(index) + ". " + surnom + "<br>";
+            #DO NOT UNCOMMENT sendMailDernierRappel(surnom=surnom, email=email)
     return message
 
 @app.template_filter('datetimeformat')
