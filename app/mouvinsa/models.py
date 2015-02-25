@@ -140,7 +140,7 @@ class Group(db.Model):
 
     @property
     def distance(self):
-        return 100000 + self.stepSum * 0.64
+        return self.stepSum * 0.64
 
 
 class Steps(db.Model):
