@@ -233,20 +233,22 @@ def personnel():
     person = getPersonFromSession()
 
     if request.method == 'GET':
-        today = date.today().strftime('%d/%m/%Y')
 
-        startDate = datetime.datetime(2015, 02, 26)   # 1973-01-18 03:45:50
+        todayDate = date.today()
+        today = todayDate.strftime('%d/%m/%Y')
+
+        startDate = datetime.datetime(2015, 02, 26)
         days = 70
 
         list_date_steps = {}
 
-        for day in range(0, days):
+        for day in range(0,70):
             dateTemp = startDate + timedelta(days=day)
 
             stepsDay = Steps.query.filter_by(person_id=person.id, date=dateTemp).first()
 
             if stepsDay:
-                list_date_steps[dateTemp] = stepsDay
+                list_date_steps[dateTemp] = stepsDay.stepnumber
             else:
                 list_date_steps[dateTemp] = 0
 
@@ -275,7 +277,8 @@ def personnel():
         chartValues = (" ".join(chartValues) + "]")
         chartDates = (" ".join(chartDates) + "]")
         chartObjectifs = (" ".join(chartObjectifs) + "]")
-        return render_template('person/main.html', chartValues=chartValues, chartDates=chartDates, chartObjectifs=chartObjectifs, person=person, today=today, list_date_steps=sortedDateSteps, stepNumberPerson=stepNumberPerson)
+        fitnessInfo = FitnessInfo.query.filter_by(person_id=person.id).first()
+        return render_template('person/main.html', chartValues=chartValues, chartDates=chartDates, chartObjectifs=chartObjectifs, person=person, today=today, list_date_steps=sortedDateSteps, stepNumberPerson=stepNumberPerson, fitnessInfo=fitnessInfo)
     elif request.method == 'POST':
         return UserController.validateStepsData(request, person)
 
