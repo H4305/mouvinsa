@@ -7,7 +7,7 @@
         c73.388-125.666,130.5-209.427,130.5-281.5C386.5,108.427,328.074,50,256,50z M256,224.133c-25.848,0-46.801-20.953-46.801-46.8
         s20.953-46.8,46.801-46.8s46.801,20.953,46.801,46.8S281.848,224.133,256,224.133z"/>
     </svg>
-    <div class="destination-bar-pin" style="left:{{ '%.2f' % (group.distance / 1000 * 90.65 / group.city_tres_facile.level.distance) }}%">
+    <div class="destination-bar-pin" style="left:{{ '%.2f' % (group.distance / 1000 * 90.65 / group.city_destination.level.distance) }}%">
       <span class="destination-counter">
         {{ '%.0f' % (group.distance / 1000 ) }} Km
       </span>
@@ -23,7 +23,7 @@
     </svg>
     <img src="/static/images/logo-insa.png" class="destination-bar-insa" alt="">
     <span class="destination-distance">
-      {{ group.city_tres_facile.level.distance }} Km
+      {{ group.city_destination.level.distance }} Km
     </span>
   </div>
   <ul class="destination-list">

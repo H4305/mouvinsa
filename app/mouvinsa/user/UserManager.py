@@ -68,6 +68,11 @@ def update_from_form(person, form):
         form.image.data = person.image
 
     form.populate_obj(person)
+
+    if form.goal.data:
+        person.fitnessInfo.goal = int(form.goal.data)
+
+    db.session.merge(person)
     db.session.commit()
 
 

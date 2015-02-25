@@ -244,6 +244,7 @@ def personnel():
 
         for day in range(0,70):
             dateTemp = startDate + timedelta(days=day)
+
             stepsDay = Steps.query.filter_by(person_id=person.id, date=dateTemp).first()
 
             if stepsDay:
@@ -252,10 +253,32 @@ def personnel():
                 list_date_steps[dateTemp] = 0
 
         stepNumberPerson = round(FitnessInfo.query.filter_by(person_id=person.id).first().stepSum * 0.00064, 2)
-        fitnessInfo = FitnessInfo.query.filter_by(person_id=person.id).first()
-        UserController.checkStreakController(todayDate=todayDate, person=person, fitnessInfo=fitnessInfo)
 
-        return render_template('person/main.html', person=person, today=today, list_date_steps=sorted(list_date_steps.items(), key=operator.itemgetter(0)), stepNumberPerson=stepNumberPerson, fitnessInfo=fitnessInfo)
+        sortedDateSteps = sorted(list_date_steps.items(), key=operator.itemgetter(0))
+        chartDates = ["["]
+        chartValues = ["["]
+        chartObjectifs = ["["]
+
+        dateToday = datetime.datetime.today()
+        for dateIt in sortedDateSteps:
+            if dateIt[0] > dateToday:
+                break
+            chartObjectifs.append("10000")
+            chartObjectifs.append(',')
+            chartDates.append("'" + dateIt[0].strftime('%d/%m') + "'")
+            chartDates.append(',')
+            chartValues.append(str(dateIt[1]))
+            chartValues.append(',')
+
+        chartValues.pop()
+        chartDates.pop()
+        chartObjectifs.pop()
+
+        chartValues = (" ".join(chartValues) + "]")
+        chartDates = (" ".join(chartDates) + "]")
+        chartObjectifs = (" ".join(chartObjectifs) + "]")
+        fitnessInfo = FitnessInfo.query.filter_by(person_id=person.id).first()
+        return render_template('person/main.html', chartValues=chartValues, chartDates=chartDates, chartObjectifs=chartObjectifs, person=person, today=today, list_date_steps=sortedDateSteps, stepNumberPerson=stepNumberPerson, fitnessInfo=fitnessInfo)
     elif request.method == 'POST':
         return UserController.validateStepsData(request, person)
 
