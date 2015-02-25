@@ -23,10 +23,10 @@
   <script src="{{ url_for('static', filename='bower_components/chartist/dist/chartist.min.js') }}"></script>
   <script>
     var data = {
-      labels: ['Week1', 'Week2', 'Week3', 'Week4', 'Week5', 'Week6', 'Week7', 'Week8'],
+      labels: {{chartDates|safe}},
       series: [
-        [5000, 12000, 8000, 7000, 9000, 10000, 1000, 10000],
-        [10000, 10000, 10000, 10000, 10000, 10000, 10000, 10000, 10000 ]
+        {{chartValues}},
+        {{chartObjectifs}}
       ]
     };
   </script>
