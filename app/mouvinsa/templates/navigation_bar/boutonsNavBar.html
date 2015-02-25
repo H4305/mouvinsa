@@ -11,7 +11,7 @@
         {% if "equipe" not in request.path %}
             <a href="/resultats/equipe">MON EQUIPE</a>
         {% endif %}
-        {% if "reglages" not in request.path %}
+        {% if "reglages" not in request.path and "apropos" not in request.path%}
             <a href="/reglages">REGLAGES</a>
         {% endif %}
         <a href="/logout">DECONNEXION</a>
@@ -31,7 +31,7 @@
         {% if "equipe" not in request.path %}
             <ul><a href="/resultats/equipe">MON EQUIPE</a></ul>
         {% endif %}
-        {% if "reglages" not in request.path %}
+        {% if "reglages" not in request.path and "apropos" not in request.path %}
             <ul><a href="/reglages">REGLAGES</a></ul>
         {% endif %}
         <ul><a href="/logout">DECONNEXION</a></ul>

@@ -39,6 +39,11 @@
 
 	.titre_SPAN {
 		border-right: 1px solid #FFF;
+		display: table-cell;
+	}
+
+	#position-page {
+		display: inline-block;
 	}
 }
 
@@ -97,11 +102,21 @@
 
 
 	.titre_SPAN {
-		border-left: 1px solid #FFF;
+		display: table-cell;
 	}
 
 	#menu-container {
 		display:none;
+	}
+
+	#position-page {
+		display: inline-block;
+	}
+}
+
+@media screen and (max-width: 450px) {
+	#position-page {
+		display: none;
 	}
 }
 

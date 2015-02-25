@@ -29,6 +29,12 @@ def home():
     return render_template('/accueil/index.html', person=person, index=index, groups=groups)
 
 
+@app.route('/apropos', methods=['GET', 'POST'])
+def apropos():
+    person = getPersonFromSession()
+    return render_template('/a propos/main.html', person=person)
+
+
 #@app.route('/', methods=['GET', 'POST'])
 @app.route('/inscription', methods=['GET', 'POST'])
 def inscription():
