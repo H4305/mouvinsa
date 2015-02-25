@@ -53,16 +53,14 @@
              <span id="password_span" class="span-visible">
                  ****
              </span>
-            {{ form.password() }}
-            {{ form.confirm() }}
+            {{ form.password(placeholder=form.password.description) }}
+            {{ form.confirm(placeholder=form.confirm.description) }}
         </td>
         <td class="td_button">
             <button id="password_cancel_button" class="annuler  invisible_button" type="button">
                 Annuler
             </button>
-            <button id="password_validate_button" class="valider invisible_button" type="button">
-                Valider
-            </button>
+
             <button id="password_button" type="button"class="toggle-display">
                 <img src="{{ url_for('static', filename='images/edit-icon-red.png') }}">
             </button>
@@ -74,15 +72,13 @@
              <span id="fitness_span" class="span-visible">
                 {{ person.fitnessInfo.goal }}
              </span>
-            {{ form.goal(type="number", min="100", max="100000", step="100") }}
+            {{ form.goal(type="number", min="100", max="100000", step="100", placeholder=form.firstname.description) }}
         </td>
         <td class="td_button">
             <button id="fitness_cancel_button" class="annuler  invisible_button" type="button">
                 Annuler
             </button>
-            <button id="fitness_validate_button" class="valider invisible_button" type="button">
-                Valider
-            </button>
+
             <button id="fitness_button" type="button"class="toggle-display">
                 <img src="{{ url_for('static', filename='images/edit-icon-red.png') }}">
             </button>
@@ -94,15 +90,13 @@
              <span id="prenom_span" class="span-visible">
                 {{ person.firstname }}
              </span>
-            {{ form.firstname() }}
+            {{ form.firstname(placeholder=form.firstname.description) }}
         </td>
         <td class="td_button">
             <button id="prenom_cancel_button" class="annuler  invisible_button" type="button">
                 Annuler
             </button>
-            <button id="prenom_validate_button" class="valider invisible_button" type="button">
-                Valider
-            </button>
+
             <button id="prenom_button" type="button"class="toggle-display">
                 <img src="{{ url_for('static', filename='images/edit-icon-red.png') }}">
             </button>
@@ -114,15 +108,13 @@
              <span id="nom_span" class="span-visible">
                 {{ person.lastname }}
              </span>
-            {{ form.lastname() }}
+            {{ form.lastname(placeholder=form.lastname.description) }}
         </td>
         <td class="td_button">
             <button id="nom_cancel_button" class="annuler  invisible_button" type="button">
                 Annuler
             </button>
-            <button id="nom_validate_button" class="valider invisible_button" type="button">
-                Valider
-            </button>
+
             <button id="nom_button" type="button" class="toggle-display"><img src="{{ url_for('static', filename='images/edit-icon-red.png') }}"></button></td>
     </tr>
     <tr>
@@ -133,15 +125,13 @@
                     {{ person.birthdate.strftime('%d/%m/%Y') }}
                 {% endif %}
             </span>
-            {{ form.birthdate() }}
+            {{ form.birthdate(placeholder=form.birthdate.description) }}
         </td>
         <td class="td_button">
             <button id="date_cancel_button" class="annuler  invisible_button" type="button">
                 Annuler
             </button>
-            <button id="date_validate_button" class="valider invisible_button" type="button">
-                Valider
-            </button>
+
             <button id="birthdate_button" type="button" class="toggle-display"><img src="{{ url_for('static', filename='images/edit-icon-red.png') }}"></button></td>
     </tr>
     <tr>
@@ -150,15 +140,13 @@
             <span id="sex_span" class="span-visible">
                 {{ person.sex }}
             </span>
-            {{ form.sex() }}
+            {{ form.sex(placeholder=form.sex.description) }}
         </td>
         <td class="td_button">
             <button id="sex_cancel_button" class="annuler  invisible_button" type="button">
                 Annuler
             </button>
-            <button id="sex_validate_button" class="valider invisible_button" type="button">
-                Valider
-            </button>
+
             <button id="sex_button" type="button" class="toggle-display"><img src="{{ url_for('static', filename='images/edit-icon-red.png') }}"></button></td>
     </tr>
     <tr>
@@ -173,9 +161,7 @@
             <button id="weight_cancel_button" class="annuler  invisible_button" type="button">
                 Annuler
             </button>
-            <button id="weight_validate_button" class="valider invisible_button" type="button">
-                Valider
-            </button>
+
             <button id="weight_button" type="button" class="toggle-display"><img src="{{ url_for('static', filename='images/edit-icon-red.png') }}"></button></td>
     </tr>
     <tr>
@@ -190,9 +176,7 @@
             <button id="height_cancel_button" class="annuler  invisible_button" type="button">
                 Annuler
             </button>
-            <button id="height_validate_button" class="valider invisible_button" type="button">
-                Valider
-            </button>
+
             <button id="height_button" type="button" class="toggle-display"><img src="{{ url_for('static', filename='images/edit-icon-red.png') }}"></button></td>
     </tr>
     {% if cat =="enseignant" or cat=="iatos" %}
@@ -202,15 +186,13 @@
                 <span id="affiliation_span" class="span-visible">
                     {{ person.affiliation }}
                 </span>
-                {{ form.affiliation() }}
+                {{ form.affiliation(placeholder=form.affiliation.description) }}
             </td>
             <td class="td_button">
                 <button id="affiliation_cancel_button" class="annuler  invisible_button" type="button">
                     Annuler
                 </button>
-                <button id="affiliation_validate_button" class="valider invisible_button" type="button">
-                    Valider
-                </button>
+
                 <button id="affiliation_button" type="button" class="toggle-display"><img src="{{ url_for('static', filename='images/edit-icon-red.png') }}"></button></td>
         </tr>
         <tr class="tr_dernier">
@@ -219,15 +201,13 @@
                 <span id="position_span" class="span-visible">
                     {{ person.position }}
                 </span>
-                {{ form.position() }}
+                {{ form.position(placeholder=form.position.description) }}
             </td>
             <td class="td_button">
                 <button id="position_cancel_button" class="annuler  invisible_button" type="button">
                     Annuler
                 </button>
-                <button id="position_validate_button" class="valider invisible_button" type="button">
-                    Valider
-                </button>
+
                 <button id="position_button" type="button" class="toggle-display"><img src="{{ url_for('static', filename='images/edit-icon-red.png') }}"></button></td>
         </tr>
     {% else %}
@@ -238,15 +218,13 @@
                 <span id="cycle_span" class="span-visible">
                     {{ cycl }}
                 </span>
-                {{ form.cycle() }}
+                {{ form.cycle(placeholder=form.cycle.description) }}
             </td>
             <td class="td_button">
                 <button id="cycle_cancel_button" class="annuler  invisible_button" type="button">
                     Annuler
                 </button>
-                <button id="cycle_validate_button" class="valider invisible_button" type="button">
-                    Valider
-                </button>
+
                 <button id="cycle_button" type="button" class="toggle-display"><img src="{{ url_for('static', filename='images/edit-icon-red.png') }}"></button></td>
         </tr>
         <tr>
@@ -255,15 +233,13 @@
                 <span id="annee_span" class="span-visible">
                     {{ person.year }}
                 </span>
-                {{ form.year() }}
+                {{ form.year(placeholder=form.year.description) }}
             </td>
             <td class="td_button">
                 <button id="year_cancel_button" class="annuler  invisible_button" type="button">
                     Annuler
                 </button>
-                <button id="year_validate_button" class="valider invisible_button" type="button">
-                    Valider
-                </button>
+
                 <button id="year_button" type="button" class="toggle-display"><img src="{{ url_for('static', filename='images/edit-icon-red.png') }}"></button></td>
         </tr>
         <tr class="tr_dernier">
@@ -276,19 +252,17 @@
                 <span id="branch_span" class="span-visible">
                     {{ person.branch }}
                 </span>
-                {{ form.branch() }}
+                {{ form.branch(placeholder=form.branch.description) }}
             </td>
             <td class="td_button">
                 <button id="branch_cancel_button" class="annuler  invisible_button" type="button">
                     Annuler
                 </button>
-                <button id="branch_validate_button" class="valider invisible_button" type="button">
-                    Valider
-                </button>
+
                 <button id="branch_button" type="button" class="toggle-display"><img src="{{ url_for('static', filename='images/edit-icon-red.png') }}"></button>
             </td>
         </tr>
     {% endif %}
 </table>
-{{ form.submit() }}
+{{ form.submit(placeholder=form.submit.description) }}
 <hr class="setting"/>
