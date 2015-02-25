@@ -486,3 +486,34 @@ h1.group-name {
   left:0px;
   top:0px;
 }
+
+.modal {
+  display: none;
+  background:#fff;
+  width:400px;
+  padding:20px;
+  position: absolute;
+  left:50%;
+  top:50%;
+  margin-left:-235px;
+  margin-top:-200px;
+  z-index: 100;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.7);
+}
+
+.modal h2 {
+  font-family: bebas_neue_regular, Helvetica, Arial;
+  font-size: 40px;
+  color:#333;
+}
+
+.overlay {
+  display: none;
+  position: fixed;
+  left:0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  z-index: 99;
+  background: rgba(0,0,0,0.5);
+}

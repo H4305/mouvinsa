@@ -240,7 +240,7 @@ def personnel():
 
         list_date_steps = {}
 
-        for day in range(0,70):
+        for day in range(0, days):
             dateTemp = startDate + timedelta(days=day)
 
             stepsDay = Steps.query.filter_by(person_id=person.id, date=dateTemp).first()
@@ -252,7 +252,30 @@ def personnel():
 
         stepNumberPerson = round(FitnessInfo.query.filter_by(person_id=person.id).first().stepSum * 0.00064, 2)
 
-        return render_template('person/main.html', person=person, today=today, list_date_steps=sorted(list_date_steps.items(), key=operator.itemgetter(0)), stepNumberPerson=stepNumberPerson)
+        sortedDateSteps = sorted(list_date_steps.items(), key=operator.itemgetter(0))
+        chartDates = ["["]
+        chartValues = ["["]
+        chartObjectifs = ["["]
+
+        dateToday = datetime.datetime.today()
+        for dateIt in sortedDateSteps:
+            if dateIt[0] > dateToday:
+                break
+            chartObjectifs.append("10000")
+            chartObjectifs.append(',')
+            chartDates.append("'" + dateIt[0].strftime('%d/%m') + "'")
+            chartDates.append(',')
+            chartValues.append(str(dateIt[1]))
+            chartValues.append(',')
+
+        chartValues.pop()
+        chartDates.pop()
+        chartObjectifs.pop()
+
+        chartValues = (" ".join(chartValues) + "]")
+        chartDates = (" ".join(chartDates) + "]")
+        chartObjectifs = (" ".join(chartObjectifs) + "]")
+        return render_template('person/main.html', chartValues=chartValues, chartDates=chartDates, chartObjectifs=chartObjectifs, person=person, today=today, list_date_steps=sortedDateSteps, stepNumberPerson=stepNumberPerson)
     elif request.method == 'POST':
         return UserController.validateStepsData(request, person)
 
