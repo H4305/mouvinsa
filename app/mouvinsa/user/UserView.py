@@ -68,16 +68,17 @@ def generate_setting_form(request, person):
 
 class UserForm(Form):
     image = FileField( LABEL_IMAGE, [validators.regexp(u'.*\.(jpg|png)$'), validators.Optional()])
-    goal = FloatField(LABEL_GOAL,[validators.Optional()])
+    goal = FloatField(LABEL_GOAL,[validators.Optional()], description=LABEL_GOAL)
     password = PasswordField(LABEL_MOTDEPASSE, [
         validators.Optional(),
         validators.EqualTo('confirm', message=messagePassword),
         validators.Length(min=4, max=25, message=messageLongueur4_25)
-    ])
+        ],
+                             description=LABEL_MOTDEPASSE)
     lastname = StringField(LABEL_LASTNAME, [validators.Optional(), validators.Length(min=2, max=25, message=messageLongueur2_25)])
     firstname = StringField(LABEL_FIRSTNAME,
                        [validators.Optional(), validators.Length(min=2, max=25, message=messageLongueur2_25)])
-    confirm = PasswordField(LABEL_CONF_PASS)
+    confirm = PasswordField(LABEL_CONF_PASS, description=LABEL_CONF_PASS)
     birthdate = DateField(LABEL_BIRTHDATE, format='%d/%m/%Y', validators=[validators.Optional()])
     sex = SelectField(LABEL_SEX, choices=CHOIX_SEXE)
     weight = FloatField(LABEL_WEIGHT,
