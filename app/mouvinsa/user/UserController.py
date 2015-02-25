@@ -41,5 +41,7 @@ def saveSettings(person, form):
     return
 
 def validateStepsData(request, person):
-
     return UserManager.update_steps_ajax(person=person, form=request.form)
+
+def checkStreakController(todayDate, person, fitnessInfo):
+    return UserManager.checkStreakController(todayDate=todayDate, person=person, fitnessInfo=fitnessInfo)

@@ -233,26 +233,29 @@ def personnel():
     person = getPersonFromSession()
 
     if request.method == 'GET':
-        today = date.today().strftime('%d/%m/%Y')
 
-        startDate = datetime.datetime(2015, 02, 26)   # 1973-01-18 03:45:50
+        todayDate = date.today()
+        today = todayDate.strftime('%d/%m/%Y')
+
+        startDate = datetime.datetime(2015, 02, 26)
         days = 70
 
         list_date_steps = {}
 
         for day in range(0,70):
             dateTemp = startDate + timedelta(days=day)
-
             stepsDay = Steps.query.filter_by(person_id=person.id, date=dateTemp).first()
 
             if stepsDay:
-                list_date_steps[dateTemp] = stepsDay
+                list_date_steps[dateTemp] = stepsDay.stepnumber
             else:
                 list_date_steps[dateTemp] = 0
 
         stepNumberPerson = round(FitnessInfo.query.filter_by(person_id=person.id).first().stepSum * 0.00064, 2)
+        fitnessInfo = FitnessInfo.query.filter_by(person_id=person.id).first()
+        UserController.checkStreakController(todayDate=todayDate, person=person, fitnessInfo=fitnessInfo)
 
-        return render_template('person/main.html', person=person, today=today, list_date_steps=sorted(list_date_steps.items(), key=operator.itemgetter(0)), stepNumberPerson=stepNumberPerson)
+        return render_template('person/main.html', person=person, today=today, list_date_steps=sorted(list_date_steps.items(), key=operator.itemgetter(0)), stepNumberPerson=stepNumberPerson, fitnessInfo=fitnessInfo)
     elif request.method == 'POST':
         return UserController.validateStepsData(request, person)
 
