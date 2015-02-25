@@ -4,6 +4,20 @@
     <div class="bar-members">
         <h1 class="membres">Membres </h1>
     </div>
+    <table class="team_pers">
+        {% for person in group.persons %}
+            <tr>
+            <td>
+                <div class="person-avat-wrapper">
+                    <img src="{{ url_for('display_picture', filename=person.image) or '/static/images/person/defaultm.png' }}" alt="{{ person.nickname }}" class="person-avat">
+                </div></td>
+                <td><div class="person-nom-wrapper">
+                    <h1 class="person-nom">{{ person.nickname }}</h1>
+                </div></td>
+            </tr>
+        {% endfor %}
+    </table>
+
 </div>
 
 
