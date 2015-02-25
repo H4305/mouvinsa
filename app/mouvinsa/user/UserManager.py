@@ -2,6 +2,7 @@
 #  -*- coding: utf-8 -*-
 # coding: utf-8
 #
+EXT = '.jpg'
 
 __author__ = 'afaraut'
 
@@ -35,7 +36,7 @@ def change_password(person, password):
 def change_picture(person, file):
     if file and allowed_file(file.filename):
             # fileName, fileExtension = os.path.splitext('/path/to/somefile.ext')
-            filename = secure_filename(str(person.id))
+            filename = secure_filename(str(person.id) + EXT)
             path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
             file.save(path)
             person.image = filename
