@@ -12,9 +12,23 @@
     {% include "person/main/distance_bar.html" %}
     {% include "person/main/graph.html" %}
   </div>
+  <div class="overlay"></div>
+  <div class="modal">
+    <h2>{% block modalTitle %}{% endblock %}</h2>
+    {% block modalContent %}
+    {% endblock %}
+  </div>
 {% endblock %}
-
 {% block optScript %}
   <script src="{{ url_for('static', filename='bower_components/chartist/dist/chartist.min.js') }}"></script>
+  <script>
+    var data = {
+      labels: ['Week1', 'Week2', 'Week3', 'Week4', 'Week5', 'Week6', 'Week7', 'Week8'],
+      series: [
+        [5000, 12000, 8000, 7000, 9000, 10000, 1000, 10000],
+        [10000, 10000, 10000, 10000, 10000, 10000, 10000, 10000, 10000 ]
+      ]
+    };
+  </script>
   <script src="{{ url_for('static', filename='scripts/personal.js') }}"></script>
 {% endblock %}
