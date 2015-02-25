@@ -1,0 +1,58 @@
+/* Activity Box */
+
+.members-box {
+  position: relative;
+  width: 380px;
+  height: 385px;
+  border: none;
+  box-shadow: 0px 1px 3px rgba(0,0,0,0.3);
+  background: #fff;
+  margin-top: -150px;
+  margin-bottom: 40px;
+}
+
+.photo-box {
+  position: relative;
+  width: 560px;
+  height: 385px;
+  border: none;
+  box-shadow: 0px 1px 3px rgba(0,0,0,0.3);
+  background:  url('../images/destinations/2_1.jpg');
+  background-size: 560px 385px;
+  background-repeat: no-repeat;
+  margin-top: -425px;
+  margin-bottom: 40px;
+  margin-left: 400px;
+}
+
+.membres {
+  font-family: bebas_light;
+  font-size: 21px;
+  color: #fff;
+  margin-left: 30px;
+  border-bottom: none;
+  padding-top: 7px;
+}
+
+.bar-members {
+  position: relative;
+  height: 40px;
+  background: #E42618;
+;
+}
+
+.photos {
+  font-family: bebas_light;
+  font-size: 21px;
+  color: #fff;
+  margin-left: 30px;
+  border-bottom: none;
+  padding-top: 7px;
+}
+
+.bar-photos{
+  position: relative;
+  height: 40px;
+  background: #E42618;
+}
+
