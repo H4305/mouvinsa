@@ -63,18 +63,25 @@
     background-color: #313333;
 }
 
-h1 {
+.containerDescript h1, .containerDescript h2 {
+    margin-left: 20px;
     text-decoration: none;
     font-family: Helvetica, Arial, sans-serif;
     font-size: 30px;
     margin-left: 20px;
     border: none;
+    font-family: bebas_neue_regular, Helvetica, Arial;
 }
 
-.containerDescript h2 {
-    margin-left: 20px;
+.containerDescript h1 {
+    font-size: 40px;
 }
 
 .containerDescript p {
     margin-left: 20px;
+    font-family: Helvetica, Arial, sans-serif;
+}
+
+.containerDescript, .containerDescript ul {
+    font-family: Helvetica, Arial, sans-serif;
 }

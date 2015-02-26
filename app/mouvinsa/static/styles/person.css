@@ -549,7 +549,7 @@ pulse
   50% {
     transform: scale(1.2);
 
-    box-shadow: 0px 0px 7px yellow inset;
+    box-shadow: 0px 0px 7px #FFB300 inset;
   } 
   100% {
     transform: scale(1);
