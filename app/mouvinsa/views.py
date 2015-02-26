@@ -51,7 +51,13 @@ def home():
     person = getPersonFromSession()
     index = 'yes'
     groups = Group.query.all()
-    return render_template('/accueil/index.html', person=person, index=index, groups=groups)
+    nbPasTotales = 0
+    distanceTotale = 0
+    for group in groups:
+        nbPasTotales = nbPasTotales + group.stepSum
+        distanceTotale = distanceTotale + group.distance
+        toursTerre = round(distanceTotale/40075,2)
+    return render_template('/accueil/index.html', person=person, index=index, groups=groups, nbPasTotales="{:,}".format(nbPasTotales), distanceTotale="{:,}".format(distanceTotale), toursTerre=toursTerre)
 
 
 #A Propos
