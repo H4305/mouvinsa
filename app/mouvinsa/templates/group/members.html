@@ -9,7 +9,7 @@
             <tr>
             <td>
                 <div class="person-avat-wrapper">
-                    <img src="{{ url_for('display_picture', filename=person.image) if person.image else '/static/images/person/defaultm.png' }}" alt="{{ person.nickname }}" class="person-avat">
+                    <img src="{{ url_for('display_picture', filename=person.image) if person.image else url_for('static', filename="images/person/defaultm.png") }}" alt="{{ person.nickname }}" class="person-avat">
                 </div></td>
                 <td><div class="person-nom-wrapper">
                     <h1 class="person-nom">{{ person.nickname }}</h1>
