@@ -40,8 +40,9 @@
     margin-top: -5px !important;
 }
 
-#page-a-propos {
-    background: url("../../images/walking-into-the-sunset.jpg") no-repeat center fixed;
+#a-propos {
+    background: url("../../images/walking-into-the-sunset.jpg") no-repeat fixed center center / cover transparent;
+        background: url("../../images/walking-into-the-sunset.jpg") no-repeat center fixed;
     -webkit-backgroundtbody-size: cover; /* pour Chrome et Safari */
     -moz-background-size: cover; /* pour Firefox */
     -o-background-size: cover; /* pour Opera */
@@ -52,7 +53,7 @@
     width:100%;
 }
 
-#page-a-propos img {
+#photo-groupe {
     width: 793px;
     margin-left: auto;
     margin-right: auto;
@@ -77,4 +78,29 @@ h1 {
 
 .containerDescript p {
     margin-left: 20px;
+}
+
+.logos-a-propos {
+    position: relative;
+    text-align: center;
+    display: inline;
+    width: 100%;
+    margin-top: 2px;
+}
+
+.logo-a-propos {
+    position: relative;
+    width: 140px;
+    height: 50px;
+    margin-left: 115px;
+    top: 7px;
+}
+
+#mouvinsa-logo {
+    width: 180px;
+    top: 10px;
+}
+
+#logo-insa {
+    width:120px;
 }
