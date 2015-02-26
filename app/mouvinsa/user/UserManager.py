@@ -2,6 +2,7 @@
 #  -*- coding: utf-8 -*-
 # coding: utf-8
 #
+EXT = '.jpg'
 
 __author__ = 'afaraut'
 
@@ -15,6 +16,7 @@ from flask import jsonify
 from datetime import date, timedelta
 from werkzeug.utils import secure_filename, redirect
 from mouvinsa.app import app
+import datetime
 
 ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'gif'])
 
@@ -35,7 +37,7 @@ def change_password(person, password):
 def change_picture(person, file):
     if file and allowed_file(file.filename):
             # fileName, fileExtension = os.path.splitext('/path/to/somefile.ext')
-            filename = secure_filename(str(person.id))
+            filename = secure_filename(str(person.id) + EXT)
             path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
             file.save(path)
             person.image = filename
@@ -76,7 +78,7 @@ def update_from_form(person, form):
 
 
 def send_JSON_error(error_message):
-    return jsonify(error=error_message)
+    return jsonify(errorM=error_message)
 
 def update_steps_ajax(person, form):
     step=form['input-step']
@@ -99,7 +101,7 @@ def update_steps_ajax(person, form):
         swimInt = int(swim)
         daysToSubstractInt = int(daysToSubstract)
 
-        if daysToSubstractInt<0 or daysToSubstractInt>2:
+        if daysToSubstractInt!=0:# or daysToSubstractInt>2:
             error = "Date Invalide"
             return send_JSON_error(error_message=error)
 
@@ -147,8 +149,10 @@ def update_steps_ajax(person, form):
             city_changed = set_city_arrived_destination(moyenneDistancePas * stepsSumTotal, group)
 
             db.session.commit()
+            update_streaks(dateSteps=dateSteps, person=person, fitnessInfo=fitnessInfo)
+            db.session.commit()
 
-            return jsonify(date=dateSteps.strftime('%d/%m/%Y'), stepj=newStepsTotal, distanceTot=distanceTot, cityChanged = city_changed)
+            return jsonify(date=dateSteps.strftime('%d-%m'), stepj=newStepsTotal, distanceTot=distanceTot, cityChanged=city_changed, streak=fitnessInfo.streak, bestStreak=fitnessInfo.bestStreak)
 
         else:
             error = u'Une des valeurs rentrée est inférieure à 0.'
@@ -190,3 +194,98 @@ def set_city_arrived_destination(distanceGroup, group):
         city_changed = u'Félicitations! Ton équipe vient d\'arriver à %s' %group.city_arrived.nom
 
     return city_changed
+
+def checkStreakController(todayDate, person, fitnessInfo):
+    yesterday = get_previous_date(todayDate)
+    stepsYesterday = Steps.query.filter_by(date=yesterday, person_id=person.id).first()
+    stepsToday = Steps.query.filter_by(date=todayDate, person_id=person.id).first()
+    objPerso = fitnessInfo.goal
+
+    if not stepsYesterday or stepsYesterday.stepnumber > objPerso and not stepsToday or stepsToday.stepnumber > objPerso:
+        fitnessInfo.streak = 0
+
+    db.session.commit()
+
+    return
+
+def update_streaks(dateSteps, person, fitnessInfo):
+
+    newStreak = 0
+
+    today = date.today()
+    stepsDay = Steps.query.filter_by(person_id=person.id, date=today).first()
+    yesterday = get_previous_date(today)
+    stepsYesterday = Steps.query.filter_by(date=yesterday, person_id=person.id).first()
+
+    startDate = datetime.date(2015, 02, 26)
+    competitionDays = today - startDate
+
+    objPerso = fitnessInfo.goal
+
+    if dateSteps == today and stepsDay.stepnumber > objPerso:
+
+        newStreak = 1
+
+        for i in range(1,competitionDays.days + 1):
+            dateTest = today - timedelta(days=i)
+            stepsDay = Steps.query.filter_by(person_id=person.id, date=dateTest).first()
+
+            if stepsDay and stepsDay.stepnumber > objPerso:
+                newStreak = newStreak + 1
+            else:
+                break
+
+        fitnessInfo.streak = newStreak
+
+    #Not today. I check if today I put steps. Otherwise it will count only for the bestStreak
+    else:
+
+        if stepsDay and stepsDay.stepnumber > objPerso:
+            newStreak = 1
+
+            for i in range(1,competitionDays.days + 1):
+                dateTest = today - timedelta(days=i)
+                stepsDay = Steps.query.filter_by(person_id=person.id, date=dateTest).first()
+
+                if stepsDay and stepsDay.stepnumber > objPerso:
+                    newStreak = newStreak + 1
+                else:
+                    break
+
+            fitnessInfo.streak = newStreak
+
+        else:
+
+            if stepsYesterday and stepsYesterday.stepnumber > objPerso:
+
+                for i in range(0,competitionDays.days + 1):
+                    dateTest = yesterday - timedelta(days=i)
+                    stepsDay = Steps.query.filter_by(person_id=person.id, date=dateTest).first()
+
+                    if stepsDay and stepsDay.stepnumber > objPerso:
+                        newStreak = newStreak + 1
+                    else:
+                        break
+
+            else:
+
+                for i in range(0,competitionDays.days + 1):
+                    dateTest = dateSteps - timedelta(days=i)
+                    stepsDay = Steps.query.filter_by(person_id=person.id, date=dateTest).first()
+
+                    if stepsDay and stepsDay.stepnumber > objPerso:
+                        newStreak = newStreak + 1
+                    else:
+                        break
+
+    if newStreak > fitnessInfo.bestStreak:
+        fitnessInfo.bestStreak = newStreak
+
+
+    if Steps.query.filter_by(person_id=person.id, date=today).first().stepnumber < objPerso:
+        fitnessInfo.streak = 0
+
+    return
+
+def get_previous_date(date):
+    return date - timedelta(days=1)
