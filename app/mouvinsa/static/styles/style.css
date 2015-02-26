@@ -77,6 +77,11 @@ body {
     -o-background-size: cover; /* pour Opera */
     background-size: cover; /* version standardisÃ©e */
 }
+.activity-main {
+  margin-top: -30px;
+  position: relative;
+  max-width:960px;
+}
 
 .main {
     text-align: center;
