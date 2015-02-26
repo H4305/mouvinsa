@@ -7,9 +7,13 @@
 {% block main %}
     {% include "group/header.html" %}
   <div class="container activity-main">
-    {% include "group/destination_bar.html" %}
-    {% include "group/members.html" %}
-    {% include "group/infobox.html" %}
+    <div class="row-container">
+        {% include "group/destination_bar.html" %}
+    </div>
+    <div class="row-container">
+        {% include "group/members.html" %}
+        {% include "group/infobox.html" %}
+    </div>
   </div>
 
   <script src="{{ url_for('static', filename='scripts/personal.js') }}"></script>

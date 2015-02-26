@@ -1,28 +1,42 @@
 /* Activity Box */
+.row-container {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.row-elem {
+  display: inline-block;
+  vertical-align: top;
+}
+
 
 .members-box {
-  position: relative;
-  width: 350px;
+  /* position: relative; */
+  width: 347px;
   height: 400px;
   border: none;
   box-shadow: 0px 1px 3px rgba(0,0,0,0.3);
   background: #fff;
-  margin-top: -150px;
-  margin-bottom: 40px;
+  /* margin-top: -150px; */
+  /* margin-bottom: 40px; */
+  margin-right: 18px;
+  display: inline-block;
 }
 
-.photo-box {
-  position: relative;
+.photo-box, .slideshow {
+  /* display: inline-block; */
+  /* position: relative; */
   width: 590px;
   height: 400px;
-  border: none;
-  box-shadow: 0px 1px 3px rgba(0,0,0,0.3);
+  /* border: none; */
+  /* box-shadow: 0px 1px 3px rgba(0,0,0,0.3); */
  /* background:  url('../images/destinations/2_1.jpg');
   background-size: 590px 400px;
   background-repeat: no-repeat;*/
-  margin-top: -440px;
-  margin-bottom: 40px;
-  margin-left: 370px;
+  /* margin-top: -440px; */
+  /* margin-bottom: 40px; */
+  /* margin-left: 370px; */
+  overflow: hidden;
 }
 
 .membres {
@@ -94,3 +108,13 @@ h1.person-nom {
   margin-top: 1px;
 }
 
+.slideshow ul {
+    /* 4 images donc 4 x 100% */
+   width: 300%;
+   height: 200px;
+   padding:0; margin:0;
+   list-style: none;
+}
+.slideshow li {
+   float: left;
+}
