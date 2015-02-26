@@ -12,11 +12,10 @@ def validateSetting(request, person):
     if not form.errors:
         saveSettings(person, form)
         file = request.files['image']
-        if file:
-            UserManager.change_picture(person, file)
-        else:
-            return "Error with the picture"
-        return UserView.display_profil(person)
+        if file.filename:
+            if not UserManager.change_picture(person, file):
+                return "Error with the picture"
+        return UserView.display_settings(person, form)
     else:
         return UserView.display_settings(person, form)
 
@@ -42,5 +41,7 @@ def saveSettings(person, form):
     return
 
 def validateStepsData(request, person):
-
     return UserManager.update_steps_ajax(person=person, form=request.form)
+
+def checkStreakController(todayDate, person, fitnessInfo):
+    return UserManager.checkStreakController(todayDate=todayDate, person=person, fitnessInfo=fitnessInfo)

@@ -1,0 +1,230 @@
+.teamsGroup {
+    width: 70%;
+    background: white;
+    margin-left: auto;
+    margin-right: auto;
+}
+.teamsDivTitle {
+    background-color: #E42618;
+    color: #FFF;
+    text-align: left;
+    font-weight: bold;
+    padding-left: 10px;
+    padding-top: 1px;
+    font-family: bebas_neue_bold,Helvetica,Arial;
+    font-size: 40px;
+    text-align: center;
+}
+.teamsTable {
+    width: 100%;
+    background-color: rgba(256, 256, 256, 0.8);
+}
+.team {
+    width: 15%;
+    height: 40px;
+    text-align: left;
+}
+.tableTeamPhoto {
+    border: 1px solid #fff;
+    border-radius: 20px;
+    width: 35px;
+    height: 35px;
+    box-shadow: 0px 0px 2px #000;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 10px;
+}
+.teamTable {
+    width: 97%;
+    margin-bottom: 10px;
+    background-color: rgba(256, 256, 256, 0.8);
+}
+.teamName {
+    text-align: left;
+    width: 75%;
+    font-size: large;
+}
+.steps {
+    text-align: left;
+    color: #837d7d;
+    font-size: small;
+}
+
+.listDescriptionTeam {
+    margin: 10px 0px 0px 0px;
+    padding: 0;
+    list-style-type: none;
+    border-bottom: #d3d3d3;
+    border-bottom-left-radius: 5px;
+    border-bottom-style: inset;
+    border-bottom-width: 1px;
+    border-bottom-right-radius: 5px;
+}
+
+.listDescriptionTeam:hover {
+    background-color: #cee5F5;
+}
+
+.listDescriptionTeam a {
+    font-family: bebas_neue_bold,Helvetica,Arial;
+}
+
+.counter {
+    width: 50%;
+    margin: 0 auto;
+}
+.logoMouvinsa {
+    text-align: center;
+}
+.imgIdGroup {
+    color: #000;
+    font-family: bebas_neue_bold,Helvetica,Arial;
+    font-size: 25px;
+    line-height: 5px;
+    text-shadow: 0px 0px 5px rgba(0, 0, 0, 0.9);
+    margin-left: 0px;
+    text-align: center;
+}
+
+.nb-de-Pas-container {
+    font-family: bebas_neue_bold,Helvetica,Arial;
+    background-color: transparent;
+    color: #FFF;
+    font-size: 200px;
+    width: 850px;
+    margin: auto;
+    position: relative;
+    text-align: center;
+text-shadow: 0px 0px 5px rgba(0, 0, 0, 0.8);
+}
+
+.nb-de-Pas-container span{
+    font-size: 100px;
+}
+
+.nb-km-container {
+    font-family: bebas_neue_bold,Helvetica,Arial;
+    background-color: transparent;
+    color:white;
+    font-size: 100px;
+    margin:auto;
+    text-align: center;
+    text-shadow: 0px 0px 5px rgba(0, 0, 0, 0.8);
+}
+
+.nb-km-container span{
+    font-size: 50px;
+}
+
+#earth {
+  position: relative;
+  width: 300px;
+  height: 300px;
+  margin: 3em auto;
+  background: url(https://lh5.googleusercontent.com/-kkxEx-SkRaY/VBLF4BV2lZI/AAAAAAAAKao/FnKsv7402_c/s500/earthmap.jpg) 0 0 repeat;
+  border-radius: 50%;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+  background-size: 630px;
+  animation: rotate 60s linear infinite;
+  -webkit-animation: rotate 60s linear infinite;
+  -moz-animation: rotate 60s linear infinite;
+  -ms-animation: rotate 60s linear infinite;
+  -o-animation: rotate 60s linear infinite;
+  -webkit-transition: -webkit-transform 400ms linear;
+  -webkit-transform-style: preserve-3d;
+  -moz-transition: -moz-transform 400ms linear;
+  -moz-transform-style: preserve-3d;
+  transition: transform 400ms linear;
+  transform-style: preserve-3d;
+  box-shadow: inset 20px 0 80px 6px rgba(0, 0, 0, 1);
+  -moz-box-shadow: inset 20px 0 80px 6px rgba(0, 0, 0, 1);
+  -webkit-box-shadow: inset 20px 0 80px 6px rgba(0, 0, 0, 1);
+  color: #000;
+}
+
+#earth:after {
+  content: "";
+  position: absolute;
+  top: 0%;
+  left: 0%;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+  box-shadow: -80px 15px 80px 10px rgba(0,0,0,.9) inset;
+  -moz-box-shadow: -80px 15px 80px 10px rgba(0,0,0,.9) inset;
+  -webkit-box-shadow: -80px 15px 80px 10px rgba(0,0,0,.9) inset;
+}
+
+#earth:before {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  opacity: 0.2;
+  background: radial-gradient(circle at 100px 100px, #fff, #000);
+}
+
+@keyframes rotate {
+  0% {background-position: 0 0;}
+  100% {background-position: 630px 0;}
+}
+
+@-moz-keyframes rotate {
+  0% {background-position: 0 0;}
+  100% {background-position: 630px 0;}
+}
+
+@-webkit-keyframes rotate {
+  0% {background-position: 0 0;}
+  100% {background-position: 630px 0;}
+}
+
+@-ms-keyframes rotate {
+  0% {background-position: 0 0;}
+  100% {background-position: 630px 0;}
+}
+
+@-o-keyframes rotate {
+  0% {background-position: 0 0;}
+  100% {background-position: 630px 0;}
+}
+
+#earth img {
+    position:absolute;
+    height: 95%;
+}
+
+#earth span {
+    height: 95%;
+    font-family: bebas_neue_bold,Helvetica,Arial;
+    background-color: transparent;
+    color: #FFF;
+    font-size: 70px;
+    right: 100%;
+    position: absolute;
+    width: 300px;
+    top: 15%;
+    text-shadow: 0px 0px 5px rgba(0, 0, 0, 0.8);
+}
+
+@media (max-width: 850px) {
+    #earth span {
+        left: 100%;
+        right:0px;
+    }
+}
+

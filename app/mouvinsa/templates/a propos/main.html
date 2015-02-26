@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+{% block title %} A propos {% endblock %}
+{% block pageName %} A propos {% endblock %}
+{% block pageId %}a propos{% endblock %}
+{% block positionPage %}
+    A propos
+{% endblock %}
+{% block main %}
+    <div id="page-a-propos">
+        <div class="centered-container" >
+            {% include 'a propos/main/leprojet.html' %}
+        </div>
+
+        {% include 'apropos.html' %}
+    </div>
+{% endblock %}

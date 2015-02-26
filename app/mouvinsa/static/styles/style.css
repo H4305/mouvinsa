@@ -71,7 +71,7 @@ body {
 }
 
 #accueil {
-    background: url("../images/fitnessjog.jpg") no-repeat center fixed; 
+    background: url("../images/fond2.jpg") no-repeat center fixed;
     -webkit-backgroundtbody-size: cover; /* pour Chrome et Safari */
     -moz-background-size: cover; /* pour Firefox */
     -o-background-size: cover; /* pour Opera */
@@ -82,7 +82,7 @@ body {
     text-align: center;
     margin-left: auto;
     margin-right: auto;
-    max-width:642px;
+    max-width: 860px;
     width: 100%;
 }
 
@@ -101,8 +101,8 @@ body {
 }
 
 .logo-main {
-  max-width: 380px;
-  margin: 0px auto 50px;
+    max-width: 450px;
+    margin: 40px auto 50px;
 }
 
 .error {
@@ -113,17 +113,29 @@ body {
 }
 
 #footer {
-  padding-top: 10px;
-  padding-bottom: 10px;
-  text-align: center;
-  bottom: 0px;
-  color: #FFF;
-  background-color: #222222;
-  width: 100%;
+    padding-top: 25px;
+    padding-bottom: 10px;
+    text-align: center;
+    bottom: 0px;
+    color: #FFF;
+    background-color: #222222;
+    width: 100%;
+    background-image: url("../images/bg.jpg");
+    height: 110px;
+    font-family: bebas_neue_bold,Helvetica,Arial;
+    font-size: 20px;
+}
+
+#footer a:hover{
+    color:white;
+    -o-transition:.5s;
+  	-ms-transition:.5s;
+  	-moz-transition:.5s;
+  	-webkit-transition:.5s;
 }
 
 #footer .logo {
-  height:25px;
+  height: 35px;
   margin-right: 25px;
   margin-left: 25px;
 }
@@ -133,7 +145,6 @@ body {
     display: inline-block;
     border-right : 3px solid white;
     padding-right : 25px;
-    height: 35px;
 }
 
 #footer #copyright{
@@ -141,7 +152,6 @@ body {
     display: inline-block;
     border-left : 3px solid white;
     padding-left : 25px;
-    height: 35px;
 }
 
 #signin {
@@ -315,5 +325,10 @@ transform: rotate(5deg);
 
 .hidden {
     display: none;
+}
+
+#decouvrir-projet {
+    margin-bottom: 30px;
+    font-size: 30px;
 }
 

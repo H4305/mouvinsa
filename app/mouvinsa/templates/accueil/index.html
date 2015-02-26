@@ -7,15 +7,39 @@
 {% endblock %}
 {% block main %}
 	<div id="main" class="main">
-        <div class="inscriptionTermine_DIV">
-            <p>
-                Les inscriptions pour cette édition de Mouv'INSA sont terminées.
-                Pour toute info, nous contacter à l'adresse : mouvinsa.communication@gmail.com. A bientôt!
-            </p>
-        </div>
     	<img class="logo-main" src="{{ url_for('static', filename='images/logo.svg') }}" alt="">
-    	<div class="your-clock"></div>
+    	<div class="nb-de-Pas-container">{{ nbPasTotales }}<span id="pas-text">Pas</span></div>
+        <div class="nb-km-container">{{ distanceTotale }}<span id="km-text">Kilomètres</span></div>
     </div>
-    <br><br><br><br><br><br><br><br><br><br><br>
+    <div id="earth">
+        <span>L'INSA a fait {{ toursTerre }} tours de la terre!</span>
+        <img src="{{ url_for('static', filename='images/left.png') }}">
+    </div>
+    <div class="teamsGroup">
+        <div class="teamsDivTitle">Equipes</div>
+        <table id='teamsTable' class='teamsTable'>
+        {% for group in groups %}
+            <td>
+                <table class='teamTable'>
+                    <td class = 'team'>
+                        <a href="/resultats/equipe?idEquipe={{ group.id }}"><div class='imgIdGroup'>{{ loop.index }}</td></a>
+                    <td>
+                        <ul class='listDescriptionTeam'>
+                            <a href="/resultats/equipe?idEquipe={{ group.id }}"><li class='teamName'>{{ group.label }}</li></a>
+                            <li class='steps'>{{ group.stepSum or 0}} pas</li>
+                        </ul>
+                    </td>
+                </table>
+            </td>
+
+            {% if loop.index is divisibleby(3) %}
+                </tr><tr>
+            {% endif %}
+
+        {% endfor %}
+        </tr>
+        </table>
+    </div>
+
     {% include 'apropos.html' %}
 {% endblock %}

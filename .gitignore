@@ -2,6 +2,7 @@
 *.pyc
 .vagrant
 env/*.log
+db_repository/
 
 # Packages #
 ############

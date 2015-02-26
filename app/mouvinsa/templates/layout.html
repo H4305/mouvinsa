@@ -17,7 +17,9 @@
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/reglages.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/inscription/inscription_style.css') }}"/>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/navigationMenuStyle.css') }}"/>
-
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/accueil/accueil.css') }}"/>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/group.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/a propos/apropos.css') }}">
     <link href="{{ url_for('static', filename='images/icon.ico') }}" rel="icon" type="image/x-icon" />
 {% endblock %}
 
@@ -28,25 +30,20 @@
     <div id="page">
         <header></header>
         <nav id="navigation_menu_NAV">
-            <!--<div tabindex="0" class="menuButton_DIV" id="menuButton">
-                <div class="box-shadow-menu">
-                </div>
+            <button id="menu-deroulant">
+                <img src="{{ url_for('static', filename='images/menu2.png') }}">
                 {% block buttonMenu %}{% endblock %}
-            </div>-->
+            </button>
             <div class="titrePage_DIV">
-
                 <span class ="titre_SPAN">
-                     <a href="/"><img class="header-logo" src="../static/images/logo-white.svg" alt="logo mouvinsa" class="logo" /></a>- {% block positionPage %}{% endblock %}
+                     <a href="/"><img class="header-logo" src="../static/images/logo-white.svg" alt="logo mouvinsa" class="logo" /></a><span id="position-page">- {% block positionPage %}{% endblock %}</span>
                 </span>
             </div>
-            <div class="linksOtherPages_DIV">
-                {% include "navigation_bar/boutonsNavBar.html" %}
-            </div>
+            {% include "navigation_bar/boutonsNavBar.html" %}
         </nav>
         {% block main %}{% endblock %}
         <footer>{% include 'footer.html' %}</footer>
     </div>
     {%block optScript %}{% endblock %}
-
 </body>
 </html>

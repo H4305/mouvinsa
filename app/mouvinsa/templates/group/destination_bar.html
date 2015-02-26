@@ -7,9 +7,9 @@
         c73.388-125.666,130.5-209.427,130.5-281.5C386.5,108.427,328.074,50,256,50z M256,224.133c-25.848,0-46.801-20.953-46.801-46.8
         s20.953-46.8,46.801-46.8s46.801,20.953,46.801,46.8S281.848,224.133,256,224.133z"/>
     </svg>
-    <div class="destination-bar-pin">
+    <div class="destination-bar-pin" style="left:{{ '%.2f' % (group.distance / 1000 * 90.65 / group.city_destination.level.distance) }}%">
       <span class="destination-counter">
-        360km
+        {{ '%.0f' % (group.distance / 1000 ) }} Km ({{ (group.distance / 1000 )/0.00064 }} Pas)
       </span>
       <svg  version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
        width="90px" height="90px" viewBox="0 0 512 512" fill="#1286df" enable-background="new 0 0 512 512" xml:space="preserve">
@@ -22,13 +22,52 @@
       <rect id="distance-bar-rect" width="1500" height="7"/>
     </svg>
     <img src="/static/images/logo-insa.png" class="destination-bar-insa" alt="">
+    <span class="destination-distance">
+      {{ group.city_destination.level.distance }} Km ({{ group.city_destination.level.distance/0.00064 }} Pas)
+    </span>
   </div>
   <ul class="destination-list">
-    <li><strong>90<small>%</small></strong><span>Grenoble</span></li>
-    <li><strong>35<small>%</small></strong><span>Banane</span></li>
-    <li><strong>15<small>%</small></strong><span>Raisin</span></li>
-    <li><strong>5<small>%</small></strong><span>Smoothie</span></li>
-    <li><strong>1<small>%</small></strong><span>Chocolat</span></li>
-    <li><strong>0,2<small>%</small></strong><span>Arancina</span></li>
+    <li>
+      <svg width="140" height="140" class="svg-c" id="svg-c1" viewport="0 0 100 100" version="1.1" xmlns="http://www.w3.org/2000/svg">
+        <circle cy="70" cx="70" r="68" class="bar" fill="transparent" stroke-dasharray="427"></circle>
+      </svg>
+      <strong>{{ '%.0f' % (group.distance / 10 / group.city_tres_facile.level.distance) }}<small>%</small></strong>
+      <span>{{group.city_tres_facile.nom}}</span>
+      </li>
+    <li>
+      <svg class="svg-c" id="svg-c2" width="140" height="140" viewPort="0 0 100 100" version="1.1" xmlns="http://www.w3.org/2000/svg">
+        <circle cy="70" cx="70" r="68" class="bar" fill="transparent" stroke-dasharray="427"></circle>
+      </svg>
+      <strong>{{ '%.0f' % (group.distance / 10 / group.city_facile.level.distance) }}<small>%</small></strong>
+      <span>{{group.city_facile.nom}}</span>
+      </li>
+    <li>
+      <svg class="svg-c" id="svg-c3" width="140" height="140" viewPort="0 0 100 100" version="1.1" xmlns="http://www.w3.org/2000/svg">
+        <circle cy="70" cx="70" r="68" class="bar" fill="transparent" stroke-dasharray="427"></circle>
+      </svg>
+      <strong>{{ '%.0f' % (group.distance / 10 / group.city_moyen.level.distance) }}<small>%</small></strong>
+      <span>{{group.city_moyen.nom}}</span>
+      </li>
+    <li>
+      <svg class="svg-c" id="svg-c4" width="140" height="140" viewPort="0 0 100 100" version="1.1" xmlns="http://www.w3.org/2000/svg">
+        <circle cy="70" cx="70" r="68" class="bar" fill="transparent" stroke-dasharray="427"></circle>
+      </svg>
+      <strong>{{ '%.0f' % (group.distance / 10 / group.city_difficile.level.distance) }}<small>%</small>
+      </strong><span>{{group.city_difficile.nom}}</span>
+      </li>
+    <li>
+      <svg class="svg-c" id="svg-c5" width="140" height="140" viewPort="0 0 100 100" version="1.1" xmlns="http://www.w3.org/2000/svg">
+        <circle cy="70" cx="70" r="68" class="bar" fill="transparent" stroke-dasharray="427"></circle>
+      </svg>
+      <strong>{{ '%.0f' % (group.distance / 10 / group.city_tres_difficile.level.distance) }}<small>%</small></strong>
+      <span>{{group.city_tres_difficile.nom}}</span>
+      </li>
+    <li>
+      <svg class="svg-c" id="svg-c6" width="140" height="140" viewPort="0 0 100 100" version="1.1" xmlns="http://www.w3.org/2000/svg">
+        <circle cy="70" cx="70" r="68" class="bar" fill="transparent" stroke-dasharray="427"></circle>
+      </svg>
+      <strong>{{ '%.0f' % (group.distance / 10 / group.city_champion.level.distance) }}<small>%</small></strong>
+      <span>{{group.city_champion.nom}}</span>
+      </li>
   </ul>
 </div>
