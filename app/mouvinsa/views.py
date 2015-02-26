@@ -160,14 +160,14 @@ def personnel():
     if request.method == 'GET':
 
         todayDate = date.today()
-        today = todayDate.strftime('%d/%m/%Y')
+        today = todayDate.strftime('%d-%m')
 
         startDate = datetime.datetime(2015, 02, 26)
         days = 70
 
         list_date_steps = {}
 
-        for day in range(0,70):
+        for day in range(0, days):
             dateTemp = startDate + timedelta(days=day)
 
             stepsDay = Steps.query.filter_by(person_id=person.id, date=dateTemp).first()
@@ -185,12 +185,15 @@ def personnel():
         chartObjectifs = ["["]
 
         dateToday = datetime.datetime.today()
+
+        goal = person.fitnessInfo.goal or "0"
+
         for dateIt in sortedDateSteps:
             if dateIt[0] > dateToday:
                 break
-            chartObjectifs.append("10000")
+            chartObjectifs.append(str(goal))
             chartObjectifs.append(',')
-            chartDates.append("'" + dateIt[0].strftime('%d/%m') + "'")
+            chartDates.append("'" + dateIt[0].strftime('%d-%m') + "'")
             chartDates.append(',')
             chartValues.append(str(dateIt[1]))
             chartValues.append(',')
@@ -202,6 +205,8 @@ def personnel():
         chartValues = (" ".join(chartValues) + "]")
         chartDates = (" ".join(chartDates) + "]")
         chartObjectifs = (" ".join(chartObjectifs) + "]")
+
+
         return render_template('person/main.html', chartValues=chartValues, chartDates=chartDates, chartObjectifs=chartObjectifs, person=person, today=today, list_date_steps=sortedDateSteps, stepNumberPerson=stepNumberPerson)
     elif request.method == 'POST':
         return UserController.validateStepsData(request, person)

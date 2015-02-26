@@ -332,3 +332,12 @@ transform: rotate(5deg);
     font-size: 30px;
 }
 
+#decouvrir-projet img {
+    vertical-align: middle;
+    margin-right: 4px;
+}
+
+#decouvrir-projet a {
+    text-decoration: none;
+    font-size: 20px;
+}

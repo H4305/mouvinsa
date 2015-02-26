@@ -42,7 +42,6 @@
 
 #a-propos {
     background: url("../../images/walking-into-the-sunset.jpg") no-repeat fixed center center / cover transparent;
-        background: url("../../images/walking-into-the-sunset.jpg") no-repeat center fixed;
     -webkit-backgroundtbody-size: cover; /* pour Chrome et Safari */
     -moz-background-size: cover; /* pour Firefox */
     -o-background-size: cover; /* pour Opera */
@@ -64,20 +63,32 @@
     background-color: #313333;
 }
 
-h1 {
+.containerDescript h1 {
+    font-size:40px;
+}
+
+
+.containerDescript h1, .containerDescript h2 {
+    margin-left: 20px;
     text-decoration: none;
     font-family: Helvetica, Arial, sans-serif;
-    font-size: 30px;
     margin-left: 20px;
     border: none;
+    font-family: bebas_neue_regular, Helvetica, Arial;
 }
 
 .containerDescript h2 {
     margin-left: 20px;
+    font-size:30px;
 }
 
 .containerDescript p {
     margin-left: 20px;
+    font-family: Helvetica, Arial, sans-serif;
+}
+
+.containerDescript, .containerDescript ul {
+    font-family: Helvetica, Arial, sans-serif;
 }
 
 .logos-a-propos {
@@ -104,3 +115,4 @@ h1 {
 #logo-insa {
     width:120px;
 }
+
