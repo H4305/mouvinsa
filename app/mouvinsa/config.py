@@ -38,7 +38,7 @@ MAIL_PORT = 465
 MAIL_USE_TLS = False
 MAIL_USE_SSL = True
 MAIL_USERNAME = 'mouvinsa.communication@gmail.com'
-MAIL_PASSWORD = '.1Mouvinsa=Mouv+insa'
+MAIL_PASSWORD = ''
 DATE_DEBUT = "26/02/2015"
 UPLOAD_FOLDER = HOME_DIR + '/mouvinsa/uploads'
 UPLOAD_MAX_SIZE = 16 * 1024 * 1024
