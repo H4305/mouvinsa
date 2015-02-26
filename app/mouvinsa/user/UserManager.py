@@ -78,7 +78,7 @@ def update_from_form(person, form):
 
 
 def send_JSON_error(error_message):
-    return jsonify(error=error_message)
+    return jsonify(errorM=error_message)
 
 def update_steps_ajax(person, form):
     step=form['input-step']
@@ -101,7 +101,7 @@ def update_steps_ajax(person, form):
         swimInt = int(swim)
         daysToSubstractInt = int(daysToSubstract)
 
-        if daysToSubstractInt<0 or daysToSubstractInt>2:
+        if daysToSubstractInt!=0:# or daysToSubstractInt>2:
             error = "Date Invalide"
             return send_JSON_error(error_message=error)
 
@@ -152,7 +152,7 @@ def update_steps_ajax(person, form):
             update_streaks(dateSteps=dateSteps, person=person, fitnessInfo=fitnessInfo)
             db.session.commit()
 
-            return jsonify(date=dateSteps.strftime('%d/%m/%Y'), stepj=newStepsTotal, distanceTot=distanceTot, cityChanged=city_changed, streak=fitnessInfo.streak, bestStreak=fitnessInfo.bestStreak)
+            return jsonify(date=dateSteps.strftime('%d-%m'), stepj=newStepsTotal, distanceTot=distanceTot, cityChanged=city_changed, streak=fitnessInfo.streak, bestStreak=fitnessInfo.bestStreak)
 
         else:
             error = u'Une des valeurs rentrée est inférieure à 0.'

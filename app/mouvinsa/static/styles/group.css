@@ -26,12 +26,13 @@
 }
 
 .membres {
-  font-family: bebas_light;
   font-size: 21px;
   color: #fff;
   margin-left: 30px;
   border-bottom: none;
   padding-top: 7px;
+  font-family: bebas_neue_bold,Helvetica,Arial;
+  font-size: 26px;
 }
 
 .bar-members {
@@ -43,11 +44,11 @@
 
 .photos {
   font-family: bebas_light;
-  font-size: 21px;
+  font-size: 22px;
   color: #fff;
   margin-left: 30px;
   border-bottom: none;
-  padding-top: 7px;
+  padding-top: 9px;
 }
 
 .bar-photos{

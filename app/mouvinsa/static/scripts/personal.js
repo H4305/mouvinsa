@@ -161,6 +161,13 @@ activityForm.submit(function(e) {
     url: activityForm.attr('action'),
     data: activityForm.serializeArray(),
     success: function(ret) {
+        $("#distance-value-number").text(ret.distanceTot);
+        if (ret.hasOwnProperty('errorM')) {
+            window.alert(ret.errorM);
+        }else{
+            window.alert("Vos données ont été bien enregistrées");
+        }
+        document.getElementById('date-'+ret.date).setAttribute("data-step", "20");
       console.log(ret);
       var calendarEntry = document.getElementById('date-'+ret.date);
       calendarEntry.dataset.step = ret.stepj;

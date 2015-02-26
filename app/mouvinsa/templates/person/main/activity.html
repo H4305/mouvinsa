@@ -18,14 +18,14 @@
       <button class="submit-activity" id="submit-activity">&gt;</button>
     </form>
   </div>
-  
+
   <div class="activity-data">
     <h2>Toute votre activité</h2>
     <div class="tooltip" style="display:none"></div>
     <div class="calendar-wrapper" id="calendar">
       <ul class="calendar">
             {% for key in list_date_steps %}
-            <li data-step="{{ key.1 }}" id="date-{{ key.0|datetimeformat('%d - %m') }}" data-date="{{ key.0|datetimeformat('%d / %m') }}"></li>
+            <li data-step="{{ key.1 }}" id="date-{{ key.0|datetimeformat('%d-%m') }}" data-date="{{ key.0|datetimeformat('%d / %m') }}"></li>
                 {% if loop.index is divisibleby(7) %}
                     </ul>
                     <ul class="calendar">
