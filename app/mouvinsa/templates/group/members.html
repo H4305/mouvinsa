@@ -4,19 +4,18 @@
     <div class="bar-members">
         <h1 class="membres">Membres </h1>
     </div>
-    <table class="team_pers">
+    <ul class="team_pers">
         {% for person in group.persons %}
-            <tr>
-            <td>
+            <li>
                 <div class="person-avat-wrapper">
-                    <img src="{{ url_for('display_picture', filename=person.image) if person.image else url_for('static', filename="images/person/defaultm.png") }}" alt="{{ person.nickname }}" class="person-avat">
-                </div></td>
-                <td><div class="person-nom-wrapper">
+                    <img src="{{ url_for('display_picture', filename=person.image) if person.image else '/static/images/person/defaultm.png' }}" alt="{{ person.nickname }}" class="person-avat">
+                </div>
+                <div class="person-nom-wrapper">
                     <h1 class="person-nom">{{ person.nickname }}</h1>
-                </div></td>
-            </tr>
+                </div>
+            </li>
         {% endfor %}
-    </table>
+    </ul>
 
 </div>
 

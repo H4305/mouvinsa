@@ -67,9 +67,15 @@ var days = document.querySelectorAll('.calendar > li');
 var datePicker = document.getElementById('date-picker');
 var dateView = document.getElementById('date-view');
 
+var date = document.getElementById('date');
+
 var today = document.getElementById('today');
 if(today) {
   today = today.value;
+}
+
+if(date) {
+  date.value = 0;
 }
 
 for(var d = 0; d < days.length; d++) {
@@ -78,6 +84,7 @@ for(var d = 0; d < days.length; d++) {
   if(steps) {
     steps = parseInt(steps, 10);
     dayIterate.style.background = stepToHSL(steps);
+
     if(dayIterate.id == "date-" + today) {
       dayIterate.classList.add("calendar-today");
     }
@@ -86,7 +93,7 @@ for(var d = 0; d < days.length; d++) {
       actToolTip.innerHTML = "";
       actToolTip.appendChild(document.createTextNode(e.target.dataset.date));
       actToolTip.appendChild(document.createElement("br"));
-      actToolTip.appendChild(document.createTextNode(e.target.dataset.step));
+      actToolTip.appendChild(document.createTextNode(e.target.dataset.step + " Pas"));
       actToolTip.style.display = "block";
     });
     dayIterate.addEventListener('mousemove', function(e) {
@@ -116,7 +123,7 @@ if(dateView) {
 if(datePicker) {
   datePicker.addEventListener('click', function(e) {
     if(e.target.tagName == "LI") {
-      document.getElementById('date').value = e.target.id.substr(2);
+      date.value = e.target.id.substr(2);
       dateView.firstChild.textContent = e.target.innerHTML + " ";
       datePickerOpen = false;
       datePicker.style.display = "none";
@@ -145,7 +152,6 @@ setTimeout(function() {
 
       var pct = ((100-val)/100)*c;
 
-      console.log(r);
       el.style.strokeDashoffset = pct;
     }
   };
@@ -161,9 +167,34 @@ activityForm.submit(function(e) {
     url: activityForm.attr('action'),
     data: activityForm.serializeArray(),
     success: function(ret) {
+        $("#distance-value-number").text(ret.distanceTot);
+        if (ret.hasOwnProperty('errorM')) {
+            window.alert(ret.errorM);
+        }
+        document.getElementById('date-'+ret.date).setAttribute("data-step", "20");
       console.log(ret);
       var calendarEntry = document.getElementById('date-'+ret.date);
       calendarEntry.dataset.step = ret.stepj;
+      calendarEntry.style.background = stepToHSL(ret.stepj);
+      calendarEntry.classList.add("pulse");
+      setTimeout(function() {
+        calendarEntry.classList.remove("pulse");
+      },2000);
+
+      document.getElementById("distance-value-number").innerHTML = ret.distanceTot;
+
+      document.getElementById("streak").innerHTML = ret.streak + " Jours";
+      document.getElementById("best-streak").innerHTML = ret.bestStreak + " Jours";
+
+      if(ret.cityChanged != 'no') {
+        window.alert(ret.cityChanged);
+      }
+
+      /*data.labels.push(ret.date);
+      data.series[0].push(ret.stepj);
+      data.series[1].push(objPerso);
+
+      new Chartist.Line('.ct-chart', data, options);*/
     },
     dataType: "json"
   });
