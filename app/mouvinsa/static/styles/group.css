@@ -40,13 +40,12 @@
 }
 
 .membres {
+  font-family: bebas_light, sans-serif;
   font-size: 21px;
   color: #fff;
   margin-left: 30px;
   border-bottom: none;
   padding-top: 7px;
-  font-family: bebas_neue_bold,Helvetica,Arial;
-  font-size: 26px;
 }
 
 .bar-members {
@@ -57,12 +56,12 @@
 }
 
 .photos {
-  font-family: bebas_neue_bold, Helvetica, Arial;
-  font-size: 26px;
+  font-family: bebas_light;
+  font-size: 21px;
   color: #fff;
   margin-left: 30px;
   border-bottom: none;
-  line-height: 40px;
+  padding-top: 7px;
 }
 
 .bar-photos{
@@ -73,11 +72,11 @@
 
 
 .person-avat-wrapper {
-  margin-left:33px;
-  display: block;
-  position: relative;
-  float: left;
-  width: 70px;
+  /* margin-left:33px; */
+  display: inline-block;
+  /* position: relative; */
+  /* float: left; */
+  /* width: 50px; */
   text-align: right;
 }
 
@@ -90,9 +89,11 @@
 }
 
 .person-nom-wrapper{
-  margin-left: 100px;
-  padding-top: 32px;
-
+  vertical-align: top;
+  margin-left: 8px;
+  padding-top: 17px;
+  display: inline-block;
+  margin-top: 20px;
 }
 
 
@@ -100,22 +101,19 @@ h1.person-nom {
   font-family: bebas_neue_bold, Helvetica, Arial;
   font-weight: bold;
   font-size:23px;
-  color:#666;
+  color:#fff;
   border:none;
   margin-top:-10px;
+  text-shadow:0px 0px 5px rgba(0,0,0,0.8);
 }
 
 .team_pers {
   margin-top: 1px;
-  list-style: none;
-  margin: 0px;
-  padding: 0px;
+  list-style-type: none;
 }
 
 .team_pers li {
-  position: relative;
-  display: block;
-  height: 72px;
+  
 }
 
 .slideshow ul {
