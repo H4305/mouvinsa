@@ -210,6 +210,17 @@
 
                 <button id="position_button" type="button" class="toggle-display"><img src="{{ url_for('static', filename='images/edit-icon-red.png') }}"></button></td>
         </tr>
+
+        {% set cycl = person.cycle %}
+        <tr style="display: none">
+            <td>{{ form.cycle(placeholder=form.cycle.description) }}</td>
+        </tr>
+        <tr style="display: none">
+            <td>{{ form.year(placeholder=form.year.description) }}</td>
+        </tr>
+        <tr style="display: none">
+            <td>{{ form.branch(placeholder=form.branch.description) }}</td>
+        </tr>
     {% else %}
         {% set cycl = person.cycle %}
         <tr>
