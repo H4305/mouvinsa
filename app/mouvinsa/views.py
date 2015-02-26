@@ -7,13 +7,14 @@
 from flask import render_template, request, flash, url_for, redirect
 from app import app
 from controllers.signin_controller import LoginForm, MdpForm
-from models import db, Person, Group, Steps, FitnessInfo
-from emails import mail_mot_de_passe_oublie
+from models import db, Person, Group, Steps, FitnessInfo, Student, Employee
+from emails import mail_mot_de_passe_oublie, sendInscriptionMailAndAlert
 from mouvinsa.user import UserController
 from mouvinsa.utils.passHash import hash_password
 from mouvinsa.user.UserManager import loginmouv
 from mouvinsa.user.SessionManager import saveInSession, checkSession, clearSession, getPersonFromSession, login_required
 from mouvinsa.utils.mdp import generate_mdp
+from mouvinsa.controllers.inscription_controller import *
 from datetime import date, timedelta
 import datetime
 import operator
@@ -57,7 +58,7 @@ def home():
         nbPasTotales = nbPasTotales + group.stepSum
         distanceTotale = (distanceTotale + group.distance)
 
-    distanceTotale = distanceTotale/1000
+    distanceTotale = round(distanceTotale/1000, 1)
     toursTerre = round(distanceTotale/40075, 2)
     return render_template('/accueil/index.html', person=person, index=index, groups=groups, nbPasTotales="{:,}".format(nbPasTotales), distanceTotale="{:,}".format(distanceTotale), toursTerre=toursTerre)
 
@@ -251,3 +252,66 @@ def reglages():
     elif request.method == 'POST':
         return UserController.validateSetting(request, person)
 #-------------------------End web pages
+
+
+#@app.route('/', methods=['GET', 'POST'])
+#@app.route('/inscription', methods=['GET', 'POST'])
+'''def inscription():
+    form = InscriptionForm(request.form)
+    if request.method == 'POST'and form.validate():
+        utilisateurEmail = Person.query.filter_by(email = form.email.data).first()
+        utilisateur_pseudo = Person.query.filter_by(nickname = form.surnom.data).first()
+        if utilisateurEmail is None and utilisateur_pseudo is None:
+
+            if form.categorie.data == 'Etudiant':
+                student = Student()
+                createStudent(form, student)
+                db.session.add(student)
+                db.session.commit()
+                flash(u'Merci pour votre inscription '+student.nickname+u'. Vous allez recevoir un mail de confirmation dans quelques instants!!!:)', 'ok')
+                surnom = form.surnom.data
+                email = form.email.data
+                categorie = 'Etudiant'
+                nom = form.nom.data
+                prenom = form.prenom.data
+                sexe = form.sexe.data
+                dateNaissance = form.dateNaissance.data
+                poids = form.poids.data
+                taille = form.hauteur.data
+                cycle = form.cycle.data
+                annee = form.annee.data
+                departement = form.departement.data
+                filiere = form.filiere.data
+                position = form.position.data
+                affiliation = form.affiliation.data
+                #inscription_notification(surnom=surnom, email=email, categorie=categorie, nom=nom, prenom=prenom, sexe=sexe, dateNaissance=dateNaissance, poids=poids, taille=taille, cycle=cycle, annee=annee, departement=departement, filiere=filiere, position=position, affiliation=affiliation )
+                #inscription_alert(inscrits="NOT DEFINED", surnom=surnom, email=email, categorie=categorie, nom=nom, prenom=prenom, sexe=sexe, dateNaissance=dateNaissance, poids=poids, taille=taille, cycle=cycle, annee=annee, departement=departement, filiere=filiere, position=position, affiliation=affiliation )
+                sendInscriptionMailAndAlert(inscrits=Person.query.count(), surnom=surnom, email=email, categorie=categorie, nom=nom, prenom=prenom, sexe=sexe, dateNaissance=dateNaissance, poids=poids, taille=taille, cycle=cycle, annee=annee, departement=departement, filiere=filiere, position=position, affiliation=affiliation )
+                return  render_template('inscription/inscription.html', form=form)
+            else:
+                employee = Employee()
+                createEmployee(form, employee)
+                db.session.add(employee)
+                db.session.commit()
+                flash(u'Merci pour votre inscription '+employee.nickname+u'. Vous allez recevoir un mail de confirmation dans quelques instants!!!:)', 'ok')
+                surnom = form.surnom.data
+                email = form.email.data
+                categorie = form.categorie.data
+                nom = form.nom.data
+                prenom = form.prenom.data
+                sexe = form.sexe.data
+                dateNaissance = form.dateNaissance.data
+                poids = form.poids.data
+                taille = form.hauteur.data
+                departement = form.departement.data
+                filiere = form.filiere.data
+                position = form.position.data
+                affiliation = form.affiliation.data
+                #inscription_notification(surnom=surnom, email=email, categorie=categorie, nom=nom, prenom=prenom, sexe=sexe, dateNaissance=dateNaissance, poids=poids, taille=taille, cycle='NONE', annee='NONE', departement=departement, filiere=filiere, position=position, affiliation=affiliation)
+                sendInscriptionMailAndAlert(inscrits=Person.query.count(), surnom=surnom, email=email, categorie=categorie, nom=nom, prenom=prenom, sexe=sexe, dateNaissance=dateNaissance, poids=poids, taille=taille, cycle='NONE', annee='NONE', departement=departement, filiere=filiere, position=position, affiliation=affiliation )
+                return  render_template('inscription/inscription.html', form=form)
+        elif utilisateurEmail is not None:
+            flash(u'L\'email que vous voulez utiliser existe déjà. ', 'errorEmail')
+        else:
+            flash(u'Le pseudonyme que vous voulez utiliser existe déjà. Veuillez choisir un autre. ', 'errorPseudo')
+    return render_template('inscription/inscription.html', form=form)'''
