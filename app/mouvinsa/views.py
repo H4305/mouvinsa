@@ -258,10 +258,13 @@ def personnel():
         chartObjectifs = ["["]
 
         dateToday = datetime.datetime.today()
+
+        goal = person.fitnessInfo.goal or "0"
+
         for dateIt in sortedDateSteps:
             if dateIt[0] > dateToday:
                 break
-            chartObjectifs.append("10000")
+            chartObjectifs.append(goal)
             chartObjectifs.append(',')
             chartDates.append("'" + dateIt[0].strftime('%d/%m') + "'")
             chartDates.append(',')
@@ -275,6 +278,8 @@ def personnel():
         chartValues = (" ".join(chartValues) + "]")
         chartDates = (" ".join(chartDates) + "]")
         chartObjectifs = (" ".join(chartObjectifs) + "]")
+
+
         return render_template('person/main.html', chartValues=chartValues, chartDates=chartDates, chartObjectifs=chartObjectifs, person=person, today=today, list_date_steps=sortedDateSteps, stepNumberPerson=stepNumberPerson)
     elif request.method == 'POST':
         return UserController.validateStepsData(request, person)
