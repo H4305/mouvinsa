@@ -101,7 +101,7 @@ def update_steps_ajax(person, form):
         swimInt = int(swim)
         daysToSubstractInt = int(daysToSubstract)
 
-        if daysToSubstractInt!=0:# or daysToSubstractInt>2:
+        if daysToSubstractInt>1:
             error = "Date Invalide"
             return send_JSON_error(error_message=error)
 
