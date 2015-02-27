@@ -168,8 +168,11 @@ activityForm.submit(function(e) {
     data: activityForm.serializeArray(),
     success: function(ret) {
         $("#distance-value-number").text(ret.distanceTot);
+        $("#dialog-container").show();
         if (ret.hasOwnProperty('errorM')) {
-            window.alert(ret.errorM);
+            //window.alert(ret.errorM);
+            $("#title-dialog").text("ERROR");
+            $("#message-dialog").text(ret.errorM);
         }
         document.getElementById('date-'+ret.date).setAttribute("data-step", "20");
       console.log(ret);
@@ -187,8 +190,15 @@ activityForm.submit(function(e) {
       document.getElementById("best-streak").innerHTML = ret.bestStreak + " Jours";
 
       if(ret.cityChanged != 'no') {
-        window.alert(ret.cityChanged);
+          $("#title-dialog").text("Nouvelle ville!");
+            //window.alert("Vos données ont bien été enregistrées!\n "+ ret.cityChanged);
+          $("#message-dialog").text(ret.cityChanged + "\n Date:" + ret.date + "-15    Pas:" + ret.stepj);
+      }else{
+          $("#title-dialog").text("Confirmation");
+          //window.alert("Vos données ont bien été enregistrées!");
+          $("#message-dialog").text("Vos données ont bien été enregistrées!\n Date:" + ret.date + "-15    Pas:" + ret.stepj);
       }
+
 
       /*data.labels.push(ret.date);
       data.series[0].push(ret.stepj);
@@ -246,3 +256,9 @@ $chart.on('mousemove', function(event) {
 });
 
 new Chartist.Line('.ct-chart', data, options);
+
+    jQuery(document).ready(function($) {
+    $('#button-continue').on('click', function () {
+        $("#dialog-container").hide();
+    });
+});
