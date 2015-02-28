@@ -7,4 +7,4 @@ class LoginForm(Form):
     password = PasswordField('password', [validators.DataRequired()])
 
 class MdpForm(Form):
-    email = StringField('email', [validators.Length(min=4, max=25)])
+    email = StringField('email', [validators.Length(min=4, max=40)])
