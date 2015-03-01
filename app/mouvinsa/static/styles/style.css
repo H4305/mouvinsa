@@ -315,6 +315,11 @@ transform: rotate(5deg);
     font-size:10px;
 }
 
+#page-a-propos {
+    margin-top: 90px
+}
+
+
 .inscriptionTermine_DIV {
     border: solid 2px black;
     background: white;
