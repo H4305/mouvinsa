@@ -4,10 +4,10 @@
 
 
 #-------------------Imports
-from flask import render_template, request, flash, url_for, redirect
+from flask import render_template, request, flash, url_for, redirect, jsonify
 from app import app
 from controllers.signin_controller import LoginForm, MdpForm
-from models import db, Person, Group, Steps, FitnessInfo, Student, Employee
+from models import db, Person, Group, Steps, FitnessInfo, Student, Employee, Questions
 from emails import mail_mot_de_passe_oublie, sendInscriptionMailAndAlert
 from mouvinsa.user import UserController
 from mouvinsa.utils.passHash import hash_password
@@ -16,7 +16,7 @@ from mouvinsa.user.SessionManager import saveInSession, checkSession, clearSessi
 from mouvinsa.utils.mdp import generate_mdp
 from mouvinsa.controllers.inscription_controller import *
 from datetime import date, timedelta
-import datetime
+import datetime, time
 import operator
 #-------------------End Imports
 
@@ -153,6 +153,56 @@ def logout():
             clearSession()
         return redirect(url_for('home'))
 
+def date2Timestamp(hour, formatage="%d-%m-%Y"):
+    """This function allows to convert a date into a timestamp"""
+    return int(time.mktime(datetime.datetime.strptime(hour, formatage).timetuple()))
+
+@app.route('/questionsante', methods=['POST'])
+@login_required
+def questionSante():
+    if request.method == 'POST':
+        numeroQuestion = request.form['input-numeroQuestion']
+        value = request.form['input-value']
+        person = getPersonFromSession()
+        question = Questions.query.filter_by(person_id=person.id).first()
+        if int(numeroQuestion) == 1:
+            question.firstValue = value
+            db.session.commit()
+        elif int(numeroQuestion) == 2:
+            question.secondValue = value
+            db.session.commit()
+        elif int(numeroQuestion) == 3:
+            question.thirdValue = value
+            db.session.commit()
+        return jsonify(result="OK")
+
+@login_required
+def jourQuestionSante():
+    dateToday = date.today().strftime('%d-%m-%Y')
+    timestampToday = date2Timestamp(str(dateToday))
+
+    dateDebutMouvinsa = datetime.datetime(2015, 03, 04).strftime('%d-%m-%Y')
+    timestampDateDebutMouvinsa = date2Timestamp(str(dateDebutMouvinsa))
+
+    # 02 avril
+    dateMilieuMouvinsa = datetime.datetime(2015, 04, 02).strftime('%d-%m-%Y')
+    timestampDateMilieuMouvinsa = date2Timestamp(str(dateMilieuMouvinsa))
+
+    # 06 mai
+    dateFinMouvinsa = datetime.datetime(2015, 05, 06).strftime('%d-%m-%Y')
+    timestampdateFinMouvinsa = date2Timestamp(str(dateFinMouvinsa))
+
+    person = getPersonFromSession()
+    question = Questions.query.filter_by(person_id=person.id).first()
+
+    if timestampToday == timestampDateDebutMouvinsa and len(question.firstValue) == 0:
+        return 1
+    elif timestampToday == timestampDateMilieuMouvinsa and len(question.secondValue) == 0:
+        return 2
+    elif timestampToday == timestampdateFinMouvinsa and len(question.thirdValue) == 0:
+        return 3
+    else:
+        return 0
 
 #Page Personnelle
 @app.route('/resultats/personnel', methods=['GET', 'POST'])
@@ -209,8 +259,15 @@ def personnel():
         chartDates = (" ".join(chartDates) + "]")
         chartObjectifs = (" ".join(chartObjectifs) + "]")
 
+        jQuesSante = jourQuestionSante()
+        if jQuesSante != 0:
+            display = "display:block;"
+            title = u'Niveau d\'activité physique'
+        else:
+            display = ""
+            title =""
 
-        return render_template('person/main.html', chartValues=chartValues, chartDates=chartDates, chartObjectifs=chartObjectifs, person=person, today=today, list_date_steps=sortedDateSteps, stepNumberPerson=stepNumberPerson)
+        return render_template('person/main.html', title=title, display=display, jQuesSante=jQuesSante, chartValues=chartValues, chartDates=chartDates, chartObjectifs=chartObjectifs, person=person, today=today, list_date_steps=sortedDateSteps, stepNumberPerson=stepNumberPerson)
     elif request.method == 'POST':
         return UserController.validateStepsData(request, person)
 

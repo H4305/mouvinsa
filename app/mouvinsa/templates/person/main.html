@@ -12,10 +12,13 @@
     {% include "person/main/distance_bar.html" %}
     {% include "person/main/graph.html" %}
   </div>
-  <div class="overlay"></div>
-  <div class="modal">
-    <h2>{% block modalTitle %}{% endblock %}</h2>
+  <div class="overlay" style="{{ display }}"></div>
+  <div class="modal" style="{{ display }}">
+    <h2>{% block modalTitle %}{{ title }}{% endblock %}</h2>
     {% block modalContent %}
+        {% if jQuesSante != 0 %}
+            {% include "person/formulaire_question/question.html" %}
+        {% endif %}
     {% endblock %}
   </div>
 {% endblock %}
@@ -32,4 +35,5 @@
     var objPerso = {{person.fitnessInfo.goal or "0"}};
   </script>
   <script src="{{ url_for('static', filename='scripts/personal.js') }}"></script>
+    <script src="{{ url_for('static', filename='scripts/question.js') }}"></script>
 {% endblock %}

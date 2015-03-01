@@ -101,7 +101,7 @@ def update_steps_ajax(person, form):
         swimInt = int(swim)
         daysToSubstractInt = int(daysToSubstract)
 
-        if daysToSubstractInt!=0:# or daysToSubstractInt>2:
+        if daysToSubstractInt>2 or daysToSubstractInt<0:
             error = "Date Invalide"
             return send_JSON_error(error_message=error)
 
@@ -169,29 +169,41 @@ def set_city_arrived_destination(distanceGroup, group):
         group.city_arrived_id = 35
         group.city_destination_id = group.city_tres_facile_id
     elif distanceGroup >= 200 and distanceGroup < 450:
+        last_city_arrived_id = group.city_arrived_id
         group.city_arrived_id = group.city_tres_facile_id
         group.city_destination_id = group.city_facile_id
-        city_changed = u'Félicitations! Ton équipe vient d\'arriver à %s' %group.city_arrived.nom
+        if last_city_arrived_id != group.city_arrived_id:
+            city_changed = u'Félicitations! Ton équipe vient d\'arriver à %s' %group.city_arrived.nom
     elif distanceGroup >= 450 and distanceGroup < 700:
+        last_city_arrived_id = group.city_arrived_id
         group.city_arrived_id = group.city_facile_id
         group.city_destination_id = group.city_moyen_id
-        city_changed = u'Félicitations! Ton équipe vient d\'arriver à %s' %group.city_arrived.nom
+        if last_city_arrived_id != group.city_arrived_id:
+            city_changed = u'Félicitations! Ton équipe vient d\'arriver à %s' %group.city_arrived.nom
     elif distanceGroup >= 700 and distanceGroup < 1100:
+        last_city_arrived_id = group.city_arrived_id
         group.city_arrived_id = group.city_moyen_id
         group.city_destination_id = group.city_difficile_id
-        city_changed = u'Félicitations! Ton équipe vient d\'arriver à %s' %group.city_arrived.nom
+        if last_city_arrived_id != group.city_arrived_id:
+            city_changed = u'Félicitations! Ton équipe vient d\'arriver à %s' %group.city_arrived.nom
     elif distanceGroup >= 1100 and distanceGroup < 1700:
+        last_city_arrived_id = group.city_arrived_id
         group.city_arrived_id = group.city_difficile_id
         group.city_destination_id = group.city_tres_difficile_id
-        city_changed = u'Félicitations! Ton équipe vient d\'arriver à %s' %group.city_arrived.nom
+        if last_city_arrived_id != group.city_arrived_id:
+            city_changed = u'Félicitations! Ton équipe vient d\'arriver à %s' %group.city_arrived.nom
     elif distanceGroup >= 1700 and distanceGroup < 3000:
+        last_city_arrived_id = group.city_arrived_id
         group.city_arrived_id = group.city_tres_difficile_id
         group.city_destination_id = group.city_champion_id
-        city_changed = u'Félicitations! Ton équipe vient d\'arriver à %s' %group.city_arrived.nom
+        if last_city_arrived_id != group.city_arrived_id:
+            city_changed = u'Félicitations! Ton équipe vient d\'arriver à %s' %group.city_arrived.nom
     elif distanceGroup >= 3000:
+        last_city_arrived_id = group.city_arrived_id
         group.city_arrived_id = group.city_champion_id
         group.city_destination_id = group.city_champion_id
-        city_changed = u'Félicitations! Ton équipe vient d\'arriver à %s' %group.city_arrived.nom
+        if last_city_arrived_id != group.city_arrived_id:
+            city_changed = u'Félicitations! Ton équipe vient d\'arriver à %s' %group.city_arrived.nom
 
     return city_changed
 
