@@ -1,6 +1,6 @@
 {% extends "layout.html" %}
-{% block title %} Accueil {% endblock %}
-{% block pageName %} Accueil {% endblock %}
+{%  set title = "Accueil" %}
+{% block pageName %}{{ title }}{% endblock %}
 {% block pageId %}accueil{% endblock %}
 {% block positionPage %}
     Accueil
