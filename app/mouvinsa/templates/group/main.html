@@ -1,8 +1,9 @@
 {% extends "layout.html" %}
-{% block title %} {{ group.label }} {% endblock %}
-{% block pageName %} {{ group.label }} {% endblock %}
+{% set title = group.label %}
+{% block title %} {{ title }} {% endblock %}
+{% block pageName %} {{ titile }} {% endblock %}
 {% block positionPage %}
-    {{ group.label }}
+    {{ title }}
 {% endblock %}
 {%  block pageHeader %} {% include "group/header.html" %} {% endblock %}
 {% block main %}
