@@ -4,9 +4,10 @@
 {% block positionPage %}
     ma page
 {% endblock %}
+{% block pageHeader %}{% include "person/main/header.html" %}{% endblock %}
 {% block main %}
 <input type="hidden" id="today" value="{{today}}">
-    {% include "person/main/header.html" %}
+
   <div class="container activity-main">
     {% include "person/main/activity.html" %}
     {% include "person/main/distance_bar.html" %}
@@ -23,6 +24,7 @@
   </div>
 {% endblock %}
 {% block optScript %}
+    {{ super() }}
   <script src="{{ url_for('static', filename='bower_components/chartist/dist/chartist.min.js') }}"></script>
   <script>
     var data = {

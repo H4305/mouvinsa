@@ -25,8 +25,9 @@ $(document).click(function(event) {
             $('#menu-container').hide()
         }
     }
-})
+});
 
+/*
 $(document).ready(function() {
 
     //en moyenne 8000 pas / jour * 100 personnes = 800 000 pas/jour = aprox 10 pas par seconde
@@ -39,4 +40,4 @@ $(document).ready(function() {
         clockFace: 'Counter'
     });
 
-});
+});*/

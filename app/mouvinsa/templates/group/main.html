@@ -4,9 +4,9 @@
 {% block positionPage %}
     {{ group.label }}
 {% endblock %}
+{%  block pageHeader %} {% include "group/header.html" %} {% endblock %}
 {% block main %}
-    {% include "group/header.html" %}
-  <div class="container activity-main-gr">
+  <div class=" activity-main-gr">
     <div class="row-container">
         {% include "group/destination_bar.html" %}
     </div>

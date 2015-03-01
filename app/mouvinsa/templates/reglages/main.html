@@ -5,8 +5,8 @@
 {% block positionPage %}
     Reglages
 {% endblock %}
+{% block pageHeader %}{% include "person/main/header.html" %}{% endblock pageHeader %}
 {% block main %}
-    {% include "person/main/header.html" %}
     <form method="post" enctype="multipart/form-data" action="{{ url_for('reglages') }}" >
         {{ form.hidden_tag() }}
        <div class="container account-content">

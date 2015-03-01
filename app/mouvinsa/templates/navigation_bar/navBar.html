@@ -1,0 +1,17 @@
+<nav id="navigation_menu">
+    <button id="menu-deroulant">
+        <img src="{{ url_for('static', filename='images/menu2.png') }}">
+        {% block buttonMenu %}{% endblock %}
+    </button>
+    <div class="titrePage_DIV">
+                <span class="titre_SPAN">
+                     <a href="/">
+                         <img class="header-logo logo" src="../static/images/logo-white.svg" alt="logo mouvinsa" />
+                     </a>
+                    <span id="position-page">-
+                        {% block positionPage %}{% endblock %}
+                    </span>
+                </span>
+    </div>
+    {% include "navigation_bar/boutonsNavBar.html" %}
+</nav>
