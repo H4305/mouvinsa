@@ -40,6 +40,8 @@
         </tr>
         </table>
     </div>
-
+{% endblock %}
+{% block footer %}
     {% include 'apropos.html' %}
+    {{ super() }}
 {% endblock %}
