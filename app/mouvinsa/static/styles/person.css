@@ -70,6 +70,7 @@ h1.group-name {
   /* margin-top: -172px; */
   position: relative;
   max-width:960px;
+  margin: auto;
 }
 
 .activity-box {
