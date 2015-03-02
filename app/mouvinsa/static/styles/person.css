@@ -9,8 +9,8 @@
   width:100%;
   position:relative;
   background: url('../images/person/header1.jpg') left top;
-  height:166px;
-  padding:30px 0;
+  height: 100%;
+  padding-top: 30px;
   background-size: cover;
 }
 
@@ -67,7 +67,7 @@ h1.group-name {
 }
 
 .activity-main-gr {
-  margin-top: -172px;
+  /* margin-top: -172px; */
   position: relative;
   max-width:960px;
 }
@@ -365,7 +365,7 @@ h1.group-name {
 /* GROUP HEADER */
 
 .group-header {
-  height:290px;
+  /* height:290px; */
   box-shadow: 2px 0 5px rgba(0,0,0,0.7);
 }
 

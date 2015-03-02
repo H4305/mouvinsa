@@ -70,12 +70,29 @@ body {
     right: 0;
 }
 
+header {
+    position: relative;
+    top: 0px;
+    height: 321px;
+}
+
 #accueil {
     background: url("../images/fond2.jpg") no-repeat center fixed;
     -webkit-backgroundtbody-size: cover; /* pour Chrome et Safari */
     -moz-background-size: cover; /* pour Firefox */
     -o-background-size: cover; /* pour Opera */
     background-size: cover; /* version standardisÃ©e */
+}
+.activity-main {
+  /* margin-top: -30px; */
+  position: relative;
+  max-width:960px;
+}
+
+#main {
+    margin: 0 auto;
+    max-width: 960px;
+    margin-top: -90px;
 }
 
 .main {
@@ -112,7 +129,7 @@ body {
     color: #ee2922;
 }
 
-#footer {
+footer {
     padding-top: 25px;
     padding-bottom: 10px;
     text-align: center;
@@ -126,7 +143,7 @@ body {
     font-size: 20px;
 }
 
-#footer a:hover{
+footer a:hover{
     color:white;
     -o-transition:.5s;
   	-ms-transition:.5s;
@@ -134,27 +151,27 @@ body {
   	-webkit-transition:.5s;
 }
 
-#footer .logo {
+footer .logo {
   height: 35px;
   margin-right: 25px;
   margin-left: 25px;
 }
 
-#footer #link{
+footer #link{
     text-align: right;
     display: inline-block;
     border-right : 3px solid white;
     padding-right : 25px;
 }
 
-#footer #copyright{
+footer #copyright{
     text-align: left;
     display: inline-block;
     border-left : 3px solid white;
     padding-left : 25px;
 }
 
-#signin {
+signin {
     background: none repeat scroll 0% 0% #FFF;
     background-color: rgba(255, 255, 255, 0.4);
     padding-bottom: 30px;
@@ -299,6 +316,11 @@ transform: rotate(5deg);
 #apropos .email {
     font-size:10px;
 }
+
+#page-a-propos {
+    margin-top: 90px
+}
+
 
 .inscriptionTermine_DIV {
     border: solid 2px black;

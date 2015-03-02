@@ -1,12 +1,12 @@
 {% extends "layout.html" %}
-{% block title %} Accueil {% endblock %}
-{% block pageName %} Accueil {% endblock %}
+{%  set title = "Accueil" %}
+{% block pageName %}{{ title }}{% endblock %}
 {% block pageId %}accueil{% endblock %}
 {% block positionPage %}
     Accueil
 {% endblock %}
 {% block main %}
-	<div id="main" class="main">
+	<div id="counter" class="main">
     	<img class="logo-main" src="{{ url_for('static', filename='images/logo.svg') }}" alt="">
     	<div class="nb-de-Pas-container">{{ nbPasTotales }}<span id="pas-text">Pas</span></div>
         <div class="nb-km-container">{{ distanceTotale }}<span id="km-text">Kilomètres</span></div>
@@ -40,6 +40,8 @@
         </tr>
         </table>
     </div>
-
+{% endblock %}
+{% block footer %}
     {% include 'apropos.html' %}
+    {{ super() }}
 {% endblock %}

@@ -1,16 +1,21 @@
 {% extends "layout.html" %}
-{% block title %} Reglages {% endblock %}
-{% block pageName %} Reglages {% endblock %}
+{% set title = "Réglages" %}
+{% block pageName %} {{ title }} {% endblock %}
 {% block pageId %}reglages{% endblock %}
 {% block positionPage %}
     Reglages
 {% endblock %}
+{% block pageHeader %}{% include "person/main/header.html" %}{% endblock pageHeader %}
 {% block main %}
-    {% include "person/main/header.html" %}
     <form method="post" enctype="multipart/form-data" action="{{ url_for('reglages') }}" >
         {{ form.hidden_tag() }}
        <div class="container account-content">
         {% include "reglages/main/account_content.html" %}
     </div>
     </form>
+{% endblock %}
+{% block optScript %}
+    {{ super() }}
+    <script src="{{ url_for('static', filename='scripts/blur.js') }}"></script>
+    <script src="{{ url_for('static', filename='scripts/paralax.js') }}"></script>
 {% endblock %}

@@ -2,50 +2,49 @@
 <html>
 
 <head>
-        <title>Mouv'INSA | {% block title %}{%  endblock %}</title>
-        <meta charset="utf-8">
-        <meta name="description" content="165c. uniques">
+    <title>Mouv'INSA | {{ title }}</title>
+    <meta charset="utf-8">
+    <meta name="description" content="165c. uniques">
 
-{% block header %}
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/normalize.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/style.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/flipclock.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='bower_components/chartist/dist/chartist.min.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/navigationBarStyle.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/descriptionProjetStyle.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/person.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/reglages.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/inscription/inscription_style.css') }}"/>
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/navigationMenuStyle.css') }}"/>
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/accueil/accueil.css') }}"/>
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/group.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/a propos/apropos.css') }}">
-    <link href="{{ url_for('static', filename='images/icon.ico') }}" rel="icon" type="image/x-icon" />
-{% endblock %}
+    {% block header %}
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/normalize.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/style.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/flipclock.css') }}">
+        <link rel="stylesheet" type="text/css"
+              href="{{ url_for('static', filename='bower_components/chartist/dist/chartist.min.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/navigationBarStyle.css') }}">
+        <link rel="stylesheet" type="text/css"
+              href="{{ url_for('static', filename='styles/descriptionProjetStyle.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/person.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/reglages.css') }}">
+        <link rel="stylesheet" type="text/css"
+              href="{{ url_for('static', filename='styles/inscription/inscription_style.css') }}"/>
+        <link rel="stylesheet" type="text/css"
+              href="{{ url_for('static', filename='styles/navigationMenuStyle.css') }}"/>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/accueil/accueil.css') }}"/>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/group.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/a propos/apropos.css') }}">
+        <link href="{{ url_for('static', filename='images/icon.ico') }}" rel="icon" type="image/x-icon"/>
+    {% endblock %}
 
-        {% include 'scripts.html' %}
+    {% include 'scripts.html' %}
 </head>
 
 <body id="{% block pageId %}{% endblock %}">
-    <div id="page">
-        <header></header>
-        <nav id="navigation_menu_NAV">
-            <button id="menu-deroulant">
-                <img src="{{ url_for('static', filename='images/menu2.png') }}">
-                {% block buttonMenu %}{% endblock %}
-            </button>
-            <div class="titrePage_DIV">
-                <span class ="titre_SPAN">
-                     <a href="/"><img class="header-logo" src="../static/images/logo-white.svg" alt="logo mouvinsa" class="logo" /></a><span id="position-page">- {% block positionPage %}{% endblock %}</span>
-                </span>
-            </div>
-            {% include "navigation_bar/boutonsNavBar.html" %}
-        </nav>
+<div id="page">
+    {% include "navigation_bar/navBar.html" %}
+    {% block pageHeader %}{% endblock %}
+    <div id="main">
         {% block main %}{% endblock %}
-        <footer>{% include 'footer.html' %}</footer>
     </div>
-    {%block optScript %}
-        <!-- Optional Script -->
+    {% block footer %}
+        <footer>
+            {% include 'footer.html' %}
+        </footer>
     {% endblock %}
+</div>
+{% block optScript %}
+    <!-- Optional Script -->
+{% endblock %}
 </body>
 </html>
