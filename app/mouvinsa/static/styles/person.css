@@ -614,4 +614,12 @@ width: 80px;
   margin-bottom: 20px;
 }
 
+.activity {
+display: block;
+border: medium solid;
+width: 221px;
+position: absolute;
+font-size: 10px;
+left: 205px;
+}
 

@@ -10,6 +10,11 @@
                 <div class="person-avat-wrapper">
                     <img src="{{ url_for('display_picture', filename=person.image) if person.image else '/static/images/person/defaultm.png' }}" alt="{{ person.nickname }}" class="person-avat">
                 </div>
+                <!--<div class="activity">
+                        <span>Avant-hier :<div id="avant-hier-act"></div></span>
+                        <span>Hier :<div id="hier-act"></div></span>
+                        <span>Aujourd'hui :<div id="today-act"></div></span>
+                    </div>-->
                 <div class="person-nom-wrapper">
                     <h1 class="person-nom">{{ person.nickname }}</h1>
                 </div>
