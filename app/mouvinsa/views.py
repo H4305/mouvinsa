@@ -259,7 +259,7 @@ def personnel():
         chartDates = (" ".join(chartDates) + "]")
         chartObjectifs = (" ".join(chartObjectifs) + "]")
 
-        jQuesSante = 0 #jourQuestionSante()
+        jQuesSante = jourQuestionSante()
         if jQuesSante != 0:
             display = "display:block;"
             title = u'Niveau d\'activité physique'
