@@ -14,7 +14,7 @@
       90.65%">
     {% endif %}
       <span class="destination-counter">
-        {{ '%.0f' % (group.distance / 1000 ) }} Km ({{ (group.distance / 1000 )/0.00064 }} Pas)
+        {{ '%.0f' % (group.distance / 1000 ) }} Km ({{ '{0:0.0f}'.format((group.distance / 1000 )/0.00064) }} Pas)
       </span>
       <svg  version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
        width="90px" height="90px" viewBox="0 0 512 512" fill="#1286df" enable-background="new 0 0 512 512" xml:space="preserve">
@@ -28,7 +28,7 @@
     </svg>
     <img src="/static/images/logo-insa.png" class="destination-bar-insa" alt="">
     <span class="destination-distance">
-      {{ group.city_destination.level.distance }} Km ({{ group.city_destination.level.distance/0.00064 }} Pas)
+      {{ group.city_destination.level.distance }} Km ({{ '{0:0.0f}'.format(group.city_destination.level.distance/0.00064) }} Pas)
     </span>
   </div>
   <ul class="destination-list">
