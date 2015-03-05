@@ -346,3 +346,11 @@ transform: rotate(5deg);
     text-decoration: none;
     font-size: 20px;
 }
+
+#avis {
+    margin-top: 20px;
+    background-color: white;
+    padding: 15px;
+    border: solid black 3px;
+    border-radius: 58px;
+}

@@ -181,7 +181,7 @@ def jourQuestionSante():
     dateToday = date.today().strftime('%d-%m-%Y')
     timestampToday = date2Timestamp(str(dateToday))
 
-    dateDebutMouvinsa = datetime.datetime(2015, 03, 04).strftime('%d-%m-%Y')
+    dateDebutMouvinsa = datetime.datetime(2015, 03, 05).strftime('%d-%m-%Y')
     timestampDateDebutMouvinsa = date2Timestamp(str(dateDebutMouvinsa))
 
     # 02 avril
@@ -195,11 +195,11 @@ def jourQuestionSante():
     person = getPersonFromSession()
     question = Questions.query.filter_by(person_id=person.id).first()
 
-    if timestampToday == timestampDateDebutMouvinsa and len(question.firstValue) == 0:
+    if timestampToday >= timestampDateDebutMouvinsa and len(question.firstValue) == 0:
         return 1
-    elif timestampToday == timestampDateMilieuMouvinsa and len(question.secondValue) == 0:
+    elif timestampToday >= timestampDateMilieuMouvinsa and len(question.secondValue) == 0:
         return 2
-    elif timestampToday == timestampdateFinMouvinsa and len(question.thirdValue) == 0:
+    elif timestampToday >= timestampdateFinMouvinsa and len(question.thirdValue) == 0:
         return 3
     else:
         return 0

@@ -1,9 +1,9 @@
 <div class="photo-box row-elem">
-    <!--<div class="bar-photos">
+    <div class="bar-photos">
         <h1 class="photos">
-            <i>{{group.city_arrived.nom}} - {{ group.city_arrived.description_image_1 }}</i>
+            <i>{{group.city_arrived.nom}}<!-- - {{ group.city_arrived.description_image_1 }} --> </i>
         </h1>
-    </div>-->
+    </div>
     <div class="slideshow">
 	<ul>
 		<li><img src="{{ url_for('static', filename=('images/destinations/'+ group.city_arrived_id|string + "_1.jpg")) }}" alt="" width="590" height="400" /></li>

@@ -146,7 +146,7 @@ def update_steps_ajax(person, form):
             group = Group.query.filter_by(id=person.group_id).first()
             group.stepSum = teamSteps
             distanceTot = "{0:.2f}".format(moyenneDistancePas * stepsSumTotal)
-            city_changed = set_city_arrived_destination(moyenneDistancePas * stepsSumTotal, group)
+            city_changed = set_city_arrived_destination(moyenneDistancePas * teamSteps, group)
 
             db.session.commit()
             update_streaks(dateSteps=dateSteps, person=person, fitnessInfo=fitnessInfo)

@@ -6,7 +6,11 @@
     Accueil
 {% endblock %}
 {% block main %}
+
 	<div id="main" class="main">
+        <div id="avis">Cher(e)s équipier(e)s,
+Initialement prévu pour rentrer votre nombre de pas sous 7 jours, la plateforme vous permet actuellement de le faire sous 3 jours et ce pendant encore une semaine.
+Nous sommes désolés et faisons de notre mieux pour étendre la possibilité de rentrer votre nombre de pas sous 7 jours.</div>
     	<img class="logo-main" src="{{ url_for('static', filename='images/logo.svg') }}" alt="">
     	<div class="nb-de-Pas-container">{{ nbPasTotales }}<span id="pas-text">Pas</span></div>
         <div class="nb-km-container">{{ distanceTotale }}<span id="km-text">Kilomètres</span></div>
