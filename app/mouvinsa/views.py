@@ -195,7 +195,7 @@ def jourQuestionSante():
     person = getPersonFromSession()
     question = Questions.query.filter_by(person_id=person.id).first()
 
-    if timestampToday >= timestampDateDebutMouvinsa or len(question.firstValue) == 0:
+    if timestampToday >= timestampDateDebutMouvinsa and len(question.firstValue) == 0:
         return 1
     elif timestampToday >= timestampDateMilieuMouvinsa and len(question.secondValue) == 0:
         return 2
