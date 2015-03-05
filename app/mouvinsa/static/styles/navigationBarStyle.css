@@ -49,7 +49,7 @@
 
 @media screen and (max-width: 1000px) {
 
-	#navigation_menu_NAV {
+	#navigation_menu {
 		position:           fixed;
 		top:                0;
 		left:               0;
@@ -120,7 +120,7 @@
 	}
 }
 
-#navigation_menu_NAV {
+#navigation_menu {
     position:           fixed;
     top:                0;
     left:               0;

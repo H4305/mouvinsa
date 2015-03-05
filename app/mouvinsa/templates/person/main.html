@@ -1,12 +1,13 @@
 {% extends "layout.html" %}
-{% block title %} Ma Page {% endblock %}
-{% block pageName %} Ma Page {% endblock %}
+{% set title = "Ma Page" %}
+{% block pageName %} {{ title }}{% endblock %}
 {% block positionPage %}
     ma page
 {% endblock %}
+{% block pageHeader %}{% include "person/main/header.html" %}{% endblock %}
 {% block main %}
 <input type="hidden" id="today" value="{{today}}">
-    {% include "person/main/header.html" %}
+
   <div class="container activity-main">
     {% include "person/main/activity.html" %}
     {% include "person/main/distance_bar.html" %}
@@ -23,6 +24,7 @@
   </div>
 {% endblock %}
 {% block optScript %}
+    {{ super() }}
   <script src="{{ url_for('static', filename='bower_components/chartist/dist/chartist.min.js') }}"></script>
   <script>
     var data = {
@@ -36,4 +38,6 @@
   </script>
   <script src="{{ url_for('static', filename='scripts/personal.js') }}"></script>
     <script src="{{ url_for('static', filename='scripts/question.js') }}"></script>
+    <script src="{{ url_for('static', filename='scripts/blur.js') }}"></script>
+    <script src="{{ url_for('static', filename='scripts/paralax.js') }}"></script>
 {% endblock %}

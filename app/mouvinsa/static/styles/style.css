@@ -70,6 +70,12 @@ body {
     right: 0;
 }
 
+header {
+    /* position: relative; */
+    /* top: 0px; */
+    height: 321px;
+}
+
 #accueil {
     background: url("../images/fond2.jpg") no-repeat center fixed;
     -webkit-backgroundtbody-size: cover; /* pour Chrome et Safari */
@@ -78,9 +84,15 @@ body {
     background-size: cover; /* version standardisÃ©e */
 }
 .activity-main {
-  margin-top: -30px;
+  /* margin-top: -30px; */
   position: relative;
   max-width:960px;
+}
+
+#main {
+    margin: 0 auto;
+    /* max-width: 960px; */
+    margin-top: -90px;
 }
 
 .main {
@@ -117,7 +129,7 @@ body {
     color: #ee2922;
 }
 
-#footer {
+footer {
     padding-top: 25px;
     padding-bottom: 10px;
     text-align: center;
@@ -131,7 +143,7 @@ body {
     font-size: 20px;
 }
 
-#footer a:hover{
+footer a:hover{
     color:white;
     -o-transition:.5s;
   	-ms-transition:.5s;
@@ -139,36 +151,49 @@ body {
   	-webkit-transition:.5s;
 }
 
-#footer .logo {
+footer .logo {
   height: 35px;
   margin-right: 25px;
   margin-left: 25px;
 }
 
-#footer #link{
+footer #link{
     text-align: right;
     display: inline-block;
     border-right : 3px solid white;
     padding-right : 25px;
 }
 
-#footer #copyright{
+footer #copyright{
     text-align: left;
     display: inline-block;
     border-left : 3px solid white;
     padding-left : 25px;
 }
 
+header.login {
+    height: 321px;
+    background: url("../images/clouds.jpg") no-repeat center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    box-shadow: 0 0 2px 0px;
+}
+
 #signin {
-    background: none repeat scroll 0% 0% #FFF;
-    background-color: rgba(255, 255, 255, 0.4);
-    padding-bottom: 30px;
+    background: #fff;
+    box-shadow: 0px 1px 3px rgba(0,0,0,0.3);
+    /* padding-bottom: 30px; */
     text-align: left;
     width: 100%;
     margin: 20px auto;
     font-family: bebas_neue_bold,Helvetica,Arial;
     font-size: 20px;
     max-width: 500px;
+    /* margin-top: 180px; */
+    margin-bottom: 90px;
+    z-index: 1;
 }
 
 @media (max-width: 600px) {
@@ -203,11 +228,13 @@ body {
 .button {
     background: none repeat scroll 0% 0% #E42618;
     margin-top: 25px;
-    margin-left: 60%;
+    margin-bottom: 25px;
+    margin-left: 50px;
     padding: 10px;
     color: #FFF;
-    box-shadow: 0px 8px 6px -6px #000;
-    -webkit-box-shadow: 0 8px 6px -6px black;
+    border: none;
+    box-shadow: 0px 0px 2px 0px #000;
+    /* -webkit-box-shadow: 0 8px 6px -6px black; */
     -moz-box-shadow: 0 8px 6px -6px black;
 }
 
@@ -305,6 +332,11 @@ transform: rotate(5deg);
     font-size:10px;
 }
 
+#page-a-propos {
+    margin-top: 90px
+}
+
+
 .inscriptionTermine_DIV {
     border: solid 2px black;
     background: white;
@@ -314,18 +346,20 @@ transform: rotate(5deg);
 }
 
 #backgroundSignin {
-    width: 100%;
-    height: 100%;
-    background-color: black;
-    margin-bottom: -41px;
-    margin-top: -20px;
-    padding-top: 60px;
-    padding-bottom: 60px;
-    background: url("../images/momenrun.jpg") no-repeat center fixed;
+    position: relative;
+    Z-INDEX: 1;
+    /* width: 100%; */
+    /* height: 100%; */
+
+    /* margin-top: 180px; */
+    /* margin-bottom: 90px; */
+    /* margin-left: auto; */
+    /* margin-right: auto; */
+
     -webkit-backgroundtbody-size: cover; /* pour Chrome et Safari */
     -moz-background-size: cover; /* pour Firefox */
     -o-background-size: cover; /* pour Opera */
-    background-size: cover; /* version standardisÃ©e */
+    /* background-size: cover; */ /* version standardisÃ©e */
 }
 
 .hidden {

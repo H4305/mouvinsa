@@ -1,14 +1,16 @@
-
-<div class="group-header" style="background-image: url('/static/images/destinations/{{group.city_destination_id}}_0.jpg')">
-  <div class="container">
-    <div class="group-avatar-wrapper">
-      {# <img src="{{ group.image or '/static/images/group/defaultm.png' }}" alt="Group" class="group-avatar"> #}
+<header>
+    <div class="group-header"
+         style="background-image: url('/static/images/destinations/{{ group.city_destination_id }}_0.jpg')">
+        <div class="container">
+            <div class="group-avatar-wrapper">
+                {# <img src="{{ group.image or '/static/images/group/defaultm.png' }}" alt="Group" class="group-avatar"> #}
       <span class="group-id">
         {{ group.id }}
       </span>
+            </div>
+            <div class="group-name-wrapper">
+                <h1 class="group-name"> {{ group.label }} </h1>
+            </div>
+        </div>
     </div>
-    <div class="group-name-wrapper">
-      <h1 class="group-name"> {{ group.label }} </h1>
-    </div>
-  </div>
-</div>
+</header>
