@@ -29,7 +29,6 @@ h2              { font-size: 1.2em; }
          url('../fonts/bebas/bebasneue_light-webfont.woff') format('woff'),
          url('../fonts/bebas/bebasneue_light-webfont.ttf') format('truetype'),
          url('../fonts/bebas/bebasneue_light-webfont.svg#bebas_neuelight') format('svg');
-    font-weight: lighter;
     font-style: normal;
 
 }
@@ -193,7 +192,6 @@ header.login {
     /* margin-top: 180px; */
     margin-bottom: 90px;
     z-index: 1;
-    margin
 }
 
 @media (max-width: 600px) {
