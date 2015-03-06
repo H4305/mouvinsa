@@ -58,8 +58,9 @@ def home():
         nbPasTotales = nbPasTotales + group.stepSum
         distanceTotale = (distanceTotale + group.distance)
 
+    distanceTotaleRound = round(distanceTotale/1000, 2)
+    toursTerre = round(distanceTotaleRound/40075, 2)
     distanceTotale = int(distanceTotale/1000)
-    toursTerre = round(distanceTotale/40075, 2)
     return render_template('/accueil/index.html', person=person, index=index, groups=groups, nbPasTotales="{:,}".format(nbPasTotales), distanceTotale="{:,}".format(distanceTotale), toursTerre=toursTerre)
 
 
