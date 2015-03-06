@@ -1,5 +1,5 @@
 #counter {
-    margin-top: 90px;
+    margin-top: 110px;
 }
 
 .teamsGroup {
@@ -7,6 +7,7 @@
     background: white;
     margin-left: auto;
     margin-right: auto;
+    max-width: 920px;
 }
 .teamsDivTitle {
     background-color: #E42618;
