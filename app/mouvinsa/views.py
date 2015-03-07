@@ -18,6 +18,7 @@ from mouvinsa.controllers.inscription_controller import *
 from datetime import date, timedelta
 import datetime, time
 import operator
+from sqlalchemy import desc
 #-------------------End Imports
 
 
@@ -51,7 +52,7 @@ def page_not_found(e):
 def home():
     person = getPersonFromSession()
     index = 'yes'
-    groups = Group.query.all()
+    groups = Group.query.order_by(desc(Group.stepSum))
     nbPasTotales = 0
     distanceTotale = 0
     for group in groups:
