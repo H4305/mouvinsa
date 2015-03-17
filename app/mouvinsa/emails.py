@@ -89,3 +89,12 @@ def sendMailDernierRappel(surnom, email):
                                surnom=surnom),
                render_template("/mails/derniers_rappels_depart.html",
                                surnom=surnom))
+
+def sendMailConferenceSante(surnom, email):
+    send_email(u'[Mouv\'INSA] - Conférence sur la Santé et le Lien Social',
+               ADMIN[0],
+               [email],
+               render_template("/mails/conference_sante.txt",
+                               surnom=surnom),
+               render_template("/mails/conference_sante.html",
+                               surnom=surnom))

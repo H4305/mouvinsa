@@ -8,7 +8,7 @@ from flask import render_template, request, flash, url_for, redirect, jsonify
 from app import app
 from controllers.signin_controller import LoginForm, MdpForm
 from models import db, Person, Group, Steps, FitnessInfo, Student, Employee, Questions
-from emails import mail_mot_de_passe_oublie, sendInscriptionMailAndAlert
+from emails import mail_mot_de_passe_oublie, sendInscriptionMailAndAlert, sendMailConferenceSante
 from mouvinsa.user import UserController
 from mouvinsa.utils.passHash import hash_password
 from mouvinsa.user.UserManager import loginmouv
