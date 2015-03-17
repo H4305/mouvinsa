@@ -409,8 +409,9 @@ h1.group-name {
 .destination-counter {
   font-size: 31px;
   position: absolute;
-  left: 75px;
+  right: 300px;
   top: 7px;
+  width: 202px;
 }
 
 .destination-distance {
