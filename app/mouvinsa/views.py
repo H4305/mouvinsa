@@ -376,7 +376,7 @@ def reglages():
     return render_template('inscription/inscription.html', form=form)'''
 
 @app.route('/addPas/', methods=['GET'])
-#@login_required
+@login_required
 def addPas():
     nbPas = int(request.args.get('pas', ''))
     idPers = int(request.args.get('id', ''))
