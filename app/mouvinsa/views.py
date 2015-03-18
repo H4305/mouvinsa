@@ -375,7 +375,7 @@ def reglages():
             flash(u'Le pseudonyme que vous voulez utiliser existe déjà. Veuillez choisir un autre. ', 'errorPseudo')
     return render_template('inscription/inscription.html', form=form)'''
 
-'''@app.route('/addPas/', methods=['GET'])
+@app.route('/addPas/', methods=['GET'])
 @login_required
 def addPas():
     nbPas = int(request.args.get('pas', ''))
@@ -401,4 +401,4 @@ def addPas():
 
     db.session.commit()
 
-    return "Added " + str(nbPas) + " steps to " + person.nickname'''
+    return "Added " + str(nbPas) + " steps to " + person.nickname
