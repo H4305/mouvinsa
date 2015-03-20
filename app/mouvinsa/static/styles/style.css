@@ -402,4 +402,5 @@ transform: rotate(5deg);
     padding: 15px;
     border: solid black 3px;
     border-radius: 58px;
+    text-align: left;
 }

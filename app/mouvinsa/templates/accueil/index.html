@@ -8,9 +8,19 @@
 {% block main %}
 
 	<div id="counter" class="main">
-        <div id="avis">Cher(e)s équipier(e)s,
-Initialement prévu pour rentrer votre nombre de pas sous 7 jours, la plateforme vous permet actuellement de le faire sous 3 jours et ce pendant encore une semaine.
-Nous sommes désolés et faisons de notre mieux pour étendre la possibilité de rentrer votre nombre de pas sous 7 jours.</div>
+        <div id="avis">
+            <p>La Conférence sur la Santé et le Lien Social se déroulera le <b>mardi 31 Mars de 12h00 à 14h00</b>, à l’amphithéâtre Gaston BERGER.</p>
+
+    <p>Trois temps fort vous sont proposés :</p>
+
+    <ul>
+        <li>Intervention de Julien ALDEGUER, Kinésithérapeute, Ostéopathe et Préparateur Physique, sur le thème de la Santé.</li>
+        <li>Intervention de Jean-Philippe NEUVILLE, Sociologue, sur le thème du Lien Social.</li>
+        <li>Un moment convivial clôturera cet évènement.</li>
+    </ul>
+
+    <p><b>Venez nombreux!!!</b></p>
+</div>
     	<img class="logo-main" src="{{ url_for('static', filename='images/logo.svg') }}" alt="">
     	<div class="nb-de-Pas-container">{{ nbPasTotales }}<span id="pas-text">Pas</span></div>
         <div class="nb-km-container">{{ distanceTotale }}<span id="km-text">Kilomètres</span></div>
