@@ -2,8 +2,13 @@
 <form id="question-form" action="">
     Nous vous prions de bien vouloir acceder à <a href="http://www.onvabouger.fr/d-activites/testez-vous-en-ligne-sedentaire-actif.html" target="_blank">cette page</a> et d'effectuer le test. Nous vous remercions par avance de votre collaboration.<br><br>
     <input type="hidden" class="question-input" name="input-numeroQuestion" id="input-numeroQuestion" value="{{ jQuesSante }}">
-    Valeur retournée
-    <input type="text" class="question-input" name="input-value" id="input-value" >
+    Résultat :
+    <select id="select-value" name="select-value">
+        <option value="Pas Participé" selected>Je ne veux pas participer</option>
+        <option value="Plutôt sédentaire">Plutôt sédentaire</option>
+        <option value="Actif modéré">Actif modéré</option>
+        <option value="Vrai actif">Vrai actif</option>
+    </select>
     <br><br>
     <button class="submit-question" id="submit-question">Valider</button>
 </form>

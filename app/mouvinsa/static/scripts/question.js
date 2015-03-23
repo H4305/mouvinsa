@@ -3,7 +3,8 @@ var questionForm = $('#question-form');
 questionForm.submit(function(e) {
   e.preventDefault();
 
-  var value = $("#input-value").val();
+  var value = $("#select-value").val();
+  console.log(value);
   if (value != "") {
     $.ajax({
       type: "POST",
