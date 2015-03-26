@@ -1,0 +1,18 @@
+Bonjour {{ surnom }}!
+
+La Conférence sur la Santé et la Lien Social se déroulera le mardi 31 Mars de 12h00 à 14h00, à l’amphithéâtre Gaston BERGER.
+
+Trois temps fort vous sont proposés:
+
+-Intervention de Julien ALDEGUER, Kinésithérapeute, Ostéopathe et Préparateur Physique, sur le thème de la Santé.
+-Intervention de Jean-Philippe NEUVILLE, Sociologue, sur le thème du Lien Social.
+-Un moment convivial clôturera cet évènement.
+
+Pour une meilleure organisation, on vous invite à confirmer votre présence en remplissant le doodle à l'adresse suivante :
+
+http://doodle.com/kazmq4d7yh94hnb5
+
+
+Venez nombreux!!!
+
+Le Collectif Mouv'Insa

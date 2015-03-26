@@ -98,3 +98,12 @@ def sendMailConferenceSante(surnom, email):
                                surnom=surnom),
                render_template("/mails/conference_sante.html",
                                surnom=surnom))
+
+def sendMailDoodle(surnom, email):
+    send_email(u'[Mouv\'INSA] - Doodle conférence sur la Santé et le Lien Social',
+               ADMIN[0],
+               [email],
+               render_template("/mails/doodle_conference.txt",
+                               surnom=surnom),
+               render_template("/mails/doodle_conference.html",
+                               surnom=surnom))

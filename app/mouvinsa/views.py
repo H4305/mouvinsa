@@ -8,7 +8,7 @@ from flask import render_template, request, flash, url_for, redirect, jsonify
 from app import app
 from controllers.signin_controller import LoginForm, MdpForm
 from models import db, Person, Group, Steps, FitnessInfo, Student, Employee, Questions
-from emails import mail_mot_de_passe_oublie, sendInscriptionMailAndAlert, sendMailConferenceSante
+from emails import mail_mot_de_passe_oublie, sendInscriptionMailAndAlert, sendMailConferenceSante, sendMailDoodle
 from mouvinsa.user import UserController
 from mouvinsa.utils.passHash import hash_password
 from mouvinsa.user.UserManager import loginmouv
@@ -376,7 +376,7 @@ def reglages():
             flash(u'Le pseudonyme que vous voulez utiliser existe déjà. Veuillez choisir un autre. ', 'errorPseudo')
     return render_template('inscription/inscription.html', form=form)'''
 
-@app.route('/addPas/', methods=['GET'])
+'''@app.route('/addPas/', methods=['GET'])
 @login_required
 def addPas():
     nbPas = int(request.args.get('pas', ''))
@@ -402,4 +402,5 @@ def addPas():
 
     db.session.commit()
 
-    return "Added " + str(nbPas) + " steps to " + person.nickname
+    return "Added " + str(nbPas) + " steps to " + person.nickname'''
+
