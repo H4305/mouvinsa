@@ -376,16 +376,17 @@ def reglages():
             flash(u'Le pseudonyme que vous voulez utiliser existe déjà. Veuillez choisir un autre. ', 'errorPseudo')
     return render_template('inscription/inscription.html', form=form)'''
 
-'''@app.route('/addPas/', methods=['GET'])
+@app.route('/addPas/', methods=['GET'])
 @login_required
 def addPas():
     nbPas = int(request.args.get('pas', ''))
     idPers = int(request.args.get('id', ''))
     day = int(request.args.get('jour', ''))
     month = int(request.args.get('mois', ''))
-
-    fitnessInfo = FitnessInfo.query.filter_by(person_id=idPers).first()
     date = datetime.datetime(2015, month, day)
+
+    '''fitnessInfo = FitnessInfo.query.filter_by(person_id=idPers).first()
+
 
     steps = Steps()
     steps.person_id = idPers
@@ -400,7 +401,53 @@ def addPas():
     group = Group.query.filter_by(id=groupNb).first()
     group.stepSum = group.stepSum + nbPas
 
-    db.session.commit()
+    db.session.commit()'''
 
-    return "Added " + str(nbPas) + " steps to " + person.nickname'''
+
+    try:
+        if nbPas>=0:
+            person = Person.query.filter_by(id=idPers).first()
+            fitnessInfo = FitnessInfo.query.filter_by(person_id=idPers).first()
+            stepsSumTotal = fitnessInfo.stepSum
+            stepsForDay = Steps.query.filter_by(date=date, person_id=idPers).first()
+
+            # List is not empty = that person has already entered steps once
+            if stepsForDay:
+
+                # I have to update with the new Number
+                previousSteps = stepsForDay.stepnumber
+                stepsToSum = previousSteps - nbPas
+                stepsForDay.stepnumber = nbPas
+                stepsSumTotal = stepsSumTotal - stepsToSum
+
+            else:
+            # List is empty -> New data
+                steps = Steps()
+                steps.person_id = idPers
+                steps.date = date
+                steps.stepnumber = nbPas
+
+                db.session.add(steps)
+                stepsSumTotal = stepsSumTotal + nbPas
+
+            fitnessInfo.stepSum = stepsSumTotal
+            personsTeam = Person.query.filter_by(group_id=person.group_id)
+            teamSteps = 0
+
+            for pers in personsTeam:
+                teamSteps = teamSteps + FitnessInfo.query.filter_by(person_id=pers.id).first().stepSum
+
+            group = Group.query.filter_by(id=person.group_id).first()
+            group.stepSum = teamSteps
+
+            db.session.commit()
+
+            return "Added " + str(nbPas) + " steps to " + person.nickname
+
+        else:
+            error = u'Une des valeurs rentrée est inférieure à 0.'
+            return error
+    except ValueError:
+        error = u'Une des valeurs rentrée n\'est pas numérique.'
+        return error
 
