@@ -376,7 +376,7 @@ def reglages():
             flash(u'Le pseudonyme que vous voulez utiliser existe déjà. Veuillez choisir un autre. ', 'errorPseudo')
     return render_template('inscription/inscription.html', form=form)'''
 
-'''@app.route('/addPas/', methods=['GET'])
+@app.route('/addPas/', methods=['GET'])
 @login_required
 def addPas():
     nbPas = int(request.args.get('pas', ''))
@@ -384,25 +384,6 @@ def addPas():
     day = int(request.args.get('jour', ''))
     month = int(request.args.get('mois', ''))
     date = datetime.datetime(2015, month, day)
-
-    fitnessInfo = FitnessInfo.query.filter_by(person_id=idPers).first()
-
-
-    steps = Steps()
-    steps.person_id = idPers
-    steps.date = date
-    steps.stepnumber = nbPas
-
-    db.session.add(steps)
-
-    fitnessInfo.stepSum = fitnessInfo.stepSum + nbPas
-    person = Person.query.filter_by(id=idPers).first()
-    groupNb = person.group_id
-    group = Group.query.filter_by(id=groupNb).first()
-    group.stepSum = group.stepSum + nbPas
-
-    db.session.commit()
-
 
     try:
         if nbPas>=0:
@@ -449,5 +430,5 @@ def addPas():
             return error
     except ValueError:
         error = u'Une des valeurs rentrée n\'est pas numérique.'
-        return error'''
+        return error
 
