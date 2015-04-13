@@ -399,7 +399,9 @@ transform: rotate(5deg);
 #avis {
     margin-top: 20px;
     background-color: white;
-    padding: 15px;
+    padding-bottom: 15px;
+    padding-left: 15px;
+    padding-right: 15px;
     border: solid black 3px;
     border-radius: 58px;
     text-align: left;

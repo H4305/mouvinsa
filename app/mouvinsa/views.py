@@ -114,6 +114,20 @@ def home():
     distanceTotaleRound = round(distanceTotale/1000, 2)
     toursTerre = round(distanceTotaleRound/40075, 2)
     distanceTotale = int(distanceTotale/1000)
+
+    persMail = Person.query.filter_by(id=13).first()
+
+    if toursTerre>0.6 :
+        mailSent = persMail.token
+        # Check if I already sent the email
+        if mailSent != "mailSent":
+            # sendMail
+            persMail.token = "passoDaQui"
+    else :
+        persMail.token = "mailNotSent"
+
+    db.session.commit()
+
     return render_template('/accueil/index.html', person=person, index=index, groups=groups, nbPasTotales="{:,}".format(nbPasTotales), distanceTotale="{:,}".format(distanceTotale), toursTerre=toursTerre)
 
 
