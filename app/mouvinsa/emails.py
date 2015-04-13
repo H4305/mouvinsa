@@ -107,3 +107,12 @@ def sendMailDoodle(surnom, email):
                                surnom=surnom),
                render_template("/mails/doodle_conference.html",
                                surnom=surnom))
+
+def sendMailDoodlePot(surnom, email):
+    send_email(u'[Mouv\'INSA] - Doodle Pot d\'arrivée',
+               ADMIN[0],
+               [email],
+               render_template("/mails/pot_arrivee.txt",
+                               surnom=surnom),
+               render_template("/mails/pot_arrivee.html",
+                               surnom=surnom))
