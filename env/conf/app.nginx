@@ -16,10 +16,10 @@ server {
     }
 
     location ^~ /static/ {
-        alias /app/mouvinsa/static/;
+        alias /toc/static/;
     }
 
-    location = /favico.ico {
-        root /app/mouvinsa/favico.ico;
-    }
+    #location = /favico.ico {
+        #root /toc/mouvinsa/favico.ico;
+    #}
 }
