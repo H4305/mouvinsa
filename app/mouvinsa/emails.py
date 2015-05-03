@@ -116,3 +116,12 @@ def sendMailDoodlePot(surnom, email):
                                surnom=surnom),
                render_template("/mails/pot_arrivee.html",
                                surnom=surnom))
+
+def sendMailDernierPot(surnom, email):
+    send_email(u'[Mouv\'INSA] - Pot d\'arrivée',
+               ADMIN[0],
+               [email],
+               render_template("/mails/rencontre_finale.txt",
+                               surnom=surnom),
+               render_template("/mails/rencontre_finale.html",
+                               surnom=surnom))

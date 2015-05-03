@@ -8,7 +8,7 @@ from flask import render_template, request, flash, url_for, redirect, jsonify
 from app import app
 from controllers.signin_controller import LoginForm, MdpForm
 from models import db, Person, Group, Steps, FitnessInfo, Student, Employee, Questions
-from emails import mail_mot_de_passe_oublie, sendInscriptionMailAndAlert, sendMailConferenceSante, sendMailDoodle, sendMailDoodlePot
+from emails import mail_mot_de_passe_oublie, sendInscriptionMailAndAlert, sendMailConferenceSante, sendMailDoodle, sendMailDoodlePot, sendMailDernierPot
 from mouvinsa.user import UserController
 from mouvinsa.utils.passHash import hash_password
 from mouvinsa.user.UserManager import loginmouv
@@ -447,7 +447,7 @@ def addPas():
         return error
 
 @app.route('/sendMail/potArrivee')
-def sendMailPotArrivee():
+def sendMailPotArriveeFin():
     message = ""
     index = 0
     for person in Person.query.all():
@@ -456,5 +456,7 @@ def sendMailPotArrivee():
             surnom = person.nickname
             email = person.email
             message += str(index) + ". " + surnom + "<br>"
-            #DO NOT UNCOMMENT sendMailDoodlePot(surnom=surnom, email=email)
+            #DO NOT UNCOMMENT
+            sendMailDernierPot(surnom=surnom, email=email)
     return message
+
